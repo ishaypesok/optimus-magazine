@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { 
   BookOpen, Sparkles, Flame, Activity, Zap, Droplet, Clock, 
   ChevronRight, ChevronLeft, Bookmark, Share2, Award, ArrowUpRight, 
-  ShieldCheck, Heart, Layers, BarChart2, CheckCircle2, UserCheck, Printer
+  ShieldCheck, Heart, Layers, BarChart2, CheckCircle2, UserCheck, Printer, Smile, HelpCircle, Lightbulb, BatteryCharging
 } from 'lucide-react';
 import { ZONES, CHARACTERS } from '../data/metabolismData';
 import FuelCharts from './FuelCharts';
@@ -12,7 +12,7 @@ import AdaptationSimulator from './AdaptationSimulator';
 export default function MagazineView({ currentZoneId, setCurrentZoneId, activeArticle, setActiveArticle }) {
   const [internalPage, setInternalPage] = useState(1);
   const activePage = (activeArticle && typeof activeArticle === 'number') ? activeArticle : internalPage;
-  const totalPages = 5;
+  const totalPages = 6;
 
   const zone2 = ZONES.find(z => z.id === 2) || ZONES[1];
   const currentZone = ZONES.find(z => z.id === currentZoneId) || zone2;
@@ -51,13 +51,154 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
           </button>
         </div>
 
-        {/* ==================== PAGE 1: COVER STORY ==================== */}
+        {/* ==================== PAGE 1: EASY INTRO TO ZONE 2 & FATMAX ==================== */}
         {activePage === 1 && (
           <article className="space-y-8 animate-fade-in font-sans">
             
             <div className="space-y-2">
+              <span className="px-3.5 py-1 rounded-full bg-emerald-100 text-emerald-900 font-bold text-xs uppercase tracking-wider border border-emerald-200 inline-flex items-center gap-1.5">
+                <Smile className="w-3.5 h-3.5 text-emerald-700" />
+                Page 1 • Easy Intro for Everyone
+              </span>
+              <h2 className="text-3xl lg:text-4xl font-extrabold text-stone-900 leading-tight tracking-tight">
+                What is Zone 2? (The Friendly Guide for Everyone)
+              </h2>
+              <p className="text-stone-600 text-sm lg:text-base font-normal">
+                Understanding your body's fat-burning sweet spot in simple, everyday language—no science background needed!
+              </p>
+            </div>
+
+            {/* Simple Friendly Explanations */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 text-stone-800 text-sm lg:text-base leading-relaxed">
+              
+              {/* Card 1: What is Zone 2 in simple terms? */}
+              <div className="p-6 rounded-2xl bg-stone-50 border border-stone-200 space-y-3">
+                <div className="flex items-center gap-2 text-emerald-900 font-bold text-base">
+                  <Lightbulb className="w-5 h-5 text-emerald-700" />
+                  What is "Zone 2" in plain words?
+                </div>
+                <p className="text-stone-700 text-xs sm:text-sm leading-relaxed font-normal">
+                  Imagine your body has 5 exercise gears. Gear 1 is resting on the couch. Gear 5 is an all-out sprint where your lungs are burning.
+                </p>
+                <p className="text-stone-700 text-xs sm:text-sm leading-relaxed font-normal">
+                  <strong>Zone 2 is Gear 2</strong>—a comfortable, steady pace (like a light jog, brisk walk uphill, or easy bike ride). You can comfortably hold a full conversation without gasping for air!
+                </p>
+              </div>
+
+              {/* Card 2: What is FATmax & Why is it needed? */}
+              <div className="p-6 rounded-2xl bg-emerald-50 border border-emerald-200 space-y-3">
+                <div className="flex items-center gap-2 text-emerald-950 font-bold text-base">
+                  <Flame className="w-5 h-5 text-emerald-700" />
+                  What is "FATmax" and why is it needed?
+                </div>
+                <p className="text-stone-800 text-xs sm:text-sm leading-relaxed font-normal">
+                  <strong>FATmax means "Fat Maximum."</strong> It is the exact exercise speed where your body burns the highest amount of fat per minute.
+                </p>
+                <p className="text-stone-800 text-xs sm:text-sm leading-relaxed font-normal">
+                  <strong>Why is it needed?</strong> Your body has two main fuel tanks: <em>Sugar (Carbs)</em> and <em>Fat</em>. Sugar runs out fast (making you tired and hungry). Fat is a huge, steady energy reservoir. In Zone 2, your body unlocks your fat tank for clean, lasting energy!
+                </p>
+              </div>
+
+            </div>
+
+            {/* Section 3: The 3 Easy Tests */}
+            <div className="space-y-4 pt-2">
+              <h3 className="text-xl font-bold text-stone-900 flex items-center gap-2">
+                <UserCheck className="w-5 h-5 text-emerald-700" />
+                How to Know You're in Zone 2 (The 3 Simple Tests)
+              </h3>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+                
+                <div className="p-5 rounded-2xl bg-stone-50 border border-stone-200 space-y-2">
+                  <div className="font-bold text-stone-900 text-sm flex items-center gap-2">
+                    <span>🗣️ 1. The Talk Test</span>
+                  </div>
+                  <p className="text-stone-600 text-xs leading-relaxed font-normal">
+                    You can easily talk in complete sentences (e.g. talking on the phone or to a friend). If you get out of breath after 2 words, slow down!
+                  </p>
+                </div>
+
+                <div className="p-5 rounded-2xl bg-stone-50 border border-stone-200 space-y-2">
+                  <div className="font-bold text-stone-900 text-sm flex items-center gap-2">
+                    <span>👃 2. Nose Breathing</span>
+                  </div>
+                  <p className="text-stone-600 text-xs leading-relaxed font-normal">
+                    You can comfortably breathe through your nose without opening your mouth to gasp for air.
+                  </p>
+                </div>
+
+                <div className="p-5 rounded-2xl bg-stone-50 border border-stone-200 space-y-2">
+                  <div className="font-bold text-stone-900 text-sm flex items-center gap-2">
+                    <span>⚡ 3. Zero Leg Burn</span>
+                  </div>
+                  <p className="text-stone-600 text-xs leading-relaxed font-normal">
+                    Your legs feel light and fresh. There is no heavy, burning sensation because your cells clear waste as fast as it's produced.
+                  </p>
+                </div>
+
+              </div>
+            </div>
+
+            {/* Section 4: Top 4 Benefits */}
+            <div className="p-6 rounded-2xl bg-emerald-900 text-white space-y-4 shadow-sm">
+              <h3 className="text-lg font-bold text-emerald-200 flex items-center gap-2">
+                <BatteryCharging className="w-5 h-5 text-emerald-300" />
+                Why Zone 2 is Great for Every Type of Individual
+              </h3>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
+                <div className="space-y-1">
+                  <div className="font-bold text-white text-sm">🔋 All-Day Energy</div>
+                  <p className="text-emerald-100 text-xs leading-relaxed font-normal">
+                    Builds bigger, stronger cell powerhouses (mitochondria) so you feel less tired throughout the day.
+                  </p>
+                </div>
+
+                <div className="space-y-1">
+                  <div className="font-bold text-white text-sm">🔥 Maximum Fat Oxidation</div>
+                  <p className="text-emerald-100 text-xs leading-relaxed font-normal">
+                    Teaches your body to burn fat efficiently, even while resting, sitting at work, or walking.
+                  </p>
+                </div>
+
+                <div className="space-y-1">
+                  <div className="font-bold text-white text-sm">❤️ Strong Heart & Longevity</div>
+                  <p className="text-emerald-100 text-xs leading-relaxed font-normal">
+                    Keeps your blood vessels flexible, lowers resting heart rate, and supports lifelong health.
+                  </p>
+                </div>
+
+                <div className="space-y-1">
+                  <div className="font-bold text-white text-sm">😊 Zero Burnout or Exhaustion</div>
+                  <p className="text-emerald-100 text-xs leading-relaxed font-normal">
+                    You finish your workout feeling energized and refreshed, not wiped out for the rest of the day!
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Page 1 Bottom CTA Button */}
+            <div className="pt-2 flex justify-end">
+              <button
+                onClick={() => setPage(2)}
+                className="flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold transition shadow-sm"
+              >
+                <span>Continue to Page 2: FATmax Science</span>
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
+
+          </article>
+        )}
+
+        {/* ==================== PAGE 2: COVER STORY ==================== */}
+        {activePage === 2 && (
+          <article className="space-y-8 animate-fade-in font-sans">
+            
+            <div className="space-y-2">
               <span className="px-3.5 py-1 rounded-full bg-emerald-100 text-emerald-900 font-bold text-xs uppercase tracking-wider border border-emerald-200">
-                Page 1 • Cover Story
+                Page 2 • Cover Story
               </span>
               <h2 className="text-3xl lg:text-4xl font-extrabold text-stone-900 leading-tight tracking-tight">
                 The Science of FATmax: Why Zone 2 is the Ultimate Metabolic Engine
@@ -120,13 +261,13 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
           </article>
         )}
 
-        {/* ==================== PAGE 2: CELLULAR ENGINE ==================== */}
-        {activePage === 2 && (
+        {/* ==================== PAGE 3: CELLULAR ENGINE ==================== */}
+        {activePage === 3 && (
           <article className="space-y-8 animate-fade-in font-sans">
             
             <div className="space-y-2">
               <span className="px-3.5 py-1 rounded-full bg-teal-100 text-teal-900 font-bold text-xs uppercase tracking-wider border border-teal-200">
-                Page 2 • Cellular Powerhouse
+                Page 3 • Cellular Powerhouse
               </span>
               <h2 className="text-3xl lg:text-4xl font-extrabold text-stone-900 leading-tight tracking-tight">
                 Building the Cellular Engine: PGC-1α & Angiogenesis
@@ -202,13 +343,13 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
           </article>
         )}
 
-        {/* ==================== PAGE 3: LACTATE PARADOX ==================== */}
-        {activePage === 3 && (
+        {/* ==================== PAGE 4: LACTATE PARADOX ==================== */}
+        {activePage === 4 && (
           <article className="space-y-8 animate-fade-in font-sans">
             
             <div className="space-y-2">
               <span className="px-3.5 py-1 rounded-full bg-amber-100 text-amber-900 font-bold text-xs uppercase tracking-wider border border-amber-200">
-                Page 3 • Investigative Report
+                Page 4 • Investigative Report
               </span>
               <h2 className="text-3xl lg:text-4xl font-extrabold text-stone-900 leading-tight tracking-tight">
                 The Lactate Paradox: Demolishing Old Myths
@@ -270,13 +411,13 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
           </article>
         )}
 
-        {/* ==================== PAGE 4: 1-HOUR RUNNER FIELD STUDY ==================== */}
-        {activePage === 4 && (
+        {/* ==================== PAGE 5: 1-HOUR RUNNER FIELD STUDY ==================== */}
+        {activePage === 5 && (
           <article className="space-y-8 animate-fade-in font-sans">
             
             <div className="space-y-2">
               <span className="px-3.5 py-1 rounded-full bg-cyan-100 text-cyan-900 font-bold text-xs uppercase tracking-wider border border-cyan-200">
-                Page 4 • Field Experiment
+                Page 5 • Field Experiment
               </span>
               <h2 className="text-3xl lg:text-4xl font-extrabold text-stone-900 leading-tight tracking-tight">
                 The 1-Hour Zone 2 Runner: Real-Time Field Simulation
@@ -294,13 +435,13 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
           </article>
         )}
 
-        {/* ==================== PAGE 5: LONGEVITY PROTOCOLS ==================== */}
-        {activePage === 5 && (
+        {/* ==================== PAGE 6: LONGEVITY PROTOCOLS ==================== */}
+        {activePage === 6 && (
           <article className="space-y-8 animate-fade-in font-sans">
             
             <div className="space-y-2">
               <span className="px-3.5 py-1 rounded-full bg-emerald-100 text-emerald-900 font-bold text-xs uppercase tracking-wider border border-emerald-200">
-                Page 5 • Longevity Masterclass
+                Page 6 • Longevity Masterclass
               </span>
               <h2 className="text-3xl lg:text-4xl font-extrabold text-stone-900 leading-tight tracking-tight">
                 Mastering the Conversational Pace: Practical Guidelines

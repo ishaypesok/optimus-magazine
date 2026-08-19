@@ -47,20 +47,21 @@ export default function MagazineHeader({
 
         </div>
 
-        {/* 5 Page Navigation Tabs */}
+        {/* 6 Page Navigation Tabs */}
         <div className="pt-2 border-t border-stone-200">
           <nav className="flex flex-wrap items-center justify-start sm:justify-between gap-1 bg-stone-100/90 p-1 rounded-xl border border-stone-200 text-xs font-semibold">
             {[
-              { id: 1, label: 'Page 1: FATmax Story' },
-              { id: 2, label: 'Page 2: Cellular Engine' },
-              { id: 3, label: 'Page 3: Lactate Paradox' },
-              { id: 4, label: 'Page 4: 1-Hour Runner' },
-              { id: 5, label: 'Page 5: Longevity Guide' },
+              { id: 1, label: 'Page 1: Easy Intro' },
+              { id: 2, label: 'Page 2: FATmax Science' },
+              { id: 3, label: 'Page 3: Cellular Engine' },
+              { id: 4, label: 'Page 4: Lactate Paradox' },
+              { id: 5, label: 'Page 5: 1-Hour Runner' },
+              { id: 6, label: 'Page 6: Longevity Guide' },
             ].map(tab => (
               <button
                 key={tab.id}
                 onClick={() => setActiveArticle(tab.id)}
-                className={`px-4 py-1.5 rounded-lg transition ${
+                className={`px-3.5 py-1.5 rounded-lg transition ${
                   activeArticle === tab.id
                     ? 'bg-emerald-700 text-white font-bold shadow-xs'
                     : 'text-stone-600 hover:text-stone-900 hover:bg-stone-200/70'
