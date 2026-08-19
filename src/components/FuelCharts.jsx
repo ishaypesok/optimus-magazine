@@ -18,25 +18,25 @@ export default function FuelCharts({ currentZoneId }) {
 
   // Pie chart data for active zone fuel consumption
   const pieData = [
-    { name: 'Fat Consumption (9 kcal/g)', value: activeZone.fatOxidation, color: '#10b981' },
-    { name: 'Carb Consumption (4 kcal/g)', value: activeZone.carbOxidation, color: '#f59e0b' }
+    { name: 'Fat Consumption (9 kcal/g)', value: activeZone.fatOxidation, color: '#047857' },
+    { name: 'Carb Consumption (4 kcal/g)', value: activeZone.carbOxidation, color: '#d97706' }
   ];
 
   const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
       return (
-        <div className="glass-panel p-3 rounded-xl border border-slate-700 shadow-xl text-xs space-y-1 bg-slate-900/95">
-          <div className="font-bold text-slate-100 border-b border-slate-800 pb-1 flex items-center justify-between gap-3">
+        <div className="p-3 rounded-xl border border-stone-300 shadow-lg text-xs space-y-1 bg-white text-stone-900 font-sans">
+          <div className="font-bold text-stone-900 border-b border-stone-200 pb-1 flex items-center justify-between gap-3">
             <span>{label || payload[0]?.name}</span>
-            {payload[0]?.payload?.hr && <span className="text-[10px] text-teal-400">HR: {payload[0]?.payload?.hr}</span>}
+            {payload[0]?.payload?.hr && <span className="text-[11px] text-emerald-800 font-semibold">HR: {payload[0]?.payload?.hr}</span>}
           </div>
           {payload.map((entry, index) => (
             <div key={`item-${index}`} className="flex items-center justify-between gap-4">
-              <span className="flex items-center gap-1.5" style={{ color: entry.color || entry.payload?.color }}>
-                <span className="w-2 h-2 rounded-full" style={{ backgroundColor: entry.color || entry.payload?.color }}></span>
+              <span className="flex items-center gap-1.5 font-medium" style={{ color: entry.color || entry.payload?.color }}>
+                <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: entry.color || entry.payload?.color }}></span>
                 {entry.name}:
               </span>
-              <strong className="font-mono text-slate-200">{entry.value} {entry.unit || '%'}</strong>
+              <strong className="font-bold text-stone-900">{entry.value} {entry.unit || '%'}</strong>
             </div>
           ))}
         </div>
@@ -46,93 +46,156 @@ export default function FuelCharts({ currentZoneId }) {
   };
 
   return (
-    <section className="glass-panel rounded-2xl p-5 md:p-6 border border-slate-800 shadow-2xl mb-8">
+    <section className="bg-stone-50 rounded-2xl p-5 md:p-6 border border-stone-200 shadow-xs mb-8 font-sans text-stone-900">
       
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div>
           <div className="flex items-center gap-2">
-            <BarChart3 className="w-5 h-5 text-emerald-400" />
-            <h3 className="text-lg font-bold text-slate-100">Substrate & Fuel Consumption Charts</h3>
+            <BarChart3 className="w-5 h-5 text-emerald-700" />
+            <h3 className="text-lg font-extrabold text-stone-900">Substrate & Fuel Consumption Charts</h3>
           </div>
-          <p className="text-xs text-slate-400 mt-0.5">
+          <p className="text-xs text-stone-700 font-medium mt-0.5">
             Real-time visual curves and consumption mix for Fat vs Carbohydrate fuel sources.
           </p>
         </div>
 
-        {/* Mode Buttons */}
-        <div className="flex flex-wrap items-center gap-1 bg-slate-900/90 p-1 rounded-xl border border-slate-800 text-xs">
+        {/* Mode Toggle Buttons */}
+        <div className="flex flex-wrap items-center gap-1 bg-white p-1 rounded-xl border border-stone-300 shadow-xs">
           <button
             onClick={() => setChartMode('rate')}
-            className={`px-3 py-1.5 rounded-lg font-semibold transition-all flex items-center gap-1.5 ${
+            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition ${
               chartMode === 'rate'
-                ? 'bg-emerald-500 text-slate-950 shadow-md'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'bg-emerald-700 text-white shadow-xs'
+                : 'text-stone-700 hover:bg-stone-200'
             }`}
           >
-            <Flame className="w-3.5 h-3.5" />
-            <span>Oxidation Rate (g/min)</span>
+            🔥 Oxidation Rate (g/min)
           </button>
-
+          
           <button
-            onClick={() => setChartMode('consumption')}
-            className={`px-3 py-1.5 rounded-lg font-semibold transition-all flex items-center gap-1.5 ${
-              chartMode === 'consumption'
-                ? 'bg-emerald-500 text-slate-950 shadow-md font-bold'
-                : 'text-slate-400 hover:text-slate-200'
+            onClick={() => setChartMode('percentage')}
+            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition ${
+              chartMode === 'percentage'
+                ? 'bg-emerald-700 text-white shadow-xs'
+                : 'text-stone-700 hover:bg-stone-200'
             }`}
           >
-            <PieIcon className="w-3.5 h-3.5 text-slate-950" />
-            <span>Fuel Mix Donut (%)</span>
+            📊 Fuel Mix %
           </button>
 
           <button
             onClick={() => setChartMode('lactate')}
-            className={`px-3 py-1.5 rounded-lg font-semibold transition-all flex items-center gap-1.5 ${
+            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition ${
               chartMode === 'lactate'
-                ? 'bg-teal-500 text-slate-950 shadow-md'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'bg-emerald-700 text-white shadow-xs'
+                : 'text-stone-700 hover:bg-stone-200'
             }`}
           >
-            <Droplet className="w-3.5 h-3.5" />
-            <span>Lactate Curve (mM)</span>
+            🩸 Lactate Curve
+          </button>
+
+          <button
+            onClick={() => setChartMode('consumption')}
+            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition ${
+              chartMode === 'consumption'
+                ? 'bg-emerald-700 text-white shadow-xs'
+                : 'text-stone-700 hover:bg-stone-200'
+            }`}
+          >
+            🥧 Current Donut Mix
           </button>
         </div>
       </div>
 
-      {/* Graphical Chart Display Container */}
-      <div className="w-full h-80 bg-slate-950/80 p-4 rounded-xl border border-slate-800/90 relative flex items-center justify-center">
+      {/* Main Chart Body */}
+      <div className="bg-white p-4 sm:p-6 rounded-xl border border-stone-200 shadow-xs mb-4">
         
-        {/* CHART 1: Oxidation Rate */}
+        {/* MODE 1: FAT & CARB OXIDATION RATES */}
         {chartMode === 'rate' && (
-          <ResponsiveContainer width="100%" height="100%">
-            <AreaChart data={chartData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
-              <defs>
-                <linearGradient id="colorFat" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#10b981" stopOpacity={0.6}/>
-                  <stop offset="95%" stopColor="#10b981" stopOpacity={0.0}/>
-                </linearGradient>
-                <linearGradient id="colorCarb" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.6}/>
-                  <stop offset="95%" stopColor="#f59e0b" stopOpacity={0.0}/>
-                </linearGradient>
-              </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
-              <XAxis dataKey="name" stroke="#94a3b8" tick={{ fontSize: 11 }} />
-              <YAxis stroke="#94a3b8" tick={{ fontSize: 11 }} unit=" g/m" />
-              <Tooltip content={<CustomTooltip />} />
-              <Legend verticalAlign="top" height={36} />
-              <ReferenceLine x="Zone 2 (FATmax)" stroke="#34d399" strokeDasharray="4 4" label={{ value: '🔥 FATmax Peak (0.65 g/min)', fill: '#34d399', fontSize: 11, fontWeight: 'bold' }} />
-              <Area type="monotone" dataKey="fatRate" name="Fat Oxidation Rate" unit="g/min" stroke="#10b981" strokeWidth={3} fillOpacity={1} fill="url(#colorFat)" />
-              <Area type="monotone" dataKey="carbRate" name="Carbohydrate Oxidation Rate" unit="g/min" stroke="#f59e0b" strokeWidth={3} fillOpacity={1} fill="url(#colorCarb)" />
-            </AreaChart>
-          </ResponsiveContainer>
+          <div className="space-y-3">
+            <div className="flex items-center justify-between text-xs font-bold text-stone-800">
+              <span>Fat Oxidation Rate (g/min) vs Carbohydrate Rate</span>
+              <span className="text-emerald-800 font-extrabold">Zone 2 = Peak FatOx (0.65 g/min)</span>
+            </div>
+
+            <div className="h-64 sm:h-72 w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <AreaChart data={chartData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+                  <defs>
+                    <linearGradient id="colorFat" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#047857" stopOpacity={0.8}/>
+                      <stop offset="95%" stopColor="#047857" stopOpacity={0.1}/>
+                    </linearGradient>
+                    <linearGradient id="colorCarb" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#d97706" stopOpacity={0.8}/>
+                      <stop offset="95%" stopColor="#d97706" stopOpacity={0.1}/>
+                    </linearGradient>
+                  </defs>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#e7e5e4" />
+                  <XAxis dataKey="name" stroke="#44403c" tick={{ fill: '#1c1917', fontSize: 12, fontWeight: 700 }} />
+                  <YAxis stroke="#44403c" tick={{ fill: '#1c1917', fontSize: 12, fontWeight: 700 }} label={{ value: 'g / min', angle: -90, position: 'insideLeft', fill: '#1c1917', fontWeight: 700 }} />
+                  <Tooltip content={<CustomTooltip />} />
+                  <ReferenceLine x="Zone 2 (FATmax)" stroke="#047857" strokeDasharray="4 4" label={{ value: '⭐ FATmax Peak', fill: '#047857', fontWeight: 800, fontSize: 13 }} />
+                  <Area type="monotone" dataKey="fatRate" name="Fat Oxidation (g/min)" stroke="#047857" strokeWidth={3} fillOpacity={1} fill="url(#colorFat)" />
+                  <Area type="monotone" dataKey="carbRate" name="Carb Oxidation (g/min)" stroke="#d97706" strokeWidth={3} fillOpacity={1} fill="url(#colorCarb)" />
+                </AreaChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
         )}
 
-        {/* CHART 2: Fuel Consumption Donut Pie Chart */}
+        {/* MODE 2: FUEL MIX PERCENTAGE */}
+        {chartMode === 'percentage' && (
+          <div className="space-y-3">
+            <div className="flex items-center justify-between text-xs font-bold text-stone-800">
+              <span>Substrate Contribution Percentage (%)</span>
+              <span className="text-emerald-800 font-extrabold">Zone 2 = 75% Fat / 25% Carbs</span>
+            </div>
+
+            <div className="h-64 sm:h-72 w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <AreaChart data={chartData} stackOffset="expand" margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#e7e5e4" />
+                  <XAxis dataKey="name" stroke="#44403c" tick={{ fill: '#1c1917', fontSize: 12, fontWeight: 700 }} />
+                  <YAxis stroke="#44403c" tick={{ fill: '#1c1917', fontSize: 12, fontWeight: 700 }} tickFormatter={(tick) => `${tick * 100}%`} />
+                  <Tooltip content={<CustomTooltip />} />
+                  <Area type="monotone" dataKey="fatPct" name="Fat Fuel %" stackId="1" stroke="#047857" fill="#047857" fillOpacity={0.85} />
+                  <Area type="monotone" dataKey="carbPct" name="Carb Fuel %" stackId="1" stroke="#d97706" fill="#d97706" fillOpacity={0.85} />
+                </AreaChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+        )}
+
+        {/* MODE 3: BLOOD LACTATE CURVE */}
+        {chartMode === 'lactate' && (
+          <div className="space-y-3">
+            <div className="flex items-center justify-between text-xs font-bold text-stone-800">
+              <span>Blood Lactate Accumulation Curve (mmol/L)</span>
+              <span className="text-emerald-800 font-extrabold">LT1 Aerobic Threshold (~1.5-2.0 mM)</span>
+            </div>
+
+            <div className="h-64 sm:h-72 w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart data={chartData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#e7e5e4" />
+                  <XAxis dataKey="name" stroke="#44403c" tick={{ fill: '#1c1917', fontSize: 12, fontWeight: 700 }} />
+                  <YAxis stroke="#44403c" tick={{ fill: '#1c1917', fontSize: 12, fontWeight: 700 }} label={{ value: 'mmol / L', angle: -90, position: 'insideLeft', fill: '#1c1917', fontWeight: 700 }} />
+                  <Tooltip content={<CustomTooltip />} />
+                  <ReferenceLine y={2.0} label={{ value: 'LT1 Aerobic Threshold (2.0 mM)', fill: '#047857', fontWeight: 800, fontSize: 12 }} stroke="#047857" strokeDasharray="3 3" />
+                  <ReferenceLine y={4.0} label={{ value: 'LT2 Anaerobic Threshold (4.0 mM)', fill: '#b91c1c', fontWeight: 800, fontSize: 12 }} stroke="#b91c1c" strokeDasharray="3 3" />
+                  <Line type="monotone" dataKey="lactate" name="Lactate (mM)" stroke="#0f766e" strokeWidth={4} dot={{ r: 6, fill: '#0f766e' }} />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+        )}
+
+        {/* MODE 4: CURRENT DONUT PIE MIX */}
         {chartMode === 'consumption' && (
-          <div className="w-full h-full flex flex-col md:flex-row items-center justify-around gap-4">
-            <div className="w-64 h-64 relative">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+            <div className="h-64 w-full">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
@@ -151,71 +214,39 @@ export default function FuelCharts({ currentZoneId }) {
                   <Tooltip content={<CustomTooltip />} />
                 </PieChart>
               </ResponsiveContainer>
-              <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none text-center">
-                <span className="text-2xl font-extrabold text-emerald-400">{activeZone.fatOxidation}%</span>
-                <span className="text-[10px] font-bold text-slate-400 uppercase">Fat Energy</span>
-              </div>
             </div>
 
-            {/* Consumption Side Breakdown Cards */}
-            <div className="space-y-3 w-full max-w-sm">
-              <div className="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-between text-xs">
-                <div className="flex items-center gap-2">
-                  <span className="w-3 h-3 rounded-full bg-emerald-400"></span>
-                  <div>
-                    <span className="font-bold text-emerald-300 block">🥑 Fat Consumption</span>
-                    <span className="text-slate-400 text-[10px]">High Efficiency (9 kcal/g)</span>
-                  </div>
-                </div>
-                <div className="text-right">
-                  <span className="font-extrabold text-emerald-300 text-sm">{activeZone.fatOxidation}%</span>
-                  <span className="block text-[10px] text-slate-400">~0.65 g/min</span>
-                </div>
+            <div className="space-y-3 p-4 rounded-xl bg-stone-50 border border-stone-200">
+              <div className="font-bold text-stone-900 text-sm border-b border-stone-200 pb-2">
+                Active Zone {activeZone.id} Fuel Selection Breakdown
               </div>
-
-              <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-between text-xs">
-                <div className="flex items-center gap-2">
-                  <span className="w-3 h-3 rounded-full bg-amber-400"></span>
-                  <div>
-                    <span className="font-bold text-amber-300 block">🍇 Glucose Consumption</span>
-                    <span className="text-slate-400 text-[10px]">Glycogen Spared (4 kcal/g)</span>
-                  </div>
-                </div>
-                <div className="text-right">
-                  <span className="font-extrabold text-amber-300 text-sm">{activeZone.carbOxidation}%</span>
-                  <span className="block text-[10px] text-slate-400">~0.25 g/min</span>
-                </div>
+              <div className="flex items-center justify-between text-xs font-bold text-emerald-900">
+                <span className="flex items-center gap-2">
+                  <span className="w-3 h-3 rounded-full bg-emerald-700"></span>
+                  Fat Fuel Oxidation:
+                </span>
+                <span className="text-base font-mono">{activeZone.fatOxidation}%</span>
+              </div>
+              <div className="flex items-center justify-between text-xs font-bold text-amber-900">
+                <span className="flex items-center gap-2">
+                  <span className="w-3 h-3 rounded-full bg-amber-600"></span>
+                  Carbohydrate Fuel Oxidation:
+                </span>
+                <span className="text-base font-mono">{activeZone.carbOxidation}%</span>
               </div>
             </div>
-
           </div>
         )}
 
-        {/* CHART 3: Blood Lactate Curve */}
-        {chartMode === 'lactate' && (
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={chartData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
-              <XAxis dataKey="name" stroke="#94a3b8" tick={{ fontSize: 11 }} />
-              <YAxis stroke="#94a3b8" tick={{ fontSize: 11 }} unit=" mM" domain={[0, 10]} />
-              <Tooltip content={<CustomTooltip />} />
-              <Legend verticalAlign="top" height={36} />
-              <ReferenceLine y={2.0} stroke="#14b8a6" strokeDasharray="5 5" label={{ value: 'LT1 (Aerobic Threshold ~2.0 mM)', fill: '#14b8a6', fontSize: 10, fontWeight: 'bold' }} />
-              <ReferenceLine y={4.0} stroke="#f43f5e" strokeDasharray="5 5" label={{ value: 'LT2 (Anaerobic Threshold ~4.0 mM)', fill: '#f43f5e', fontSize: 10, fontWeight: 'bold' }} />
-              <Line type="monotone" dataKey="lactate" name="Blood Lactate Concentration" unit="mmol/L" stroke="#f43f5e" strokeWidth={3.5} dot={{ r: 6, fill: '#f43f5e' }} activeDot={{ r: 9 }} />
-            </LineChart>
-          </ResponsiveContainer>
-        )}
-
       </div>
 
-      <div className="mt-4 p-3 rounded-xl bg-slate-900/90 border border-slate-800 text-xs text-slate-300 flex items-center gap-3">
-        <Info className="w-4 h-4 text-emerald-400 shrink-0" />
-        <span>
-          <strong>Fuel Consumption Ratio:</strong> In Zone 2, Fat Consumption accounts for <strong>{activeZone.fatOxidation}%</strong> of total energy, providing clean, high-density power at 9 kcal per gram!
-        </span>
+      {/* Explanatory Footer */}
+      <div className="p-4 rounded-xl bg-white border border-stone-200 text-xs text-stone-800 flex items-start gap-3">
+        <Info className="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" />
+        <p className="leading-relaxed font-normal">
+          <strong>Chart Interpretation:</strong> Zone 2 (60-70% HRmax) maximizes total grams of fat oxidized per minute (~0.65 g/min). Beyond Zone 2, carbohydrate oxidation skyrockets while fat oxidation drops sharply as pyruvate dehydrogenase turns away fatty acids.
+        </p>
       </div>
-
     </section>
   );
 }
