@@ -23,12 +23,6 @@ export default function App() {
       {/* Main Magazine Layout Container */}
       <main className="max-w-7xl mx-auto px-4 lg:px-8 pt-6 space-y-6">
         
-        {/* Interactive Zone Controller Banner */}
-        <ZoneControls
-          currentZoneId={currentZoneId}
-          setCurrentZoneId={setCurrentZoneId}
-        />
-
         {/* Magazine Spreads & Articles */}
         <MagazineView
           currentZoneId={currentZoneId}
