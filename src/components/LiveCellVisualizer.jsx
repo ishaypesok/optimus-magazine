@@ -413,11 +413,26 @@ export default function LiveCellVisualizer() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         
         {/* Live Canvas View */}
-        <div className="lg:col-span-2 bg-stone-900 rounded-3xl p-3 border border-stone-800 shadow-inner relative overflow-hidden flex flex-col justify-center">
+        <div className="lg:col-span-2 bg-stone-900 rounded-3xl p-3 border border-stone-800 shadow-inner relative overflow-hidden flex flex-col justify-center space-y-3">
           <canvas 
             ref={canvasRef} 
             className="w-full h-[380px] sm:h-[420px] rounded-2xl block bg-stone-950"
           />
+
+          {/* Editorial Caption Feature */}
+          <div className="p-3.5 rounded-2xl bg-stone-950/90 border border-emerald-500/30 text-white flex items-start gap-3 shadow-md">
+            <div className="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 mt-0.5 border border-emerald-500/30">
+              <Sparkles className="w-4 h-4" />
+            </div>
+            <div className="space-y-0.5 text-xs">
+              <span className="font-mono text-[10px] text-emerald-400 font-bold uppercase tracking-wider block">
+                EDITORIAL CAPTION • ISHAI'S RUN TELEMETRY
+              </span>
+              <p className="text-emerald-100 font-semibold italic text-sm leading-snug">
+                “At minute 60, Ishai hit FATmax. Mitochondria were producing ATP at 88% efficiency. No sugar crash.”
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Live Metrics Side Panel */}

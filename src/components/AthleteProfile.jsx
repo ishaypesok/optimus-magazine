@@ -76,6 +76,11 @@ export default function AthleteProfile() {
               <p className="text-xs sm:text-sm text-stone-300 font-medium mt-0.5">
                 Zone 2 Target: <strong className="text-emerald-300">{profile.targetMinHR} – {profile.targetMaxHR} BPM</strong> • FATmax Sweet Spot
               </p>
+              
+              <div className="mt-3 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-emerald-950/80 border border-emerald-400/30 text-emerald-200 text-xs font-medium italic">
+                <Sparkles className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                <span>“At minute 60, Ishai hit FATmax. Mitochondria were producing ATP at 88% efficiency. No sugar crash.”</span>
+              </div>
             </div>
           </div>
 
