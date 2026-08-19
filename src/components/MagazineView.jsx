@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { 
   BookOpen, Sparkles, Flame, Activity, Zap, Droplet, Clock, 
   ChevronRight, ChevronLeft, Bookmark, Share2, Award, ArrowUpRight, 
-  ShieldCheck, Heart, Layers, BarChart2, CheckCircle2, UserCheck, Printer, ListFilter, FileText
+  ShieldCheck, Heart, Layers, BarChart2, CheckCircle2, UserCheck, Printer
 } from 'lucide-react';
 import { ZONES, CHARACTERS } from '../data/metabolismData';
 import FuelCharts from './FuelCharts';
@@ -12,7 +12,7 @@ import AdaptationSimulator from './AdaptationSimulator';
 export default function MagazineView({ currentZoneId, setCurrentZoneId, activeArticle, setActiveArticle }) {
   const [internalPage, setInternalPage] = useState(1);
   const activePage = (activeArticle && typeof activeArticle === 'number') ? activeArticle : internalPage;
-  const totalPages = 6;
+  const totalPages = 5;
 
   const zone2 = ZONES.find(z => z.id === 2) || ZONES[1];
   const currentZone = ZONES.find(z => z.id === currentZoneId) || zone2;
@@ -38,7 +38,7 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
             <span>OPTIMUS MAGAZINE • PAGE {activePage} OF {totalPages}</span>
           </div>
           <div className="hidden sm:flex items-center gap-4 text-stone-500 font-medium">
-            <span>Issue #01: Zone 2 Bioenergetics</span>
+            <span>The Friendly Guide to Zone 2 Bioenergetics</span>
             <span>•</span>
             <span>Bioenergetics Press</span>
           </div>
@@ -51,149 +51,13 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
           </button>
         </div>
 
-        {/* ==================== PAGE 1: TABLE OF CONTENTS & EDITOR'S LETTER ==================== */}
+        {/* ==================== PAGE 1: COVER STORY ==================== */}
         {activePage === 1 && (
           <article className="space-y-8 animate-fade-in font-sans">
             
             <div className="space-y-2">
               <span className="px-3.5 py-1 rounded-full bg-emerald-100 text-emerald-900 font-bold text-xs uppercase tracking-wider border border-emerald-200">
-                Page 1 • Table of Contents & Issue Overview
-              </span>
-              <h2 className="text-3xl lg:text-4xl font-extrabold text-stone-900 leading-tight tracking-tight">
-                Table of Contents & Editor's Welcome
-              </h2>
-              <p className="text-stone-600 text-sm lg:text-base font-normal">
-                Welcome to Issue #01 of Optimus Magazine — your complete guide to cellular energy and Zone 2 science.
-              </p>
-            </div>
-
-            {/* Editorial Welcome & Table of Contents Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              
-              {/* Editor's Letter */}
-              <div className="space-y-4 text-stone-800 text-sm leading-relaxed">
-                <div className="p-5 rounded-2xl bg-stone-50 border border-stone-200 space-y-3">
-                  <div className="flex items-center gap-2 font-bold text-emerald-900 text-base">
-                    <FileText className="w-5 h-5 text-emerald-700" />
-                    <span>Editor's Note</span>
-                  </div>
-                  <p className="text-xs text-stone-700 leading-relaxed font-normal">
-                    Welcome to the inaugural issue of Optimus Magazine! In this issue, we dive deep into the bioenergetics of Zone 2 training—the specific exercise intensity where fat oxidation is maximized and mitochondrial health is restored. Turn through the pages to explore interactive field studies, cellular diagrams, and longevity guidelines.
-                  </p>
-                  <div className="text-xs text-emerald-800 italic text-right font-semibold pt-1">
-                    — The Editorial Science Board
-                  </div>
-                </div>
-
-                {/* Key Issue Metrics Card */}
-                <div className="p-5 rounded-2xl bg-emerald-900 text-white space-y-3 shadow-sm">
-                  <div className="text-xs font-bold uppercase tracking-wider text-emerald-300">
-                    Issue At A Glance
-                  </div>
-                  <div className="grid grid-cols-2 gap-3 text-xs">
-                    <div className="p-2.5 rounded-xl bg-white/10">
-                      <div className="text-[10px] text-emerald-200 font-medium">Peak FatOx</div>
-                      <div className="text-base font-bold text-white">0.65 g/min</div>
-                    </div>
-                    <div className="p-2.5 rounded-xl bg-white/10">
-                      <div className="text-[10px] text-emerald-200 font-medium">Lactate Steady</div>
-                      <div className="text-base font-bold text-white">1.5 - 2.0 mM</div>
-                    </div>
-                    <div className="p-2.5 rounded-xl bg-white/10">
-                      <div className="text-[10px] text-emerald-200 font-medium">ATP Yield</div>
-                      <div className="text-base font-bold text-white">~106-120</div>
-                    </div>
-                    <div className="p-2.5 rounded-xl bg-white/10">
-                      <div className="text-[10px] text-emerald-200 font-medium">Key Signal</div>
-                      <div className="text-base font-bold text-white">PGC-1α</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Table of Contents Article Cards (Index) */}
-              <div className="lg:col-span-2 space-y-4">
-                <h3 className="text-lg font-bold text-stone-900 flex items-center gap-2">
-                  <ListFilter className="w-5 h-5 text-emerald-700" />
-                  Issue Index & Article Directory
-                </h3>
-
-                <div className="space-y-3">
-                  {[
-                    {
-                      page: 2,
-                      tag: 'Cover Story',
-                      title: 'The Science of FATmax: Why Zone 2 is the Ultimate Metabolic Engine',
-                      desc: 'Deep dive into lipid oxidation, CPT-1 fat transporters, and interactive fuel mix charts.'
-                    },
-                    {
-                      page: 3,
-                      tag: 'Cellular Biogenesis',
-                      title: 'Building the Cellular Engine: PGC-1α & Angiogenesis',
-                      desc: 'Explore how Zone 2 builds new mitochondria, expands capillary networks, and upgrades slow-twitch muscle fibers.'
-                    },
-                    {
-                      page: 4,
-                      tag: 'Investigative Report',
-                      title: 'The Lactate Paradox: Demolishing Old Myths',
-                      desc: 'Demolishing lactate myths: learn how MCT-1/MCT-4 transporters shuttle lactate as high-energy muscle fuel.'
-                    },
-                    {
-                      page: 5,
-                      tag: 'Field Experiment',
-                      title: 'The 1-Hour Zone 2 Runner: Real-Time Field Simulation',
-                      desc: 'Interactive 60-minute runner simulation tracking heart rate, glycogen depletion, and fat burn live.'
-                    },
-                    {
-                      page: 6,
-                      tag: 'Longevity Masterclass',
-                      title: 'Mastering the Conversational Pace: Practical Guidelines',
-                      desc: 'Step-by-step training guidelines, talk test rules, weekly volume targets (3–5 hours), and target heart rate formulas.'
-                    },
-                  ].map(article => (
-                    <div 
-                      key={article.page}
-                      onClick={() => setPage(article.page)}
-                      className="p-4 rounded-2xl bg-stone-50 border border-stone-200 hover:border-emerald-600 transition cursor-pointer flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 group"
-                    >
-                      <div className="space-y-1">
-                        <div className="flex items-center gap-2">
-                          <span className="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-900 font-bold text-[10px]">
-                            PAGE {article.page}
-                          </span>
-                          <span className="text-[10px] text-stone-500 font-semibold uppercase">
-                            {article.tag}
-                          </span>
-                        </div>
-                        <h4 className="text-sm font-bold text-stone-900 group-hover:text-emerald-800 transition">
-                          {article.title}
-                        </h4>
-                        <p className="text-xs text-stone-600 leading-relaxed font-normal">
-                          {article.desc}
-                        </p>
-                      </div>
-
-                      <button className="shrink-0 flex items-center gap-1 text-xs font-bold text-emerald-800 group-hover:translate-x-1 transition">
-                        <span>Read Page</span>
-                        <ChevronRight className="w-4 h-4" />
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-            </div>
-
-          </article>
-        )}
-
-        {/* ==================== PAGE 2: COVER STORY ==================== */}
-        {activePage === 2 && (
-          <article className="space-y-8 animate-fade-in font-sans">
-            
-            <div className="space-y-2">
-              <span className="px-3.5 py-1 rounded-full bg-emerald-100 text-emerald-900 font-bold text-xs uppercase tracking-wider border border-emerald-200">
-                Page 2 • Cover Story
+                Page 1 • Cover Story
               </span>
               <h2 className="text-3xl lg:text-4xl font-extrabold text-stone-900 leading-tight tracking-tight">
                 The Science of FATmax: Why Zone 2 is the Ultimate Metabolic Engine
@@ -256,13 +120,13 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
           </article>
         )}
 
-        {/* ==================== PAGE 3: CELLULAR ENGINE ==================== */}
-        {activePage === 3 && (
+        {/* ==================== PAGE 2: CELLULAR ENGINE ==================== */}
+        {activePage === 2 && (
           <article className="space-y-8 animate-fade-in font-sans">
             
             <div className="space-y-2">
               <span className="px-3.5 py-1 rounded-full bg-teal-100 text-teal-900 font-bold text-xs uppercase tracking-wider border border-teal-200">
-                Page 3 • Cellular Powerhouse
+                Page 2 • Cellular Powerhouse
               </span>
               <h2 className="text-3xl lg:text-4xl font-extrabold text-stone-900 leading-tight tracking-tight">
                 Building the Cellular Engine: PGC-1α & Angiogenesis
@@ -338,13 +202,13 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
           </article>
         )}
 
-        {/* ==================== PAGE 4: LACTATE PARADOX ==================== */}
-        {activePage === 4 && (
+        {/* ==================== PAGE 3: LACTATE PARADOX ==================== */}
+        {activePage === 3 && (
           <article className="space-y-8 animate-fade-in font-sans">
             
             <div className="space-y-2">
               <span className="px-3.5 py-1 rounded-full bg-amber-100 text-amber-900 font-bold text-xs uppercase tracking-wider border border-amber-200">
-                Page 4 • Investigative Report
+                Page 3 • Investigative Report
               </span>
               <h2 className="text-3xl lg:text-4xl font-extrabold text-stone-900 leading-tight tracking-tight">
                 The Lactate Paradox: Demolishing Old Myths
@@ -406,13 +270,13 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
           </article>
         )}
 
-        {/* ==================== PAGE 5: 1-HOUR RUNNER FIELD STUDY ==================== */}
-        {activePage === 5 && (
+        {/* ==================== PAGE 4: 1-HOUR RUNNER FIELD STUDY ==================== */}
+        {activePage === 4 && (
           <article className="space-y-8 animate-fade-in font-sans">
             
             <div className="space-y-2">
               <span className="px-3.5 py-1 rounded-full bg-cyan-100 text-cyan-900 font-bold text-xs uppercase tracking-wider border border-cyan-200">
-                Page 5 • Field Experiment
+                Page 4 • Field Experiment
               </span>
               <h2 className="text-3xl lg:text-4xl font-extrabold text-stone-900 leading-tight tracking-tight">
                 The 1-Hour Zone 2 Runner: Real-Time Field Simulation
@@ -430,13 +294,13 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
           </article>
         )}
 
-        {/* ==================== PAGE 6: LONGEVITY PROTOCOLS ==================== */}
-        {activePage === 6 && (
+        {/* ==================== PAGE 5: LONGEVITY PROTOCOLS ==================== */}
+        {activePage === 5 && (
           <article className="space-y-8 animate-fade-in font-sans">
             
             <div className="space-y-2">
               <span className="px-3.5 py-1 rounded-full bg-emerald-100 text-emerald-900 font-bold text-xs uppercase tracking-wider border border-emerald-200">
-                Page 6 • Longevity Masterclass
+                Page 5 • Longevity Masterclass
               </span>
               <h2 className="text-3xl lg:text-4xl font-extrabold text-stone-900 leading-tight tracking-tight">
                 Mastering the Conversational Pace: Practical Guidelines
