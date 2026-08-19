@@ -129,6 +129,28 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
               </div>
             </div>
 
+            {/* Myth-Buster Card: You Can't Target Fat Location */}
+            <div className="p-6 rounded-2xl bg-cyan-50 border border-cyan-200 space-y-3 font-sans">
+              <div className="flex items-center gap-2 text-cyan-950 font-extrabold text-base">
+                <Sparkles className="w-5 h-5 text-cyan-700" />
+                <span>Important Myth-Buster: Can You Choose WHICH Body Fat Gets Burned?</span>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm text-stone-800 leading-relaxed font-normal">
+                <div className="p-4 rounded-xl bg-white/80 border border-cyan-200 space-y-1.5">
+                  <div className="font-extrabold text-cyan-950 text-sm">❌ Myth: "Spot-Reducing" Fat</div>
+                  <p className="text-xs text-stone-700">
+                    You <strong>cannot choose or determine</strong> during exercise which specific body part (e.g. belly, legs, or arms) supplies the fat. "Spot reduction" is a myth!
+                  </p>
+                </div>
+                <div className="p-4 rounded-xl bg-white/80 border border-cyan-200 space-y-1.5">
+                  <div className="font-extrabold text-emerald-950 text-sm">✅ Science: Whole-Body Fat Mobilization</div>
+                  <p className="text-xs text-stone-700">
+                    Zone 2 releases hormones that signal fat cells <strong>all over your entire body</strong> to release fat into your bloodstream. Your blood carries these fat molecules from everywhere into your mitochondria to burn energy!
+                  </p>
+                </div>
+              </div>
+            </div>
+
             {/* Fun FAQ Callout Card: Zone 1 Couch vs Zone 2 FATmax */}
             <div className="p-6 rounded-2xl bg-amber-50 border border-amber-300 space-y-3 font-sans">
               <div className="flex items-center gap-2 text-amber-950 font-extrabold text-base">
