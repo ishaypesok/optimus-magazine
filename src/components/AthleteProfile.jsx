@@ -12,7 +12,12 @@ const DEFAULT_PROFILE = {
   targetMinHR: 126,
   targetMaxHR: 140,
   weeklyGoalHours: 3.5,
-  bio: "Ishai is a dedicated runner and health longevity practitioner. Rather than chasing high-intensity fatigue, Ishai's endurance philosophy focuses on building a powerful aerobic foundation through disciplined Zone 2 training (126–140 BPM). By training muscle fibers to oxidize fatty acids efficiently, Ishai preserves glycogen, minimizes inflammation, and expands mitochondrial density for sustainable lifelong health.",
+  labTested: true,
+  labName: 'Wingate Institute Performance Lab',
+  lt1HR: 140,
+  lt2HR: 165,
+  testedLactateAtZone2: 1.8,
+  bio: "Ishai is a dedicated runner and health longevity practitioner. With clinical blood lactate threshold testing performed at the Wingate Institute Performance Lab, Ishai's endurance strategy relies on lab-verified parameters (126–140 BPM, LT1 @ 140 BPM). By training muscle fibers to oxidize fatty acids efficiently under lab-tested limits, Ishai minimizes lactate accumulation (< 2.0 mmol/L) and expands mitochondrial density for sustainable lifelong health.",
 };
 
 export default function AthleteProfile() {
@@ -63,9 +68,12 @@ export default function AthleteProfile() {
               <User className="w-10 h-10 text-emerald-950" />
             </div>
             <div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 flex-wrap">
                 <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-bold uppercase tracking-wider border border-emerald-400/30">
                   Personal Bioenergetics Profile
+                </span>
+                <span className="px-2.5 py-0.5 rounded-full bg-amber-400/20 text-amber-300 text-xs font-bold uppercase tracking-wider border border-amber-400/40 flex items-center gap-1">
+                  <Award className="w-3 h-3 text-amber-400" /> Wingate Lab Verified
                 </span>
                 <span className="flex items-center gap-1 text-xs text-stone-300 font-mono">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" /> Synced to Local Device
@@ -75,7 +83,7 @@ export default function AthleteProfile() {
                 {profile.name}
               </h2>
               <p className="text-xs sm:text-sm text-stone-300 font-medium mt-0.5">
-                Zone 2 Target: <strong className="text-emerald-300">{profile.targetMinHR} – {profile.targetMaxHR} BPM</strong> • FATmax Sweet Spot
+                Zone 2 Target: <strong className="text-emerald-300">{profile.targetMinHR} – {profile.targetMaxHR} BPM</strong> • FATmax Sweet Spot (LT1 @ {profile.lt1HR || 140} BPM)
               </p>
               
               <div className="mt-3 flex flex-col gap-1.5 p-3 rounded-2xl bg-emerald-950/80 border border-emerald-400/30 text-emerald-200 text-xs font-medium">
@@ -123,7 +131,7 @@ export default function AthleteProfile() {
           <div className="flex items-center justify-between border-b border-emerald-200 pb-3">
             <div className="flex items-center gap-2 font-bold text-emerald-900 text-sm">
               <Sliders className="w-4 h-4 text-emerald-700" />
-              <span>Personal Parameter Customizer</span>
+              <span>Personal Parameter & Wingate Lab Customizer</span>
             </div>
             <span className="text-xs text-stone-500">Changes save automatically to your device</span>
           </div>
@@ -180,6 +188,47 @@ export default function AthleteProfile() {
                   className="w-full px-3 py-2 rounded-xl bg-white border border-stone-300 text-sm font-bold text-stone-900 focus:border-emerald-600 focus:outline-none"
                 />
               </div>
+
+              <div className="space-y-1">
+                <label className="text-xs font-bold text-stone-700">Wingate LT1 HR (Aerobic)</label>
+                <input
+                  type="number"
+                  value={profile.lt1HR || 140}
+                  onChange={(e) => setProfile({ ...profile, lt1HR: Number(e.target.value) })}
+                  className="w-full px-3 py-2 rounded-xl bg-white border border-stone-300 text-sm font-bold text-stone-900 focus:border-emerald-600 focus:outline-none"
+                />
+              </div>
+
+              <div className="space-y-1">
+                <label className="text-xs font-bold text-stone-700">Wingate LT2 HR (Anaerobic)</label>
+                <input
+                  type="number"
+                  value={profile.lt2HR || 165}
+                  onChange={(e) => setProfile({ ...profile, lt2HR: Number(e.target.value) })}
+                  className="w-full px-3 py-2 rounded-xl bg-white border border-stone-300 text-sm font-bold text-stone-900 focus:border-emerald-600 focus:outline-none"
+                />
+              </div>
+
+              <div className="space-y-1">
+                <label className="text-xs font-bold text-stone-700">Tested Lactate @ Zone 2 (mmol/L)</label>
+                <input
+                  type="number"
+                  step="0.1"
+                  value={profile.testedLactateAtZone2 || 1.8}
+                  onChange={(e) => setProfile({ ...profile, testedLactateAtZone2: Number(e.target.value) })}
+                  className="w-full px-3 py-2 rounded-xl bg-white border border-stone-300 text-sm font-bold text-stone-900 focus:border-emerald-600 focus:outline-none"
+                />
+              </div>
+
+              <div className="space-y-1">
+                <label className="text-xs font-bold text-stone-700">Testing Facility</label>
+                <input
+                  type="text"
+                  value={profile.labName || 'Wingate Institute Performance Lab'}
+                  onChange={(e) => setProfile({ ...profile, labName: e.target.value })}
+                  className="w-full px-3 py-2 rounded-xl bg-white border border-stone-300 text-sm font-bold text-stone-900 focus:border-emerald-600 focus:outline-none"
+                />
+              </div>
             </div>
           </div>
 
@@ -188,6 +237,89 @@ export default function AthleteProfile() {
           </div>
         </div>
       )}
+
+      {/* Wingate Institute Laboratory Verification Card */}
+      <div className="bg-gradient-to-br from-emerald-950 via-teal-950 to-stone-900 text-white rounded-3xl p-6 sm:p-8 shadow-md border border-emerald-500/30 space-y-6 relative overflow-hidden">
+        <div className="absolute right-0 top-0 w-80 h-80 bg-emerald-400/5 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-emerald-800/80 pb-4 relative">
+          <div className="flex items-center gap-3">
+            <div className="p-3 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-300 text-emerald-950 shadow-md">
+              <Award className="w-6 h-6" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="px-2.5 py-0.5 rounded-full bg-emerald-400/20 text-emerald-300 text-[10px] font-black uppercase tracking-widest border border-emerald-400/40">
+                  Wingate Institute Clinical Lab Test
+                </span>
+                <span className="text-xs text-amber-300 font-bold font-mono">
+                  Verified Protocol
+                </span>
+              </div>
+              <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight mt-0.5">
+                Wingate Institute Lactate Threshold & Metabolic Telemetry
+              </h3>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <span className="px-3 py-1 rounded-xl bg-emerald-500/20 text-emerald-200 border border-emerald-400/30 text-xs font-bold font-mono">
+              LT1 Aerobic Threshold: {profile.lt1HR || 140} BPM
+            </span>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 relative">
+          <div className="p-4 rounded-2xl bg-emerald-900/40 border border-emerald-500/30 space-y-2">
+            <div className="flex items-center justify-between text-emerald-300 text-xs font-bold uppercase tracking-wider">
+              <span>LT1 / Zone 2 Ceiling</span>
+              <Activity className="w-4 h-4 text-emerald-400" />
+            </div>
+            <div className="text-2xl font-black text-white font-mono">
+              {profile.lt1HR || 140} <span className="text-xs font-semibold text-emerald-300">BPM</span>
+            </div>
+            <p className="text-[11px] text-stone-300 leading-normal">
+              Blood Lactate &le; {profile.testedLactateAtZone2 || 1.8} mmol/L. Upper limit of pure FATmax lipid oxidation verified at Wingate Institute.
+            </p>
+          </div>
+
+          <div className="p-4 rounded-2xl bg-teal-900/40 border border-teal-500/30 space-y-2">
+            <div className="flex items-center justify-between text-teal-300 text-xs font-bold uppercase tracking-wider">
+              <span>LT2 / Anaerobic Threshold</span>
+              <Flame className="w-4 h-4 text-teal-400" />
+            </div>
+            <div className="text-2xl font-black text-white font-mono">
+              {profile.lt2HR || 165} <span className="text-xs font-semibold text-teal-300">BPM</span>
+            </div>
+            <p className="text-[11px] text-stone-300 leading-normal">
+              Onset of Blood Lactate Accumulation (OBLA ~4.0 mmol/L). Transition point into anaerobic glycolysis.
+            </p>
+          </div>
+
+          <div className="p-4 rounded-2xl bg-amber-900/30 border border-amber-500/30 space-y-2">
+            <div className="flex items-center justify-between text-amber-300 text-xs font-bold uppercase tracking-wider">
+              <span>Wingate Lab Validation</span>
+              <ShieldCheck className="w-4 h-4 text-amber-400" />
+            </div>
+            <div className="text-2xl font-black text-amber-200 font-mono">
+              100% <span className="text-xs font-semibold text-amber-300">Calibrated</span>
+            </div>
+            <p className="text-[11px] text-stone-300 leading-normal">
+              Zone 2 training box (126–140 BPM) precisely matched to Wingate clinical step-test blood lactate response.
+            </p>
+          </div>
+        </div>
+
+        <div className="p-4 rounded-2xl bg-emerald-950/90 border border-emerald-400/40 text-emerald-100 text-xs leading-relaxed flex items-start gap-3">
+          <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+          <div>
+            <strong className="text-white font-bold block mb-0.5">Wingate Institute Clinical Finding:</strong>
+            <span>
+              Lactate threshold step-testing at the Wingate Institute confirms that Ishai's blood lactate remains in the optimal low-stress range (&le; {profile.testedLactateAtZone2 || 1.8} mmol/L) up to <strong>{profile.lt1HR || 140} BPM</strong>. Running within the {profile.targetMinHR || 126}–{profile.targetMaxHR || 140} BPM range guarantees 80%+ fat substrate reliance while avoiding glycolytic fatigue.
+            </span>
+          </div>
+        </div>
+      </div>
 
       {/* About Ishai — Bio & Longevity Card */}
       <div className="bg-white border border-stone-200 rounded-3xl p-6 sm:p-8 shadow-xs space-y-6">
