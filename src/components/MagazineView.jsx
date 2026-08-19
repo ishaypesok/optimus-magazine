@@ -129,6 +129,42 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
               </div>
             </div>
 
+            {/* Fuel Energy Comparison Card: Fat (9 kcal/g) vs Carbs (4 kcal/g) */}
+            <div className="p-6 rounded-2xl bg-emerald-50 border border-emerald-300 space-y-3 font-sans">
+              <div className="flex items-center gap-2 text-emerald-950 font-extrabold text-base">
+                <Zap className="w-5 h-5 text-emerald-700" />
+                <span>Fuel Comparison: Why Burning Fat (9 kcal/g) beats Carbohydrates (4 kcal/g)</span>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm text-stone-800 leading-relaxed font-normal">
+                
+                <div className="p-4 rounded-xl bg-white/90 border border-emerald-200 space-y-2">
+                  <div className="flex items-center justify-between text-sm font-extrabold text-emerald-950 border-b border-emerald-100 pb-1.5">
+                    <span>🔥 Fat Fuel (The Premium Tank)</span>
+                    <span className="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-900 text-xs font-black">9 kcal / gram</span>
+                  </div>
+                  <ul className="space-y-1.5 text-xs text-stone-700">
+                    <li>• <strong>More Than Double Energy Density:</strong> Fat yields <strong>9 calories per gram</strong> (vs. 4 cal/g for carbs)—giving your muscles 2.25x more energy per gram!</li>
+                    <li>• <strong>Endless Supply:</strong> Stores ~40,000+ calories of energy across your body (never runs out during exercise).</li>
+                    <li>• <strong>Clean & Steady:</strong> Burns smoothly without blood sugar crashes, brain fog, or sudden hunger pangs.</li>
+                  </ul>
+                </div>
+
+                <div className="p-4 rounded-xl bg-white/90 border border-amber-200 space-y-2">
+                  <div className="flex items-center justify-between text-sm font-extrabold text-amber-950 border-b border-amber-100 pb-1.5">
+                    <span>⚡ Carbohydrate Fuel (The Quick Tank)</span>
+                    <span className="px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 text-xs font-black">4 kcal / gram</span>
+                  </div>
+                  <ul className="space-y-1.5 text-xs text-stone-700">
+                    <li>• <strong>Lower Energy Density:</strong> Carbs yield only <strong>4 calories per gram</strong>.</li>
+                    <li>• <strong>Tiny Tank (~2,000 kcal):</strong> Stored as glycogen in liver & muscles; empties after just 60–90 minutes of hard exercise.</li>
+                    <li>• <strong>Causes "Bonking":</strong> When carb stores run out in high-intensity exercise, your body experiences sudden exhaustion.</li>
+                  </ul>
+                </div>
+
+              </div>
+            </div>
+
             {/* Myth-Buster Card: You Can't Target Fat Location */}
             <div className="p-6 rounded-2xl bg-cyan-50 border border-cyan-200 space-y-3 font-sans">
               <div className="flex items-center gap-2 text-cyan-950 font-extrabold text-base">
