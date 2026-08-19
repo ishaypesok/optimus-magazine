@@ -101,6 +101,39 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
 
             </div>
 
+            {/* Fun FAQ Callout Card: Zone 1 Couch vs Zone 2 FATmax */}
+            <div className="p-6 rounded-2xl bg-amber-50 border border-amber-300 space-y-3 font-sans">
+              <div className="flex items-center gap-2 text-amber-950 font-extrabold text-base">
+                <HelpCircle className="w-5 h-5 text-amber-700" />
+                <span>Btw... Why should I be in Zone 2 if I can just sit in Zone 1 on the couch?</span>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm text-stone-800 leading-relaxed font-normal">
+                <div className="space-y-2 p-4 rounded-xl bg-white/70 border border-amber-200">
+                  <div className="font-extrabold text-amber-950 text-sm flex items-center gap-1.5">
+                    🛋️ Zone 1 (Resting on the Couch)
+                  </div>
+                  <p className="text-xs text-stone-700">
+                    It's true that resting burns 85% fat, BUT because your engine is idling, total energy output is tiny. You burn only about <strong>0.1 grams of fat per minute</strong> (~6g/hour).
+                  </p>
+                  <p className="text-xs text-amber-900 font-medium">
+                    ⚡ <em>Catch:</em> Resting sends <strong>zero signal</strong> to your cells to build new mitochondria. Your cellular engine stays at baseline.
+                  </p>
+                </div>
+
+                <div className="space-y-2 p-4 rounded-xl bg-emerald-100/70 border border-emerald-300">
+                  <div className="font-extrabold text-emerald-950 text-sm flex items-center gap-1.5">
+                    🔥 Zone 2 (FATmax Exercise)
+                  </div>
+                  <p className="text-xs text-stone-800">
+                    Your engine runs 6 times faster while remaining 100% aerobic! You burn up to <strong>0.65 grams of fat per minute</strong> (~39g/hour)—over <strong>6x more total fat per minute!</strong>
+                  </p>
+                  <p className="text-xs text-emerald-950 font-bold">
+                    🚀 <em>The Big Prize:</em> Triggers PGC-1α to build <strong>more & bigger mitochondria</strong>, raising your baseline metabolism so you burn more fat even when sitting!
+                  </p>
+                </div>
+              </div>
+            </div>
+
             {/* Section 3: The 3 Easy Tests */}
             <div className="space-y-4 pt-2">
               <h3 className="text-xl font-bold text-stone-900 flex items-center gap-2">
