@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { 
   BookOpen, Sparkles, Flame, Activity, Zap, Droplet, Clock, 
   ChevronRight, ChevronLeft, Bookmark, Share2, Award, ArrowUpRight, 
-  ShieldCheck, Heart, Layers, BarChart2, CheckCircle2, UserCheck, Printer, Smile, HelpCircle, Lightbulb, BatteryCharging
+  ShieldCheck, Heart, Layers, BarChart2, CheckCircle2, UserCheck, Printer, Smile, HelpCircle, Lightbulb, BatteryCharging, Cpu
 } from 'lucide-react';
 import { ZONES, CHARACTERS } from '../data/metabolismData';
 import FuelCharts from './FuelCharts';
