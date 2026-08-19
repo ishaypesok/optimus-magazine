@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { 
   User, Activity, Heart, Flame, Zap, ShieldCheck, Award, 
-  RotateCcw, Sliders, CheckCircle2, BookOpen, Clock, BatteryCharging, TrendingUp, Sparkles 
+  RotateCcw, Sliders, CheckCircle2, BookOpen, Clock, BatteryCharging, TrendingUp, Sparkles, Quote, Target
 } from 'lucide-react';
 
 const DEFAULT_PROFILE = {
@@ -12,6 +12,7 @@ const DEFAULT_PROFILE = {
   targetMinHR: 126,
   targetMaxHR: 140,
   weeklyGoalHours: 3.5,
+  bio: "Ishai is a dedicated runner and health longevity practitioner. Rather than chasing high-intensity fatigue, Ishai's endurance philosophy focuses on building a powerful aerobic foundation through disciplined Zone 2 training (126–140 BPM). By training muscle fibers to oxidize fatty acids efficiently, Ishai preserves glycogen, minimizes inflammation, and expands mitochondrial density for sustainable lifelong health.",
 };
 
 export default function AthleteProfile() {
@@ -127,45 +128,58 @@ export default function AthleteProfile() {
             <span className="text-xs text-stone-500">Changes save automatically to your device</span>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="space-y-4">
             <div className="space-y-1">
-              <label className="text-xs font-bold text-stone-700">Resting Heart Rate (BPM)</label>
-              <input
-                type="number"
-                value={profile.restingHR}
-                onChange={(e) => setProfile({ ...profile, restingHR: Number(e.target.value) })}
-                className="w-full px-3 py-2 rounded-xl bg-white border border-stone-300 text-sm font-bold text-stone-900 focus:border-emerald-600 focus:outline-none"
+              <label className="text-xs font-bold text-stone-700">About Me / Bio</label>
+              <textarea
+                rows={2}
+                value={profile.bio || ''}
+                onChange={(e) => setProfile({ ...profile, bio: e.target.value })}
+                className="w-full px-3 py-2 rounded-xl bg-white border border-stone-300 text-xs font-medium text-stone-900 focus:border-emerald-600 focus:outline-none"
+                placeholder="Write a short summary about your training philosophy and goals..."
               />
             </div>
 
-            <div className="space-y-1">
-              <label className="text-xs font-bold text-stone-700">Max Heart Rate (BPM)</label>
-              <input
-                type="number"
-                value={profile.maxHR}
-                onChange={(e) => setProfile({ ...profile, maxHR: Number(e.target.value) })}
-                className="w-full px-3 py-2 rounded-xl bg-white border border-stone-300 text-sm font-bold text-stone-900 focus:border-emerald-600 focus:outline-none"
-              />
-            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="space-y-1">
+                <label className="text-xs font-bold text-stone-700">Resting Heart Rate (BPM)</label>
+                <input
+                  type="number"
+                  value={profile.restingHR}
+                  onChange={(e) => setProfile({ ...profile, restingHR: Number(e.target.value) })}
+                  className="w-full px-3 py-2 rounded-xl bg-white border border-stone-300 text-sm font-bold text-stone-900 focus:border-emerald-600 focus:outline-none"
+                />
+              </div>
 
-            <div className="space-y-1">
-              <label className="text-xs font-bold text-stone-700">Min Zone 2 HR (BPM)</label>
-              <input
-                type="number"
-                value={profile.targetMinHR}
-                onChange={(e) => setProfile({ ...profile, targetMinHR: Number(e.target.value) })}
-                className="w-full px-3 py-2 rounded-xl bg-white border border-stone-300 text-sm font-bold text-stone-900 focus:border-emerald-600 focus:outline-none"
-              />
-            </div>
+              <div className="space-y-1">
+                <label className="text-xs font-bold text-stone-700">Max Heart Rate (BPM)</label>
+                <input
+                  type="number"
+                  value={profile.maxHR}
+                  onChange={(e) => setProfile({ ...profile, maxHR: Number(e.target.value) })}
+                  className="w-full px-3 py-2 rounded-xl bg-white border border-stone-300 text-sm font-bold text-stone-900 focus:border-emerald-600 focus:outline-none"
+                />
+              </div>
 
-            <div className="space-y-1">
-              <label className="text-xs font-bold text-stone-700">Max Zone 2 HR (BPM)</label>
-              <input
-                type="number"
-                value={profile.targetMaxHR}
-                onChange={(e) => setProfile({ ...profile, targetMaxHR: Number(e.target.value) })}
-                className="w-full px-3 py-2 rounded-xl bg-white border border-stone-300 text-sm font-bold text-stone-900 focus:border-emerald-600 focus:outline-none"
-              />
+              <div className="space-y-1">
+                <label className="text-xs font-bold text-stone-700">Min Zone 2 HR (BPM)</label>
+                <input
+                  type="number"
+                  value={profile.targetMinHR}
+                  onChange={(e) => setProfile({ ...profile, targetMinHR: Number(e.target.value) })}
+                  className="w-full px-3 py-2 rounded-xl bg-white border border-stone-300 text-sm font-bold text-stone-900 focus:border-emerald-600 focus:outline-none"
+                />
+              </div>
+
+              <div className="space-y-1">
+                <label className="text-xs font-bold text-stone-700">Max Zone 2 HR (BPM)</label>
+                <input
+                  type="number"
+                  value={profile.targetMaxHR}
+                  onChange={(e) => setProfile({ ...profile, targetMaxHR: Number(e.target.value) })}
+                  className="w-full px-3 py-2 rounded-xl bg-white border border-stone-300 text-sm font-bold text-stone-900 focus:border-emerald-600 focus:outline-none"
+                />
+              </div>
             </div>
           </div>
 
@@ -174,6 +188,125 @@ export default function AthleteProfile() {
           </div>
         </div>
       )}
+
+      {/* About Ishai — Bio & Longevity Card */}
+      <div className="bg-white border border-stone-200 rounded-3xl p-6 sm:p-8 shadow-xs space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-stone-100 pb-4">
+          <div className="flex items-center gap-3">
+            <div className="p-2.5 rounded-2xl bg-emerald-100 text-emerald-800 border border-emerald-200">
+              <User className="w-6 h-6" />
+            </div>
+            <div>
+              <h3 className="text-xl font-extrabold text-stone-900 tracking-tight">
+                About Ishai — Bioenergetics & Longevity Profile
+              </h3>
+              <p className="text-xs text-stone-500 font-medium">
+                Endurance practitioner focused on Zone 2 metabolic optimization & mitochondrial biogenesis
+              </p>
+            </div>
+          </div>
+          <span className="px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-bold font-mono self-start sm:self-center">
+            Cellular Health at 79 Target
+          </span>
+        </div>
+
+        {/* Bio Narrative & Philosophy */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <div className="lg:col-span-7 space-y-3">
+            <h4 className="text-sm font-bold text-stone-800 uppercase tracking-wider flex items-center gap-2">
+              <BookOpen className="w-4 h-4 text-emerald-600" />
+              Athlete Bio & Philosophy
+            </h4>
+            <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
+              {profile.bio || `Ishai is a dedicated runner and health longevity advocate focused on science-backed cellular fitness. Rather than chasing short-term intensity, Ishai's training philosophy prioritizes building a powerful aerobic base through disciplined Zone 2 running (126–140 BPM). By training muscle fibers to oxidize fatty acids efficiently, Ishai preserves glycogen reserves, minimizes oxidative stress, and expands mitochondrial density for lifelong metabolic health.`}
+            </p>
+            <div className="p-3.5 rounded-2xl bg-emerald-50/80 border border-emerald-200/70 text-xs text-emerald-950 font-medium flex items-start gap-2.5">
+              <Quote className="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" />
+              <div>
+                <strong className="block font-bold text-emerald-900">Training Creed:</strong>
+                <span className="italic">“Rest two days after. This is how we build cellular health at 79.”</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="lg:col-span-5 grid grid-cols-2 gap-3">
+            <div className="p-3.5 rounded-2xl bg-stone-50 border border-stone-200 space-y-1">
+              <div className="flex items-center gap-1.5 text-xs font-bold text-stone-800">
+                <Activity className="w-4 h-4 text-emerald-600" />
+                <span>Primary Discipline</span>
+              </div>
+              <p className="text-xs text-stone-600 font-semibold">Zone 2 Aerobic Base Running</p>
+            </div>
+
+            <div className="p-3.5 rounded-2xl bg-stone-50 border border-stone-200 space-y-1">
+              <div className="flex items-center gap-1.5 text-xs font-bold text-stone-800">
+                <Target className="w-4 h-4 text-amber-600" />
+                <span>FATmax Target</span>
+              </div>
+              <p className="text-xs text-stone-600 font-semibold">{profile.targetMinHR}–{profile.targetMaxHR} BPM (60-70% HRR)</p>
+            </div>
+
+            <div className="p-3.5 rounded-2xl bg-stone-50 border border-stone-200 space-y-1">
+              <div className="flex items-center gap-1.5 text-xs font-bold text-stone-800">
+                <Flame className="w-4 h-4 text-orange-600" />
+                <span>Fuel Strategy</span>
+              </div>
+              <p className="text-xs text-stone-600 font-semibold">82% Fat / 18% Glucose Substrate</p>
+            </div>
+
+            <div className="p-3.5 rounded-2xl bg-stone-50 border border-stone-200 space-y-1">
+              <div className="flex items-center gap-1.5 text-xs font-bold text-stone-800">
+                <ShieldCheck className="w-4 h-4 text-teal-600" />
+                <span>Long-Term Goal</span>
+              </div>
+              <p className="text-xs text-stone-600 font-semibold">Mitochondrial Biogenesis & Health</p>
+            </div>
+          </div>
+        </div>
+
+        {/* 4 Core Pillars */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-2">
+          <div className="p-4 rounded-2xl bg-emerald-50/50 border border-emerald-200/60 space-y-1">
+            <div className="flex items-center gap-2 text-xs font-extrabold text-emerald-900">
+              <span className="w-6 h-6 rounded-lg bg-emerald-200/80 text-emerald-800 flex items-center justify-center text-xs font-bold">1</span>
+              <span>Aerobic Discipline</span>
+            </div>
+            <p className="text-[11px] text-stone-600 leading-normal">
+              Keeping pace controlled in the 126–140 BPM box to maximize lipid burn and prevent lactate accumulation.
+            </p>
+          </div>
+
+          <div className="p-4 rounded-2xl bg-teal-50/50 border border-teal-200/60 space-y-1">
+            <div className="flex items-center gap-2 text-xs font-extrabold text-teal-900">
+              <span className="w-6 h-6 rounded-lg bg-teal-200/80 text-teal-800 flex items-center justify-center text-xs font-bold">2</span>
+              <span>Cellular Energy</span>
+            </div>
+            <p className="text-[11px] text-stone-600 leading-normal">
+              Stimulating mitochondrial density expansion and PGC-1&alpha; expression with 45–60 min sustained runs.
+            </p>
+          </div>
+
+          <div className="p-4 rounded-2xl bg-amber-50/50 border border-amber-200/60 space-y-1">
+            <div className="flex items-center gap-2 text-xs font-extrabold text-amber-900">
+              <span className="w-6 h-6 rounded-lg bg-amber-200/80 text-amber-800 flex items-center justify-center text-xs font-bold">3</span>
+              <span>Structured Rest</span>
+            </div>
+            <p className="text-[11px] text-stone-600 leading-normal">
+              Integrating mandatory 48-hour recovery windows to allow cellular repair and muscle fiber adaptation.
+            </p>
+          </div>
+
+          <div className="p-4 rounded-2xl bg-stone-100/80 border border-stone-200 space-y-1">
+            <div className="flex items-center gap-2 text-xs font-extrabold text-stone-900">
+              <span className="w-6 h-6 rounded-lg bg-stone-300 text-stone-800 flex items-center justify-center text-xs font-bold">4</span>
+              <span>Telemetry Tracking</span>
+            </div>
+            <p className="text-[11px] text-stone-600 leading-normal">
+              Analyzing real-time bioenergetics telemetry, heart rate metrics, and estimated substrate ratios.
+            </p>
+          </div>
+        </div>
+      </div>
 
       {/* 4 Metric Live Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
