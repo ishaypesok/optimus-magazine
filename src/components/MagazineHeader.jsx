@@ -20,10 +20,12 @@ export default function MagazineHeader({
           
           {/* Logo & Magazine Branding */}
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-400 via-teal-400 to-cyan-400 p-0.5 shadow-xl shadow-emerald-500/20 flex items-center justify-center">
-              <div className="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center">
-                <BookOpen className="w-6 h-6 text-emerald-400" />
-              </div>
+            <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-emerald-400 via-teal-400 to-cyan-400 p-0.5 shadow-2xl shadow-emerald-500/30 overflow-hidden shrink-0">
+              <img 
+                src="./optimus-logo.jpg" 
+                alt="Optimus Magazine Logo" 
+                className="w-full h-full object-cover rounded-[14px]" 
+              />
             </div>
             <div>
               <div className="flex items-center gap-2">
