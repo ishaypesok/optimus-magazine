@@ -24,15 +24,15 @@ export default function LiveCellVisualizer() {
       desc: 'Idling engine. High fat % (85%), but tiny total energy output. No stimulus for building new mitochondria.'
     },
     2: {
-      name: 'Zone 2 (FATmax Sweet Spot)',
+      name: "Zone 2 (Ishai's Target: 126–140 BPM)",
       fatRate: 0.65,
       carbRate: 0.25,
       o2Supply: 95,
       atpOutput: 88,
       lactateAccumulation: 0,
       mitochondriaGlow: '#10b981',
-      status: 'Peak Fat Oxidation & PGC-1α Biogenesis',
-      desc: 'Maximum absolute fat burning (0.65g/min). O₂ supply matches demand 100%. Triggers expansion of cell mitochondria!'
+      status: "Peak Fat Oxidation • Based on Ishai's Run",
+      desc: "Maximum absolute fat burning (0.65g/min). Particle simulation parameters calculated based on Ishai's target heart rate run (126–140 BPM)."
     },
     3: {
       name: 'Zone 3 (Tempo / Moderate)',
@@ -276,33 +276,37 @@ export default function LiveCellVisualizer() {
       }
 
       // Draw Legend at top right
-      ctx.fillStyle = 'rgba(255,255,255,0.9)';
-      ctx.strokeStyle = '#e7e5e4';
-      ctx.lineWidth = 1;
+      ctx.fillStyle = 'rgba(255,255,255,0.95)';
+      ctx.strokeStyle = '#d6d3d1';
+      ctx.lineWidth = 1.5;
       ctx.beginPath();
-      ctx.roundRect(width - 170, 16, 150, 75, 8);
+      ctx.roundRect(width - 180, 14, 165, 96, 10);
       ctx.fill();
       ctx.stroke();
 
       ctx.font = 'bold 9px sans-serif';
-      ctx.fillStyle = '#44403c';
-      ctx.fillText('LIVE MOLECULE LEGEND', width - 160, 30);
+      ctx.fillStyle = '#1c1917';
+      ctx.fillText('LIVE MOLECULE LEGEND', width - 170, 28);
 
-      // Fat
+      // Fat (Orange Dot)
       ctx.fillStyle = '#f59e0b';
-      ctx.beginPath(); ctx.arc(width - 155, 42, 4, 0, Math.PI * 2); ctx.fill();
-      ctx.font = '9px sans-serif'; ctx.fillStyle = '#57534e';
-      ctx.fillText('Fatty Acid (FFA)', width - 145, 45);
+      ctx.beginPath(); ctx.arc(width - 165, 42, 4.5, 0, Math.PI * 2); ctx.fill();
+      ctx.font = '9px sans-serif'; ctx.fillStyle = '#44403c';
+      ctx.fillText('Fatty Acid (FFA)', width - 153, 45);
 
-      // Carb
+      // Carb (Blue Dot)
       ctx.fillStyle = '#3b82f6';
-      ctx.beginPath(); ctx.arc(width - 155, 57, 4, 0, Math.PI * 2); ctx.fill();
-      ctx.fillText('Glucose / Carbs', width - 145, 60);
+      ctx.beginPath(); ctx.arc(width - 165, 58, 4.5, 0, Math.PI * 2); ctx.fill();
+      ctx.fillText('Glucose / Carbs', width - 153, 61);
 
-      // ATP
+      // ATP (Emerald Spark)
       ctx.fillStyle = '#34d399';
-      ctx.beginPath(); ctx.arc(width - 155, 72, 4, 0, Math.PI * 2); ctx.fill();
-      ctx.fillText('ATP Energy Molecule', width - 145, 75);
+      ctx.beginPath(); ctx.arc(width - 165, 74, 4.5, 0, Math.PI * 2); ctx.fill();
+      ctx.fillText('ATP Energy Molecule', width - 153, 77);
+
+      // Dedicated Ishai's Run Tagline
+      ctx.font = 'bold 8.5px sans-serif'; ctx.fillStyle = '#047857';
+      ctx.fillText("Based on Ishai's Run", width - 170, 94);
 
       animationFrameId = requestAnimationFrame(render);
     };
@@ -322,10 +326,15 @@ export default function LiveCellVisualizer() {
         </div>
         
         <div className="flex flex-wrap items-center justify-between gap-3 relative z-10">
-          <span className="px-3 py-1 rounded-full bg-emerald-800 text-emerald-200 font-extrabold text-xs uppercase tracking-wider border border-emerald-700 flex items-center gap-1.5">
-            <Sparkles className="w-3.5 h-3.5 text-emerald-300" />
-            Interactive Bioenergetics Feature
-          </span>
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="px-3 py-1 rounded-full bg-emerald-800 text-emerald-200 font-extrabold text-xs uppercase tracking-wider border border-emerald-700 flex items-center gap-1.5">
+              <Sparkles className="w-3.5 h-3.5 text-emerald-300" />
+              Interactive Bioenergetics Feature
+            </span>
+            <span className="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 font-bold text-xs border border-amber-400/30 flex items-center gap-1">
+              <span>Based on Ishai's Run</span>
+            </span>
+          </div>
           <div className="flex items-center gap-2">
             <a
               href={`https://twitter.com/intent/tweet?text=${encodeURIComponent('Check out the Live Cell Visualizer in Optimus Magazine! 🔬 Watch mitochondria & fat-burning in real-time:')}&url=${encodeURIComponent('https://ishaypesok.github.io/optimus-magazine/')}`}
