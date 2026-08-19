@@ -8,11 +8,13 @@ import { ZONES, CHARACTERS } from '../data/metabolismData';
 import FuelCharts from './FuelCharts';
 import RunnerSimulation from './RunnerSimulation';
 import AdaptationSimulator from './AdaptationSimulator';
+import LiveCellVisualizer from './LiveCellVisualizer';
+import Zone2VsOtherSports from './Zone2VsOtherSports';
 
 export default function MagazineView({ currentZoneId, setCurrentZoneId, activeArticle, setActiveArticle }) {
   const [internalPage, setInternalPage] = useState(1);
   const activePage = (activeArticle && typeof activeArticle === 'number') ? activeArticle : internalPage;
-  const totalPages = 6;
+  const totalPages = 8;
 
   const zone2 = ZONES.find(z => z.id === 2) || ZONES[1];
   const currentZone = ZONES.find(z => z.id === currentZoneId) || zone2;
@@ -524,13 +526,27 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
           </article>
         )}
 
-        {/* ==================== PAGE 4: LACTATE PARADOX ==================== */}
+        {/* ==================== PAGE 4: LIVE CELL VISUALIZER ==================== */}
         {activePage === 4 && (
+          <article className="space-y-8 animate-fade-in font-sans">
+            <LiveCellVisualizer />
+          </article>
+        )}
+
+        {/* ==================== PAGE 5: ZONE 2 VS OTHER SPORTS ==================== */}
+        {activePage === 5 && (
+          <article className="space-y-8 animate-fade-in font-sans">
+            <Zone2VsOtherSports />
+          </article>
+        )}
+
+        {/* ==================== PAGE 6: LACTATE PARADOX ==================== */}
+        {activePage === 6 && (
           <article className="space-y-8 animate-fade-in font-sans">
             
             <div className="space-y-2">
               <span className="px-3.5 py-1 rounded-full bg-amber-100 text-amber-900 font-bold text-xs uppercase tracking-wider border border-amber-200">
-                Page 4 • Investigative Report
+                Page 6 • Investigative Report
               </span>
               <h2 className="text-3xl lg:text-4xl font-extrabold text-stone-900 leading-tight tracking-tight">
                 The Lactate Paradox: Demolishing Old Myths
@@ -592,13 +608,13 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
           </article>
         )}
 
-        {/* ==================== PAGE 5: 1-HOUR RUNNER FIELD STUDY ==================== */}
-        {activePage === 5 && (
+        {/* ==================== PAGE 7: 1-HOUR RUNNER FIELD STUDY ==================== */}
+        {activePage === 7 && (
           <article className="space-y-8 animate-fade-in font-sans">
             
             <div className="space-y-2">
               <span className="px-3.5 py-1 rounded-full bg-cyan-100 text-cyan-900 font-bold text-xs uppercase tracking-wider border border-cyan-200">
-                Page 5 • Field Experiment
+                Page 7 • Field Experiment
               </span>
               <h2 className="text-3xl lg:text-4xl font-extrabold text-stone-900 leading-tight tracking-tight">
                 The 1-Hour Zone 2 Runner: Real-Time Field Simulation
@@ -616,13 +632,13 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
           </article>
         )}
 
-        {/* ==================== PAGE 6: LONGEVITY PROTOCOLS ==================== */}
-        {activePage === 6 && (
+        {/* ==================== PAGE 8: LONGEVITY PROTOCOLS ==================== */}
+        {activePage === 8 && (
           <article className="space-y-8 animate-fade-in font-sans">
             
             <div className="space-y-2">
               <span className="px-3.5 py-1 rounded-full bg-emerald-100 text-emerald-900 font-bold text-xs uppercase tracking-wider border border-emerald-200">
-                Page 6 • Longevity Masterclass
+                Page 8 • Longevity Masterclass
               </span>
               <h2 className="text-3xl lg:text-4xl font-extrabold text-stone-900 leading-tight tracking-tight">
                 Mastering the Conversational Pace: Practical Guidelines

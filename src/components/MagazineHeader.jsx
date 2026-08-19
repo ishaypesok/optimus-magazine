@@ -62,16 +62,18 @@ export default function MagazineHeader({
 
         </div>
 
-        {/* 6 Page Navigation Tabs - Guaranteed Single Row */}
+        {/* 8 Page Navigation Tabs - Guaranteed Single Row */}
         <div className="pt-2 border-t border-stone-200">
           <nav className="flex items-center justify-between gap-1 overflow-x-auto bg-stone-100/90 p-1 rounded-xl border border-stone-200 text-xs font-semibold">
             {[
               { id: 1, label: 'Page 1: Easy Intro' },
               { id: 2, label: 'Page 2: FATmax' },
               { id: 3, label: 'Page 3: Cell Engine' },
-              { id: 4, label: 'Page 4: Lactate' },
-              { id: 5, label: 'Page 5: 1-Hr Runner' },
-              { id: 6, label: 'Page 6: Longevity' },
+              { id: 4, label: 'Page 4: Live Cell ⭐' },
+              { id: 5, label: 'Page 5: vs. Other Sports ⭐' },
+              { id: 6, label: 'Page 6: Lactate' },
+              { id: 7, label: 'Page 7: 1-Hr Runner' },
+              { id: 8, label: 'Page 8: Longevity' },
             ].map(tab => (
               <button
                 key={tab.id}

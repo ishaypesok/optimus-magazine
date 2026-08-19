@@ -6,7 +6,8 @@ import { BookOpen } from 'lucide-react';
 
 export default function App() {
   const [currentZoneId, setCurrentZoneId] = useState(2);
-  const [activeArticle, setActiveArticle] = useState(1);
+  // Default landing page is Page 4: Live Cell Visualizer ⭐
+  const [activeArticle, setActiveArticle] = useState(4);
   const [searchQuery, setSearchQuery] = useState('');
 
   return (
