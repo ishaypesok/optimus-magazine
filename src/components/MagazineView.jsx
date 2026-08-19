@@ -101,6 +101,34 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
 
             </div>
 
+            {/* Dedicated Explanation Card: What are Mitochondria? */}
+            <div className="p-6 rounded-2xl bg-teal-50 border border-teal-200 space-y-3 font-sans">
+              <div className="flex items-center gap-2 text-teal-950 font-extrabold text-base">
+                <Cpu className="w-5 h-5 text-teal-700" />
+                <span>What are "Mitochondria"? (Pronounced: my-toe-KON-dree-uh)</span>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm text-stone-800 leading-relaxed font-normal">
+                <div className="p-3.5 rounded-xl bg-white/80 border border-teal-200 space-y-1">
+                  <div className="font-extrabold text-teal-950 text-xs uppercase">🔋 1. Tiny Battery Factories</div>
+                  <p className="text-xs text-stone-700">
+                    Mitochondria are tiny microscopic "power plants" inside almost every cell in your body (especially in your muscle cells).
+                  </p>
+                </div>
+                <div className="p-3.5 rounded-xl bg-white/80 border border-teal-200 space-y-1">
+                  <div className="font-extrabold text-teal-950 text-xs uppercase">⚡ 2. Turn Fat & Oxygen into Energy</div>
+                  <p className="text-xs text-stone-700">
+                    They take the <strong>Oxygen</strong> you breathe and the <strong>Fat</strong> stored in your body, burning them cleanly into pure cellular energy called <strong>ATP</strong>.
+                  </p>
+                </div>
+                <div className="p-3.5 rounded-xl bg-white/80 border border-teal-200 space-y-1">
+                  <div className="font-extrabold text-teal-950 text-xs uppercase">🛠️ 3. Zone 2 Builds More of Them</div>
+                  <p className="text-xs text-stone-700">
+                    Zone 2 exercise forces your body to build <strong>more & bigger mitochondria</strong>, giving you higher daily stamina and protecting against fatigue as you age!
+                  </p>
+                </div>
+              </div>
+            </div>
+
             {/* Fun FAQ Callout Card: Zone 1 Couch vs Zone 2 FATmax */}
             <div className="p-6 rounded-2xl bg-amber-50 border border-amber-300 space-y-3 font-sans">
               <div className="flex items-center gap-2 text-amber-950 font-extrabold text-base">
