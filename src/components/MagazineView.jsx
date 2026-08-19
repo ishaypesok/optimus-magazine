@@ -167,6 +167,36 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
               </div>
             </div>
 
+            {/* Insulin Connection Card: How Insulin Controls Fat Burning */}
+            <div className="p-6 rounded-2xl bg-teal-50 border border-teal-300 space-y-3 font-sans">
+              <div className="flex items-center gap-2 text-teal-950 font-extrabold text-base">
+                <ShieldCheck className="w-5 h-5 text-teal-700" />
+                <span>The Insulin Connection: How Insulin & Zone 2 Unlock Fat Burning</span>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm text-stone-800 leading-relaxed font-normal">
+                
+                <div className="p-4 rounded-xl bg-white/90 border border-rose-200 space-y-2">
+                  <div className="font-extrabold text-rose-950 text-sm flex items-center gap-1.5">
+                    🔒 High Insulin = "Fat Doors Locked"
+                  </div>
+                  <p className="text-xs text-stone-700">
+                    Insulin is the body's primary energy storage hormone. When insulin levels are high (e.g. after a high-sugar meal), insulin <strong>shuts the gate enzyme (CPT-1)</strong> that moves fat into mitochondria. High insulin locks fat inside your fat cells and forces your body to burn carbs instead.
+                  </p>
+                </div>
+
+                <div className="p-4 rounded-xl bg-white/90 border border-emerald-200 space-y-2">
+                  <div className="font-extrabold text-emerald-950 text-sm flex items-center gap-1.5">
+                    🔑 Zone 2 Lowers Insulin = "Fat Doors Unlocked!"
+                  </div>
+                  <p className="text-xs text-stone-700">
+                    Zone 2 exercise dramatically improves <strong>Insulin Sensitivity</strong>. It lowers circulating insulin, unlocking CPT-1 so free fatty acids flood into your mitochondria to be burned at maximum speed (FATmax). Regular Zone 2 also protects against Type 2 Diabetes and insulin resistance!
+                  </p>
+                </div>
+
+              </div>
+            </div>
+
             {/* Myth-Buster Card: You Can't Target Fat Location */}
             <div className="p-6 rounded-2xl bg-cyan-50 border border-cyan-200 space-y-3 font-sans">
               <div className="flex items-center gap-2 text-cyan-950 font-extrabold text-base">
