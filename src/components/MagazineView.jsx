@@ -197,6 +197,36 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
               </div>
             </div>
 
+            {/* Keto Diet vs Zone 2 Card */}
+            <div className="p-6 rounded-2xl bg-amber-50 border border-amber-300 space-y-3 font-sans">
+              <div className="flex items-center gap-2 text-amber-950 font-extrabold text-base">
+                <BookOpen className="w-5 h-5 text-amber-700" />
+                <span>Keto Diet vs. Zone 2 Exercise: Dietary Input vs. Cellular Engine Upgrade</span>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm text-stone-800 leading-relaxed font-normal">
+                
+                <div className="p-4 rounded-xl bg-white/90 border border-amber-200 space-y-2">
+                  <div className="font-extrabold text-amber-950 text-sm flex items-center gap-1.5">
+                    🥑 Keto Diet (Dietary Fuel Supply)
+                  </div>
+                  <p className="text-xs text-stone-700">
+                    Cutting carbs (&lt;50g/day) forces your liver to make ketone bodies. This shifts resting metabolism toward fat, <strong>BUT it doesn't build new cell machinery on its own</strong>. If your cells lack mitochondria, fat burning remains capped.
+                  </p>
+                </div>
+
+                <div className="p-4 rounded-xl bg-white/90 border border-emerald-200 space-y-2">
+                  <div className="font-extrabold text-emerald-950 text-sm flex items-center gap-1.5">
+                    🏃 Zone 2 Exercise (Cellular Engine Upgrade)
+                  </div>
+                  <p className="text-xs text-stone-700">
+                    Zone 2 forces your cells to build <strong>more & bigger mitochondria</strong> (PGC-1α biogenesis), doubling your capacity to burn fat. <em>Key Benefit:</em> You get 100% of Zone 2's fat-burning and longevity benefits on <strong>any balanced diet</strong>—no strict Keto required!
+                  </p>
+                </div>
+
+              </div>
+            </div>
+
             {/* Myth-Buster Card: You Can't Target Fat Location */}
             <div className="p-6 rounded-2xl bg-cyan-50 border border-cyan-200 space-y-3 font-sans">
               <div className="flex items-center gap-2 text-cyan-950 font-extrabold text-base">
