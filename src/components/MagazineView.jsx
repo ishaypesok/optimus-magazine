@@ -145,6 +145,7 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
                   </div>
                   <ul className="space-y-1.5 text-xs text-stone-700">
                     <li>• <strong>More Than Double Energy Density:</strong> Fat yields <strong>9 calories per gram</strong> (vs. 4 cal/g for carbs)—giving your muscles 2.25x more energy per gram!</li>
+                    <li>• <strong>Quick Oxygen-Powered Oxidation:</strong> For burning fat, your body needs a steady, abundant supply of <strong>Oxygen (O₂)</strong>. In Zone 2, your breathing is easy, supplying all the O₂ needed to break down fat cleanly!</li>
                     <li>• <strong>Endless Supply:</strong> Stores ~40,000+ calories of energy across your body (never runs out during exercise).</li>
                     <li>• <strong>Clean & Steady:</strong> Burns smoothly without blood sugar crashes, brain fog, or sudden hunger pangs.</li>
                   </ul>
@@ -157,6 +158,7 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
                   </div>
                   <ul className="space-y-1.5 text-xs text-stone-700">
                     <li>• <strong>Lower Energy Density:</strong> Carbs yield only <strong>4 calories per gram</strong>.</li>
+                    <li>• <strong>Longer Complex Process at High Intensity:</strong> Carbohydrate breakdown under high intensity (when oxygen supply can't keep up) involves a longer multi-step pathway (glycolysis) that accumulates excess lactate & acidity!</li>
                     <li>• <strong>Tiny Tank (~2,000 kcal):</strong> Stored as glycogen in liver & muscles; empties after just 60–90 minutes of hard exercise.</li>
                     <li>• <strong>Causes "Bonking":</strong> When carb stores run out in high-intensity exercise, your body experiences sudden exhaustion.</li>
                   </ul>
