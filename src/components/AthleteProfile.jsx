@@ -77,9 +77,15 @@ export default function AthleteProfile() {
                 Zone 2 Target: <strong className="text-emerald-300">{profile.targetMinHR} – {profile.targetMaxHR} BPM</strong> • FATmax Sweet Spot
               </p>
               
-              <div className="mt-3 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-emerald-950/80 border border-emerald-400/30 text-emerald-200 text-xs font-medium italic">
-                <Sparkles className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                <span>“At minute 60, Ishai hit FATmax. Mitochondria were producing ATP at 88% efficiency. No sugar crash.”</span>
+              <div className="mt-3 flex flex-col gap-1.5 p-3 rounded-2xl bg-emerald-950/80 border border-emerald-400/30 text-emerald-200 text-xs font-medium">
+                <div className="flex items-center gap-2 italic">
+                  <Sparkles className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                  <span>“At minute 60, Ishai hit FATmax. Mitochondria were producing ATP at 88% efficiency. No sugar crash.”</span>
+                </div>
+                <div className="text-[11px] text-amber-300/90 font-medium italic pt-1 border-t border-emerald-800/60 flex items-center gap-1.5">
+                  <span className="font-bold text-amber-400 font-mono uppercase text-[9px] px-1.5 py-0.2 rounded bg-amber-400/20">Footnote</span>
+                  <span>“Rest two days after. This is how we build cellular health at 79.”</span>
+                </div>
               </div>
             </div>
           </div>

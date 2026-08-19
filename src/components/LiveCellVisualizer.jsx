@@ -424,13 +424,17 @@ export default function LiveCellVisualizer() {
             <div className="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 mt-0.5 border border-emerald-500/30">
               <Sparkles className="w-4 h-4" />
             </div>
-            <div className="space-y-0.5 text-xs">
+            <div className="space-y-1.5 text-xs">
               <span className="font-mono text-[10px] text-emerald-400 font-bold uppercase tracking-wider block">
                 EDITORIAL CAPTION • ISHAI'S RUN TELEMETRY
               </span>
               <p className="text-emerald-100 font-semibold italic text-sm leading-snug">
                 “At minute 60, Ishai hit FATmax. Mitochondria were producing ATP at 88% efficiency. No sugar crash.”
               </p>
+              <div className="pt-2 border-t border-emerald-500/20 text-[11px] text-stone-300 font-medium flex items-center gap-1.5">
+                <span className="font-bold text-amber-400 font-mono uppercase text-[10px] px-1.5 py-0.5 rounded bg-amber-400/10 border border-amber-400/20">Footnote</span>
+                <span className="italic text-emerald-200">“Rest two days after. This is how we build cellular health at 79.”</span>
+              </div>
             </div>
           </div>
         </div>

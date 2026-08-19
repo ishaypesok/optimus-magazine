@@ -42,6 +42,9 @@ export default function App() {
           <p className="max-w-3xl mx-auto text-xs text-stone-600 leading-relaxed font-normal">
             Zone 2 exercise represents the exact metabolic sweet spot where absolute fat oxidation (FATmax) peaks, mitochondrial biogenesis is stimulated via PGC-1α signaling, and blood lactate remains in steady state (~1.5-2.0 mmol/L).
           </p>
+          <div className="text-xs font-semibold text-emerald-800 italic pt-1">
+            <span>📌 Footnote: “Rest two days after. This is how we build cellular health at 79.”</span>
+          </div>
           <div className="flex flex-wrap items-center justify-center gap-4 text-[11px] font-mono text-stone-500 pt-2 border-t border-stone-200">
             <span>Bioenergetics Science Press</span>
             <span>•</span>
