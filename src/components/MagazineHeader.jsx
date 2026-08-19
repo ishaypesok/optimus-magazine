@@ -1,9 +1,7 @@
 import React from 'react';
-import { BookOpen, Sparkles, Search, Monitor, ChevronDown } from 'lucide-react';
+import { BookOpen, Sparkles, Search, Monitor } from 'lucide-react';
 
 export default function MagazineHeader({ 
-  activeIssue, 
-  setActiveIssue, 
   activeArticle, 
   setActiveArticle,
   searchQuery,
@@ -13,14 +11,14 @@ export default function MagazineHeader({
 }) {
   return (
     <header className="sticky top-0 z-50 glass-panel-light border-b border-stone-200 px-4 lg:px-8 py-3.5 shadow-sm">
-      <div className="max-w-7xl mx-auto space-y-3 font-header">
+      <div className="max-w-7xl mx-auto space-y-3 font-sans">
         
         {/* Top Masthead Row */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           
           {/* Logo & Main Friendly Title */}
           <div className="flex items-center gap-4">
-            <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-emerald-600 via-teal-600 to-cyan-600 p-0.5 shadow-md shadow-emerald-700/20 overflow-hidden shrink-0">
+            <div className="w-13 h-13 rounded-2xl bg-gradient-to-tr from-emerald-600 via-teal-600 to-cyan-600 p-0.5 shadow-md shadow-emerald-700/10 overflow-hidden shrink-0">
               <img 
                 src="./optimus-logo.jpg" 
                 alt="Optimus Magazine Logo" 
@@ -29,14 +27,14 @@ export default function MagazineHeader({
             </div>
             <div>
               <div className="flex flex-wrap items-center gap-2">
-                <h1 className="text-2xl lg:text-3xl font-black font-masthead tracking-wider text-stone-900">
-                  OPTIMUS <span className="text-emerald-700 font-header font-extrabold">MAGAZINE</span>
+                <h1 className="text-2xl lg:text-3xl font-black tracking-tight text-stone-900">
+                  OPTIMUS <span className="text-emerald-700 font-extrabold">MAGAZINE</span>
                 </h1>
                 <span className="text-[11px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-900 border border-emerald-300">
                   Issue #01
                 </span>
               </div>
-              <p className="text-sm font-bold text-emerald-900 tracking-tight mt-0.5 font-header">
+              <p className="text-xs sm:text-sm font-bold text-emerald-900 tracking-tight mt-0.5">
                 The Friendly Guide to Zone 2 Bioenergetics & Cellular Health
               </p>
             </div>
@@ -69,7 +67,7 @@ export default function MagazineHeader({
             {/* Presentation Mode Button */}
             <button
               onClick={onOpenPresentation}
-              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-extrabold text-xs shadow-md shadow-emerald-700/20 transition scale-105"
+              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-extrabold text-xs shadow-sm transition scale-105"
             >
               <Monitor className="w-4 h-4" />
               <span>Presentation Mode</span>
@@ -79,28 +77,9 @@ export default function MagazineHeader({
 
         </div>
 
-        {/* Page Switcher Navigation Bar */}
-        <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-stone-200">
-          
-          {/* Active Issue Selector */}
-          <div className="flex items-center gap-2 font-header">
-            <span className="text-[11px] font-mono font-bold text-emerald-800 uppercase tracking-wider">ISSUE:</span>
-            <div className="relative inline-block">
-              <select
-                value={activeIssue}
-                onChange={(e) => setActiveIssue(e.target.value)}
-                className="appearance-none bg-stone-100 border border-stone-300 text-stone-900 font-bold text-xs rounded-xl px-3 py-1 pr-8 focus:outline-none focus:border-emerald-600 cursor-pointer shadow-xs"
-              >
-                <option value="issue-1">Issue #01: The Friendly Guide to Zone 2 Bioenergetics</option>
-                <option value="issue-2" disabled>Issue #02: Metabolic Flexibility (Upcoming)</option>
-                <option value="issue-3" disabled>Issue #03: Autophagy & Longevity (Upcoming)</option>
-              </select>
-              <ChevronDown className="w-3.5 h-3.5 text-emerald-700 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
-            </div>
-          </div>
-
-          {/* 6 Page Tabs Selector */}
-          <nav className="flex flex-wrap items-center gap-1 bg-stone-100/90 p-1 rounded-xl border border-stone-200 text-xs font-semibold font-header">
+        {/* Page Switcher Navigation Tabs */}
+        <div className="pt-2 border-t border-stone-200">
+          <nav className="flex flex-wrap items-center justify-start sm:justify-between gap-1 bg-stone-100/90 p-1 rounded-xl border border-stone-200 text-xs font-semibold">
             {[
               { id: 1, label: 'Page 1: Contents' },
               { id: 2, label: 'Page 2: FATmax Story' },
@@ -112,7 +91,7 @@ export default function MagazineHeader({
               <button
                 key={tab.id}
                 onClick={() => setActiveArticle(tab.id)}
-                className={`px-3 py-1 rounded-lg transition ${
+                className={`px-3.5 py-1.5 rounded-lg transition ${
                   activeArticle === tab.id
                     ? 'bg-emerald-700 text-white font-bold shadow-xs'
                     : 'text-stone-600 hover:text-stone-900 hover:bg-stone-200/70'
@@ -122,7 +101,6 @@ export default function MagazineHeader({
               </button>
             ))}
           </nav>
-
         </div>
 
       </div>
