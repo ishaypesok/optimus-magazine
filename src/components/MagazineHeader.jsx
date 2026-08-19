@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search } from 'lucide-react';
+import { Search, Share2 } from 'lucide-react';
 
 export default function MagazineHeader({ 
   activeArticle, 
@@ -33,16 +33,31 @@ export default function MagazineHeader({
             </div>
           </div>
 
-          {/* Search Input Bar */}
-          <div className="relative">
-            <Search className="w-4 h-4 text-stone-400 absolute left-3 top-1/2 -translate-y-1/2" />
-            <input
-              type="text"
-              placeholder="Search articles..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-9 pr-4 py-1.5 rounded-xl bg-stone-100 border border-stone-200 text-xs font-medium text-stone-800 placeholder-stone-400 focus:outline-none focus:border-emerald-600 transition w-56 sm:w-64"
-            />
+          {/* Search Input Bar & Share Button */}
+          <div className="flex items-center gap-2">
+            <div className="relative">
+              <Search className="w-4 h-4 text-stone-400 absolute left-3 top-1/2 -translate-y-1/2" />
+              <input
+                type="text"
+                placeholder="Search articles..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-9 pr-4 py-1.5 rounded-xl bg-stone-100 border border-stone-200 text-xs font-medium text-stone-800 placeholder-stone-400 focus:outline-none focus:border-emerald-600 transition w-44 sm:w-56"
+              />
+            </div>
+
+            <button
+              onClick={() => {
+                if (navigator.clipboard) {
+                  navigator.clipboard.writeText(window.location.href);
+                  alert('🔗 Optimus Magazine link copied to clipboard!');
+                }
+              }}
+              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs shadow-xs transition shrink-0"
+            >
+              <Share2 className="w-3.5 h-3.5" />
+              <span>Share</span>
+            </button>
           </div>
 
         </div>
