@@ -9,13 +9,13 @@ import { BookOpen, Sparkles, Award } from 'lucide-react';
 export default function App() {
   const [currentZoneId, setCurrentZoneId] = useState(2);
   const [activeIssue, setActiveIssue] = useState('issue-1');
-  const [activeArticle, setActiveArticle] = useState('all');
+  const [activeArticle, setActiveArticle] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
   const [isQuizOpen, setIsQuizOpen] = useState(false);
   const [isPresentationOpen, setIsPresentationOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 selection:bg-emerald-500 selection:text-slate-950 pb-20">
+    <div className="min-h-screen bg-[#f8f6f0] text-stone-900 selection:bg-emerald-200 selection:text-emerald-950 pb-20">
       
       {/* Magazine Sticky Header */}
       <MagazineHeader
@@ -47,21 +47,21 @@ export default function App() {
           searchQuery={searchQuery}
         />
 
-        {/* Editorial Footer */}
-        <footer className="glass-panel rounded-3xl p-8 border border-slate-800 text-center space-y-4 shadow-2xl">
-          <div className="flex items-center justify-center gap-2 font-serif text-lg font-bold text-white">
-            <BookOpen className="w-5 h-5 text-emerald-400" />
+        {/* Editorial Paper Footer */}
+        <footer className="magazine-page p-8 text-center space-y-4 shadow-sm border border-stone-200">
+          <div className="flex items-center justify-center gap-2 font-serif text-xl font-bold text-stone-900">
+            <BookOpen className="w-5 h-5 text-emerald-700" />
             <span>OPTIMUS MAGAZINE • VOLUME I</span>
           </div>
-          <p className="max-w-3xl mx-auto text-xs text-slate-400 leading-relaxed font-serif italic">
+          <p className="max-w-3xl mx-auto text-xs text-stone-600 leading-relaxed font-serif italic">
             "Zone 2 exercise represents the exact metabolic sweet spot where absolute fat oxidation (FATmax) peaks, mitochondrial biogenesis is stimulated via PGC-1α signaling, and blood lactate remains in steady state (~1.5-2.0 mmol/L)."
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-4 text-[11px] font-mono text-slate-500 pt-2 border-t border-slate-800/80">
+          <div className="flex flex-wrap items-center justify-center gap-4 text-[11px] font-mono text-stone-500 pt-2 border-t border-stone-200">
             <span>Published by Bioenergetics Science Press</span>
             <span>•</span>
             <span>Peer-Reviewed Physiology Data</span>
             <span>•</span>
-            <span className="text-emerald-400">Published via GitHub Pages</span>
+            <span className="text-emerald-800 font-bold">Published via GitHub Pages</span>
           </div>
         </footer>
 

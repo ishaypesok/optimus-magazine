@@ -7,34 +7,42 @@
   .font-masthead {
     font-family: 'Cinzel', serif;
   }
-  .glass-panel {
-    background: rgba(15, 23, 42, 0.85);
+  
+  /* Friendly Paper & Magazine Styles */
+  .magazine-page {
+    background-color: #ffffff;
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.08), 0 0 2px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e7e5e4;
+    border-radius: 1.5rem;
+  }
+  .glass-panel-light {
+    background: rgba(255, 255, 255, 0.92);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
   }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
+  from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 .animate-fade-in {
-  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Custom Scrollbar */
+/* Custom Friendly Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #090d16;
+  background: #f8f6f0;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: #d6d3d1;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #10b981;
+  background: #059669;
 }
