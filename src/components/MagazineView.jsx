@@ -10,11 +10,12 @@ import RunnerSimulation from './RunnerSimulation';
 import AdaptationSimulator from './AdaptationSimulator';
 import LiveCellVisualizer from './LiveCellVisualizer';
 import Zone2VsOtherSports from './Zone2VsOtherSports';
+import AthleteProfile from './AthleteProfile';
 
 export default function MagazineView({ currentZoneId, setCurrentZoneId, activeArticle, setActiveArticle }) {
   const [internalPage, setInternalPage] = useState(1);
   const activePage = (activeArticle && typeof activeArticle === 'number') ? activeArticle : internalPage;
-  const totalPages = 8;
+  const totalPages = 9;
 
   const zone2 = ZONES.find(z => z.id === 2) || ZONES[1];
   const currentZone = ZONES.find(z => z.id === currentZoneId) || zone2;
@@ -693,6 +694,11 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
             </div>
 
           </article>
+        )}
+
+        {/* ==================== PAGE 9: ATHLETE PROFILE (ISHAI) ==================== */}
+        {activePage === 9 && (
+          <AthleteProfile />
         )}
 
         {/* Page Footer Navigation */}

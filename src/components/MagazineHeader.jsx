@@ -74,6 +74,7 @@ export default function MagazineHeader({
               { id: 6, label: 'Page 6: Lactate' },
               { id: 7, label: 'Page 7: 1-Hr Runner' },
               { id: 8, label: 'Page 8: Longevity' },
+              { id: 9, label: 'Page 9: Ishai Profile 👤' },
             ].map(tab => (
               <button
                 key={tab.id}
