@@ -1,24 +1,24 @@
 import React from 'react';
 import { ZONES } from '../data/metabolismData';
-import { Flame, MessageCircle, AlertTriangle, Sparkles, HeartPulse, CheckCircle2, Sliders, ArrowRightLeft } from 'lucide-react';
+import { Flame, HeartPulse, Sliders } from 'lucide-react';
 
 export default function ZoneControls({ currentZoneId, setCurrentZoneId }) {
   const currentZone = ZONES.find(z => z.id === currentZoneId) || ZONES[1];
 
   return (
-    <section className="magazine-page p-5 md:p-6 mb-6 shadow-sm border border-stone-200 relative text-stone-900">
+    <section className="magazine-page p-5 md:p-6 mb-6 shadow-xs border border-stone-200 relative text-stone-900 font-sans">
       
       {/* Top Header & Presets */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
         <div>
           <div className="flex items-center gap-2">
             <HeartPulse className="w-5 h-5 text-emerald-700" />
-            <h2 className="text-lg font-bold font-serif text-stone-900">Exercise Intensity Zone Controller</h2>
-            <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-900 border border-emerald-300 flex items-center gap-1">
+            <h2 className="text-base font-bold text-stone-900">Exercise Intensity Zone Controller</h2>
+            <span className="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-900 border border-emerald-300 flex items-center gap-1">
               <Sliders className="w-3 h-3" /> Drag Slider or Click Any Card Below
             </span>
           </div>
-          <p className="text-xs text-stone-600 mt-1">
+          <p className="text-xs text-stone-600 mt-1 font-normal">
             Change exercise intensity (Zone 1 to Zone 5) to observe fuel selection, oxygen demand, and lactate dynamics live.
           </p>
         </div>
@@ -26,9 +26,9 @@ export default function ZoneControls({ currentZoneId, setCurrentZoneId }) {
 
       {/* Main Interactive Slider Bar */}
       <div className="p-4 rounded-xl bg-stone-50 border border-stone-200 mb-5">
-        <div className="flex items-center justify-between text-xs font-bold text-stone-600 mb-2.5">
+        <div className="flex items-center justify-between text-xs font-semibold text-stone-600 mb-2.5">
           <span className="flex items-center gap-1 text-stone-700">🧘 Zone 1 (Recovery)</span>
-          <span className="text-emerald-800 flex items-center gap-1 font-extrabold text-sm">
+          <span className="text-emerald-800 flex items-center gap-1 font-bold text-xs sm:text-sm">
             <Flame className="w-4 h-4 text-emerald-700" /> Zone 2: FATmax Sweetspot (Peak Fat Burn)
           </span>
           <span className="flex items-center gap-1 text-rose-700">💥 Zone 5 (VO2 Max)</span>
@@ -58,21 +58,21 @@ export default function ZoneControls({ currentZoneId, setCurrentZoneId }) {
             <button
               key={z.id}
               onClick={() => setCurrentZoneId(z.id)}
-              className={`p-3 rounded-xl border text-left transition-all ${
+              className={`p-3 rounded-xl border text-left transition ${
                 isSelected
                   ? isZone2
-                    ? 'bg-emerald-700 text-white border-emerald-800 shadow-md ring-2 ring-emerald-500'
-                    : 'bg-stone-900 text-white border-stone-900 shadow-md'
+                    ? 'bg-emerald-700 text-white border-emerald-800 shadow-sm font-bold'
+                    : 'bg-stone-900 text-white border-stone-900 shadow-sm font-bold'
                   : isZone2
-                  ? 'bg-emerald-50 border-emerald-300 text-emerald-950 hover:bg-emerald-100'
-                  : 'bg-stone-50 border-stone-200 text-stone-700 hover:bg-stone-100'
+                  ? 'bg-emerald-50 border-emerald-300 text-emerald-950 hover:bg-emerald-100 font-medium'
+                  : 'bg-stone-50 border-stone-200 text-stone-700 hover:bg-stone-100 font-medium'
               }`}
             >
-              <div className="flex items-center justify-between font-bold text-xs">
+              <div className="flex items-center justify-between text-xs font-bold">
                 <span>{z.name}</span>
                 <span className="text-[10px] opacity-80">{z.hrRange}</span>
               </div>
-              <div className="text-[11px] font-mono mt-1 opacity-90 font-semibold">
+              <div className="text-[11px] mt-1 opacity-90 font-medium">
                 Fat: {z.fatOxidation}% | Carb: {z.carbOxidation}%
               </div>
             </button>
