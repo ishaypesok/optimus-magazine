@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { 
-  Play, Pause, Zap, Flame, Cpu, Wind, Info, Sparkles, CheckCircle2, ShieldCheck, Activity, RotateCcw, Share2
+  Play, Pause, Zap, Flame, Cpu, Wind, Info, Sparkles, CheckCircle2, ShieldCheck, Activity, RotateCcw, Share2, X, ArrowUpRight, Clock, Heart, Droplet, User
 } from 'lucide-react';
 
 export default function LiveCellVisualizer() {
@@ -9,6 +9,7 @@ export default function LiveCellVisualizer() {
   const [selectedZone, setSelectedZone] = useState(2); // Default Zone 2 FATmax
   const [simSpeed, setSimSpeed] = useState(1);
   const [activeTab, setActiveTab] = useState('mitochondria');
+  const [showRunModal, setShowRunModal] = useState(false);
 
   // Zone presets for cellular kinetics
   const ZONE_SPECS = {
@@ -332,7 +333,7 @@ export default function LiveCellVisualizer() {
               Interactive Bioenergetics Feature
             </span>
             <span className="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 font-bold text-xs border border-amber-400/30 flex items-center gap-1">
-              <span>Based on Ishai's Run</span>
+              <span>Based on Ishai&apos;s Run</span>
             </span>
           </div>
           <div className="flex items-center gap-2">
@@ -426,14 +427,24 @@ export default function LiveCellVisualizer() {
             </div>
             <div className="space-y-1.5 text-xs">
               <span className="font-mono text-[10px] text-emerald-400 font-bold uppercase tracking-wider block">
-                EDITORIAL CAPTION • ISHAI'S RUN TELEMETRY
+                EDITORIAL CAPTION • ISHAI&apos;S RUN TELEMETRY
               </span>
               <p className="text-emerald-100 font-semibold italic text-sm leading-snug">
-                “At minute 60, Ishai hit FATmax. Mitochondria were producing ATP at 88% efficiency. No sugar crash.”
+                &ldquo;At minute 60, Ishai hit FATmax. Mitochondria were producing ATP at 88% efficiency. No sugar crash.&rdquo;
               </p>
               <div className="pt-2 border-t border-emerald-500/20 text-[11px] text-stone-300 font-medium flex items-center gap-1.5">
                 <span className="font-bold text-amber-400 font-mono uppercase text-[10px] px-1.5 py-0.5 rounded bg-amber-400/10 border border-amber-400/20">Footnote</span>
-                <span className="italic text-emerald-200">“Rest two days after. This is how we build cellular health at 79.”</span>
+                <span className="italic text-emerald-200">&ldquo;Rest two days after. This is how we build cellular health at 79.&rdquo;</span>
+              </div>
+              <div className="pt-2">
+                <button
+                  onClick={() => setShowRunModal(true)}
+                  className="px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs flex items-center gap-2 shadow-md transition transform active:scale-95 border border-emerald-400/40"
+                >
+                  <Activity className="w-4 h-4 text-emerald-200" />
+                  <span>See Ishai&apos;s Last Run</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 opacity-80" />
+                </button>
               </div>
             </div>
           </div>
@@ -550,6 +561,115 @@ export default function LiveCellVisualizer() {
         </div>
 
       </div>
+
+      {/* Ishai's Last Run Telemetry Modal */}
+      {showRunModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-xs animate-fade-in font-sans">
+          <div className="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 space-y-6 shadow-2xl border border-stone-200 relative overflow-hidden max-h-[90vh] overflow-y-auto">
+            
+            {/* Modal Header */}
+            <div className="flex items-center justify-between border-b border-stone-200 pb-4">
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-500 text-white flex items-center justify-center font-bold shadow-sm">
+                  <Activity className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-800 block">
+                    TELEMETRY BREAKDOWN • VERIFIED SESSION
+                  </span>
+                  <h3 className="text-xl font-black text-stone-900">Ishai&apos;s Last Zone 2 Run</h3>
+                </div>
+              </div>
+              <button
+                onClick={() => setShowRunModal(false)}
+                className="p-2 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-600 transition"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Run Stats Grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <div className="p-3.5 rounded-2xl bg-stone-50 border border-stone-200 space-y-1">
+                <span className="text-[10px] font-bold text-stone-500 uppercase">Duration</span>
+                <div className="text-lg font-black text-stone-900">60 Min</div>
+                <span className="text-[10px] text-emerald-700 font-medium">Continuous</span>
+              </div>
+              <div className="p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200 space-y-1">
+                <span className="text-[10px] font-bold text-emerald-800 uppercase">Avg HR</span>
+                <div className="text-lg font-black text-emerald-900">133 BPM</div>
+                <span className="text-[10px] text-emerald-700 font-medium">FATmax Zone</span>
+              </div>
+              <div className="p-3.5 rounded-2xl bg-amber-50 border border-amber-200 space-y-1">
+                <span className="text-[10px] font-bold text-amber-800 uppercase">Fat Burned</span>
+                <div className="text-lg font-black text-amber-900">37.2g</div>
+                <span className="text-[10px] text-amber-700 font-medium">~335 kcal lipid</span>
+              </div>
+              <div className="p-3.5 rounded-2xl bg-teal-50 border border-teal-200 space-y-1">
+                <span className="text-[10px] font-bold text-teal-800 uppercase">ATP Yield</span>
+                <div className="text-lg font-black text-teal-900">88%</div>
+                <span className="text-[10px] text-teal-700 font-medium">No sugar crash</span>
+              </div>
+            </div>
+
+            {/* Timeline Breakdown */}
+            <div className="space-y-3">
+              <h4 className="text-xs font-bold text-stone-800 uppercase tracking-wider flex items-center gap-1.5">
+                <Clock className="w-3.5 h-3.5 text-emerald-700" />
+                <span>60-Minute Cellular Progression</span>
+              </h4>
+
+              <div className="space-y-2 text-xs">
+                <div className="p-3 rounded-xl bg-stone-50 border border-stone-200 flex items-start gap-3">
+                  <span className="font-mono font-bold text-emerald-800 shrink-0">MIN 0–15</span>
+                  <div>
+                    <span className="font-bold text-stone-900 block">Aerobic Warmup & CPT-1 Gate Activation</span>
+                    <span className="text-stone-600">Heart rate ramped up smoothly to 125 BPM. Insulin dropped and CPT-1 enzyme unlocked mitochondrial fat intake.</span>
+                  </div>
+                </div>
+
+                <div className="p-3 rounded-xl bg-emerald-50/80 border border-emerald-200 flex items-start gap-3">
+                  <span className="font-mono font-bold text-emerald-800 shrink-0">MIN 15–45</span>
+                  <div>
+                    <span className="font-bold text-emerald-950 block">Steady-State FATmax Sweet Spot</span>
+                    <span className="text-stone-700">Heart rate steady at 133 BPM. Substrate flux reached 82% fat oxidation with zero muscular lactate buildup.</span>
+                  </div>
+                </div>
+
+                <div className="p-3 rounded-xl bg-emerald-900 text-white flex items-start gap-3 shadow-xs">
+                  <span className="font-mono font-bold text-emerald-300 shrink-0">MIN 45–60</span>
+                  <div>
+                    <span className="font-bold text-white block">Peak FATmax & ATP Output ⭐</span>
+                    <span className="text-emerald-100">At minute 60, Ishai hit FATmax. Mitochondria were producing ATP at 88% efficiency with no sugar crash.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Post-Run Protocol & Footnote */}
+            <div className="p-4 rounded-2xl bg-amber-50 border border-amber-200 space-y-1 text-xs">
+              <div className="font-bold text-amber-900 flex items-center gap-1.5">
+                <ShieldCheck className="w-4 h-4 text-amber-700" />
+                <span>Post-Run Recovery Protocol</span>
+              </div>
+              <p className="text-stone-700 italic">
+                &ldquo;Rest two days after. This is how we build cellular health at 79.&rdquo;
+              </p>
+            </div>
+
+            {/* Action Bar */}
+            <div className="flex items-center justify-end gap-3 pt-2 border-t border-stone-200">
+              <button
+                onClick={() => setShowRunModal(false)}
+                className="px-5 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs transition shadow-sm"
+              >
+                Close Telemetry
+              </button>
+            </div>
+
+          </div>
+        </div>
+      )}
 
     </div>
   );
