@@ -1,5 +1,5 @@
 import React from 'react';
-import { BookOpen, Sparkles, Search, Bookmark, Printer, Share2, Layers, Monitor, ChevronDown, ChevronRight, ChevronLeft } from 'lucide-react';
+import { BookOpen, Sparkles, Search, Bookmark, Printer, Share2, Layers, Monitor, ChevronDown, ListFilter } from 'lucide-react';
 
 export default function MagazineHeader({ 
   activeIssue, 
@@ -18,9 +18,9 @@ export default function MagazineHeader({
         {/* Top Masthead Row */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           
-          {/* Logo & Magazine Branding */}
+          {/* Logo & Main Magazine Title */}
           <div className="flex items-center gap-4">
-            <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-emerald-500 via-teal-500 to-cyan-500 p-0.5 shadow-md shadow-emerald-600/10 overflow-hidden shrink-0">
+            <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-emerald-600 via-teal-600 to-cyan-600 p-0.5 shadow-md shadow-emerald-700/20 overflow-hidden shrink-0">
               <img 
                 src="./optimus-logo.jpg" 
                 alt="Optimus Magazine Logo" 
@@ -28,16 +28,16 @@ export default function MagazineHeader({
               />
             </div>
             <div>
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2">
                 <h1 className="text-2xl lg:text-3xl font-black font-masthead tracking-wider text-stone-900">
-                  OPTIMUS <span className="text-emerald-700 font-serif italic font-normal">MAGAZINE</span>
+                  OPTIMUS <span className="text-emerald-800 font-serif italic font-normal">MAGAZINE</span>
                 </h1>
-                <span className="text-[10px] uppercase font-bold tracking-widest px-2.5 py-0.5 rounded-full bg-emerald-100/80 text-emerald-800 border border-emerald-300">
+                <span className="text-[10px] uppercase font-bold tracking-widest px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-900 border border-emerald-300">
                   Issue #01
                 </span>
               </div>
-              <p className="text-xs text-stone-500 font-serif italic">
-                The Friendly Journal of Metabolic Health, Zone 2 Science & Bioenergetics
+              <p className="text-xs font-serif text-emerald-900 font-semibold mt-0.5">
+                The Friendly Guide to Zone 2 Bioenergetics & Cellular Health
               </p>
             </div>
           </div>
@@ -53,7 +53,7 @@ export default function MagazineHeader({
                 placeholder="Search articles & topics..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-9 pr-4 py-1.5 rounded-xl bg-stone-100 border border-stone-200 text-xs text-stone-800 placeholder-stone-400 focus:outline-none focus:border-emerald-500 transition w-44 sm:w-52"
+                className="pl-9 pr-4 py-1.5 rounded-xl bg-stone-100 border border-stone-200 text-xs text-stone-800 placeholder-stone-400 focus:outline-none focus:border-emerald-600 transition w-44 sm:w-52"
               />
             </div>
 
@@ -91,7 +91,7 @@ export default function MagazineHeader({
                 onChange={(e) => setActiveIssue(e.target.value)}
                 className="appearance-none bg-stone-100 border border-stone-300 text-stone-900 font-serif font-bold text-xs rounded-xl px-3 py-1 pr-8 focus:outline-none focus:border-emerald-600 cursor-pointer shadow-xs"
               >
-                <option value="issue-1">Issue #01: Zone 2 Metabolism & Bioenergetics</option>
+                <option value="issue-1">Issue #01: The Friendly Guide to Zone 2 Bioenergetics</option>
                 <option value="issue-2" disabled>Issue #02: Metabolic Flexibility (Upcoming)</option>
                 <option value="issue-3" disabled>Issue #03: Autophagy & Longevity (Upcoming)</option>
               </select>
@@ -99,14 +99,15 @@ export default function MagazineHeader({
             </div>
           </div>
 
-          {/* Page Tabs Selector */}
+          {/* 6 Page Tabs Selector */}
           <nav className="flex flex-wrap items-center gap-1 bg-stone-100/90 p-1 rounded-xl border border-stone-200 text-xs font-medium">
             {[
-              { id: 1, label: 'Page 1: FATmax Story' },
-              { id: 2, label: 'Page 2: Cellular Engine' },
-              { id: 3, label: 'Page 3: Lactate Paradox' },
-              { id: 4, label: 'Page 4: 1-Hour Runner' },
-              { id: 5, label: 'Page 5: Longevity Guide' },
+              { id: 1, label: 'Page 1: Contents & Overview' },
+              { id: 2, label: 'Page 2: FATmax Story' },
+              { id: 3, label: 'Page 3: Cellular Engine' },
+              { id: 4, label: 'Page 4: Lactate Paradox' },
+              { id: 5, label: 'Page 5: 1-Hour Runner' },
+              { id: 6, label: 'Page 6: Longevity Guide' },
             ].map(tab => (
               <button
                 key={tab.id}
