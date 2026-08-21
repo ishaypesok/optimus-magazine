@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import MagazineHeader from './components/MagazineHeader';
 import MagazineView from './components/MagazineView';
 import ZoneControls from './components/ZoneControls';
 import { BookOpen } from 'lucide-react';
+import { trackPageView } from './utils/analytics';
 
 export default function App() {
   const [currentZoneId, setCurrentZoneId] = useState(2);
   // Default landing page is Page 4: Live Cell Visualizer ⭐
   const [activeArticle, setActiveArticle] = useState(4);
   const [searchQuery, setSearchQuery] = useState('');
+
+  useEffect(() => {
+    trackPageView(activeArticle);
+  }, [activeArticle]);
 
   return (
     <div className="min-h-screen bg-[#f8f6f0] text-stone-900 selection:bg-emerald-200 selection:text-emerald-950 pb-20 font-sans">

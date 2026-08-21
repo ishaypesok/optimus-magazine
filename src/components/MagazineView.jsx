@@ -11,11 +11,12 @@ import AdaptationSimulator from './AdaptationSimulator';
 import LiveCellVisualizer from './LiveCellVisualizer';
 import Zone2VsOtherSports from './Zone2VsOtherSports';
 import AthleteProfile from './AthleteProfile';
+import StravaRunVisualizer from './StravaRunVisualizer';
 
 export default function MagazineView({ currentZoneId, setCurrentZoneId, activeArticle, setActiveArticle }) {
   const [internalPage, setInternalPage] = useState(1);
   const activePage = (activeArticle && typeof activeArticle === 'number') ? activeArticle : internalPage;
-  const totalPages = 9;
+  const totalPages = 10;
 
   const zone2 = ZONES.find(z => z.id === 2) || ZONES[1];
   const currentZone = ZONES.find(z => z.id === currentZoneId) || zone2;
@@ -699,6 +700,11 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
         {/* ==================== PAGE 9: ATHLETE PROFILE (ISHAI) ==================== */}
         {activePage === 9 && (
           <AthleteProfile />
+        )}
+
+        {/* ==================== PAGE 10: APPLE WATCH & STRAVA RUNS ==================== */}
+        {activePage === 10 && (
+          <StravaRunVisualizer />
         )}
 
         {/* Page Footer Navigation */}
