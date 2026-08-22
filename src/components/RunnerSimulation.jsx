@@ -7,25 +7,35 @@ export default function RunnerSimulation() {
   const [minute, setMinute] = useState(0); // 0 to maxMins
   const [isRunning, setIsRunning] = useState(false);
   const [speedMultiplier, setSpeedMultiplier] = useState(1);
-  const [selectedRunId, setSelectedRunId] = useState('aug18');
+  const [selectedRunId, setSelectedRunId] = useState('aug21');
   const [userVo2Max, setUserVo2Max] = useState(25.6);
   const [userWeightKg, setUserWeightKg] = useState(82.9);
   const [chartMode, setChartMode] = useState('calories');
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   // New run input form state
-  const [newRunDate, setNewRunDate] = useState('08/18/2026');
-  const [newRunDuration, setNewRunDuration] = useState('65');
-  const [newRunDistance, setNewRunDistance] = useState('5.56');
-  const [newRunPace, setNewRunPace] = useState('11.68');
-  const [newRunHr, setNewRunHr] = useState('117');
-  const [newRunCalories, setNewRunCalories] = useState('340');
+  const [newRunDate, setNewRunDate] = useState('08/21/2026');
+  const [newRunDuration, setNewRunDuration] = useState('63.5');
+  const [newRunDistance, setNewRunDistance] = useState('5.52');
+  const [newRunPace, setNewRunPace] = useState('11.5');
+  const [newRunHr, setNewRunHr] = useState('109');
+  const [newRunCalories, setNewRunCalories] = useState('316');
 
   // Real runs list
   const [runsList, setRunsList] = useState([
     {
+      id: 'aug21',
+      dateLabel: 'Aug 21, 2026 (Today’s Run ⭐)',
+      durationMin: 63.53,
+      distanceKm: 5.52,
+      paceMinKm: 11.51,
+      avgHr: 109,
+      watchCalories: 316,
+      note: 'Verified 100% Zone 2 Run • 109 BPM Avg HR • Apple Watch Ultra AutoSync!'
+    },
+    {
       id: 'aug18',
-      dateLabel: 'Aug 18, 2026 (Latest Run ⭐)',
+      dateLabel: 'Aug 18, 2026',
       durationMin: 65.03,
       distanceKm: 5.56,
       paceMinKm: 11.68,

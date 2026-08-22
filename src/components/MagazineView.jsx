@@ -12,11 +12,13 @@ import LiveCellVisualizer from './LiveCellVisualizer';
 import Zone2VsOtherSports from './Zone2VsOtherSports';
 import AthleteProfile from './AthleteProfile';
 import StravaRunVisualizer from './StravaRunVisualizer';
+import RecoveryMastery from './RecoveryMastery';
+import AerobicExpectations from './AerobicExpectations';
 
 export default function MagazineView({ currentZoneId, setCurrentZoneId, activeArticle, setActiveArticle }) {
   const [internalPage, setInternalPage] = useState(1);
   const activePage = (activeArticle && typeof activeArticle === 'number') ? activeArticle : internalPage;
-  const totalPages = 10;
+  const totalPages = 12;
 
   const zone2 = ZONES.find(z => z.id === 2) || ZONES[1];
   const currentZone = ZONES.find(z => z.id === currentZoneId) || zone2;
@@ -705,6 +707,16 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
         {/* ==================== PAGE 10: APPLE WATCH & STRAVA RUNS ==================== */}
         {activePage === 10 && (
           <StravaRunVisualizer />
+        )}
+
+        {/* ==================== PAGE 11: MASTER ZONE 2 & RECOVERY ==================== */}
+        {activePage === 11 && (
+          <RecoveryMastery />
+        )}
+
+        {/* ==================== PAGE 12: AEROBIC EXPECTATIONS & EXPANSION ==================== */}
+        {activePage === 12 && (
+          <AerobicExpectations />
         )}
 
         {/* Page Footer Navigation */}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { 
   User, Activity, Heart, Flame, Zap, ShieldCheck, Award, 
-  RotateCcw, Sliders, CheckCircle2, BookOpen, Clock, BatteryCharging, TrendingUp, Sparkles, Quote, Target
+  RotateCcw, Sliders, CheckCircle2, BookOpen, Clock, BatteryCharging, TrendingUp, Sparkles, Quote, Target, Radio, Headphones
 } from 'lucide-react';
 
 const DEFAULT_PROFILE = {
@@ -398,6 +398,45 @@ export default function AthleteProfile() {
                 <span>Long-Term Goal</span>
               </div>
               <p className="text-xs text-stone-600 font-semibold">Mitochondrial Biogenesis & Health</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Official Equipment & Audio Setup */}
+        <div className="pt-4 border-t border-stone-100 space-y-3">
+          <h4 className="text-xs font-bold uppercase tracking-wider text-stone-700 flex items-center gap-2">
+            <Radio className="w-4 h-4 text-emerald-600" />
+            Official Training Gear & Audio Station
+          </h4>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div className="p-3.5 rounded-2xl bg-emerald-50/80 border border-emerald-200 flex items-center gap-3">
+              <div className="w-10 h-10 rounded-2xl bg-emerald-700 text-white flex items-center justify-center font-black text-base shrink-0 shadow-xs">
+                ⌚
+              </div>
+              <div>
+                <div className="text-[10px] font-bold text-emerald-800 uppercase tracking-wider">Smartwatch Telemetry</div>
+                <div className="text-xs font-black text-stone-900">Apple Watch Ultra</div>
+              </div>
+            </div>
+
+            <div className="p-3.5 rounded-2xl bg-amber-50/80 border border-amber-200 flex items-center gap-3">
+              <div className="w-10 h-10 rounded-2xl bg-amber-600 text-white flex items-center justify-center font-black text-base shrink-0 shadow-xs">
+                👟
+              </div>
+              <div>
+                <div className="text-[10px] font-bold text-amber-800 uppercase tracking-wider font-mono">Running Shoes</div>
+                <div className="text-xs font-black text-stone-900">Brooks Adrenaline GTS 25</div>
+              </div>
+            </div>
+
+            <div className="p-3.5 rounded-2xl bg-cyan-50/80 border border-cyan-200 flex items-center gap-3">
+              <div className="w-10 h-10 rounded-2xl bg-cyan-700 text-white flex items-center justify-center font-black text-base shrink-0 shadow-xs">
+                📻
+              </div>
+              <div>
+                <div className="text-[10px] font-bold text-cyan-800 uppercase tracking-wider">Audio & Radio Station</div>
+                <div className="text-xs font-black text-stone-900">iHeart Radio (99.9 Eco99fm)</div>
+              </div>
             </div>
           </div>
         </div>
