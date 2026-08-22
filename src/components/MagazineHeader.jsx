@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Search, Share2 } from 'lucide-react';
 
 export default function MagazineHeader({ 
@@ -7,6 +7,18 @@ export default function MagazineHeader({
   searchQuery,
   setSearchQuery
 }) {
+  const activeTabRef = useRef(null);
+
+  useEffect(() => {
+    if (activeTabRef.current) {
+      activeTabRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'center'
+      });
+    }
+  }, [activeArticle]);
+
   return (
     <header className="sticky top-0 z-50 glass-panel-light border-b border-stone-200 px-4 lg:px-8 py-3.5 shadow-sm">
       <div className="max-w-7xl mx-auto space-y-3 font-sans">
@@ -62,9 +74,9 @@ export default function MagazineHeader({
 
         </div>
 
-        {/* 8 Page Navigation Tabs - Guaranteed Single Row */}
+        {/* 13 Page Navigation Tabs - Auto Scroll Active Tab */}
         <div className="pt-2 border-t border-stone-200">
-          <nav className="flex items-center justify-between gap-1 overflow-x-auto bg-stone-100/90 p-1 rounded-xl border border-stone-200 text-xs font-semibold">
+          <nav className="flex items-center justify-between gap-1 overflow-x-auto bg-stone-100/90 p-1 rounded-xl border border-stone-200 text-xs font-semibold scrollbar-none">
             {[
               { id: 1, label: 'Page 1: Easy Intro' },
               { id: 2, label: 'Page 2: FATmax' },
@@ -79,19 +91,23 @@ export default function MagazineHeader({
               { id: 11, label: 'Page 11: Zone 2 & Recovery 🔋' },
               { id: 12, label: 'Page 12: Expectations ⭐' },
               { id: 13, label: 'Page 13: Nutrition & BP 🥗🩸' },
-            ].map(tab => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveArticle(tab.id)}
-                className={`px-3 py-1.5 rounded-lg whitespace-nowrap transition flex-1 text-center ${
-                  activeArticle === tab.id
-                    ? 'bg-emerald-700 text-white font-bold shadow-xs'
-                    : 'text-stone-600 hover:text-stone-900 hover:bg-stone-200/70'
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
+            ].map(tab => {
+              const isActive = activeArticle === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  ref={isActive ? activeTabRef : null}
+                  onClick={() => setActiveArticle(tab.id)}
+                  className={`px-3 py-1.5 rounded-lg whitespace-nowrap transition flex-1 text-center ${
+                    isActive
+                      ? 'bg-emerald-700 text-white font-bold shadow-xs'
+                      : 'text-stone-600 hover:text-stone-900 hover:bg-stone-200/70'
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              );
+            })}
           </nav>
         </div>
 
@@ -99,3 +115,4 @@ export default function MagazineHeader({
     </header>
   );
 }
+
