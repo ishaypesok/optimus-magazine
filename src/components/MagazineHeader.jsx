@@ -91,6 +91,7 @@ export default function MagazineHeader({
               { id: 11, label: 'Page 11: Zone 2 & Recovery 🔋' },
               { id: 12, label: 'Page 12: Expectations ⭐' },
               { id: 13, label: 'Page 13: Nutrition & BP 🥗🩸' },
+              { id: 14, label: 'Page 14: Heat & Humidity ☀️🏃' },
             ].map(tab => {
               const isActive = activeArticle === tab.id;
               return (

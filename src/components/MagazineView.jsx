@@ -15,11 +15,12 @@ import StravaRunVisualizer from './StravaRunVisualizer';
 import RecoveryMastery from './RecoveryMastery';
 import AerobicExpectations from './AerobicExpectations';
 import Zone2NutritionBP from './Zone2NutritionBP';
+import HeatHumidityGuide from './HeatHumidityGuide';
 
 export default function MagazineView({ currentZoneId, setCurrentZoneId, activeArticle, setActiveArticle }) {
   const [internalPage, setInternalPage] = useState(1);
   const activePage = (activeArticle && typeof activeArticle === 'number') ? activeArticle : internalPage;
-  const totalPages = 13;
+  const totalPages = 14;
 
   const zone2 = ZONES.find(z => z.id === 2) || ZONES[1];
   const currentZone = ZONES.find(z => z.id === currentZoneId) || zone2;
@@ -723,6 +724,11 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
         {/* ==================== PAGE 13: ZONE 2 NUTRITION & BLOOD PRESSURE ==================== */}
         {activePage === 13 && (
           <Zone2NutritionBP />
+        )}
+
+        {/* ==================== PAGE 14: RUNNING IN HEAT & HUMIDITY ==================== */}
+        {activePage === 14 && (
+          <HeatHumidityGuide />
         )}
 
         {/* Page Footer Navigation */}
