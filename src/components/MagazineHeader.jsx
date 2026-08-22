@@ -78,6 +78,7 @@ export default function MagazineHeader({
               { id: 10, label: 'Page 10: Watch Runs 🏃‍♂️' },
               { id: 11, label: 'Page 11: Zone 2 & Recovery 🔋' },
               { id: 12, label: 'Page 12: Expectations ⭐' },
+              { id: 13, label: 'Page 13: Nutrition & BP 🥗🩸' },
             ].map(tab => (
               <button
                 key={tab.id}
