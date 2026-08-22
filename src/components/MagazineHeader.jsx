@@ -92,6 +92,7 @@ export default function MagazineHeader({
               { id: 12, label: 'Page 12: Expectations ⭐' },
               { id: 13, label: 'Page 13: Nutrition & BP 🥗🩸' },
               { id: 14, label: 'Page 14: Heat & Humidity ☀️🏃' },
+              { id: 15, label: 'Page 15: Whole-Body Mitochondria 🫀🧠' },
             ].map(tab => {
               const isActive = activeArticle === tab.id;
               return (

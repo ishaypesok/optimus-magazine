@@ -16,11 +16,12 @@ import RecoveryMastery from './RecoveryMastery';
 import AerobicExpectations from './AerobicExpectations';
 import Zone2NutritionBP from './Zone2NutritionBP';
 import HeatHumidityGuide from './HeatHumidityGuide';
+import BodyMitochondriaSimulator from './BodyMitochondriaSimulator';
 
 export default function MagazineView({ currentZoneId, setCurrentZoneId, activeArticle, setActiveArticle }) {
   const [internalPage, setInternalPage] = useState(1);
   const activePage = (activeArticle && typeof activeArticle === 'number') ? activeArticle : internalPage;
-  const totalPages = 14;
+  const totalPages = 15;
 
   const zone2 = ZONES.find(z => z.id === 2) || ZONES[1];
   const currentZone = ZONES.find(z => z.id === currentZoneId) || zone2;
@@ -729,6 +730,11 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
         {/* ==================== PAGE 14: RUNNING IN HEAT & HUMIDITY ==================== */}
         {activePage === 14 && (
           <HeatHumidityGuide />
+        )}
+
+        {/* ==================== PAGE 15: WHOLE-BODY MITOCHONDRIAL DISTRIBUTION ==================== */}
+        {activePage === 15 && (
+          <BodyMitochondriaSimulator />
         )}
 
         {/* Page Footer Navigation */}
