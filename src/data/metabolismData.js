@@ -465,3 +465,184 @@ export const QUIZ_QUESTIONS = [
     ]
   }
 ];
+
+export const MITOCHONDRIA_REPRODUCTION_DATA = {
+  evolutionaryTimeline: [
+    {
+      era: "1.8 - 2.0 Billion Years Ago",
+      title: "The Great Endosymbiotic Event",
+      icon: "🦠",
+      description: "An ancestral single-celled eukaryote engulfed an aerobic α-proteobacterium. Instead of being digested, the bacterium survived, giving birth to modern complex life!",
+      evidence: "Mitochondria still retain their own double-membrane system—the inner membrane is identical to bacterial plasma membranes."
+    },
+    {
+      era: "Bacterial Genomic Legacy",
+      title: "Circular mtDNA (Mitochondrial DNA)",
+      icon: "🧬",
+      description: "Unlike cell nuclear DNA (which is linear and wrapped in histones), mitochondrial DNA is circular and naked, exactly like bacterial plasmids! It contains 16,569 base pairs coding for 13 essential respiratory chain proteins.",
+      evidence: "Human mtDNA is passed down strictly maternally and undergoes independent replication during cell life."
+    },
+    {
+      era: "Bacterial Translation & Ribosomes",
+      title: "70S Bacterial Ribosomes",
+      icon: "⚙️",
+      description: "Inside the mitochondrial matrix, proteins are translated by 70S ribosomes—the exact same ribosomal size found in bacteria today (host human cells use 80S ribosomes).",
+      evidence: "Certain antibiotics (like tetracyclines) targeting bacterial 70S ribosomes can temporarily slow down mitochondrial translation."
+    },
+    {
+      era: "Exclusive Binary Fission",
+      title: "Reproduction by Division (Binary Fission)",
+      icon: "✂️",
+      description: "Cells CANNOT create mitochondria from scratch in the nucleus. Mitochondria reproduce exclusively by binary fission—growing and splitting in two, identical to bacterial binary fission!",
+      evidence: "Dynamin-related protein 1 (Drp1) forms ring structures that constrict and split the bacterial organelle."
+    }
+  ],
+  signalingCascade: [
+    {
+      step: 1,
+      name: "Zone 2 Mechanical & Energy Signal",
+      trigger: "Muscle Contraction + High ATP Turnover",
+      molecules: ["AMP / ATP Ratio ↑", "Cytosolic Ca²⁺ ↑"],
+      desc: "During steady Zone 2 exercise, repeated muscle contraction causes Calcium ions to flood the cytosol and ATP consumption elevates AMP levels."
+    },
+    {
+      step: 2,
+      name: "Master Kinase & Switch Activation",
+      trigger: "AMPK & p38 MAPK Phosphorylation",
+      molecules: ["AMPK Activator", "PGC-1α Unlocked"],
+      desc: "AMPK and p38 MAPK sense energy depletion and activate PGC-1α (Peroxisome proliferator-activated receptor gamma coactivator 1-alpha)—the absolute master regulator of mitochondrial biogenesis."
+    },
+    {
+      step: 3,
+      name: "Nuclear Transcription Factor Cascade",
+      trigger: "PGC-1α Translocation to Nucleus",
+      molecules: ["NRF-1 / NRF-2", "TFAM (Mitochondrial Transcription Factor A)"],
+      desc: "PGC-1α triggers nuclear genes NRF-1 & NRF-2. They transcribe nuclear-encoded mitochondrial proteins and TFAM, which enters mitochondria to replicate circular mtDNA."
+    },
+    {
+      step: 4,
+      name: "Protein Import, Lipid Assembly & Fission",
+      trigger: "Multi-Day Cellular Assembly",
+      molecules: ["TOM / TIM Translocase", "Drp1 Ring Fission", "Mfn1/2 Fusion"],
+      desc: "Over 1,000 proteins made in cytoplasm are shuttled into mitochondria via TOM/TIM tunnels. Cardiolipin lipids build membranes, and Drp1 rings split mitochondria into brand new daughter units!"
+    }
+  ],
+  fissionFusionProteins: [
+    { name: "Drp1 (Dynamin-Related Protein 1)", role: "Fission Engine", color: "emerald", desc: "Forms an oligomeric ring around the mitochondrion, constricting and severing inner & outer bacterial membranes to create two distinct daughters." },
+    { name: "Mitofusins (Mfn1 & Mfn2)", role: "Outer Membrane Fusion", color: "teal", desc: "Tethers adjacent mitochondria together and fuses outer membranes to share enzymes, mtDNA, and electrical potential." },
+    { name: "OPA1 (Optic Atrophy 1)", role: "Inner Membrane & Cristae Architect", color: "cyan", desc: "Fuses inner mitochondrial membranes and maintains cristae structure where electron transport complexes sit." },
+    { name: "TFAM (Mitochondrial Transcription Factor A)", role: "mtDNA Replication & Packaging", color: "amber", desc: "Binds circular mtDNA, wrapping it into nucleoids and initiating bacterial gene replication." }
+  ]
+};
+
+export const LACTATE_MASTERCLASS_DATA = {
+  mythsVsFacts: [
+    {
+      myth: "Lactate is a toxic metabolic waste product that causes muscle soreness.",
+      fact: "Lactate is a high-energy fuel produced during glucose breakdown. Delayed Onset Muscle Soreness (DOMS) is caused by micro-tears in muscle fibers, not lactate!",
+      icon: "❌"
+    },
+    {
+      myth: "Lactic acid burns your muscles during intense sprints.",
+      fact: "Lactic acid does not exist in human blood—it dissociates immediately into Lactate (C₃H₅O₃⁻) and H⁺. The H⁺ acidity causes the burn, while Lactate acts as an energy buffer!",
+      icon: "🔥"
+    },
+    {
+      myth: "Your body only produces lactate when working anaerobically without oxygen.",
+      fact: "Your body produces lactate 24/7, even at rest! Glycolysis constantly forms lactate, which is immediately oxidized by neighboring mitochondria in Zone 2.",
+      icon: "⚡"
+    },
+    {
+      myth: "Lactate is only used by muscle cells.",
+      fact: "The heart and brain PREFER lactate over glucose during exercise! The heart uses lactate for up to 60% of its energy during steady aerobic effort.",
+      icon: "🫀"
+    }
+  ],
+  shuttleTransporters: [
+    {
+      name: "MCT-1 (Monocarboxylate Transporter 1)",
+      location: "Slow-Twitch (Type I) Muscle & Cardiac Mitochondria",
+      role: "Lactate Importer",
+      desc: "Shuttles circulating lactate directly into slow-twitch muscle fibers and cardiac mitochondria to be converted back into pyruvate and burned for ATP energy.",
+      adaptation: "Upregulated massively by Zone 2 training!"
+    },
+    {
+      name: "MCT-4 (Monocarboxylate Transporter 4)",
+      location: "Fast-Twitch (Type II) Muscle Fibers",
+      role: "Lactate Exporter",
+      desc: "Exports lactate produced during high glycolytic flux out of fast-twitch fibers into the bloodstream so oxidative fibers can consume it.",
+      adaptation: "Upregulated by high-intensity interval training (HIIT)."
+    },
+    {
+      name: "m-LDH (Mitochondrial Lactate Dehydrogenase)",
+      location: "Mitochondrial Matrix & Outer Membrane",
+      role: "Lactate Oxidizer",
+      desc: "Converts imported Lactate back into Pyruvate right at the mitochondrial membrane, generating 1 NADH battery in the process!",
+      adaptation: "Density scales directly with Zone 2 volume."
+    }
+  ],
+  organDestinations: [
+    { organ: "Slow-Twitch Muscles", emoji: "🏃‍♂️", fuelUse: "Primary Energy Fuel", desc: "Absorbs lactate via MCT-1, converts it to pyruvate, and burns it in the Krebs cycle without releasing H+." },
+    { organ: "The Heart", emoji: "🫀", fuelUse: "60%+ Energy Preference", desc: "During steady exercise, the cardiac muscle consumes lactate as its favored energy substrate over glucose or fat." },
+    { organ: "The Brain", emoji: "🧠", fuelUse: "Neuroprotective Superfuel", desc: "Astrocytes convert glucose to lactate and shuttle it to neurons (ANLS). Lactate also triggers BDNF for neuroplasticity." },
+    { organ: "The Liver (Cori Cycle)", emoji: "🧪", fuelUse: "Gluconeogenesis", desc: "Recycles circulating lactate back into new glucose (Cori Cycle), maintaining blood sugar levels during long runs." }
+  ],
+  coriCycleSteps: [
+    { step: 1, title: "Glycolysis in Fast-Twitch Muscle", detail: "Fast-twitch fibers break down glucose into Pyruvate, producing 2 ATP and converting Pyruvate to Lactate." },
+    { step: 2, title: "Lactate Export via MCT-4", detail: "Lactate enters the bloodstream and travels via systemic circulation to the liver." },
+    { step: 3, title: "Hepatic Gluconeogenesis", detail: "The liver consumes 6 ATP to convert 2 Lactate molecules back into 1 pure Glucose molecule." },
+    { step: 4, title: "Glucose Returned to Bloodstream", detail: "Fresh glucose is released back into the blood, refilling glycogen stores and feeding working muscles." }
+  ]
+};
+
+// Laboratory Lactate Test (Graded Exercise Test Protocol & Curve Data)
+export const LAB_LACTATE_TEST_DATA = {
+  overview: {
+    title: "Laboratory Blood Lactate Testing (Graded Exercise Test - GXT)",
+    subtitle: "The Gold Standard for pinpointing your exact Zone 2 ceiling (LT1) and Threshold (LT2)",
+    description: "In sports science laboratories, athletes undergo a treadmill or bicycle ergometer test with incremental speed/wattage increases every 3 to 4 minutes. At the end of each stage, a technician pricks the athlete's earlobe or fingertip to measure blood lactate concentration in millimoles per liter (mmol/L).",
+    equipment: ["Portable/Benchtop Lactate Analyzer (e.g., Lactate Scout / Biosen)", "Capillary Micro-Lancet (Finger-Prick)", "Calibrated Treadmill or Ergometer", "Heart Rate Chest Strap / VO2 Gas Analyzer Mask"]
+  },
+  milestones: [
+    {
+      code: "Baseline",
+      title: "Resting / Warmup Baseline",
+      range: "0.8 - 1.2 mmol/L",
+      color: "stone",
+      desc: "Baseline resting blood lactate. Slow-twitch muscle fibers clear all resting lactate cleanly."
+    },
+    {
+      code: "LT1",
+      title: "Lactate Threshold 1 (Aerobic Threshold)",
+      range: "1.5 - 2.0 mmol/L",
+      color: "emerald",
+      badge: "🎯 ZONE 2 UPPER CEILING",
+      desc: "The exact point where blood lactate first rises +0.4-1.0 mmol/L above baseline. Marks FATmax oxidation peak and upper boundary of Zone 2!"
+    },
+    {
+      code: "LT2",
+      title: "Lactate Threshold 2 (Anaerobic / MLSS)",
+      range: "4.0 - 6.0 mmol/L",
+      color: "rose",
+      badge: "⚠️ MAXIMAL LACTATE STEADY STATE",
+      desc: "The inflection point where lactate production exponentially outpaces mitochondrial clearance. Acidity (H+) floods muscle cells."
+    }
+  ],
+  stages: [
+    { stage: 1, speedKmh: 6.0, paceMinKm: "10:00", hrBpm: 102, lactateMmol: 1.1, zone: 1, status: "Resting Baseline", note: "Light walking. Aerobic metabolism operating easily." },
+    { stage: 2, speedKmh: 7.5, paceMinKm: "8:00", hrBpm: 116, lactateMmol: 1.3, zone: 1, status: "Easy Active Warmup", note: "Lactate remains near baseline. Fat oxidation starting to ramp up." },
+    { stage: 3, speedKmh: 9.0, paceMinKm: "6:40", hrBpm: 132, lactateMmol: 1.7, zone: 2, isLT1: true, status: "🎯 LT1 Threshold (Zone 2 Sweet Spot)", note: "FIRST RISE! Blood lactate increases +0.5 mmol/L to 1.7 mmol/L. Exact Zone 2 FATmax ceiling for Ishai!" },
+    { stage: 4, speedKmh: 10.5, paceMinKm: "5:42", hrBpm: 148, lactateMmol: 2.6, zone: 3, status: "Zone 3 Aerobic Tempo", note: "Glycolysis increasing. MCT-1 transporters operating near peak capacity." },
+    { stage: 5, speedKmh: 12.0, paceMinKm: "5:00", hrBpm: 164, lactateMmol: 4.3, zone: 4, isLT2: true, status: "⚠️ LT2 Threshold (MLSS / Zone 4)", note: "EXPONENTIAL RISE! Lactate exceeds 4.0 mmol/L. Pyruvate outpaces mitochondrial intake." },
+    { stage: 6, speedKmh: 13.5, paceMinKm: "4:26", hrBpm: 182, lactateMmol: 9.2, zone: 5, status: "Zone 5 VO2max Sprint", note: "Severe metabolic acidosis (pH < 7.1). Test terminated due to muscular exhaustion." }
+  ],
+  labProtocolSteps: [
+    { step: 1, title: "Sterilize & Calibrate", desc: "Clean fingertip with alcohol swab. Calibrate blood lactate analyzer with standard test strip." },
+    { step: 2, title: "3-Minute Constant Stages", desc: "Athlete runs at constant speed for 3 minutes to allow blood lactate to reach steady state." },
+    { step: 3, title: "Finger-Prick Blood Sample", desc: "At min 2:45 of each stage, prick finger with sterile lancet, wipe first micro-drop, collect 0.2µL blood." },
+    { step: 4, title: "Instant Result & Curve Plotting", desc: "Analyzer displays blood lactate in 10 seconds. Plot speed vs. lactate curve to pinpoint LT1 & LT2!" }
+  ]
+};
+
+
+

@@ -219,14 +219,42 @@ export default function AerobicExpectations() {
           <div className="p-4 rounded-2xl bg-white/10 border border-white/20 space-y-1.5">
             <div className="font-bold text-emerald-200 text-sm">2. Rest 2 Days Between Runs</div>
             <p className="text-stone-200 leading-relaxed">
-              Follow the Wingate 48–72h protocol. Adaptation and growth happen during rest, not during the run.
+              Mitochondria reproduce and capillary density grows during rest, not during the run.
             </p>
           </div>
 
           <div className="p-4 rounded-2xl bg-white/10 border border-white/20 space-y-1.5">
-            <div className="font-bold text-emerald-200 text-sm">3. Breathe Through the Nose</div>
+            <div className="font-bold text-emerald-200 text-sm">3. Trust the Biological Process</div>
             <p className="text-stone-200 leading-relaxed">
-              Nasal breathing is your automatic speed governor and boosts nitric oxide for effortless oxygen absorption.
+              In 6 months, you will run faster at 109 BPM than you used to run at 150 BPM!
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* The Gear 2 Speed Expansion Highlight Card */}
+      <div className="p-6 rounded-3xl bg-emerald-50 border border-emerald-300 space-y-4 shadow-xs">
+        <div className="flex items-center gap-2 text-emerald-950 font-extrabold text-base">
+          <Sparkles className="w-5 h-5 text-emerald-700" />
+          <span>The "Gear 2 Expansion" Effect: Absorbing Higher Speeds into Zone 2</span>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm text-stone-800 leading-relaxed font-normal">
+          <div className="p-4 rounded-2xl bg-white border border-emerald-200 space-y-2">
+            <div className="font-extrabold text-emerald-900 text-xs uppercase">
+              1. Month 1: Gear 2 is Slow Pace Only
+            </div>
+            <p className="text-stone-700">
+              When starting, Gear 2 (Zone 2) only supports slow paces (e.g. 11:30 min/km jog at 109 BPM). Pushing faster immediately forces your heart rate into Zone 3/4.
+            </p>
+          </div>
+
+          <div className="p-4 rounded-2xl bg-white border border-emerald-200 space-y-2">
+            <div className="font-extrabold text-emerald-900 text-xs uppercase">
+              2. Month 6: Gear 2 Expands to Absorb Faster Speeds
+            </div>
+            <p className="text-stone-700">
+              As mitochondrial density doubles, <strong>Gear 2 expands to swallow higher speeds!</strong> Paces that used to require Gear 3/4 effort (e.g. 8:30 min/km) now occur effortlessly inside Gear 2 (at the exact same 109 BPM)!
             </p>
           </div>
         </div>

@@ -18,11 +18,15 @@ import Zone2NutritionBP from './Zone2NutritionBP';
 import HeatHumidityGuide from './HeatHumidityGuide';
 import BodyMitochondriaSimulator from './BodyMitochondriaSimulator';
 import RunImprovementsTable from './RunImprovementsTable';
+import MitochondrialReproduction from './MitochondrialReproduction';
+import LactateMasterclass from './LactateMasterclass';
+import RunnerLicense from './RunnerLicense';
+import HowFatIsCreated from './HowFatIsCreated';
 
 export default function MagazineView({ currentZoneId, setCurrentZoneId, activeArticle, setActiveArticle }) {
   const [internalPage, setInternalPage] = useState(1);
   const activePage = (activeArticle && typeof activeArticle === 'number') ? activeArticle : internalPage;
-  const totalPages = 16;
+  const totalPages = 19;
 
   const zone2 = ZONES.find(z => z.id === 2) || ZONES[1];
   const currentZone = ZONES.find(z => z.id === currentZoneId) || zone2;
@@ -134,6 +138,34 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
                   <div className="font-extrabold text-teal-950 text-xs uppercase">🛠️ 3. Zone 2 Builds More of Them</div>
                   <p className="text-xs text-stone-700">
                     Zone 2 exercise forces your body to build <strong>more & bigger mitochondria</strong>, giving you higher daily stamina and protecting against fatigue as you age!
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Dedicated Explanation Card: What is Lactate? */}
+            <div className="p-6 rounded-2xl bg-amber-50 border border-amber-200 space-y-3 font-sans">
+              <div className="flex items-center gap-2 text-amber-950 font-extrabold text-base">
+                <Activity className="w-5 h-5 text-amber-700" />
+                <span>What is "Lactate"? (Pronounced: LAK-tate)</span>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm text-stone-800 leading-relaxed font-normal">
+                <div className="p-3.5 rounded-xl bg-white/80 border border-amber-200 space-y-1">
+                  <div className="font-extrabold text-amber-950 text-xs uppercase">🪵 1. A High-Energy Fuel Log</div>
+                  <p className="text-xs text-stone-700">
+                    Lactate is a 3-carbon carbohydrate created when your muscles break down sugar (glucose). It is <strong>NOT waste</strong>—it contains 95% of the sugar's original energy!
+                  </p>
+                </div>
+                <div className="p-3.5 rounded-xl bg-white/80 border border-amber-200 space-y-1">
+                  <div className="font-extrabold text-teal-950 text-xs uppercase">🫀 2. Superfuel for Heart & Brain</div>
+                  <p className="text-xs text-stone-700">
+                    Your heart and brain <strong>prefer lactate over sugar</strong> during exercise! It is shuttled through your blood to fuel your vital organs.
+                  </p>
+                </div>
+                <div className="p-3.5 rounded-xl bg-white/80 border border-amber-200 space-y-1">
+                  <div className="font-extrabold text-emerald-950 text-xs uppercase">⚖️ 3. Zone 2 Keeps it Balanced</div>
+                  <p className="text-xs text-stone-700">
+                    In Zone 2, your slow-twitch mitochondria clear lactate as fast as it is produced (~1.5 mmol/L), preventing muscle burning!
                   </p>
                 </div>
               </div>
@@ -548,72 +580,9 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
           </article>
         )}
 
-        {/* ==================== PAGE 6: LACTATE PARADOX ==================== */}
+        {/* ==================== PAGE 6: LACTATE MASTERCLASS ==================== */}
         {activePage === 6 && (
-          <article className="space-y-8 animate-fade-in font-sans">
-            
-            <div className="space-y-2">
-              <span className="px-3.5 py-1 rounded-full bg-amber-100 text-amber-900 font-bold text-xs uppercase tracking-wider border border-amber-200">
-                Page 6 • Investigative Report
-              </span>
-              <h2 className="text-3xl lg:text-4xl font-extrabold text-stone-900 leading-tight tracking-tight">
-                The Lactate Paradox: Demolishing Old Myths
-              </h2>
-              <p className="text-stone-600 text-sm font-normal">
-                Why lactate is a premium energy fuel, not a toxic waste product.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 text-stone-800 text-sm lg:text-base leading-relaxed font-normal">
-              <div className="space-y-4">
-                <p>
-                  For decades, lactate was mistakenly labeled as a toxic metabolic waste product responsible for muscle soreness and fatigue. Modern sports biochemistry has thoroughly disproven this concept.
-                </p>
-                <p>
-                  Lactate is actually a <strong>high-energy metabolic intermediate and signaling molecule</strong>. During muscle contraction, glycolytic fibers (Type II) convert glucose into pyruvate and lactate. Through the <strong>Intracellular and Intercellular Lactate Shuttle</strong> (via MCT-1 and MCT-4 transporters), lactate is transported into oxidative Type I fibers.
-                </p>
-              </div>
-
-              <div className="space-y-4">
-                <p>
-                  In Zone 2, your slow-twitch muscle fibers possess so many mitochondria and high lactate dehydrogenase (LDH) activity that <strong>lactate clearance perfectly matches lactate production</strong>.
-                </p>
-                <p>
-                  Blood lactate levels remain stable around <strong>1.5 to 2.0 mmol/L</strong>. This steady state ensures that hydrogen ions (H⁺) are buffered cleanly, avoiding muscular acidosis while recycling lactate into clean energy.
-                </p>
-              </div>
-            </div>
-
-            {/* Comparison Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
-              <div className="p-6 rounded-2xl bg-emerald-50 border border-emerald-200 space-y-3">
-                <div className="flex items-center gap-2 text-emerald-900 font-bold text-base">
-                  <ShieldCheck className="w-5 h-5 text-emerald-700" />
-                  Zone 2 Lactate Balance
-                </div>
-                <ul className="space-y-2 text-xs text-stone-700 font-normal">
-                  <li>• Lactate Production = Lactate Clearance (~1.5 mM)</li>
-                  <li>• MCT-1 Transporters shuttle lactate into mitochondria</li>
-                  <li>• Zero muscle burning; sustainable for hours</li>
-                  <li>• High oxidative capacity buffers all hydrogen ions</li>
-                </ul>
-              </div>
-
-              <div className="p-6 rounded-2xl bg-rose-50 border border-rose-200 space-y-3">
-                <div className="flex items-center gap-2 text-rose-900 font-bold text-base">
-                  <Zap className="w-5 h-5 text-rose-700" />
-                  Zone 4/5 Anaerobic Spillover
-                </div>
-                <ul className="space-y-2 text-xs text-stone-700 font-normal">
-                  <li>• Lactate Production &gt;&gt; Clearance (&gt; 4.0 mM)</li>
-                  <li>• Pyruvate overflows glycolytic capacity</li>
-                  <li>• Hydrogen ions (H⁺) accumulate, lowering intracellular pH</li>
-                  <li>• Causes muscular acidosis, pain, and forced stoppage</li>
-                </ul>
-              </div>
-            </div>
-
-          </article>
+          <LactateMasterclass />
         )}
 
         {/* ==================== PAGE 7: 1-HOUR RUNNER FIELD STUDY ==================== */}
@@ -741,6 +710,21 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
         {/* ==================== PAGE 16: RUN PROGRESS & IMPROVEMENTS TABLE ==================== */}
         {activePage === 16 && (
           <RunImprovementsTable />
+        )}
+
+        {/* ==================== PAGE 17: MITOCHONDRIAL BACTERIAL REPRODUCTION ==================== */}
+        {activePage === 17 && (
+          <MitochondrialReproduction />
+        )}
+
+        {/* ==================== PAGE 18: THE OFFICIAL RUNNER'S LICENSE ==================== */}
+        {activePage === 18 && (
+          <RunnerLicense />
+        )}
+
+        {/* ==================== PAGE 19: HOW THE HUMAN BODY CREATES FAT ==================== */}
+        {activePage === 19 && (
+          <HowFatIsCreated />
         )}
 
         {/* Page Footer Navigation */}

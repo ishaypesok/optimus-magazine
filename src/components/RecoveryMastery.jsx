@@ -32,6 +32,7 @@ import {
   Area 
 } from 'recharts';
 import confetti from 'canvas-confetti';
+import LactateParadoxInfographic from './LactateParadoxInfographic';
 
 export default function RecoveryMastery() {
   // 1. Zone 2 Calculator State
@@ -230,7 +231,7 @@ export default function RecoveryMastery() {
               <Heart className="w-4 h-4 fill-emerald-400/20" />
               <span>Physiological Mastery Protocol</span>
               <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-[10px]">
-                Zone 2 & Recovery Engine
+                Page 11 • Zone 2 & Recovery Engine
               </span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-100 mb-3 bg-gradient-to-r from-slate-100 via-emerald-200 to-teal-300 bg-clip-text text-transparent">
@@ -252,6 +253,17 @@ export default function RecoveryMastery() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* ------------------------------------------------------------- */}
+      {/* FEATURED METABOLIC EDUCATION INFOGRAPHIC (PAGE 11) */}
+      {/* ------------------------------------------------------------- */}
+      <section className="space-y-4">
+        <div className="flex items-center gap-2 text-xs font-black uppercase text-emerald-800 tracking-wider">
+          <Sparkles className="w-4 h-4 text-emerald-700" />
+          <span>Page 11 Metabolic Education Feature Infographic</span>
+        </div>
+        <LactateParadoxInfographic />
       </section>
 
       {/* ------------------------------------------------------------- */}

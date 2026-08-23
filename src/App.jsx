@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import Sidebar from './components/Sidebar';
 import MagazineHeader from './components/MagazineHeader';
 import MagazineView from './components/MagazineView';
-import ZoneControls from './components/ZoneControls';
 import { BookOpen } from 'lucide-react';
 import { trackPageView } from './utils/analytics';
 
@@ -10,56 +10,72 @@ export default function App() {
   // Default landing page is Page 4: Live Cell Visualizer ⭐
   const [activeArticle, setActiveArticle] = useState(4);
   const [searchQuery, setSearchQuery] = useState('');
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   useEffect(() => {
     trackPageView(activeArticle);
   }, [activeArticle]);
 
   return (
-    <div className="min-h-screen bg-[#f8f6f0] text-stone-900 selection:bg-emerald-200 selection:text-emerald-950 pb-20 font-sans">
+    <div className="min-h-screen bg-[#f8f6f0] text-stone-900 selection:bg-emerald-200 selection:text-emerald-950 font-sans flex">
       
-      {/* Clean Magazine Sticky Header */}
-      <MagazineHeader
+      {/* Sidebar Navigation */}
+      <Sidebar
         activeArticle={activeArticle}
         setActiveArticle={setActiveArticle}
+        isOpen={isSidebarOpen}
+        setIsOpen={setIsSidebarOpen}
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
       />
 
-      {/* Main Magazine Layout Container */}
-      <main className="max-w-7xl mx-auto px-4 lg:px-8 pt-6 space-y-6">
+      {/* Main Content Area Offset for Sidebar on Desktop */}
+      <div className="flex-1 lg:pl-80 flex flex-col min-w-0 transition-all duration-300">
         
-        {/* Magazine Spreads & Articles */}
-        <MagazineView
-          currentZoneId={currentZoneId}
-          setCurrentZoneId={setCurrentZoneId}
+        {/* Sticky Top Header Bar */}
+        <MagazineHeader
           activeArticle={activeArticle}
           setActiveArticle={setActiveArticle}
-          searchQuery={searchQuery}
+          isSidebarOpen={isSidebarOpen}
+          setIsSidebarOpen={setIsSidebarOpen}
         />
 
-        {/* Editorial Paper Footer */}
-        <footer className="magazine-page p-8 text-center space-y-3 shadow-xs border border-stone-200">
-          <div className="flex items-center justify-center gap-2 font-bold text-stone-900 text-lg">
-            <BookOpen className="w-5 h-5 text-emerald-700" />
-            <span>OPTIMUS MAGAZINE</span>
-          </div>
-          <p className="max-w-3xl mx-auto text-xs text-stone-600 leading-relaxed font-normal">
-            Zone 2 exercise represents the exact metabolic sweet spot where absolute fat oxidation (FATmax) peaks, mitochondrial biogenesis is stimulated via PGC-1α signaling, and blood lactate remains in steady state (~1.5-2.0 mmol/L).
-          </p>
-          <div className="text-xs font-semibold text-emerald-800 italic pt-1">
-            <span>📌 Footnote: “Rest two days after. This is how we build cellular health at 79.”</span>
-          </div>
-          <div className="flex flex-wrap items-center justify-center gap-4 text-[11px] font-mono text-stone-500 pt-2 border-t border-stone-200">
-            <span>Bioenergetics Science Press</span>
-            <span>•</span>
-            <span>Peer-Reviewed Physiology Data</span>
-            <span>•</span>
-            <span className="text-emerald-800 font-bold">Published via GitHub Pages</span>
-          </div>
-        </footer>
+        {/* Main Magazine Layout Container */}
+        <main className="flex-1 max-w-6xl w-full mx-auto px-4 lg:px-8 py-6 space-y-6">
+          
+          {/* Magazine Spreads & Articles */}
+          <MagazineView
+            currentZoneId={currentZoneId}
+            setCurrentZoneId={setCurrentZoneId}
+            activeArticle={activeArticle}
+            setActiveArticle={setActiveArticle}
+            searchQuery={searchQuery}
+          />
 
-      </main>
+          {/* Editorial Paper Footer */}
+          <footer className="magazine-page p-8 text-center space-y-3 shadow-xs border border-stone-200">
+            <div className="flex items-center justify-center gap-2 font-bold text-stone-900 text-lg">
+              <BookOpen className="w-5 h-5 text-emerald-700" />
+              <span>OPTIMUS MAGAZINE</span>
+            </div>
+            <p className="max-w-3xl mx-auto text-xs text-stone-600 leading-relaxed font-normal">
+              Zone 2 exercise represents the exact metabolic sweet spot where absolute fat oxidation (FATmax) peaks, mitochondrial biogenesis is stimulated via PGC-1α signaling, and blood lactate remains in steady state (~1.5-2.0 mmol/L).
+            </p>
+            <div className="text-xs font-semibold text-emerald-800 italic pt-1">
+              <span>📌 Footnote: “Rest two days after. This is how we build cellular health at 79.”</span>
+            </div>
+            <div className="flex flex-wrap items-center justify-center gap-4 text-[11px] font-mono text-stone-500 pt-2 border-t border-stone-200">
+              <span>Bioenergetics Science Press</span>
+              <span>•</span>
+              <span>Peer-Reviewed Physiology Data</span>
+              <span>•</span>
+              <span className="text-emerald-800 font-bold">Published via GitHub Pages</span>
+            </div>
+          </footer>
+
+        </main>
+
+      </div>
 
     </div>
   );
