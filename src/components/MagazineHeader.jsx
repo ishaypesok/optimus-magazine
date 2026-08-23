@@ -36,7 +36,7 @@ export default function MagazineHeader({
               Page {activeArticle}/19
             </span>
             <h2 className="text-xs sm:text-sm font-bold text-stone-900 truncate">
-              {currentObj.label.split(': ')[1] || currentObj.label}
+              {currentObj.title || currentObj.label}
             </h2>
           </div>
         </div>
