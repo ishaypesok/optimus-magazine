@@ -33,7 +33,7 @@ export default function LiveCellVisualizer() {
       lactateAccumulation: 0,
       mitochondriaGlow: '#10b981',
       status: "Peak Fat Oxidation • Based on Ishai's Run",
-      desc: "Maximum absolute fat burning (0.65g/min). Particle simulation parameters calculated based on Ishai's target heart rate run (126–140 BPM)."
+      desc: "Maximum absolute fat burning (0.65g/min) powered by 95% steady O₂ saturation. Oxygen streams into mitochondria to oxidize fatty acids cleanly!"
     },
     3: {
       name: 'Zone 3 (Tempo / Moderate)',
@@ -66,7 +66,7 @@ export default function LiveCellVisualizer() {
       lactateAccumulation: 95,
       mitochondriaGlow: '#ef4444',
       status: 'Muscular Acidosis & Rapid Exhaustion',
-      desc: 'Fat burning shuts down completely (CPT-1 gate locked). Rapid glycogen depletion with severe leg burn.'
+      desc: 'Fat burning shuts down completely (CPT-1 gate locked). Severe O₂ deficit forces rapid glycogen breakdown.'
     }
   };
 
@@ -88,9 +88,7 @@ export default function LiveCellVisualizer() {
 
     // Particle pools
     const particles = [];
-    const NUM_FAT = Math.round(currentSpec.fatRate * 35);
-    const NUM_CARB = Math.round(currentSpec.carbRate * 35);
-    const NUM_O2 = Math.round((currentSpec.o2Supply / 100) * 30);
+    const NUM_O2 = Math.round((currentSpec.o2Supply / 100) * 35);
 
     // Mitochondria boundaries (center rectangle)
     const mitoX = width * 0.38;
@@ -98,7 +96,7 @@ export default function LiveCellVisualizer() {
     const mitoW = width * 0.48;
     const mitoH = height * 0.58;
 
-    // Initialize particles
+    // Initialize Fat Particles (Gold)
     for (let i = 0; i < 30; i++) {
       particles.push({
         type: 'fat',
@@ -106,11 +104,11 @@ export default function LiveCellVisualizer() {
         y: Math.random() * (height - 60) + 30,
         vx: (1 + Math.random() * 1.5) * simSpeed,
         vy: (Math.random() - 0.5) * 0.8,
-        size: 5 + Math.random() * 3,
-        alpha: 0.8 + Math.random() * 0.2
+        size: 5 + Math.random() * 3
       });
     }
 
+    // Initialize Glucose Particles (Blue)
     for (let i = 0; i < 25; i++) {
       particles.push({
         type: 'carb',
@@ -118,24 +116,23 @@ export default function LiveCellVisualizer() {
         y: Math.random() * (height - 60) + 30,
         vx: (1.2 + Math.random() * 1.8) * simSpeed,
         vy: (Math.random() - 0.5) * 0.8,
-        size: 4 + Math.random() * 2,
-        alpha: 0.8
+        size: 4 + Math.random() * 2
       });
     }
 
-    for (let i = 0; i < 25; i++) {
+    // Initialize Oxygen Molecules (O₂ - Cyan Glowing Particles)
+    for (let i = 0; i < NUM_O2; i++) {
       particles.push({
         type: 'o2',
         x: Math.random() * (width - 40) + 20,
-        y: Math.random() * 40 + 10,
-        vx: (Math.random() - 0.5) * 1.2,
-        vy: (1 + Math.random() * 1.5) * simSpeed,
-        size: 3.5,
-        alpha: 0.9
+        y: Math.random() * (height - 40) + 20,
+        vx: (Math.random() - 0.5) * 1.2 * simSpeed,
+        vy: (0.8 + Math.random() * 1.4) * simSpeed,
+        size: 4
       });
     }
 
-    // ATP spark sparks inside mitochondria moving out
+    // ATP sparks generated inside mitochondria
     const atpSparks = [];
 
     const render = () => {
@@ -159,10 +156,14 @@ export default function LiveCellVisualizer() {
       ctx.strokeRect(10, 10, width - 20, height - 20);
       ctx.setLineDash([]);
 
-      // Label Sarcolemma
+      // Label Sarcolemma & O₂ Capillary Flow
       ctx.fillStyle = '#78716c';
       ctx.font = '600 10px sans-serif';
       ctx.fillText('SARCOLEMMA (MUSCLE CELL MEMBRANE)', 20, 26);
+
+      ctx.fillStyle = '#0891b2';
+      ctx.font = 'bold 9px sans-serif';
+      ctx.fillText('💨 O₂ OXYGEN INFLOW FROM CAPILLARIES', 20, 42);
 
       // --- 2. DRAW CPT-1 GATE (Fat Entrance Channel) ---
       const cptY = height * 0.45;
@@ -179,7 +180,6 @@ export default function LiveCellVisualizer() {
       ctx.fillText(selectedZone > 3 ? 'CPT-1 (LOCKED 🔒)' : 'CPT-1 (OPEN 🔑)', mitoX - 65, cptY + 3);
 
       // --- 3. DRAW LIVE MITOCHONDRIA (POWERHOUSE) ---
-      // Outer Membrane
       ctx.save();
       ctx.shadowColor = currentSpec.mitochondriaGlow;
       ctx.shadowBlur = 20;
@@ -212,11 +212,11 @@ export default function LiveCellVisualizer() {
       ctx.fillText('MITOCHONDRION (LIVE POWERHOUSE)', mitoX + 20, mitoY + 28);
       ctx.font = '10px sans-serif';
       ctx.fillStyle = '#6ee7b7';
-      ctx.fillText(`Beta-Oxidation & Krebs Cycle Active • ATP Yield: ${currentSpec.atpOutput}%`, mitoX + 20, mitoY + 44);
+      ctx.fillText(`Beta-Oxidation & ETC Active • O₂ Saturation: ${currentSpec.o2Supply}% • ATP: ${currentSpec.atpOutput}%`, mitoX + 20, mitoY + 44);
 
       // --- 4. UPDATE & DRAW PARTICLES ---
       if (isPlaying) {
-        // Spawn ATP sparks inside mitochondria
+        // Spawn ATP sparks inside mitochondria when Fat + Oxygen combine!
         if (Math.random() < (currentSpec.atpOutput / 100) * 0.8) {
           atpSparks.push({
             x: mitoX + 40 + Math.random() * (mitoW - 80),
@@ -229,26 +229,59 @@ export default function LiveCellVisualizer() {
         }
       }
 
-      // Render Fat Particles (Gold Spheres)
+      // Render Fat, Carb, and Oxygen Particles
       particles.forEach(p => {
         if (isPlaying) {
           p.x += p.vx;
           p.y += p.vy;
 
-          // Wrap around cytoplasm
-          if (p.x > mitoX - 10 && p.type === 'fat' && selectedZone > 3) {
-            // Bounce off locked CPT-1 gate if high intensity!
-            p.vx *= -1;
-          } else if (p.x > mitoX + 30) {
-            p.x = 20;
-            p.y = Math.random() * (height - 60) + 30;
+          if (p.type === 'fat') {
+            // Bounce off locked CPT-1 gate if high intensity
+            if (p.x > mitoX - 10 && selectedZone > 3) {
+              p.vx *= -1;
+            } else if (p.x > mitoX + mitoW) {
+              p.x = 20;
+              p.y = Math.random() * (height - 60) + 30;
+            }
+          } else if (p.type === 'carb') {
+            if (p.x > width - 30) {
+              p.x = 20;
+              p.y = Math.random() * (height - 60) + 30;
+            }
+          } else if (p.type === 'o2') {
+            // Oxygen recycling loop from top capillaries into mitochondria
+            if (p.y > height - 20 || p.x > width - 20) {
+              p.y = 15 + Math.random() * 30;
+              p.x = Math.random() * (width - 60) + 30;
+            }
           }
         }
 
-        ctx.fillStyle = p.type === 'fat' ? '#f59e0b' : p.type === 'carb' ? '#3b82f6' : '#06b6d4';
+        // Draw particle sphere
+        ctx.save();
+        if (p.type === 'o2') {
+          ctx.fillStyle = '#06b6d4'; // Glowing Cyan for Oxygen
+          ctx.shadowColor = '#06b6d4';
+          ctx.shadowBlur = 8;
+        } else if (p.type === 'fat') {
+          ctx.fillStyle = '#f59e0b'; // Gold for Fat
+        } else {
+          ctx.fillStyle = '#3b82f6'; // Blue for Glucose
+        }
+
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fill();
+
+        // Draw O₂ text label inside Oxygen particles
+        if (p.type === 'o2') {
+          ctx.fillStyle = '#ffffff';
+          ctx.font = 'bold 7px sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText('O₂', p.x, p.y + 2.5);
+          ctx.textAlign = 'left';
+        }
+        ctx.restore();
       });
 
       // Render ATP Energy Sparks (Bright Emerald Stars/Sparks)
@@ -276,38 +309,43 @@ export default function LiveCellVisualizer() {
         ctx.restore();
       }
 
-      // Draw Legend at top right
+      // Draw Legend at top right (including Oxygen O₂)
       ctx.fillStyle = 'rgba(255,255,255,0.95)';
       ctx.strokeStyle = '#d6d3d1';
       ctx.lineWidth = 1.5;
       ctx.beginPath();
-      ctx.roundRect(width - 180, 14, 165, 96, 10);
+      ctx.roundRect(width - 185, 14, 172, 110, 10);
       ctx.fill();
       ctx.stroke();
 
       ctx.font = 'bold 9px sans-serif';
       ctx.fillStyle = '#1c1917';
-      ctx.fillText('LIVE MOLECULE LEGEND', width - 170, 28);
+      ctx.fillText('LIVE MOLECULE LEGEND', width - 175, 28);
+
+      // Oxygen (Cyan O₂ Dot)
+      ctx.fillStyle = '#06b6d4';
+      ctx.beginPath(); ctx.arc(width - 170, 42, 5, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = '#ffffff'; ctx.font = 'bold 6.5px sans-serif'; ctx.fillText('O₂', width - 172, 44);
+      ctx.font = '9px sans-serif'; ctx.fillStyle = '#0e7490'; ctx.fillText('Oxygen (O₂ Molecule)', width - 158, 45);
 
       // Fat (Orange Dot)
       ctx.fillStyle = '#f59e0b';
-      ctx.beginPath(); ctx.arc(width - 165, 42, 4.5, 0, Math.PI * 2); ctx.fill();
-      ctx.font = '9px sans-serif'; ctx.fillStyle = '#44403c';
-      ctx.fillText('Fatty Acid (FFA)', width - 153, 45);
+      ctx.beginPath(); ctx.arc(width - 170, 58, 4.5, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = '#44403c'; ctx.fillText('Fatty Acid (FFA)', width - 158, 61);
 
       // Carb (Blue Dot)
       ctx.fillStyle = '#3b82f6';
-      ctx.beginPath(); ctx.arc(width - 165, 58, 4.5, 0, Math.PI * 2); ctx.fill();
-      ctx.fillText('Glucose / Carbs', width - 153, 61);
+      ctx.beginPath(); ctx.arc(width - 170, 74, 4.5, 0, Math.PI * 2); ctx.fill();
+      ctx.fillText('Glucose / Carbs', width - 158, 77);
 
       // ATP (Emerald Spark)
       ctx.fillStyle = '#34d399';
-      ctx.beginPath(); ctx.arc(width - 165, 74, 4.5, 0, Math.PI * 2); ctx.fill();
-      ctx.fillText('ATP Energy Molecule', width - 153, 77);
+      ctx.beginPath(); ctx.arc(width - 170, 90, 4.5, 0, Math.PI * 2); ctx.fill();
+      ctx.fillText('ATP Energy Molecule', width - 158, 93);
 
       // Dedicated Ishai's Run Tagline
       ctx.font = 'bold 8.5px sans-serif'; ctx.fillStyle = '#047857';
-      ctx.fillText("Based on Ishai's Run", width - 170, 94);
+      ctx.fillText("Based on Ishai's Run", width - 175, 108);
 
       animationFrameId = requestAnimationFrame(render);
     };
@@ -332,13 +370,14 @@ export default function LiveCellVisualizer() {
               <Sparkles className="w-3.5 h-3.5 text-emerald-300" />
               Interactive Bioenergetics Feature
             </span>
-            <span className="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 font-bold text-xs border border-amber-400/30 flex items-center gap-1">
-              <span>Based on Ishai&apos;s Run</span>
+            <span className="px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-300 font-bold text-xs border border-cyan-400/30 flex items-center gap-1">
+              <Wind className="w-3.5 h-3.5 text-cyan-300" />
+              <span>O₂ Oxygen Flow Simulation Included</span>
             </span>
           </div>
           <div className="flex items-center gap-2">
             <a
-              href={`https://twitter.com/intent/tweet?text=${encodeURIComponent('Check out the Live Cell Visualizer in Optimus Magazine! 🔬 Watch mitochondria & fat-burning in real-time:')}&url=${encodeURIComponent('https://ishaypesok.github.io/optimus-magazine/')}`}
+              href={`https://twitter.com/intent/tweet?text=${encodeURIComponent('Check out the Live Cell Visualizer in Optimus Magazine! 🔬 Watch oxygen, mitochondria & fat-burning in real-time:')}&url=${encodeURIComponent('https://ishaypesok.github.io/optimus-magazine/#page=4')}`}
               target="_blank"
               rel="noopener noreferrer"
               className="px-3 py-1.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-white font-bold text-xs flex items-center gap-1.5 transition shadow-sm"
@@ -367,7 +406,7 @@ export default function LiveCellVisualizer() {
             <span>The Live Cell Visualizer</span>
           </h2>
           <p className="text-emerald-200 text-xs sm:text-sm max-w-3xl leading-relaxed">
-            Watch real-time cellular bioenergetics inside your muscle fibers! Toggle exercise intensity zones below to see how insulin, oxygen, CPT-1 gates, and mitochondria dynamically burn fat vs sugar.
+            Watch real-time cellular bioenergetics inside your muscle fibers! Toggle exercise intensity zones below to see how oxygen (O₂), insulin, CPT-1 gates, and mitochondria dynamically burn fat vs sugar.
           </p>
         </div>
       </div>
@@ -430,7 +469,7 @@ export default function LiveCellVisualizer() {
                 EDITORIAL CAPTION • ISHAI&apos;S RUN TELEMETRY
               </span>
               <p className="text-emerald-100 font-semibold italic text-sm leading-snug">
-                &ldquo;At minute 60, Ishai hit FATmax. Mitochondria were producing ATP at 88% efficiency. No sugar crash.&rdquo;
+                &ldquo;At minute 60, Ishai hit FATmax. O₂ delivery at 95% powered maximum mitochondrial ATP production. No sugar crash.&rdquo;
               </p>
               <div className="pt-2 border-t border-emerald-500/20 text-[11px] text-stone-300 font-medium flex items-center gap-1.5">
                 <span className="font-bold text-amber-400 font-mono uppercase text-[10px] px-1.5 py-0.5 rounded bg-amber-400/10 border border-amber-400/20">Footnote</span>
@@ -465,6 +504,19 @@ export default function LiveCellVisualizer() {
             <div className="space-y-2">
               <div className="flex justify-between items-center text-xs">
                 <span className="text-stone-600 font-medium flex items-center gap-1.5">
+                  <Wind className="w-4 h-4 text-cyan-500" /> Oxygen Delivery (O₂):
+                </span>
+                <span className="font-extrabold text-cyan-900">{currentSpec.o2Supply}% Saturation</span>
+              </div>
+              <div className="w-full h-2 rounded-full bg-stone-100 overflow-hidden">
+                <div 
+                  className="h-full bg-cyan-500 transition-all duration-500" 
+                  style={{ width: `${currentSpec.o2Supply}%` }}
+                />
+              </div>
+
+              <div className="flex justify-between items-center text-xs pt-1">
+                <span className="text-stone-600 font-medium flex items-center gap-1.5">
                   <Flame className="w-4 h-4 text-amber-500" /> Fat Oxidation Rate:
                 </span>
                 <span className="font-extrabold text-stone-900">{currentSpec.fatRate} g/min</span>
@@ -488,19 +540,6 @@ export default function LiveCellVisualizer() {
                   style={{ width: `${currentSpec.carbRate * 100}%` }}
                 />
               </div>
-
-              <div className="flex justify-between items-center text-xs pt-1">
-                <span className="text-stone-600 font-medium flex items-center gap-1.5">
-                  <Wind className="w-4 h-4 text-cyan-500" /> Oxygen Delivery (O₂):
-                </span>
-                <span className="font-extrabold text-stone-900">{currentSpec.o2Supply}% Saturation</span>
-              </div>
-              <div className="w-full h-2 rounded-full bg-stone-100 overflow-hidden">
-                <div 
-                  className="h-full bg-cyan-500 transition-all duration-500" 
-                  style={{ width: `${currentSpec.o2Supply}%` }}
-                />
-              </div>
             </div>
 
             <p className="text-xs text-stone-600 leading-relaxed pt-2 border-t border-stone-100">
@@ -516,7 +555,7 @@ export default function LiveCellVisualizer() {
             </div>
 
             <div className="flex gap-1 bg-stone-200/60 p-1 rounded-xl text-[11px] font-bold">
-              {['mitochondria', 'cpt1', 'atp'].map(tab => (
+              {['o2', 'mitochondria', 'cpt1', 'atp'].map(tab => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
@@ -524,12 +563,23 @@ export default function LiveCellVisualizer() {
                     activeTab === tab ? 'bg-white text-emerald-950 shadow-xs' : 'text-stone-600 hover:text-stone-900'
                   }`}
                 >
-                  {tab === 'cpt1' ? 'CPT-1 Gate' : tab}
+                  {tab === 'o2' ? 'O₂ Oxygen' : tab === 'cpt1' ? 'CPT-1' : tab}
                 </button>
               ))}
             </div>
 
             <div className="text-xs text-stone-700 leading-relaxed font-normal pt-1">
+              {activeTab === 'o2' && (
+                <div className="space-y-1.5">
+                  <div className="font-bold text-cyan-950 flex items-center gap-1">
+                    <Wind className="w-4 h-4 text-cyan-600" />
+                    <span>Oxygen (O₂ Molecules)</span>
+                  </div>
+                  <p>
+                    Oxygen is delivered from capillaries into sarcoplasm and mitochondria. Oxygen is required to accept electrons in Complex IV of the Electron Transport Chain and oxidize fatty acids into CO₂ & H₂O!
+                  </p>
+                </div>
+              )}
               {activeTab === 'mitochondria' && (
                 <div className="space-y-1.5">
                   <div className="font-bold text-emerald-950">🔋 Mitochondrion (Cell Powerhouse)</div>
@@ -624,7 +674,7 @@ export default function LiveCellVisualizer() {
                   <span className="font-mono font-bold text-emerald-800 shrink-0">MIN 0–15</span>
                   <div>
                     <span className="font-bold text-stone-900 block">Aerobic Warmup & CPT-1 Gate Activation</span>
-                    <span className="text-stone-600">Heart rate ramped up smoothly to 125 BPM. Insulin dropped and CPT-1 enzyme unlocked mitochondrial fat intake.</span>
+                    <span className="text-stone-600">Heart rate ramped up smoothly to 125 BPM. Oxygen delivery reached 95% and CPT-1 enzyme unlocked mitochondrial fat intake.</span>
                   </div>
                 </div>
 
