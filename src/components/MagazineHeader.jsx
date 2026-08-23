@@ -1,5 +1,5 @@
-import React from 'react';
-import { Menu, Share2, Printer, ChevronLeft, ChevronRight, BookOpen } from 'lucide-react';
+import React, { useState } from 'react';
+import { Menu, Share2, ChevronLeft, ChevronRight, Check } from 'lucide-react';
 import { PAGES_LIST } from './Sidebar';
 
 export default function MagazineHeader({ 
@@ -8,10 +8,29 @@ export default function MagazineHeader({
   isSidebarOpen,
   setIsSidebarOpen
 }) {
+  const [copied, setCopied] = useState(false);
   const currentObj = PAGES_LIST.find(p => p.id === activeArticle) || PAGES_LIST[0];
 
   const prevPage = () => setActiveArticle(Math.max(activeArticle - 1, 1));
   const nextPage = () => setActiveArticle(Math.min(activeArticle + 1, 19));
+
+  // Current page direct URL
+  const chapterUrl = `https://ishaypesok.github.io/optimus-magazine/#page=${activeArticle}`;
+  const chapterTitle = currentObj.title || currentObj.label;
+
+  const copyToClipboard = () => {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(chapterUrl);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    }
+  };
+
+  const shareOnX = () => {
+    const text = encodeURIComponent(`Reading "${chapterTitle}" in Optimus Magazine 🏃‍♂️⚡`);
+    const url = encodeURIComponent(chapterUrl);
+    window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank', 'noopener,noreferrer');
+  };
 
   return (
     <header className="sticky top-0 z-30 bg-[#f8f6f0]/90 backdrop-blur-md border-b border-stone-200 px-4 lg:px-8 py-3 shadow-xs font-sans">
@@ -36,7 +55,7 @@ export default function MagazineHeader({
               Page {activeArticle}/19
             </span>
             <h2 className="text-xs sm:text-sm font-bold text-stone-900 truncate">
-              {currentObj.title || currentObj.label}
+              {chapterTitle}
             </h2>
           </div>
         </div>
@@ -67,19 +86,30 @@ export default function MagazineHeader({
             </button>
           </div>
 
-          {/* Share Button */}
+          {/* Copy Direct Page URL Button */}
           <button
-            onClick={() => {
-              if (navigator.clipboard) {
-                navigator.clipboard.writeText(window.location.href);
-                alert('🔗 Optimus Magazine link copied to clipboard!');
-              }
-            }}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs shadow-xs transition"
+            onClick={copyToClipboard}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl font-bold text-xs shadow-xs transition border ${
+              copied
+                ? 'bg-emerald-100 text-emerald-900 border-emerald-300'
+                : 'bg-white text-stone-700 border-stone-300 hover:bg-stone-100'
+            }`}
+            title="Copy Direct Online Link for this Chapter"
           >
-            <Share2 className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">Share</span>
+            {copied ? <Check className="w-3.5 h-3.5 text-emerald-700" /> : <Share2 className="w-3.5 h-3.5 text-stone-500" />}
+            <span className="hidden sm:inline">{copied ? 'Link Copied!' : 'Copy Link'}</span>
           </button>
+
+          {/* Post on X (Twitter) Button */}
+          <button
+            onClick={shareOnX}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-black hover:bg-stone-800 text-white font-bold text-xs shadow-xs transition"
+            title="Post this Chapter on X (Twitter)"
+          >
+            <span className="font-mono text-sm leading-none">𝕏</span>
+            <span className="hidden sm:inline">Post on X</span>
+          </button>
+
         </div>
 
       </div>

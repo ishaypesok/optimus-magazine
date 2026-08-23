@@ -5,15 +5,46 @@ import MagazineView from './components/MagazineView';
 import { BookOpen } from 'lucide-react';
 import { trackPageView } from './utils/analytics';
 
+function getPageFromHash() {
+  if (typeof window === 'undefined') return null;
+  const hash = window.location.hash || window.location.search;
+  const match = hash.match(/page[=\-]?(\d+)/i);
+  if (match && match[1]) {
+    const pageNum = parseInt(match[1], 10);
+    if (pageNum >= 1 && pageNum <= 19) {
+      return pageNum;
+    }
+  }
+  return null;
+}
+
 export default function App() {
   const [currentZoneId, setCurrentZoneId] = useState(2);
-  // Default landing page is Page 4: Live Cell Visualizer ⭐
-  const [activeArticle, setActiveArticle] = useState(4);
+  // Initial page from URL hash or default to Page 4 (Live Cell Visualizer)
+  const [activeArticle, setActiveArticle] = useState(() => {
+    return getPageFromHash() || 4;
+  });
   const [searchQuery, setSearchQuery] = useState('');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
+  // Sync page state with browser URL hash
   useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.history.replaceState(null, '', `#page=${activeArticle}`);
+    }
     trackPageView(activeArticle);
+  }, [activeArticle]);
+
+  // Listen to hash changes (e.g. browser back/forward buttons)
+  useEffect(() => {
+    const handleHashChange = () => {
+      const page = getPageFromHash();
+      if (page && page !== activeArticle) {
+        setActiveArticle(page);
+      }
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
   }, [activeArticle]);
 
   return (
