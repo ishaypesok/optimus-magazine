@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { 
   BookOpen, Search, X, Smile, Flame, Cpu, Zap, BarChart2, Activity, Clock, 
   ShieldCheck, User, Heart, BatteryCharging, TrendingUp, Droplet, Sun, Layers, Award, Dna,
-  ArrowDownAZ, Hash, LayoutGrid
+  ArrowDownAZ, Hash, LayoutGrid, Link, Check, ExternalLink
 } from 'lucide-react';
 
 export const PAGES_LIST = [
@@ -36,6 +36,7 @@ export default function Sidebar({
   setSearchQuery
 }) {
   const [sortMode, setSortMode] = useState('atoz'); // 'atoz' | 'num' | 'cat'
+  const [copiedId, setCopiedId] = useState(null);
   const activeItemRef = useRef(null);
 
   useEffect(() => {
@@ -46,6 +47,24 @@ export default function Sidebar({
       });
     }
   }, [activeArticle]);
+
+  const copyChapterUrl = (e, pageId) => {
+    e.stopPropagation();
+    const url = `https://ishaypesok.github.io/optimus-magazine/#page=${pageId}`;
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(url);
+      setCopiedId(pageId);
+      setTimeout(() => setCopiedId(null), 2000);
+    }
+  };
+
+  const shareOnX = (e, page) => {
+    e.stopPropagation();
+    const chapterUrl = `https://ishaypesok.github.io/optimus-magazine/#page=${page.id}`;
+    const text = encodeURIComponent(`Reading "${page.title}" in Optimus Magazine 🏃‍♂️⚡`);
+    const url = encodeURIComponent(chapterUrl);
+    window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank', 'noopener,noreferrer');
+  };
 
   // Filter pages by search query
   const filteredPages = PAGES_LIST.filter(p => 
@@ -199,32 +218,66 @@ export default function Sidebar({
                       const isActive = activeArticle === page.id;
 
                       return (
-                        <button
+                        <div
                           key={page.id}
                           ref={isActive ? activeItemRef : null}
                           onClick={() => {
                             setActiveArticle(page.id);
                             setIsOpen(false);
                           }}
-                          className={`w-full flex items-center justify-between p-2.5 rounded-xl font-bold text-xs transition text-left ${
+                          className={`w-full flex items-center justify-between p-2.5 rounded-xl font-bold text-xs transition cursor-pointer group ${
                             isActive
                               ? 'bg-emerald-800 text-white shadow-sm'
-                              : 'text-stone-700 hover:bg-stone-200/80 hover:text-stone-900'
+                              : 'text-stone-800 hover:bg-stone-200/90 hover:text-stone-950'
                           }`}
                         >
-                          <div className="flex items-center gap-2.5 min-w-0 pr-2">
-                            <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-emerald-300' : 'text-emerald-700'}`} />
-                            <span className="truncate">{page.title}</span>
+                          <div className="flex flex-col min-w-0 pr-2">
+                            <div className="flex items-center gap-2">
+                              <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-emerald-300' : 'text-emerald-700'}`} />
+                              <span className="truncate">{page.title}</span>
+                            </div>
+                            <span className={`text-[9px] font-mono pl-6 ${isActive ? 'text-emerald-200' : 'text-stone-400 group-hover:text-stone-600'}`}>
+                              /#page={page.id}
+                            </span>
                           </div>
 
-                          <span className={`text-[10px] px-2 py-0.5 rounded-md shrink-0 font-extrabold ${
-                            isActive 
-                              ? 'bg-emerald-700 text-emerald-100 border border-emerald-600' 
-                              : 'bg-emerald-100 text-emerald-900 border border-emerald-200'
-                          }`}>
-                            Pg {page.id}
-                          </span>
-                        </button>
+                          <div className="flex items-center gap-1 shrink-0">
+                            {/* Copy Address Button */}
+                            <button
+                              onClick={(e) => copyChapterUrl(e, page.id)}
+                              className={`p-1 rounded-md transition ${
+                                isActive 
+                                  ? 'hover:bg-emerald-700 text-emerald-200' 
+                                  : 'hover:bg-stone-300 text-stone-500 hover:text-stone-900'
+                              }`}
+                              title="Copy Direct Online Link"
+                            >
+                              {copiedId === page.id ? <Check className="w-3.5 h-3.5 text-emerald-300" /> : <Link className="w-3.5 h-3.5" />}
+                            </button>
+
+                            {/* Share on X Button */}
+                            <button
+                              onClick={(e) => shareOnX(e, page)}
+                              className={`px-1.5 py-0.5 rounded-md font-mono text-[10px] transition font-bold ${
+                                isActive
+                                  ? 'bg-stone-900 text-white hover:bg-black'
+                                  : 'bg-stone-300/80 text-stone-800 hover:bg-black hover:text-white'
+                              }`}
+                              title="Share on X"
+                            >
+                              𝕏
+                            </button>
+
+                            {/* Page # Badge */}
+                            <span className={`text-[10px] px-2 py-0.5 rounded-md font-extrabold ${
+                              isActive 
+                                ? 'bg-emerald-700 text-emerald-100 border border-emerald-600' 
+                                : 'bg-emerald-100 text-emerald-900 border border-emerald-200'
+                            }`}>
+                              Pg {page.id}
+                            </span>
+                          </div>
+                        </div>
                       );
                     })}
                   </div>
@@ -244,36 +297,78 @@ export default function Sidebar({
                 const isActive = activeArticle === page.id;
 
                 return (
-                  <button
+                  <div
                     key={page.id}
                     ref={isActive ? activeItemRef : null}
                     onClick={() => {
                       setActiveArticle(page.id);
                       setIsOpen(false);
                     }}
-                    className={`w-full flex items-center justify-between p-2.5 rounded-xl font-bold text-xs transition text-left group ${
+                    className={`w-full flex items-center justify-between p-2.5 rounded-xl font-bold text-xs transition cursor-pointer group ${
                       isActive
                         ? 'bg-emerald-800 text-white shadow-sm'
                         : 'text-stone-800 hover:bg-stone-200/90 hover:text-stone-950'
                     }`}
                   >
-                    {/* Left: Icon + Title */}
-                    <div className="flex items-center gap-2.5 min-w-0 pr-2">
-                      <Icon className={`w-4 h-4 shrink-0 transition ${
-                        isActive ? 'text-emerald-300' : 'text-emerald-700 group-hover:scale-110'
-                      }`} />
-                      <span className="truncate leading-snug">{page.title}</span>
+                    {/* Left: Icon + Title + Direct URL anchor */}
+                    <div className="flex flex-col min-w-0 pr-2">
+                      <div className="flex items-center gap-2">
+                        <Icon className={`w-4 h-4 shrink-0 transition ${
+                          isActive ? 'text-emerald-300' : 'text-emerald-700 group-hover:scale-110'
+                        }`} />
+                        <span className="truncate leading-snug">{page.title}</span>
+                      </div>
+                      <span className={`text-[9.5px] font-mono pl-6 transition ${
+                        isActive ? 'text-emerald-200' : 'text-stone-400 group-hover:text-emerald-800'
+                      }`}>
+                        /#page={page.id}
+                      </span>
                     </div>
 
-                    {/* Right: Page Number Pill */}
-                    <span className={`text-[10px] px-2.5 py-0.5 rounded-lg shrink-0 font-mono font-black transition ${
-                      isActive 
-                        ? 'bg-emerald-700 text-emerald-100 border border-emerald-600' 
-                        : 'bg-stone-200 text-emerald-950 group-hover:bg-emerald-100 group-hover:text-emerald-900 border border-stone-300'
-                    }`}>
-                      Pg {page.id}
-                    </span>
-                  </button>
+                    {/* Right: Actions & Page Number Pill */}
+                    <div className="flex items-center gap-1 shrink-0">
+                      
+                      {/* Copy Address Button */}
+                      <button
+                        onClick={(e) => copyChapterUrl(e, page.id)}
+                        className={`p-1 rounded-md transition ${
+                          isActive 
+                            ? 'hover:bg-emerald-700 text-emerald-200' 
+                            : 'hover:bg-stone-300 text-stone-500 hover:text-stone-900'
+                        }`}
+                        title="Copy Direct Online Address for X"
+                      >
+                        {copiedId === page.id ? (
+                          <span className="text-[9px] font-bold text-emerald-300 px-1">Copied!</span>
+                        ) : (
+                          <Link className="w-3.5 h-3.5" />
+                        )}
+                      </button>
+
+                      {/* Post on X Button */}
+                      <button
+                        onClick={(e) => shareOnX(e, page)}
+                        className={`px-1.5 py-0.5 rounded-md font-mono text-[10px] transition font-black ${
+                          isActive
+                            ? 'bg-stone-950 text-white hover:bg-black'
+                            : 'bg-stone-300/80 text-stone-800 hover:bg-black hover:text-white'
+                        }`}
+                        title="Post Chapter on X"
+                      >
+                        𝕏
+                      </button>
+
+                      {/* Page Number Pill */}
+                      <span className={`text-[10px] px-2 py-0.5 rounded-lg font-mono font-black transition ${
+                        isActive 
+                          ? 'bg-emerald-700 text-emerald-100 border border-emerald-600' 
+                          : 'bg-stone-200 text-emerald-950 group-hover:bg-emerald-100 group-hover:text-emerald-900 border border-stone-300'
+                      }`}>
+                        Pg {page.id}
+                      </span>
+                    </div>
+
+                  </div>
                 );
               })}
             </div>
@@ -281,10 +376,20 @@ export default function Sidebar({
 
         </div>
 
-        {/* Sidebar Footer Metadata */}
-        <div className="p-4 border-t border-stone-200 bg-white/50 text-[11px] text-stone-500 font-semibold text-center space-y-1">
+        {/* Sidebar Footer Metadata & Root Address */}
+        <div className="p-4 border-t border-stone-200 bg-white/60 text-[11px] text-stone-600 font-semibold text-center space-y-1">
+          <div className="flex items-center justify-center gap-1 font-mono text-[10px] text-emerald-900 bg-emerald-50 py-1 px-2 rounded-lg border border-emerald-200 truncate">
+            <ExternalLink className="w-3 h-3 text-emerald-700 shrink-0" />
+            <a 
+              href="https://ishaypesok.github.io/optimus-magazine/" 
+              target="_blank" 
+              rel="noreferrer"
+              className="hover:underline font-bold truncate"
+            >
+              ishaypesok.github.io/optimus-magazine
+            </a>
+          </div>
           <div>Optimus Bioenergetics Press • 19 Pages</div>
-          <div className="text-[10px] text-emerald-800 font-bold">Published on GitHub Pages</div>
         </div>
 
       </aside>
