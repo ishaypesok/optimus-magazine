@@ -29,6 +29,7 @@ import AntiAgingMasterclass from './AntiAgingMasterclass';
 import BioenergeticsCalculator from './BioenergeticsCalculator';
 import ForewordMission from './ForewordMission';
 import LongevityIndexSystem from './LongevityIndexSystem';
+import ScientificAccreditation from './ScientificAccreditation';
 import { PAGES_LIST } from './Sidebar';
 
 export default function MagazineView({ currentZoneId, setCurrentZoneId, activeArticle, setActiveArticle }) {
@@ -816,6 +817,11 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
         {/* ==================== PAGE 26: OPTIMUS BIOENERGETIC & LONGEVITY INDEX ==================== */}
         {activePage === 26 && (
           <LongevityIndexSystem />
+        )}
+
+        {/* ==================== PAGE 27: SCIENTIFIC ADVISORY & ACCREDITATION ==================== */}
+        {activePage === 27 && (
+          <ScientificAccreditation />
         )}
 
         {/* Page Footer Navigation */}

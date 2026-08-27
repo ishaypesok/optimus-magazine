@@ -32,6 +32,7 @@ export const PAGES_LIST = [
   { id: 24, title: 'Apple Watch Bioenergetics Calculator', label: 'Page 24: Substrate & ATP Calc', category: 'Personal Data', icon: Calculator, badge: '🧮 Calculator' },
   { id: 25, title: "Editor's Foreword & Mission", label: 'Page 25: Foreword & Mission', category: 'Fundamentals', icon: BookOpen, badge: '📰 Foreword' },
   { id: 26, title: 'Optimus Bioenergetic & Longevity Index (OBLI)', label: 'Page 26: Longevity & Health Index', category: 'Personal Data', icon: ShieldCheck, badge: '🏆 Longevity Index' },
+  { id: 27, title: 'Scientific Advisory & Accreditation', label: 'Page 27: Scientific Accreditation', category: 'Fundamentals', icon: ShieldCheck, badge: '🛡️ Scientific Seal' },
 ];
 
 export default function Sidebar({
