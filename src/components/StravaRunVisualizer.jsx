@@ -367,11 +367,11 @@ export default function StravaRunVisualizer() {
 
   const openZoomModal = (imgData) => {
     setZoomModalImage(imgData);
-    setZoomScale(1.5); // Open with 1.5x zoom by default
+    setZoomScale(1.0); // Start at 100% full view
     setPanOffset({ x: 0, y: 0 });
   };
 
-  const handleZoomIn = () => setZoomScale(prev => Math.min(4.0, Math.round((prev + 0.5) * 10) / 10));
+  const handleZoomIn = () => setZoomScale(prev => Math.min(5.0, Math.round((prev + 0.5) * 10) / 10));
   const handleZoomOut = () => setZoomScale(prev => Math.max(1.0, Math.round((prev - 0.5) * 10) / 10));
   const handleResetZoom = () => {
     setZoomScale(1.0);
@@ -379,13 +379,12 @@ export default function StravaRunVisualizer() {
   };
 
   const handleMouseDown = (e) => {
-    if (zoomScale <= 1) return;
     setIsDragging(true);
     setDragStart({ x: e.clientX - panOffset.x, y: e.clientY - panOffset.y });
   };
 
   const handleMouseMove = (e) => {
-    if (!isDragging || zoomScale <= 1) return;
+    if (!isDragging) return;
     setPanOffset({
       x: e.clientX - dragStart.x,
       y: e.clientY - dragStart.y
@@ -1651,37 +1650,51 @@ export default function StravaRunVisualizer() {
             </div>
 
             {/* Toolbar controls */}
-            <div className="flex items-center gap-2">
-              <span className="px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-700 text-emerald-300 font-mono text-xs font-bold shadow-inner">
-                Zoom: {Math.round(zoomScale * 100)}%
-              </span>
+            <div className="flex flex-wrap items-center gap-2">
+              {/* Quick Preset Buttons */}
+              <div className="flex items-center gap-1 bg-slate-900 p-1 rounded-xl border border-slate-700">
+                {[1, 1.5, 2, 3, 4, 5].map(lvl => (
+                  <button
+                    key={lvl}
+                    onClick={() => setZoomScale(lvl)}
+                    className={`px-2 py-1 rounded-lg text-xs font-bold font-mono transition ${
+                      zoomScale === lvl
+                        ? 'bg-emerald-600 text-white shadow-xs'
+                        : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                    }`}
+                  >
+                    {lvl * 100}%
+                  </button>
+                ))}
+              </div>
+
               <button
                 onClick={handleZoomIn}
-                className="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 active:scale-95 text-white font-bold transition flex items-center gap-1.5 text-xs border border-slate-700 shadow-sm"
-                title="Zoom In (+)"
+                className="p-2 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 active:scale-95 text-white font-extrabold transition flex items-center gap-1.5 text-xs border border-emerald-400/40 shadow-sm"
+                title="Zoom In (+50%)"
               >
-                <ZoomIn className="w-4 h-4 text-emerald-400" />
-                <span className="hidden sm:inline">Zoom In</span>
+                <ZoomIn className="w-4 h-4 text-white" />
+                <span>+ Zoom In</span>
               </button>
               <button
                 onClick={handleZoomOut}
-                className="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 active:scale-95 text-white font-bold transition flex items-center gap-1.5 text-xs border border-slate-700 shadow-sm"
-                title="Zoom Out (-)"
+                className="p-2 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 active:scale-95 text-white font-bold transition flex items-center gap-1.5 text-xs border border-slate-700 shadow-sm"
+                title="Zoom Out (-50%)"
               >
                 <ZoomOut className="w-4 h-4 text-emerald-400" />
-                <span className="hidden sm:inline">Zoom Out</span>
+                <span>- Zoom Out</span>
               </button>
               <button
                 onClick={handleResetZoom}
-                className="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 active:scale-95 text-white font-bold transition flex items-center gap-1.5 text-xs border border-slate-700 shadow-sm"
+                className="p-2 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 active:scale-95 text-white font-bold transition flex items-center gap-1.5 text-xs border border-slate-700 shadow-sm"
                 title="Reset Zoom (100%)"
               >
                 <RotateCcw className="w-4 h-4 text-cyan-400" />
-                <span className="hidden sm:inline">Reset</span>
+                <span>Reset</span>
               </button>
               <button
                 onClick={() => setZoomModalImage(null)}
-                className="p-2.5 rounded-xl bg-rose-600/20 hover:bg-rose-600/40 text-rose-300 font-extrabold transition border border-rose-500/40 text-xs flex items-center gap-1.5 shadow-sm"
+                className="p-2 py-1.5 rounded-xl bg-rose-600/20 hover:bg-rose-600/40 text-rose-300 font-extrabold transition border border-rose-500/40 text-xs flex items-center gap-1.5 shadow-sm"
               >
                 <X className="w-4 h-4 text-rose-400" />
                 <span>Close</span>
@@ -1691,27 +1704,32 @@ export default function StravaRunVisualizer() {
 
           {/* Interactive Viewport Canvas Area */}
           <div 
-            className="relative flex-1 overflow-hidden my-4 rounded-3xl bg-slate-900/90 border border-slate-800 flex items-center justify-center cursor-grab active:cursor-grabbing shadow-inner"
+            className="relative flex-1 overflow-hidden my-3 rounded-3xl bg-slate-950 border border-slate-800 flex items-center justify-center cursor-grab active:cursor-grabbing shadow-inner"
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
             onMouseUp={handleMouseUp}
             onMouseLeave={handleMouseUp}
             onWheel={handleWheel}
           >
-            <img
-              src={zoomModalImage.src}
-              alt={zoomModalImage.title}
-              onError={(e) => { e.target.src = zoomModalImage.altSrc; }}
+            <div
               style={{
                 transform: `translate(${panOffset.x}px, ${panOffset.y}px) scale(${zoomScale})`,
+                transformOrigin: 'center center',
                 transition: isDragging ? 'none' : 'transform 0.15s ease-out'
               }}
-              className="max-h-full max-w-full object-contain pointer-events-none shadow-2xl rounded-xl"
-            />
+              className="flex items-center justify-center w-full h-full p-4 pointer-events-none"
+            >
+              <img
+                src={zoomModalImage.src}
+                alt={zoomModalImage.title}
+                onError={(e) => { e.target.src = zoomModalImage.altSrc; }}
+                className="max-h-[75vh] max-w-[85vw] object-contain shadow-2xl rounded-xl"
+              />
+            </div>
 
             <div className="absolute bottom-4 left-4 bg-slate-950/90 px-3.5 py-2 rounded-xl border border-slate-700 text-xs text-slate-300 flex items-center gap-2 pointer-events-none shadow-lg">
               <Maximize2 className="w-4 h-4 text-emerald-400 shrink-0" />
-              <span>Use <strong>Mouse Wheel</strong> or <strong>+/- buttons</strong> to zoom. <strong>Drag</strong> image to pan around microscopic structures.</span>
+              <span>Use <strong>Mouse Wheel</strong> or <strong>Preset Buttons (100%–500%)</strong> to zoom. <strong>Drag</strong> image to pan around microscopic structures.</span>
             </div>
           </div>
 
