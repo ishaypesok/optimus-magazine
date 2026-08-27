@@ -30,6 +30,7 @@ import BioenergeticsCalculator from './BioenergeticsCalculator';
 import ForewordMission from './ForewordMission';
 import LongevityIndexSystem from './LongevityIndexSystem';
 import ScientificAccreditation from './ScientificAccreditation';
+import WingateLabPrep from './WingateLabPrep';
 import { PAGES_LIST } from './Sidebar';
 
 export default function MagazineView({ currentZoneId, setCurrentZoneId, activeArticle, setActiveArticle }) {
@@ -67,10 +68,11 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
           </div>
           <button 
             onClick={() => window.print()}
-            className="flex items-center gap-1 text-stone-600 hover:text-emerald-700 font-semibold transition"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-100 hover:bg-emerald-200 text-emerald-900 font-extrabold transition text-xs border border-emerald-300 shadow-xs"
+            title="Export PDF / Print Magazine Page"
           >
-            <Printer className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">Print Page</span>
+            <Printer className="w-3.5 h-3.5 text-emerald-700" />
+            <span>Export PDF / Print</span>
           </button>
         </div>
 
@@ -822,6 +824,11 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
         {/* ==================== PAGE 27: SCIENTIFIC ADVISORY & ACCREDITATION ==================== */}
         {activePage === 27 && (
           <ScientificAccreditation />
+        )}
+
+        {/* ==================== PAGE 28: WINGATE LAB TEST PREP & DATA ENTRY ==================== */}
+        {activePage === 28 && (
+          <WingateLabPrep />
         )}
 
         {/* Page Footer Navigation */}

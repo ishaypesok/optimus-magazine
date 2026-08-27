@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { 
   BookOpen, Search, X, Smile, Flame, Cpu, Zap, BarChart2, Activity, Clock, 
   ShieldCheck, User, Heart, BatteryCharging, TrendingUp, Droplet, Sun, Layers, Award, Dna, Trophy,
-  ArrowDownAZ, Hash, LayoutGrid, Link, Check, ExternalLink, Sparkles, Calculator
+  ArrowDownAZ, Hash, LayoutGrid, Link, Check, ExternalLink, Sparkles, Calculator, Calendar
 } from 'lucide-react';
 
 export const PAGES_LIST = [
@@ -33,6 +33,7 @@ export const PAGES_LIST = [
   { id: 25, title: "Editor's Foreword & Mission", label: 'Page 25: Foreword & Mission', category: 'Fundamentals', icon: BookOpen, badge: '📰 Foreword' },
   { id: 26, title: 'Optimus Bioenergetic & Longevity Index (OBLI)', label: 'Page 26: Longevity & Health Index', category: 'Personal Data', icon: ShieldCheck, badge: '🏆 Longevity Index' },
   { id: 27, title: 'Scientific Advisory & Accreditation', label: 'Page 27: Scientific Accreditation', category: 'Fundamentals', icon: ShieldCheck, badge: '🛡️ Scientific Seal' },
+  { id: 28, title: 'Wingate Lab Test Prep & Entry', label: 'Page 28: Wingate Lab Prep', category: 'Protocols', icon: Calendar, badge: '🔬 Wingate Prep' },
 ];
 
 export default function Sidebar({
