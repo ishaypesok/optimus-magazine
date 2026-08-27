@@ -1182,19 +1182,25 @@ export default function StravaRunVisualizer() {
               </div>
             </div>
 
-            {/* SVG Map Display with Outdoor Trail Map Layer */}
-            <div className="relative w-full h-80 bg-slate-950 rounded-2xl p-4 overflow-hidden border border-slate-800 shadow-inner flex flex-col justify-between">
-              {/* Topographic Trail Grid Background */}
-              <div className="absolute inset-0 opacity-15 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:28px_28px]" />
+            {/* SVG Map Display with High-Contrast Outdoor Trail Map Layer */}
+            <div className="relative w-full h-84 bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 rounded-3xl p-5 overflow-hidden border-2 border-slate-700 shadow-2xl flex flex-col justify-between">
+              {/* Bright Topographic Trail Grid Background */}
+              <div className="absolute inset-0 opacity-25 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:28px_28px]" />
               
-              <div className="relative z-10 flex items-center justify-between text-xs text-stone-300 font-mono">
-                <span className="px-3 py-1.5 rounded-xl bg-slate-900/90 border border-emerald-500/30 text-emerald-300 flex items-center gap-2 font-bold shadow-md">
+              <div className="relative z-10 flex flex-wrap items-center justify-between text-xs text-stone-200 font-mono gap-2">
+                <span className="px-3 py-1.5 rounded-xl bg-slate-800/95 border border-emerald-400/50 text-emerald-300 flex items-center gap-2 font-bold shadow-lg">
                   <MapPin className="w-4 h-4 text-emerald-400 animate-bounce" /> 
-                  <span>Outdoor Trail Route • {currentRun.title}</span>
+                  <span>Outdoor Trail Map • {currentRun.title}</span>
                 </span>
-                <div className="flex items-center gap-2 bg-slate-900/80 px-2.5 py-1 rounded-lg border border-slate-700 text-[11px]">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                  <span className="text-slate-300 font-mono">Apple Watch Ultra L1+L5 GPS Trail Tracking</span>
+                
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="px-3 py-1 rounded-full bg-rose-500/20 text-rose-300 text-[11px] font-extrabold border border-rose-400/40 flex items-center gap-1.5">
+                    <Heart className="w-3.5 h-3.5 text-rose-400 fill-rose-500 animate-pulse" /> Apple Watch Z2 Alert Active (105–117 BPM)
+                  </span>
+                  <div className="flex items-center gap-2 bg-slate-800/90 px-2.5 py-1 rounded-lg border border-slate-600 text-[11px]">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                    <span className="text-slate-200 font-mono font-semibold">Dual L1+L5 GPS</span>
+                  </div>
                 </div>
               </div>
 
@@ -1208,35 +1214,46 @@ export default function StravaRunVisualizer() {
                     <stop offset="100%" stopColor="#10b981" />
                   </linearGradient>
 
-                  <pattern id="topoPattern" width="40" height="40" patternUnits="userSpaceOnUse">
-                    <circle cx="20" cy="20" r="15" fill="none" stroke="#334155" strokeWidth="0.8" opacity="0.3" strokeDasharray="2 2" />
-                  </pattern>
+                  <linearGradient id="parkTerrainGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#047857" stopOpacity="0.45" />
+                    <stop offset="100%" stopColor="#065f46" stopOpacity="0.25" />
+                  </linearGradient>
+
+                  <linearGradient id="waterFeatureGrad" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stopColor="#0284c7" stopOpacity="0.6" />
+                    <stop offset="100%" stopColor="#0369a1" stopOpacity="0.4" />
+                  </linearGradient>
                 </defs>
 
-                {/* Topographic Elevation Contour Background Lines */}
-                <path d="M 10,40 Q 150,10 300,50 T 590,30" fill="none" stroke="#1e293b" strokeWidth="1.5" strokeDasharray="4 4" opacity="0.6" />
-                <path d="M 10,90 Q 200,60 400,100 T 590,70" fill="none" stroke="#1e293b" strokeWidth="1.5" strokeDasharray="4 4" opacity="0.6" />
-                <path d="M 10,150 Q 180,120 380,170 T 590,140" fill="none" stroke="#1e293b" strokeWidth="1.5" strokeDasharray="4 4" opacity="0.6" />
+                {/* Bright High-Contrast Topographic Elevation Contour Lines */}
+                <path d="M 10,35 Q 150,5 300,45 T 590,25" fill="none" stroke="#64748b" strokeWidth="1.8" strokeDasharray="5 4" opacity="0.85" />
+                <path d="M 10,85 Q 200,55 400,95 T 590,65" fill="none" stroke="#64748b" strokeWidth="1.8" strokeDasharray="5 4" opacity="0.85" />
+                <path d="M 10,145 Q 180,115 380,165 T 590,135" fill="none" stroke="#64748b" strokeWidth="1.8" strokeDasharray="5 4" opacity="0.85" />
+                <path d="M 10,195 Q 210,175 410,215 T 590,185" fill="none" stroke="#475569" strokeWidth="1.5" strokeDasharray="3 3" opacity="0.7" />
 
-                {/* Park / Forest Trail Green Terrain Area */}
+                {/* Park / Forest Trail Green Terrain Area (High Contrast) */}
                 <path
-                  d="M 20,190 C 80,100 180,80 280,120 C 380,160 480,70 580,160 L 580,220 L 20,220 Z"
-                  fill="#065f46"
-                  opacity="0.15"
+                  d="M 20,190 C 80,100 180,80 280,120 C 380,160 480,70 580,160 L 580,225 L 20,225 Z"
+                  fill="url(#parkTerrainGrad)"
+                  stroke="#10b981"
+                  strokeWidth="1"
+                  strokeDasharray="4 2"
+                  opacity="0.9"
                 />
+                <text x="140" y="165" fill="#6ee7b7" fontSize="9" fontWeight="extrabold" opacity="0.85">🌲 Pine Forest Nature Reserve</text>
 
-                {/* Lake / Reservoir Water Feature */}
-                <ellipse cx="340" cy="85" rx="55" ry="22" fill="#0891b2" opacity="0.2" />
-                <text x="340" y="88" fill="#22d3ee" fontSize="8" fontWeight="bold" textAnchor="middle" opacity="0.7">Pine Lake Loop</text>
+                {/* Lake / Reservoir Water Feature (High Contrast Cyan) */}
+                <ellipse cx="340" cy="85" rx="58" ry="24" fill="url(#waterFeatureGrad)" stroke="#38bdf8" strokeWidth="1.5" />
+                <text x="340" y="89" fill="#bae6fd" fontSize="9" fontWeight="black" textAnchor="middle">🌊 Pine Lake Loop</text>
 
                 {/* Outer Trail Loop Path (Dashed Reference Line) */}
                 <path
                   d="M 40,180 Q 110,130 160,110 T 270,140 T 370,90 T 470,130 T 570,175"
                   fill="none"
-                  stroke="#475569"
-                  strokeWidth="10"
+                  stroke="#64748b"
+                  strokeWidth="12"
                   strokeLinecap="round"
-                  opacity="0.25"
+                  opacity="0.45"
                 />
 
                 {/* Actual Active GPS Trail Route Path */}
@@ -1244,56 +1261,49 @@ export default function StravaRunVisualizer() {
                   d="M 40,180 Q 110,130 160,110 T 270,140 T 370,90 T 470,130 T 570,175"
                   fill="none"
                   stroke="url(#routeGradient)"
-                  strokeWidth="5"
+                  strokeWidth="6"
                   strokeLinecap="round"
-                  opacity="0.95"
+                  opacity="1"
                 />
 
                 {/* Trail Km & Elevation Markers */}
-                <g opacity="0.8">
+                <g opacity="0.95">
                   {/* Start Trailhead */}
-                  <rect x="25" y="192" width="45" height="16" rx="4" fill="#0f172a" stroke="#10b981" strokeWidth="1" />
-                  <text x="47" y="203" fill="#34d399" fontSize="8" fontWeight="bold" textAnchor="middle">KM 0.0 🏁</text>
+                  <rect x="25" y="192" width="52" height="18" rx="5" fill="#1e293b" stroke="#10b981" strokeWidth="1.5" />
+                  <text x="51" y="204" fill="#34d399" fontSize="9" fontWeight="bold" textAnchor="middle">KM 0.0 🏁</text>
 
                   {/* Mid-Trail Peak */}
-                  <rect x="345" y="65" width="55" height="16" rx="4" fill="#0f172a" stroke="#f59e0b" strokeWidth="1" />
-                  <text x="372" y="76" fill="#fbbf24" fontSize="8" fontWeight="bold" textAnchor="middle">KM 3.1 ⛰️</text>
+                  <rect x="345" y="62" width="60" height="18" rx="5" fill="#1e293b" stroke="#f59e0b" strokeWidth="1.5" />
+                  <text x="375" y="74" fill="#fbbf24" fontSize="9" fontWeight="bold" textAnchor="middle">KM 3.1 ⛰️</text>
 
                   {/* Trail Finish */}
-                  <rect x="540" y="188" width="50" height="16" rx="4" fill="#0f172a" stroke="#10b981" strokeWidth="1" />
-                  <text x="565" y="199" fill="#34d399" fontSize="8" fontWeight="bold" textAnchor="middle">KM 6.13 🎯</text>
+                  <rect x="535" y="188" width="55" height="18" rx="5" fill="#1e293b" stroke="#10b981" strokeWidth="1.5" />
+                  <text x="562" y="200" fill="#34d399" fontSize="9" fontWeight="bold" textAnchor="middle">KM 6.13 🎯</text>
                 </g>
 
                 {/* Interactive Waypoint Circles on Trail */}
                 {currentRun.coordinates?.map((pt, idx) => {
                   const isSelected = selectedPoint === idx;
                   const isZone3 = pt.hr > 117;
-                  const trailSegmentNames = [
-                    'South Trailhead Start (KM 0.0)',
-                    'Meadow Ridge Path (KM 1.5)',
-                    'Summit Hill Climb (KM 3.1)',
-                    'Lake Perimeter Loop (KM 4.8)',
-                    'Finish Trailhead Stretch (KM 6.13)'
-                  ];
 
                   return (
                     <g key={idx} className="pointer-events-auto cursor-pointer" onMouseEnter={() => setSelectedPoint(idx)}>
                       <circle
                         cx={pt.x}
                         cy={pt.y}
-                        r={isSelected ? "9" : "6"}
+                        r={isSelected ? "10" : "7"}
                         fill={isZone3 ? "#f59e0b" : "#10b981"}
                         stroke="#ffffff"
-                        strokeWidth="2.5"
-                        className="transition-all hover:r-9"
+                        strokeWidth="3"
+                        className="transition-all hover:r-10"
                       />
-                      {/* Waypoint Number Badge */}
+                      {/* Waypoint HR Badge */}
                       <text
                         x={pt.x}
-                        y={pt.y - 12}
-                        fill={isSelected ? "#34d399" : "#e2e8f0"}
-                        fontSize={isSelected ? "11" : "9"}
-                        fontWeight="bold"
+                        y={pt.y - 14}
+                        fill={isSelected ? "#34d399" : "#ffffff"}
+                        fontSize={isSelected ? "12" : "10"}
+                        fontWeight="black"
                         textAnchor="middle"
                       >
                         {pt.hr} BPM
@@ -1304,7 +1314,7 @@ export default function StravaRunVisualizer() {
               </svg>
 
               {/* Active Waypoint & Trail Segment Telemetry Footer */}
-              <div className="relative z-10 flex items-center justify-between text-xs text-stone-300 font-mono bg-slate-900/95 p-3 rounded-xl border border-slate-800 shadow-md">
+              <div className="relative z-10 flex items-center justify-between text-xs text-stone-200 font-mono bg-slate-900/95 p-3.5 rounded-2xl border border-slate-700 shadow-xl">
                 {selectedPoint !== null && currentRun.coordinates?.[selectedPoint] ? (() => {
                   const pt = currentRun.coordinates[selectedPoint];
                   const trailSegmentNames = [
@@ -1325,14 +1335,19 @@ export default function StravaRunVisualizer() {
                       <div className="flex items-center gap-3 text-[11px]">
                         <span>Heart Rate: <strong className={pt.hr > 117 ? 'text-amber-400' : 'text-emerald-400'}>{pt.hr} BPM</strong></span>
                         <span>Zone: <strong>{pt.zone}</strong></span>
-                        <span className="text-slate-400">Target Range: 105–117 BPM</span>
+                        <span className="text-slate-300">Watch Alert Range: 105–117 BPM</span>
                       </div>
                     </div>
                   );
                 })() : (
-                  <div className="text-slate-400 flex items-center gap-2">
-                    <Sparkles className="w-4 h-4 text-emerald-400" />
-                    <span><strong>Trail Map Layer Active:</strong> Hover over any GPS trail waypoint to view segment location, elevation, and heart rate.</span>
+                  <div className="text-slate-300 flex items-center justify-between w-full">
+                    <div className="flex items-center gap-2">
+                      <Sparkles className="w-4 h-4 text-emerald-400" />
+                      <span><strong>Bright Outdoor Trail Layer Active:</strong> Hover over waypoints to inspect segment locations, elevation contours, and HR telemetry.</span>
+                    </div>
+                    <span className="text-rose-400 font-bold flex items-center gap-1">
+                      <Heart className="w-3.5 h-3.5 fill-rose-500" /> Watch Z2 Alert Active
+                    </span>
                   </div>
                 )}
               </div>
