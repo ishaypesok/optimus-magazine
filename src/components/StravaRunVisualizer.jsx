@@ -1637,11 +1637,11 @@ export default function StravaRunVisualizer() {
       {zoomModalImage && (
         <div className="fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-md flex flex-col justify-between p-4 sm:p-6 animate-fade-in select-none">
           
-          {/* Modal Header Bar */}
-          <div className="flex flex-wrap items-center justify-between text-white border-b border-slate-800 pb-3 gap-3">
+          {/* Modal Top Header Bar */}
+          <div className="flex items-center justify-between text-white border-b border-slate-800 pb-3 gap-3">
             <div className="space-y-0.5">
               <div className="flex items-center gap-2 text-emerald-400 font-extrabold text-xs uppercase tracking-wider">
-                <Sparkles className="w-4 h-4 text-emerald-400" /> High-Resolution Microscopic Cellular Inspector
+                <Sparkles className="w-4 h-4 text-emerald-400" /> Microscopic Cellular Inspector
               </div>
               <h3 className="text-lg sm:text-xl font-black text-white">
                 {zoomModalImage.title}
@@ -1649,57 +1649,13 @@ export default function StravaRunVisualizer() {
               <p className="text-xs text-slate-400 font-medium">{zoomModalImage.subtitle}</p>
             </div>
 
-            {/* Toolbar controls */}
-            <div className="flex flex-wrap items-center gap-2">
-              {/* Quick Preset Buttons */}
-              <div className="flex items-center gap-1 bg-slate-900 p-1 rounded-xl border border-slate-700">
-                {[1, 1.5, 2, 3, 4, 5].map(lvl => (
-                  <button
-                    key={lvl}
-                    onClick={() => setZoomScale(lvl)}
-                    className={`px-2 py-1 rounded-lg text-xs font-bold font-mono transition ${
-                      zoomScale === lvl
-                        ? 'bg-emerald-600 text-white shadow-xs'
-                        : 'text-slate-400 hover:text-white hover:bg-slate-800'
-                    }`}
-                  >
-                    {lvl * 100}%
-                  </button>
-                ))}
-              </div>
-
-              <button
-                onClick={handleZoomIn}
-                className="p-2 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 active:scale-95 text-white font-extrabold transition flex items-center gap-1.5 text-xs border border-emerald-400/40 shadow-sm"
-                title="Zoom In (+50%)"
-              >
-                <ZoomIn className="w-4 h-4 text-white" />
-                <span>+ Zoom In</span>
-              </button>
-              <button
-                onClick={handleZoomOut}
-                className="p-2 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 active:scale-95 text-white font-bold transition flex items-center gap-1.5 text-xs border border-slate-700 shadow-sm"
-                title="Zoom Out (-50%)"
-              >
-                <ZoomOut className="w-4 h-4 text-emerald-400" />
-                <span>- Zoom Out</span>
-              </button>
-              <button
-                onClick={handleResetZoom}
-                className="p-2 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 active:scale-95 text-white font-bold transition flex items-center gap-1.5 text-xs border border-slate-700 shadow-sm"
-                title="Reset Zoom (100%)"
-              >
-                <RotateCcw className="w-4 h-4 text-cyan-400" />
-                <span>Reset</span>
-              </button>
-              <button
-                onClick={() => setZoomModalImage(null)}
-                className="p-2 py-1.5 rounded-xl bg-rose-600/20 hover:bg-rose-600/40 text-rose-300 font-extrabold transition border border-rose-500/40 text-xs flex items-center gap-1.5 shadow-sm"
-              >
-                <X className="w-4 h-4 text-rose-400" />
-                <span>Close</span>
-              </button>
-            </div>
+            <button
+              onClick={() => setZoomModalImage(null)}
+              className="px-4 py-2 rounded-2xl bg-rose-600/20 hover:bg-rose-600/40 text-rose-300 font-extrabold transition border border-rose-500/40 text-xs flex items-center gap-1.5 shadow-lg active:scale-95"
+            >
+              <X className="w-4.5 h-4.5 text-rose-400" />
+              <span>Close</span>
+            </button>
           </div>
 
           {/* Interactive Viewport Canvas Area */}
@@ -1723,20 +1679,67 @@ export default function StravaRunVisualizer() {
                 src={zoomModalImage.src}
                 alt={zoomModalImage.title}
                 onError={(e) => { e.target.src = zoomModalImage.altSrc; }}
-                className="max-h-[75vh] max-w-[85vw] object-contain shadow-2xl rounded-xl"
+                className="max-h-[72vh] max-w-[85vw] object-contain shadow-2xl rounded-xl"
               />
-            </div>
-
-            <div className="absolute bottom-4 left-4 bg-slate-950/90 px-3.5 py-2 rounded-xl border border-slate-700 text-xs text-slate-300 flex items-center gap-2 pointer-events-none shadow-lg">
-              <Maximize2 className="w-4 h-4 text-emerald-400 shrink-0" />
-              <span>Use <strong>Mouse Wheel</strong> or <strong>Preset Buttons (100%–500%)</strong> to zoom. <strong>Drag</strong> image to pan around microscopic structures.</span>
             </div>
           </div>
 
-          {/* Modal Footer Info */}
-          <div className="bg-slate-900 p-3.5 rounded-2xl border border-slate-800 text-xs text-slate-300 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 font-mono">
-            <span>🔬 {zoomModalImage.description}</span>
-            <span className="text-emerald-400 font-bold shrink-0">15,000x High-Res Bio-Imaging</span>
+          {/* Floating Bottom Control Dock */}
+          <div className="bg-slate-900/95 backdrop-blur-md p-3 sm:p-4 rounded-2xl border border-slate-700 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-4 font-sans">
+            
+            {/* Description Info */}
+            <div className="text-xs text-slate-300 flex items-center gap-2 max-w-lg">
+              <Sparkles className="w-4 h-4 text-emerald-400 shrink-0" />
+              <span className="line-clamp-2">🔬 {zoomModalImage.description}</span>
+            </div>
+
+            {/* Bottom Controls Strip: Zoom Presets + In/Out/Reset */}
+            <div className="flex flex-wrap items-center gap-2 shrink-0">
+              <div className="flex items-center gap-1 bg-slate-950 p-1 rounded-xl border border-slate-800 shadow-inner">
+                <span className="text-[10px] font-mono font-bold text-slate-500 px-2 uppercase tracking-wider">Presets:</span>
+                {[1, 1.5, 2, 3, 4, 5].map(lvl => (
+                  <button
+                    key={lvl}
+                    onClick={() => setZoomScale(lvl)}
+                    className={`px-2.5 py-1.5 rounded-lg text-xs font-black font-mono transition shadow-xs ${
+                      zoomScale === lvl
+                        ? 'bg-emerald-600 text-white shadow-md ring-1 ring-emerald-400'
+                        : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                    }`}
+                  >
+                    {lvl * 100}%
+                  </button>
+                ))}
+              </div>
+
+              <div className="flex items-center gap-1.5">
+                <button
+                  onClick={handleZoomIn}
+                  className="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 active:scale-95 text-white font-extrabold transition flex items-center gap-1.5 text-xs border border-emerald-400/40 shadow-md"
+                  title="Zoom In (+50%)"
+                >
+                  <ZoomIn className="w-4 h-4 text-white" />
+                  <span>+ Zoom In</span>
+                </button>
+                <button
+                  onClick={handleZoomOut}
+                  className="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 active:scale-95 text-white font-bold transition flex items-center gap-1.5 text-xs border border-slate-700 shadow-sm"
+                  title="Zoom Out (-50%)"
+                >
+                  <ZoomOut className="w-4 h-4 text-emerald-400" />
+                  <span>- Zoom Out</span>
+                </button>
+                <button
+                  onClick={handleResetZoom}
+                  className="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 active:scale-95 text-white font-bold transition flex items-center gap-1.5 text-xs border border-slate-700 shadow-sm"
+                  title="Reset Zoom (100%)"
+                >
+                  <RotateCcw className="w-4 h-4 text-cyan-400" />
+                  <span>Reset</span>
+                </button>
+              </div>
+            </div>
+
           </div>
 
         </div>
