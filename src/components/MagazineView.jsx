@@ -27,6 +27,7 @@ import CellularCosmos from './CellularCosmos';
 import TenKTracker from './TenKTracker';
 import AntiAgingMasterclass from './AntiAgingMasterclass';
 import BioenergeticsCalculator from './BioenergeticsCalculator';
+import ForewordMission from './ForewordMission';
 import { PAGES_LIST } from './Sidebar';
 
 export default function MagazineView({ currentZoneId, setCurrentZoneId, activeArticle, setActiveArticle }) {
@@ -756,6 +757,11 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
         {/* ==================== PAGE 24: APPLE WATCH BIOENERGETICS CALCULATOR ==================== */}
         {activePage === 24 && (
           <BioenergeticsCalculator />
+        )}
+
+        {/* ==================== PAGE 25: EDITOR'S FOREWORD & MISSION STATEMENT ==================== */}
+        {activePage === 25 && (
+          <ForewordMission setPage={setPage} />
         )}
 
         {/* Page Footer Navigation */}

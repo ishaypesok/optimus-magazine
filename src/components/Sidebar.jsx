@@ -30,6 +30,7 @@ export const PAGES_LIST = [
   { id: 22, title: 'Wise 10K Training & Run Tracker', label: 'Page 22: 10K Training Tracker', category: 'Protocols', icon: Trophy, badge: '🏃 10K Tracker' },
   { id: 23, title: 'Anti-Aging & Longevity Science', label: 'Page 23: Anti-Aging Science', category: 'Deep Physiology', icon: Sparkles, badge: '✨ Anti-Aging' },
   { id: 24, title: 'Apple Watch Bioenergetics Calculator', label: 'Page 24: Substrate & ATP Calc', category: 'Personal Data', icon: Calculator, badge: '🧮 Calculator' },
+  { id: 25, title: "Editor's Foreword & Mission", label: 'Page 25: Foreword & Mission', category: 'Fundamentals', icon: BookOpen, badge: '📰 Foreword' },
 ];
 
 export default function Sidebar({
