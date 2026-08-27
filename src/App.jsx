@@ -20,9 +20,9 @@ function getPageFromHash() {
 
 export default function App() {
   const [currentZoneId, setCurrentZoneId] = useState(2);
-  // Initial page from URL hash or default to Page 4 (Live Cell Visualizer)
+  // Initial page from URL hash or default to Page 1 (Editor's Foreword & Mission)
   const [activeArticle, setActiveArticle] = useState(() => {
-    return getPageFromHash() || 4;
+    return getPageFromHash() || 1;
   });
   const [searchQuery, setSearchQuery] = useState('');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
