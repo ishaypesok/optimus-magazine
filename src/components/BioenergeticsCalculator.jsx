@@ -236,7 +236,7 @@ export default function BioenergeticsCalculator() {
           {/* Slider 1: Body Weight */}
           <div className="space-y-1.5">
             <div className="flex justify-between text-xs font-bold text-stone-800">
-              <span>Body Mass ($m$)</span>
+              <span>Body Mass (kg)</span>
               <span className="font-mono text-emerald-800 font-extrabold">{weight} kg</span>
             </div>
             <input 
@@ -255,7 +255,7 @@ export default function BioenergeticsCalculator() {
           {/* Slider 2: Resting Heart Rate */}
           <div className="space-y-1.5">
             <div className="flex justify-between text-xs font-bold text-stone-800">
-              <span>Resting Heart Rate ($HR_{rest}$)</span>
+              <span>Resting Heart Rate (HR rest)</span>
               <span className="font-mono text-emerald-800 font-extrabold">{restingHr} BPM</span>
             </div>
             <input 
@@ -274,7 +274,7 @@ export default function BioenergeticsCalculator() {
           {/* Slider 3: VO2max */}
           <div className="space-y-1.5">
             <div className="flex justify-between text-xs font-bold text-stone-800">
-              <span>Cardiorespiratory Fitness ($VO_2\max$)</span>
+              <span>Cardiorespiratory Fitness (VO₂max)</span>
               <span className="font-mono text-emerald-800 font-extrabold">{vo2max} mL/kg/min</span>
             </div>
             <input 
@@ -293,7 +293,7 @@ export default function BioenergeticsCalculator() {
           {/* Slider 4: Workout Heart Rate */}
           <div className="space-y-1.5">
             <div className="flex justify-between text-xs font-bold text-stone-800">
-              <span>Workout Average Heart Rate ($HR_{avg}$)</span>
+              <span>Workout Average Heart Rate (HR avg)</span>
               <span className="font-mono text-emerald-800 font-extrabold">{workoutHr} BPM</span>
             </div>
             <input 
@@ -312,7 +312,7 @@ export default function BioenergeticsCalculator() {
           {/* Slider 5: Workout Duration */}
           <div className="space-y-1.5">
             <div className="flex justify-between text-xs font-bold text-stone-800">
-              <span>Workout Duration ($t$)</span>
+              <span>Workout Duration (mins)</span>
               <span className="font-mono text-emerald-800 font-extrabold">{duration} mins</span>
             </div>
             <input 
@@ -335,7 +335,7 @@ export default function BioenergeticsCalculator() {
               <span className="font-mono text-emerald-800 font-black">{(hrr * 100).toFixed(1)}%</span>
             </div>
             <div className="flex justify-between items-center text-xs font-bold text-emerald-950">
-              <span>Estimated RER ($VCO_2 / VO_2$):</span>
+              <span>Estimated RER (VCO₂ / VO₂):</span>
               <span className="font-mono text-emerald-800 font-black">{rer.toFixed(3)}</span>
             </div>
             <div className="text-[11px] text-stone-600 pt-1 border-t border-emerald-200/60 font-medium">
@@ -368,13 +368,13 @@ export default function BioenergeticsCalculator() {
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
               <div className="p-3 rounded-xl bg-stone-50 border border-stone-200">
-                <div className="text-[10px] font-bold text-stone-500 uppercase">Relative $VO_2$</div>
+                <div className="text-[10px] font-bold text-stone-500 uppercase">Relative VO₂</div>
                 <div className="text-base font-extrabold text-stone-900 font-mono mt-0.5">{vo2MlKgMin.toFixed(1)}</div>
                 <div className="text-[10px] text-stone-600">mL/kg/min</div>
               </div>
 
               <div className="p-3 rounded-xl bg-stone-50 border border-stone-200">
-                <div className="text-[10px] font-bold text-stone-500 uppercase">Absolute $\dot{V}O_2$</div>
+                <div className="text-[10px] font-bold text-stone-500 uppercase">Absolute VO₂ Rate</div>
                 <div className="text-base font-extrabold text-emerald-800 font-mono mt-0.5">{vo2LMin.toFixed(3)}</div>
                 <div className="text-[10px] text-stone-600">Liters O₂ / min</div>
               </div>
