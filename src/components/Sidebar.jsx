@@ -6,34 +6,41 @@ import {
 } from 'lucide-react';
 
 export const PAGES_LIST = [
-  { id: 1, title: 'What is Zone 2? (Easy Intro)', label: 'Page 1: What is Zone 2?', category: 'Fundamentals', icon: Smile, badge: 'Beginner' },
-  { id: 2, title: 'FATmax Science & Bioenergetics', label: 'Page 2: FATmax Science', category: 'Fundamentals', icon: Flame, badge: 'Core' },
-  { id: 3, title: 'Cell Engine & PGC-1α Biogenesis', label: 'Page 3: Cell Engine', category: 'Cell Biology', icon: Cpu, badge: 'Science' },
-  { id: 4, title: 'Live Cell Visualizer', label: 'Page 4: Live Cell Visualizer', category: 'Cell Biology', icon: Zap, badge: '⭐ Featured' },
-  { id: 5, title: 'Zone 2 vs. Other Sports', label: 'Page 5: vs. Other Sports', category: 'Cell Biology', icon: BarChart2, badge: 'Comparison' },
-  { id: 6, title: 'Lactate Paradox & Shuttle', label: 'Page 6: Lactate Paradox', category: 'Cell Biology', icon: Activity, badge: 'Mythbusting' },
-  { id: 7, title: '1-Hour Field Experiment', label: 'Page 7: 1-Hr Field Study', category: 'Field Studies', icon: Clock, badge: 'Data' },
-  { id: 8, title: 'Longevity Masterclass & Protocols', label: 'Page 8: Longevity Masterclass', category: 'Field Studies', icon: ShieldCheck, badge: 'Health' },
-  { id: 9, title: 'Ishai Athlete Profile', label: 'Page 9: Ishai Profile', category: 'Personal Data', icon: User, badge: '👤 Profile' },
-  { id: 10, title: 'Apple Watch Ultra Telemetry & Runs', label: 'Page 10: Watch Runs', category: 'Personal Data', icon: Heart, badge: '⌚ Apple Watch' },
-  { id: 11, title: 'Zone 2 & Recovery Mastery', label: 'Page 11: Zone 2 & Recovery', category: 'Protocols', icon: BatteryCharging, badge: '🔋 Fuel' },
-  { id: 12, title: 'Aerobic Expectations & HR Drift', label: 'Page 12: Aerobic Expectations', category: 'Protocols', icon: TrendingUp, badge: 'HR Drift' },
-  { id: 13, title: 'Nutrition & Blood Pressure', label: 'Page 13: Nutrition & BP', category: 'Protocols', icon: Droplet, badge: '🥗 Health' },
-  { id: 14, title: 'Heat & Humidity Guide', label: 'Page 14: Heat & Humidity', category: 'Protocols', icon: Sun, badge: '☀️ Weather' },
-  { id: 15, title: 'Whole-Body Organ Systems', label: 'Page 15: Whole-Body Organ Systems', category: 'Deep Physiology', icon: Layers, badge: '🫀 Organs' },
-  { id: 16, title: 'Run Progress & Analytics Table', label: 'Page 16: Run Progress Table', category: 'Deep Physiology', icon: Award, badge: '📈 Analytics' },
-  { id: 17, title: 'Bacterial & Mitochondrial Evolution', label: 'Page 17: Bacterial Reproduction', category: 'Deep Physiology', icon: Dna, badge: '🦠 Evolution' },
-  { id: 18, title: "Runner's License & Certification", label: "Page 18: Runner's License", category: 'Fundamentals', icon: Award, badge: '📜 License' },
-  { id: 19, title: 'How the Human Body Creates Fat', label: 'Page 19: How Body Creates Fat', category: 'Deep Physiology', icon: Layers, badge: '🧪 Lipogenesis' },
-  { id: 20, title: 'Molecular Assembly Line (Citrate)', label: 'Page 20: Molecular Assembly Line', category: 'Cell Biology', icon: Cpu, badge: '⚡ Interactive' },
-  { id: 21, title: 'The Cellular Cosmos (3D Cell Model)', label: 'Page 21: The Cellular Cosmos', category: 'Cell Biology', icon: Sparkles, badge: '🌌 3D Model' },
-  { id: 22, title: 'Wise 10K Training & Run Tracker', label: 'Page 22: 10K Training Tracker', category: 'Protocols', icon: Trophy, badge: '🏃 10K Tracker' },
-  { id: 23, title: 'Anti-Aging & Longevity Science', label: 'Page 23: Anti-Aging Science', category: 'Deep Physiology', icon: Sparkles, badge: '✨ Anti-Aging' },
-  { id: 24, title: 'Apple Watch Bioenergetics Calculator', label: 'Page 24: Substrate & ATP Calc', category: 'Personal Data', icon: Calculator, badge: '🧮 Calculator' },
-  { id: 25, title: "Editor's Foreword & Mission", label: 'Page 25: Foreword & Mission', category: 'Fundamentals', icon: BookOpen, badge: '📰 Foreword' },
-  { id: 26, title: 'Optimus Bioenergetic & Longevity Index (OBLI)', label: 'Page 26: Longevity & Health Index', category: 'Personal Data', icon: ShieldCheck, badge: '🏆 Longevity Index' },
-  { id: 27, title: 'Scientific Advisory & Accreditation', label: 'Page 27: Scientific Accreditation', category: 'Fundamentals', icon: ShieldCheck, badge: '🛡️ Scientific Seal' },
-  { id: 28, title: 'Wingate Lab Test Prep & Entry', label: 'Page 28: Wingate Lab Prep', category: 'Protocols', icon: Calendar, badge: '🔬 Wingate Prep' },
+  // TIER 1: ESSENTIAL CORE & ATHLETE DATA (HIGHEST PRIORITY)
+  { id: 1, title: "Editor's Foreword & Mission", label: 'Page 1: Foreword & Mission', category: 'Fundamentals', icon: BookOpen, badge: '📰 Mission' },
+  { id: 2, title: 'Ishai Athlete Profile', label: 'Page 2: Ishai Profile', category: 'Personal Data', icon: User, badge: '👤 Profile' },
+  { id: 3, title: 'Apple Watch Ultra Telemetry & Runs', label: 'Page 3: Watch Runs & Telemetry', category: 'Personal Data', icon: Heart, badge: '⌚ Telemetry' },
+  { id: 4, title: 'What is Zone 2? (Easy Intro)', label: 'Page 4: What is Zone 2?', category: 'Fundamentals', icon: Smile, badge: 'Beginner' },
+  { id: 5, title: 'FATmax Science & Bioenergetics', label: 'Page 5: FATmax Science', category: 'Fundamentals', icon: Flame, badge: 'Core' },
+  { id: 6, title: 'Wingate Lab Test Prep & Entry', label: 'Page 6: Wingate Lab Prep', category: 'Protocols', icon: Calendar, badge: '🔬 Wingate Prep' },
+
+  // TIER 2: INTERACTIVE CALCULATORS & ACCREDITATION
+  { id: 7, title: 'Apple Watch Bioenergetics Calculator', label: 'Page 7: Substrate & ATP Calc', category: 'Personal Data', icon: Calculator, badge: '🧮 Calculator' },
+  { id: 8, title: 'Wise 10K Training & Run Tracker', label: 'Page 8: 10K Training Tracker', category: 'Protocols', icon: Trophy, badge: '🏃 10K Tracker' },
+  { id: 9, title: 'Optimus Bioenergetic & Longevity Index (OBLI)', label: 'Page 9: Longevity Index', category: 'Personal Data', icon: ShieldCheck, badge: '🏆 Longevity Index' },
+  { id: 10, title: "Runner's License & Certification", label: "Page 10: Runner's License", category: 'Fundamentals', icon: Award, badge: '📜 License' },
+  { id: 11, title: 'Scientific Advisory & Accreditation', label: 'Page 11: Scientific Accreditation', category: 'Fundamentals', icon: ShieldCheck, badge: '🛡️ Scientific Seal' },
+  { id: 12, title: 'Live Cell Visualizer', label: 'Page 12: Live Cell Visualizer', category: 'Cell Biology', icon: Zap, badge: '⭐ Featured' },
+
+  // TIER 3: KEY PROTOCOLS & PHYSIOLOGY
+  { id: 13, title: 'Cell Engine & PGC-1α Biogenesis', label: 'Page 13: Cell Engine', category: 'Cell Biology', icon: Cpu, badge: 'Science' },
+  { id: 14, title: 'Lactate Paradox & Shuttle', label: 'Page 14: Lactate Paradox', category: 'Cell Biology', icon: Activity, badge: 'Mythbusting' },
+  { id: 15, title: 'Zone 2 & Recovery Mastery', label: 'Page 15: Zone 2 & Recovery', category: 'Protocols', icon: BatteryCharging, badge: '🔋 Fuel' },
+  { id: 16, title: 'Aerobic Expectations & HR Drift', label: 'Page 16: Aerobic Expectations', category: 'Protocols', icon: TrendingUp, badge: 'HR Drift' },
+  { id: 17, title: 'Nutrition & Blood Pressure', label: 'Page 17: Nutrition & BP', category: 'Protocols', icon: Droplet, badge: '🥗 Health' },
+  { id: 18, title: 'Heat & Humidity Guide', label: 'Page 18: Heat & Humidity', category: 'Protocols', icon: Sun, badge: '☀️ Weather' },
+  { id: 19, title: 'Longevity Masterclass & Protocols', label: 'Page 19: Longevity Masterclass', category: 'Field Studies', icon: ShieldCheck, badge: 'Health' },
+  { id: 20, title: 'Anti-Aging & Longevity Science', label: 'Page 20: Anti-Aging Science', category: 'Deep Physiology', icon: Sparkles, badge: '✨ Anti-Aging' },
+
+  // TIER 4: DEEP BIOLOGY & ADVANCED VISUALIZERS
+  { id: 21, title: 'Whole-Body Organ Systems', label: 'Page 21: Whole-Body Organ Systems', category: 'Deep Physiology', icon: Layers, badge: '🫀 Organs' },
+  { id: 22, title: 'How the Human Body Creates Fat', label: 'Page 22: How Body Creates Fat', category: 'Deep Physiology', icon: Layers, badge: '🧪 Lipogenesis' },
+  { id: 23, title: 'Molecular Assembly Line (Citrate)', label: 'Page 23: Molecular Assembly Line', category: 'Cell Biology', icon: Cpu, badge: '⚡ Interactive' },
+  { id: 24, title: 'The Cellular Cosmos (3D Cell Model)', label: 'Page 24: The Cellular Cosmos', category: 'Cell Biology', icon: Sparkles, badge: '🌌 3D Model' },
+  { id: 25, title: 'Bacterial & Mitochondrial Evolution', label: 'Page 25: Bacterial Reproduction', category: 'Deep Physiology', icon: Dna, badge: '🦠 Evolution' },
+  { id: 26, title: 'Zone 2 vs. Other Sports', label: 'Page 26: vs. Other Sports', category: 'Cell Biology', icon: BarChart2, badge: 'Comparison' },
+  { id: 27, title: '1-Hour Field Experiment', label: 'Page 27: 1-Hr Field Study', category: 'Field Studies', icon: Clock, badge: 'Data' },
+  { id: 28, title: 'Run Progress & Analytics Table', label: 'Page 28: Run Progress Table', category: 'Deep Physiology', icon: Award, badge: '📈 Analytics' },
 ];
 
 export default function Sidebar({
