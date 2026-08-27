@@ -394,6 +394,14 @@ export default function StravaRunVisualizer() {
 
   const handleMouseUp = () => setIsDragging(false);
 
+  const handleWheel = (e) => {
+    if (e.deltaY < 0) {
+      handleZoomIn();
+    } else if (e.deltaY > 0) {
+      handleZoomOut();
+    }
+  };
+
   // Form State for Manual Entry
   const [newTitle, setNewTitle] = useState("Today's Run");
   const [newDistance, setNewDistance] = useState('');
