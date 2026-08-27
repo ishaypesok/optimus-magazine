@@ -14,33 +14,44 @@ export default function RunnerSimulation() {
   const [minute, setMinute] = useState(0); // 0 to maxMins
   const [isRunning, setIsRunning] = useState(false);
   const [speedMultiplier, setSpeedMultiplier] = useState(1);
-  const [selectedRunId, setSelectedRunId] = useState('aug24');
-  const [userVo2Max, setUserVo2Max] = useState(25.6);
+  const [selectedRunId, setSelectedRunId] = useState('aug27');
+  const [userVo2Max, setUserVo2Max] = useState(26.2);
   const [userWeightKg, setUserWeightKg] = useState(82.9);
   const [chartMode, setChartMode] = useState('calories'); // 'calories' | 'cumulative' | 'lactate'
   const [viewStyle, setViewStyle] = useState('progressive'); // 'progressive' | 'full' | 'compare'
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   // New run input form state
-  const [newRunDate, setNewRunDate] = useState('08/24/2026');
-  const [newRunDuration, setNewRunDuration] = useState('72.3');
-  const [newRunDistance, setNewRunDistance] = useState('6.11');
-  const [newRunPace, setNewRunPace] = useState('11.83');
-  const [newRunHr, setNewRunHr] = useState('108');
-  const [newRunCalories, setNewRunCalories] = useState('381');
+  const [newRunDate, setNewRunDate] = useState('08/27/2026');
+  const [newRunDuration, setNewRunDuration] = useState('69.9');
+  const [newRunDistance, setNewRunDistance] = useState('6.13');
+  const [newRunPace, setNewRunPace] = useState('11.40');
+  const [newRunHr, setNewRunHr] = useState('114');
+  const [newRunCalories, setNewRunCalories] = useState('377');
 
   // Real runs list
   const [runsList, setRunsList] = useState([
     {
+      id: 'aug27',
+      dateLabel: 'Aug 27, 2026 (Latest Run ⭐)',
+      durationMin: 69.9,
+      distanceKm: 6.13,
+      paceMinKm: 11.40,
+      avgHr: 114,
+      watchCalories: 377,
+      color: '#047857',
+      note: 'New Distance Record (6.13 km)! Zone 2 Aerobic Run • 114 BPM Avg HR • Apple Watch AutoSync!'
+    },
+    {
       id: 'aug24',
-      dateLabel: 'Aug 24, 2026 (Latest Run ⭐)',
+      dateLabel: 'Aug 24, 2026',
       durationMin: 72.3,
       distanceKm: 6.11,
       paceMinKm: 11.83,
       avgHr: 108,
       watchCalories: 381,
-      color: '#047857',
-      note: 'New Distance Record (6.11 km)! 100% Zone 2 Aerobic Run • 108 BPM Avg HR • Apple Watch AutoSync!'
+      color: '#2563eb',
+      note: 'Previous Distance Record (6.11 km)! 100% Zone 2 Aerobic Run • 108 BPM Avg HR • Apple Watch AutoSync!'
     },
     {
       id: 'aug21',

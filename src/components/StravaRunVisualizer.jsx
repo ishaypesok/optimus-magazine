@@ -5,9 +5,41 @@ import {
 } from 'lucide-react';
 
 const SYNCED_TODAY_RUN = {
+  id: 'run-aug-27-2026-synced',
+  title: "Today's Outdoor Run (6.13 km Record • Apple Watch)",
+  date: 'Today (Aug 27, 2026 • 19:54)',
+  device: 'Apple Watch Ultra',
+  sourceApp: 'Apple Health AutoSync',
+  durationMinutes: 69.9,
+  distanceKm: 6.13,
+  avgPace: '11:24 min/km',
+  avgHeartRate: 114,
+  maxHeartRate: 126,
+  calories: 377,
+  vo2max: 26.2,
+  powerWatts: 121,
+  elevationGain: 59.8,
+  weatherTemp: '28.4°C',
+  weatherHumidity: '75%',
+  wingateZone2Target: '105 - 117 BPM',
+  zone2TimePercent: 95,
+  fatBurnGrams: 30.2,
+  carbBurnGrams: 9.4,
+  mitochondrialEfficiencyScore: 98,
+  lthrMargin: '-18 BPM below LTHR (132 BPM)',
+  coordinates: [
+    { x: 40, y: 180, hr: 86, zone: 'Zone 1' },
+    { x: 150, y: 130, hr: 112, zone: 'Zone 2' },
+    { x: 300, y: 115, hr: 115, zone: 'Zone 2' },
+    { x: 450, y: 125, hr: 114, zone: 'Zone 2' },
+    { x: 570, y: 170, hr: 106, zone: 'Zone 1' }
+  ]
+};
+
+const RUN_AUG_24_2026 = {
   id: 'run-aug-24-2026-synced',
-  title: "Today's Outdoor Run (Apple Watch AutoSync)",
-  date: 'Today (Aug 24, 2026 • 19:27)',
+  title: 'Previous Base Run (Aug 24 • 6.11 km)',
+  date: 'Aug 24, 2026 • 19:27',
   device: 'Apple Watch Ultra',
   sourceApp: 'Apple Health AutoSync',
   durationMinutes: 72.3,
@@ -132,7 +164,7 @@ const RUN_AUG_12_HEALTH_AUTO_EXPORT = {
   ]
 };
 
-const INITIAL_RUNS = [SYNCED_TODAY_RUN, RUN_AUG_21_2026, PREVIOUS_RUN, RUN_AUG_12_HEALTH_AUTO_EXPORT];
+const INITIAL_RUNS = [SYNCED_TODAY_RUN, RUN_AUG_24_2026, RUN_AUG_21_2026, PREVIOUS_RUN, RUN_AUG_12_HEALTH_AUTO_EXPORT];
 
 export default function StravaRunVisualizer() {
   const [runsList, setRunsList] = useState(() => {
@@ -140,7 +172,7 @@ export default function StravaRunVisualizer() {
     if (saved) {
       try { 
         const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.some(r => r.id === 'run-aug-24-2026-synced' || r.id === 'run-aug-24-2026')) {
+        if (Array.isArray(parsed) && parsed.some(r => r.id === 'run-aug-27-2026-synced')) {
           return parsed;
         }
       } catch (e) {}

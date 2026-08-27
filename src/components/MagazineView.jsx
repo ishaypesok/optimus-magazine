@@ -676,6 +676,54 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
               </p>
             </div>
 
+            {/* HR Dogma vs. Biological Spectrum Masterclass Card */}
+            <div className="p-6 sm:p-8 rounded-3xl bg-amber-50/90 border border-amber-300 space-y-4 shadow-sm font-sans">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-amber-200/80 pb-3">
+                <div className="flex items-center gap-2.5 text-amber-950 font-extrabold text-lg">
+                  <ShieldCheck className="w-6 h-6 text-amber-700 shrink-0" />
+                  <span>HR Dogma vs. Biological Reality: Why 146 BPM Isn't a Cliff</span>
+                </div>
+                <span className="px-3 py-1 rounded-full bg-amber-200/80 text-amber-950 font-black text-xs border border-amber-300 shrink-0">
+                  💡 Modern Coaching Perspective
+                </span>
+              </div>
+
+              <div className="space-y-3 text-xs sm:text-sm text-stone-800 leading-relaxed font-normal">
+                <p className="italic text-stone-700 bg-white/80 p-3.5 rounded-2xl border border-amber-200 font-medium">
+                  "Watch says 143 bpm? Perfect. Watch says 146? Apparently the workout is ruined. Runners spend the easy run panicking over a few beats instead of asking: <strong>Does this actually feel easy?</strong>"
+                </p>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+                  <div className="p-4 rounded-2xl bg-white border border-amber-200 space-y-1.5">
+                    <div className="font-extrabold text-amber-950 text-xs uppercase flex items-center gap-1">
+                      <Sparkles className="w-3.5 h-3.5 text-amber-600" /> 1. Bioenergetics is a Spectrum
+                    </div>
+                    <p className="text-xs text-stone-700">
+                      Your mitochondria don't instantly stop burning fat or clearing lactate at 146 BPM. Substrate utilization shifts gradually along a continuum, not a digital cliff edge.
+                    </p>
+                  </div>
+
+                  <div className="p-4 rounded-2xl bg-white border border-amber-200 space-y-1.5">
+                    <div className="font-extrabold text-amber-950 text-xs uppercase flex items-center gap-1">
+                      <Flame className="w-3.5 h-3.5 text-amber-600" /> 2. Confounding Variables
+                    </div>
+                    <p className="text-xs text-stone-700">
+                      Heat, humidity, dehydration, caffeine, and slight hill inclines cause <strong>Cardiac Drift</strong> (+5–10 BPM) without changing your underlying muscular recruitment.
+                    </p>
+                  </div>
+
+                  <div className="p-4 rounded-2xl bg-white border border-amber-200 space-y-1.5">
+                    <div className="font-extrabold text-emerald-950 text-xs uppercase flex items-center gap-1">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" /> 3. Dual-Anchor Protocol
+                    </div>
+                    <p className="text-xs text-stone-700">
+                      Use <strong>RPE (2-3/10) & The Talk Test</strong> as your primary internal compass, and Heart Rate telemetry as a secondary trend guide. Don't let the watch override your body!
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </article>
         )}
 

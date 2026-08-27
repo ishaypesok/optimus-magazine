@@ -7,9 +7,26 @@ import {
 
 const INITIAL_RUNS_DATA = [
   {
+    id: 'run-aug-27-2026',
+    date: 'Aug 27, 2026',
+    title: "Latest Outdoor Run (6.13 km Record)",
+    distanceKm: 6.13,
+    durationMin: 69.9,
+    paceStr: '11:24 min/km',
+    paceVal: 11.40,
+    avgHr: 114,
+    maxHr: 126,
+    zone2Percent: 95,
+    fatBurnGrams: 30.2,
+    carbBurnGrams: 9.4,
+    mitoScore: 98,
+    lthrMargin: '-18 BPM',
+    note: 'New 6.13 km Distance Record! 69.9 mins • 114 BPM Avg HR • Apple Watch AutoSync!'
+  },
+  {
     id: 'run-aug-24-2026',
     date: 'Aug 24, 2026',
-    title: "Latest Outdoor Run (6.11 km Record)",
+    title: "Outdoor Run (6.11 km)",
     distanceKm: 6.11,
     durationMin: 72.3,
     paceStr: '11:50 min/km',
@@ -21,7 +38,7 @@ const INITIAL_RUNS_DATA = [
     carbBurnGrams: 8.6,
     mitoScore: 99,
     lthrMargin: '-24 BPM',
-    note: 'New Distance Record! Broke 6 km milestone in Zone 2.'
+    note: 'Previous Distance Record! Broke 6 km milestone in Zone 2.'
   },
   {
     id: 'run-aug-21-2026',
@@ -150,7 +167,7 @@ export default function RunImprovementsTable() {
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.some(r => r.id === 'run-aug-24-2026' || r.id === 'run-aug-24-2026-synced')) {
+        if (Array.isArray(parsed) && parsed.some(r => r.id === 'run-aug-27-2026' || r.id === 'run-aug-27-2026-synced')) {
           return parsed.map(r => ({
             id: r.id || `run-${Math.random()}`,
             date: r.date || 'Recent Run',
@@ -211,6 +228,44 @@ export default function RunImprovementsTable() {
 
   const latestRun = runs[0] || INITIAL_RUNS_DATA[0];
   const previousRun = runs[1] || INITIAL_RUNS_DATA[1];
+
+  // Helper to extract short date (e.g. "Aug 24")
+  const getShortDate = (dateStr) => {
+    if (!dateStr) return '';
+    const match = dateStr.match(/(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+\d+/i);
+    if (match) return match[0];
+    return dateStr.split(',')[0].replace(/Today\s*\(/i, '').trim();
+  };
+
+  // Helper to determine pace comparison badge & text (min/km: higher value = slower speed)
+  const getPaceComparison = (currentPaceVal, prevPaceVal) => {
+    const diff = currentPaceVal - prevPaceVal;
+    if (diff > 0.05) {
+      return {
+        label: 'Controlled Pace',
+        icon: TrendingDown,
+        badgeStyle: 'text-emerald-800 bg-emerald-100',
+        subtitle: 'Disciplined Zone 2 execution'
+      };
+    } else if (diff < -0.05) {
+      return {
+        label: 'Faster',
+        icon: TrendingUp,
+        badgeStyle: 'text-emerald-700 bg-emerald-100',
+        subtitle: 'Increased aerobic velocity'
+      };
+    } else {
+      return {
+        label: 'Steady Pace',
+        icon: CheckCircle2,
+        badgeStyle: 'text-stone-700 bg-stone-100',
+        subtitle: 'Consistent aerobic pace'
+      };
+    }
+  };
+
+  const paceComp = getPaceComparison(latestRun.paceVal, previousRun.paceVal);
+  const PaceIcon = paceComp.icon;
 
   // Calculate deltas between latest run and previous run
   const hrDelta = latestRun.avgHr - previousRun.avgHr;
@@ -319,7 +374,7 @@ export default function RunImprovementsTable() {
           <div className="flex items-center gap-2">
             <Sparkles className="w-5 h-5 text-emerald-700 shrink-0" />
             <h3 className="text-lg font-black text-emerald-950">
-              Latest Run Improvement Delta (Aug 21 vs. Aug 18)
+              Latest Run Improvement Delta ({getShortDate(latestRun.date)} vs. {getShortDate(previousRun.date)})
             </h3>
           </div>
           <span className="px-3 py-1 rounded-full bg-emerald-700 text-white font-extrabold text-xs">
@@ -344,11 +399,11 @@ export default function RunImprovementsTable() {
             <div className="text-[11px] text-stone-500 font-bold">Average Pace</div>
             <div className="text-lg font-black text-stone-900 flex items-center gap-1">
               {latestRun.paceStr}
-              <span className="text-xs font-bold text-emerald-700 bg-emerald-100 px-1.5 py-0.5 rounded-md flex items-center">
-                <TrendingUp className="w-3 h-3" /> Faster
+              <span className={`text-xs font-bold ${paceComp.badgeStyle} px-1.5 py-0.5 rounded-md flex items-center gap-1`}>
+                <PaceIcon className="w-3 h-3" /> {paceComp.label}
               </span>
             </div>
-            <div className="text-[10px] text-stone-500">Maintained speed easily</div>
+            <div className="text-[10px] text-stone-500">{paceComp.subtitle}</div>
           </div>
 
           <div className="p-3.5 rounded-xl bg-white/90 border border-emerald-200 space-y-1">

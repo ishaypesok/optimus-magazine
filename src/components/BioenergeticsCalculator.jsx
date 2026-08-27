@@ -6,17 +6,17 @@ import {
 } from 'lucide-react';
 
 export default function BioenergeticsCalculator() {
-  // Preset 1: Ishai's Actual Aug 24, 2026 Run
-  const ishaiAug24Preset = {
-    name: "Ishai's Aug 24 Real Run",
-    description: "Actual Apple Watch recorded run from August 24, 2026",
+  // Preset 1: Ishai's Actual Aug 27, 2026 Run
+  const ishaiAug27Preset = {
+    name: "Ishai's Aug 27 Real Run",
+    description: "Actual Apple Watch recorded run from August 27, 2026",
     weight: 82.9,
     restingHr: 52,
-    vo2max: 25.6,
+    vo2max: 26.2,
     maxHr: 175,
-    workoutHr: 108,
-    duration: 72.3,
-    distance: 6.11
+    workoutHr: 114,
+    duration: 69.9,
+    distance: 6.13
   };
 
   const ishaiWingatePreset = {
@@ -44,17 +44,17 @@ export default function BioenergeticsCalculator() {
   };
 
   // Input states
-  const [weight, setWeight] = useState(ishaiAug24Preset.weight);
-  const [restingHr, setRestingHr] = useState(ishaiAug24Preset.restingHr);
-  const [vo2max, setVo2max] = useState(ishaiAug24Preset.vo2max);
-  const [maxHr, setMaxHr] = useState(ishaiAug24Preset.maxHr);
-  const [workoutHr, setWorkoutHr] = useState(ishaiAug24Preset.workoutHr);
-  const [duration, setDuration] = useState(ishaiAug24Preset.duration);
-  const [activePreset, setActivePreset] = useState('aug24');
+  const [weight, setWeight] = useState(ishaiAug27Preset.weight);
+  const [restingHr, setRestingHr] = useState(ishaiAug27Preset.restingHr);
+  const [vo2max, setVo2max] = useState(ishaiAug27Preset.vo2max);
+  const [maxHr, setMaxHr] = useState(ishaiAug27Preset.maxHr);
+  const [workoutHr, setWorkoutHr] = useState(ishaiAug27Preset.workoutHr);
+  const [duration, setDuration] = useState(ishaiAug27Preset.duration);
+  const [activePreset, setActivePreset] = useState('ishai_real');
 
   const applyPreset = (presetKey) => {
     setActivePreset(presetKey);
-    let p = ishaiAug24Preset;
+    let p = ishaiAug27Preset;
     if (presetKey === 'wingate') p = ishaiWingatePreset;
     if (presetKey === 'tempo') p = tempoPreset;
     
@@ -152,22 +152,22 @@ export default function BioenergeticsCalculator() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pt-1">
           
           <button
-            onClick={() => applyPreset('aug24')}
+            onClick={() => applyPreset('ishai_real')}
             className={`p-3.5 rounded-xl text-left border transition flex flex-col justify-between ${
-              activePreset === 'aug24'
+              activePreset === 'ishai_real'
                 ? 'bg-emerald-700/80 border-emerald-400 text-white shadow-sm ring-2 ring-emerald-400/40'
                 : 'bg-white/10 border-white/15 text-stone-200 hover:bg-white/15'
             }`}
           >
             <div>
               <div className="font-extrabold text-xs flex items-center gap-1.5">
-                <span>🏃‍♂️ Aug 24 Real Run</span>
-                <span className="px-1.5 py-0.5 rounded bg-emerald-900/90 text-[10px] text-emerald-200 font-mono">Actual</span>
+                <span>🏃‍♂️ Aug 27 Real Run (6.13 km Record)</span>
+                <span className="px-1.5 py-0.5 rounded bg-emerald-900/90 text-[10px] text-emerald-200 font-mono">Latest ⭐</span>
               </div>
-              <p className="text-[11px] text-stone-300 mt-1">72.3 min • 108 BPM avg • 381 kcal</p>
+              <p className="text-[11px] text-stone-300 mt-1">69.9 min • 114 BPM avg • 377 kcal</p>
             </div>
             <div className="text-[10px] font-mono text-emerald-300 pt-2 border-t border-white/10 mt-2">
-              82.9 kg • 52 RHR • 25.6 VO₂max
+              82.9 kg • 52 RHR • 26.2 VO₂max
             </div>
           </button>
 
