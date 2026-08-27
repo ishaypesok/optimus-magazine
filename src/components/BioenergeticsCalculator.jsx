@@ -12,9 +12,9 @@ export default function BioenergeticsCalculator() {
     description: "Actual Apple Watch recorded run from August 24, 2026",
     weight: 82.9,
     restingHr: 52,
-    vo2max: 25.4,
+    vo2max: 25.6,
     maxHr: 175,
-    workoutHr: 115,
+    workoutHr: 108,
     duration: 72.3,
     distance: 6.11
   };
@@ -24,7 +24,7 @@ export default function BioenergeticsCalculator() {
     description: "Strict 112-115 BPM Zone 2 ceiling run (60 mins)",
     weight: 82.9,
     restingHr: 52,
-    vo2max: 25.4,
+    vo2max: 25.6,
     maxHr: 175,
     workoutHr: 112,
     duration: 60.0,
@@ -36,7 +36,7 @@ export default function BioenergeticsCalculator() {
     description: "Higher HR run above aerobic crossover threshold",
     weight: 82.9,
     restingHr: 52,
-    vo2max: 25.4,
+    vo2max: 25.6,
     maxHr: 175,
     workoutHr: 148,
     duration: 45.0,
@@ -79,27 +79,28 @@ export default function BioenergeticsCalculator() {
   // 4. Total Oxygen Volume Consumed (Liters)
   const totalO2L = vo2LMin * duration;
 
-  // 5. Total Energy Expenditure (kcal)
-  const grossKcal = totalO2L * 4.86;
-  const activeKcal = Math.max(0, grossKcal - (1.2 * weight / 1000 * 4.86 * duration));
+  // 5. Estimated RER (Respiratory Exchange Ratio) curve mapping against %HRR
+  // Calibrated for Zone 2 FATmax: RER is ~0.76-0.78 in Zone 2 (%HRR 40-55%), shifting smoothly to 0.88+ above Aerobic Threshold (>64% HRR)
+  const rer = Math.max(0.707, Math.min(1.0, 0.707 + 0.293 / (1 + Math.exp(-8.5 * (hrr - 0.64)))));
 
-  // 6. Estimated RER (Respiratory Exchange Ratio) curve mapping against %HRR
-  const rer = 0.707 + 0.293 / (1 + Math.exp(-9.5 * (hrr - 0.48)));
-
-  // 7. Frayn's Non-Protein Stoichiometric Substrate Rates (g/min)
+  // 6. Frayn's Non-Protein Stoichiometric Substrate Rates (g/min)
   const fatRateGmin = Math.max(0, vo2LMin * (1.695 - 1.701 * rer));
   const carbRateGmin = Math.max(0, vo2LMin * (4.585 * rer - 3.226));
 
-  // 8. Total Substrate Mass Consumed (grams)
+  // 7. Total Substrate Mass Consumed (grams)
   const totalFatG = fatRateGmin * duration;
   const totalCarbG = carbRateGmin * duration;
 
-  // 9. Caloric Split
-  const fatKcal = totalFatG * 9.3;
-  const carbKcal = totalCarbG * 4.1;
+  // 8. Caloric Split (using 9.0 kcal/g for fat and 4.0 kcal/g for carbs)
+  const fatKcal = totalFatG * 9.0;
+  const carbKcal = totalCarbG * 4.0;
   const totalSubstrateKcal = fatKcal + carbKcal;
   const fatPct = totalSubstrateKcal > 0 ? (fatKcal / totalSubstrateKcal) * 100 : 0;
   const carbPct = totalSubstrateKcal > 0 ? (carbKcal / totalSubstrateKcal) * 100 : 0;
+
+  // 9. Total Energy Expenditure (kcal)
+  const activeKcal = totalSubstrateKcal;
+  const grossKcal = activeKcal + (1.2 * weight / 1000 * 4.86 * duration);
 
   // 10. Cellular ATP Bioenergetics Yield
   // Fat (Palmitate): ~0.413 moles ATP per gram
@@ -163,10 +164,10 @@ export default function BioenergeticsCalculator() {
                 <span>🏃‍♂️ Aug 24 Real Run</span>
                 <span className="px-1.5 py-0.5 rounded bg-emerald-900/90 text-[10px] text-emerald-200 font-mono">Actual</span>
               </div>
-              <p className="text-[11px] text-stone-300 mt-1">72.3 min • 115 BPM avg • 380.7 kcal</p>
+              <p className="text-[11px] text-stone-300 mt-1">72.3 min • 108 BPM avg • 381 kcal</p>
             </div>
             <div className="text-[10px] font-mono text-emerald-300 pt-2 border-t border-white/10 mt-2">
-              82.9 kg • 52 RHR • 25.4 VO₂max
+              82.9 kg • 52 RHR • 25.6 VO₂max
             </div>
           </button>
 

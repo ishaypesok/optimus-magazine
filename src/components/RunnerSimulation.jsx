@@ -156,15 +156,21 @@ export default function RunnerSimulation() {
     setIsAddModalOpen(false);
   };
 
-  // Math for user's VO2Max (25.6) & Weight (82.9kg)
-  const z2Vo2MlKgMin = userVo2Max * 0.65;
-  const z2Vo2LitersPerMin = (z2Vo2MlKgMin * userWeightKg) / 1000;
+  // Math for user's VO2Max (25.6) & Weight (82.9kg) via Frayn Stoichiometry
+  const simRestingHr = 52;
+  const simMaxHr = 175;
+  const simHrr = Math.max(0, Math.min(1, (activeRun.avgHr - simRestingHr) / (simMaxHr - simRestingHr)));
+  const simVo2MlKgMin = 3.5 + simHrr * (userVo2Max - 3.5);
+  const z2Vo2LitersPerMin = (simVo2MlKgMin * userWeightKg) / 1000;
+  const simRer = Math.max(0.707, Math.min(1.0, 0.707 + 0.293 / (1 + Math.exp(-8.5 * (simHrr - 0.64)))));
 
-  const fatRateGPerMin = z2Vo2LitersPerMin * 0.35;
-  const carbRateGPerMin = z2Vo2LitersPerMin * 0.12;
+  const fatRateGPerMin = Math.max(0, z2Vo2LitersPerMin * (1.695 - 1.701 * simRer));
+  const carbRateGPerMin = Math.max(0, z2Vo2LitersPerMin * (4.585 * simRer - 3.226));
 
   const currentDistanceKm = ((minute / activeRun.paceMinKm)).toFixed(2);
-  const fatGrams = minute * fatRateGPerMin;
+  const fatGrams = minute <= 15 
+    ? (fatRateGPerMin * 0.7 * minute + (minute * minute / 30) * fatRateGPerMin * 0.3)
+    : (fatRateGPerMin * 0.7 * 15 + 7.5 * fatRateGPerMin * 0.3 + (minute - 15) * fatRateGPerMin);
   const carbGrams = minute * carbRateGPerMin;
 
   const fatGramsBurned = fatGrams.toFixed(1);
@@ -195,7 +201,7 @@ export default function RunnerSimulation() {
 
   const fullSimulationChartData = [];
   for (let m = 0; m <= maxMins; m += 1) {
-    const fG = m <= 15 ? (fatRateGPerMin * 0.5 * m + (m * m / 30) * fatRateGPerMin * 0.5) : (fatRateGPerMin * 0.5 * 15 + 7.5 * fatRateGPerMin * 0.5 + (m - 15) * fatRateGPerMin);
+    const fG = m <= 15 ? (fatRateGPerMin * 0.7 * m + (m * m / 30) * fatRateGPerMin * 0.3) : (fatRateGPerMin * 0.7 * 15 + 7.5 * fatRateGPerMin * 0.3 + (m - 15) * fatRateGPerMin);
     const cG = m * carbRateGPerMin;
 
     const fKcal = Math.round(fG * 9);
