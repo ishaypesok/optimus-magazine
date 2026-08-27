@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { 
   Activity, Heart, Flame, MapPin, Upload, RefreshCw, CheckCircle2, BarChart2,
-  Award, Sparkles, Zap, ShieldCheck, Clock, TrendingUp, Compass, ArrowUpRight, Calendar, Info, PlusCircle, Trash2, Gauge, X, Sun, Thermometer
+  Award, Sparkles, Zap, ShieldCheck, Clock, TrendingUp, Compass, ArrowUpRight, Calendar, Info, PlusCircle, Trash2, Gauge, X, Sun, Thermometer,
+  ZoomIn, ZoomOut, Maximize2, RotateCcw
 } from 'lucide-react';
 
 const SYNCED_TODAY_RUN = {
@@ -356,6 +357,42 @@ export default function StravaRunVisualizer() {
   const [selectedPoint, setSelectedPoint] = useState(null);
   const [chartMetric, setChartMetric] = useState('hr'); // 'hr' | 'distance' | 'power'
   const [showAddModal, setShowAddModal] = useState(false);
+
+  // Image Lightbox & Zoom Modal State
+  const [zoomModalImage, setZoomModalImage] = useState(null); // { src, altSrc, title, subtitle, description }
+  const [zoomScale, setZoomScale] = useState(1.5);
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+  const [panOffset, setPanOffset] = useState({ x: 0, y: 0 });
+
+  const openZoomModal = (imgData) => {
+    setZoomModalImage(imgData);
+    setZoomScale(1.5); // Open with 1.5x zoom by default
+    setPanOffset({ x: 0, y: 0 });
+  };
+
+  const handleZoomIn = () => setZoomScale(prev => Math.min(4.0, Math.round((prev + 0.5) * 10) / 10));
+  const handleZoomOut = () => setZoomScale(prev => Math.max(1.0, Math.round((prev - 0.5) * 10) / 10));
+  const handleResetZoom = () => {
+    setZoomScale(1.0);
+    setPanOffset({ x: 0, y: 0 });
+  };
+
+  const handleMouseDown = (e) => {
+    if (zoomScale <= 1) return;
+    setIsDragging(true);
+    setDragStart({ x: e.clientX - panOffset.x, y: e.clientY - panOffset.y });
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging || zoomScale <= 1) return;
+    setPanOffset({
+      x: e.clientX - dragStart.x,
+      y: e.clientY - dragStart.y
+    });
+  };
+
+  const handleMouseUp = () => setIsDragging(false);
 
   // Form State for Manual Entry
   const [newTitle, setNewTitle] = useState("Today's Run");
@@ -1383,19 +1420,42 @@ export default function StravaRunVisualizer() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Card 1: TEM Micrograph */}
           <div className="space-y-3 bg-stone-50 p-4 rounded-2xl border border-stone-200">
-            <div className="relative rounded-xl overflow-hidden border border-stone-300 shadow-sm bg-slate-900">
+            <div 
+              onClick={() => openZoomModal({
+                src: "/optimus-magazine/mitochondria_tem_micrograph.jpg",
+                altSrc: "./mitochondria_tem_micrograph.jpg",
+                title: "Transmission Electron Micrograph (TEM) — Human Muscle Biopsy",
+                subtitle: "15,000x Magnification • Aligned Mitochondria, Cristae & Capillaries",
+                description: "Direct microscopic cross-section of human skeletal muscle fiber. Observe the dense oval mitochondria with dark inner cristae membranes packed tightly alongside myofibrils and capillary vessels."
+              })}
+              className="relative rounded-xl overflow-hidden border border-stone-300 shadow-sm bg-slate-900 cursor-zoom-in group"
+            >
               <img 
                 src="/optimus-magazine/mitochondria_tem_micrograph.jpg" 
                 alt="Transmission Electron Microscope (TEM) Micrograph of Muscle Biopsy"
-                className="w-full h-60 object-cover"
+                className="w-full h-60 object-cover group-hover:scale-105 transition-transform duration-300"
                 onError={(e) => { e.target.src = "./mitochondria_tem_micrograph.jpg"; }}
               />
+              <div className="absolute inset-0 bg-slate-950/40 group-hover:bg-slate-950/10 transition-all flex items-center justify-center">
+                <span className="px-3 py-1.5 rounded-xl bg-slate-900/90 text-emerald-300 font-extrabold text-xs border border-emerald-500/40 shadow-lg flex items-center gap-1.5 opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all">
+                  <ZoomIn className="w-4 h-4 text-emerald-400" /> Click to Zoom & Inspect (Up to 400%)
+                </span>
+              </div>
               <span className="absolute bottom-2 left-2 px-2.5 py-1 rounded-md bg-slate-900/90 text-emerald-300 font-mono text-[10px] font-bold border border-slate-700">
                 TEM Micrograph (15,000x Magnification)
               </span>
             </div>
             <div className="space-y-1 text-xs">
-              <div className="font-extrabold text-stone-900">Transmission Electron Micrograph (TEM)</div>
+              <div className="font-extrabold text-stone-900 flex items-center justify-between">
+                <span>Transmission Electron Micrograph (TEM)</span>
+                <span className="text-emerald-700 text-[11px] font-bold underline cursor-pointer" onClick={() => openZoomModal({
+                  src: "/optimus-magazine/mitochondria_tem_micrograph.jpg",
+                  altSrc: "./mitochondria_tem_micrograph.jpg",
+                  title: "Transmission Electron Micrograph (TEM) — Human Muscle Biopsy",
+                  subtitle: "15,000x Magnification • Aligned Mitochondria, Cristae & Capillaries",
+                  description: "Direct microscopic cross-section of human skeletal muscle fiber. Observe the dense oval mitochondria with dark inner cristae membranes packed tightly alongside myofibrils and capillary vessels."
+                })}>🔍 Open Zoom View</span>
+              </div>
               <p className="text-stone-600 text-[11px] leading-relaxed">
                 Direct microscopic cross-section of human skeletal muscle fiber. Observe the dense oval mitochondria with dark inner cristae membranes packed tightly alongside myofibrils and capillary vessels.
               </p>
@@ -1404,19 +1464,42 @@ export default function StravaRunVisualizer() {
 
           {/* Card 2: Microscopic Biopsy Comparison Diagram */}
           <div className="space-y-3 bg-stone-50 p-4 rounded-2xl border border-stone-200">
-            <div className="relative rounded-xl overflow-hidden border border-stone-300 shadow-sm bg-slate-900">
+            <div 
+              onClick={() => openZoomModal({
+                src: "/optimus-magazine/zone2_mitochondria_comparison.jpg",
+                altSrc: "./zone2_mitochondria_comparison.jpg",
+                title: "Untrained vs. Zone 2 Athlete Muscle Fiber Comparison",
+                subtitle: "Microscopic Biopsy Analysis • Mitochondrial Density & Capillary Expansion",
+                description: "Left: Untrained muscle fiber with sparse mitochondria and small capillary. Right: Endurance-trained Zone 2 muscle fiber densely populated with enlarged mitochondria and rich red blood capillary network triggered by PGC-1α."
+              })}
+              className="relative rounded-xl overflow-hidden border border-stone-300 shadow-sm bg-slate-900 cursor-zoom-in group"
+            >
               <img 
                 src="/optimus-magazine/zone2_mitochondria_comparison.jpg" 
                 alt="Untrained vs Trained Zone 2 Athlete Muscle Fiber Microscopic Comparison"
-                className="w-full h-60 object-cover"
+                className="w-full h-60 object-cover group-hover:scale-105 transition-transform duration-300"
                 onError={(e) => { e.target.src = "./zone2_mitochondria_comparison.jpg"; }}
               />
+              <div className="absolute inset-0 bg-slate-950/40 group-hover:bg-slate-950/10 transition-all flex items-center justify-center">
+                <span className="px-3 py-1.5 rounded-xl bg-slate-900/90 text-cyan-300 font-extrabold text-xs border border-cyan-500/40 shadow-lg flex items-center gap-1.5 opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all">
+                  <ZoomIn className="w-4 h-4 text-cyan-400" /> Click to Zoom & Inspect (Up to 400%)
+                </span>
+              </div>
               <span className="absolute bottom-2 left-2 px-2.5 py-1 rounded-md bg-slate-900/90 text-cyan-300 font-mono text-[10px] font-bold border border-slate-700">
                 Untrained vs. Zone 2 Athlete Biopsy Comparison
               </span>
             </div>
             <div className="space-y-1 text-xs">
-              <div className="font-extrabold text-stone-900">Mitochondrial & Capillary Network Expansion</div>
+              <div className="font-extrabold text-stone-900 flex items-center justify-between">
+                <span>Mitochondrial & Capillary Network Expansion</span>
+                <span className="text-cyan-700 text-[11px] font-bold underline cursor-pointer" onClick={() => openZoomModal({
+                  src: "/optimus-magazine/zone2_mitochondria_comparison.jpg",
+                  altSrc: "./zone2_mitochondria_comparison.jpg",
+                  title: "Untrained vs. Zone 2 Athlete Muscle Fiber Comparison",
+                  subtitle: "Microscopic Biopsy Analysis • Mitochondrial Density & Capillary Expansion",
+                  description: "Left: Untrained muscle fiber with sparse mitochondria and small capillary. Right: Endurance-trained Zone 2 muscle fiber densely populated with enlarged mitochondria and rich red blood capillary network triggered by PGC-1α."
+                })}>🔍 Open Zoom View</span>
+              </div>
               <p className="text-stone-600 text-[11px] leading-relaxed">
                 Left: Untrained muscle fiber with sparse mitochondria. Right: Endurance-trained Zone 2 muscle fiber densely populated with enlarged mitochondria and rich red blood capillary network triggered by PGC-1α.
               </p>
@@ -1540,6 +1623,96 @@ export default function StravaRunVisualizer() {
               </div>
             </form>
           </div>
+        </div>
+      )}
+
+      {/* Interactive Microscopic Zoom & Pan Lightbox Modal */}
+      {zoomModalImage && (
+        <div className="fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-md flex flex-col justify-between p-4 sm:p-6 animate-fade-in select-none">
+          
+          {/* Modal Header Bar */}
+          <div className="flex flex-wrap items-center justify-between text-white border-b border-slate-800 pb-3 gap-3">
+            <div className="space-y-0.5">
+              <div className="flex items-center gap-2 text-emerald-400 font-extrabold text-xs uppercase tracking-wider">
+                <Sparkles className="w-4 h-4 text-emerald-400" /> High-Resolution Microscopic Cellular Inspector
+              </div>
+              <h3 className="text-lg sm:text-xl font-black text-white">
+                {zoomModalImage.title}
+              </h3>
+              <p className="text-xs text-slate-400 font-medium">{zoomModalImage.subtitle}</p>
+            </div>
+
+            {/* Toolbar controls */}
+            <div className="flex items-center gap-2">
+              <span className="px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-700 text-emerald-300 font-mono text-xs font-bold shadow-inner">
+                Zoom: {Math.round(zoomScale * 100)}%
+              </span>
+              <button
+                onClick={handleZoomIn}
+                className="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 active:scale-95 text-white font-bold transition flex items-center gap-1.5 text-xs border border-slate-700 shadow-sm"
+                title="Zoom In (+)"
+              >
+                <ZoomIn className="w-4 h-4 text-emerald-400" />
+                <span className="hidden sm:inline">Zoom In</span>
+              </button>
+              <button
+                onClick={handleZoomOut}
+                className="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 active:scale-95 text-white font-bold transition flex items-center gap-1.5 text-xs border border-slate-700 shadow-sm"
+                title="Zoom Out (-)"
+              >
+                <ZoomOut className="w-4 h-4 text-emerald-400" />
+                <span className="hidden sm:inline">Zoom Out</span>
+              </button>
+              <button
+                onClick={handleResetZoom}
+                className="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 active:scale-95 text-white font-bold transition flex items-center gap-1.5 text-xs border border-slate-700 shadow-sm"
+                title="Reset Zoom (100%)"
+              >
+                <RotateCcw className="w-4 h-4 text-cyan-400" />
+                <span className="hidden sm:inline">Reset</span>
+              </button>
+              <button
+                onClick={() => setZoomModalImage(null)}
+                className="p-2.5 rounded-xl bg-rose-600/20 hover:bg-rose-600/40 text-rose-300 font-extrabold transition border border-rose-500/40 text-xs flex items-center gap-1.5 shadow-sm"
+              >
+                <X className="w-4 h-4 text-rose-400" />
+                <span>Close</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Interactive Viewport Canvas Area */}
+          <div 
+            className="relative flex-1 overflow-hidden my-4 rounded-3xl bg-slate-900/90 border border-slate-800 flex items-center justify-center cursor-grab active:cursor-grabbing shadow-inner"
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseUp}
+            onWheel={handleWheel}
+          >
+            <img
+              src={zoomModalImage.src}
+              alt={zoomModalImage.title}
+              onError={(e) => { e.target.src = zoomModalImage.altSrc; }}
+              style={{
+                transform: `translate(${panOffset.x}px, ${panOffset.y}px) scale(${zoomScale})`,
+                transition: isDragging ? 'none' : 'transform 0.15s ease-out'
+              }}
+              className="max-h-full max-w-full object-contain pointer-events-none shadow-2xl rounded-xl"
+            />
+
+            <div className="absolute bottom-4 left-4 bg-slate-950/90 px-3.5 py-2 rounded-xl border border-slate-700 text-xs text-slate-300 flex items-center gap-2 pointer-events-none shadow-lg">
+              <Maximize2 className="w-4 h-4 text-emerald-400 shrink-0" />
+              <span>Use <strong>Mouse Wheel</strong> or <strong>+/- buttons</strong> to zoom. <strong>Drag</strong> image to pan around microscopic structures.</span>
+            </div>
+          </div>
+
+          {/* Modal Footer Info */}
+          <div className="bg-slate-900 p-3.5 rounded-2xl border border-slate-800 text-xs text-slate-300 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 font-mono">
+            <span>🔬 {zoomModalImage.description}</span>
+            <span className="text-emerald-400 font-bold shrink-0">15,000x High-Res Bio-Imaging</span>
+          </div>
+
         </div>
       )}
 
