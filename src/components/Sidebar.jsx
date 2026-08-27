@@ -170,7 +170,7 @@ export default function Sidebar({
             <span className="text-stone-500 uppercase text-[10px] tracking-wider shrink-0">Sort:</span>
             
             <div className="flex items-center gap-1 bg-stone-200/80 p-0.5 rounded-xl text-stone-700 w-full justify-end">
-              {/* Left: By Page # */}
+              {/* Left: Articles # */}
               <button
                 onClick={() => setSortMode('num')}
                 className={`flex-1 flex items-center justify-center gap-1 py-1 px-2 rounded-lg transition ${
@@ -178,10 +178,10 @@ export default function Sidebar({
                     ? 'bg-emerald-800 text-white shadow-2xs font-extrabold'
                     : 'hover:bg-stone-300/60 text-stone-700'
                 }`}
-                title={`Sort by Page Number 1-${PAGES_LIST.length}`}
+                title={`Sort by Article Number 1-${PAGES_LIST.length}`}
               >
                 <Hash className="w-3.5 h-3.5" />
-                <span>Pages #</span>
+                <span>Articles #</span>
               </button>
 
               {/* Middle: A-Z */}
