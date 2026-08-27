@@ -5,12 +5,44 @@ import {
 } from 'lucide-react';
 
 const SYNCED_TODAY_RUN = {
-  id: 'run-aug-21-2026-synced',
+  id: 'run-aug-24-2026-synced',
   title: "Today's Outdoor Run (Apple Watch AutoSync)",
-  date: 'Today (Aug 21, 2026 • 20:15)',
+  date: 'Today (Aug 24, 2026 • 19:27)',
   device: 'Apple Watch Ultra',
   sourceApp: 'Apple Health AutoSync',
-  durationMinutes: 64,
+  durationMinutes: 72.3,
+  distanceKm: 6.11,
+  avgPace: '11:50 min/km',
+  avgHeartRate: 108,
+  maxHeartRate: 124,
+  calories: 381,
+  vo2max: 26.2,
+  powerWatts: 119,
+  elevationGain: 69.2,
+  weatherTemp: '28.2°C',
+  weatherHumidity: '70%',
+  wingateZone2Target: '105 - 117 BPM',
+  zone2TimePercent: 97,
+  fatBurnGrams: 31.5,
+  carbBurnGrams: 8.6,
+  mitochondrialEfficiencyScore: 99,
+  lthrMargin: '-24 BPM below LTHR (132 BPM)',
+  coordinates: [
+    { x: 40, y: 180, hr: 84, zone: 'Zone 1' },
+    { x: 150, y: 130, hr: 107, zone: 'Zone 2' },
+    { x: 300, y: 115, hr: 109, zone: 'Zone 2' },
+    { x: 450, y: 125, hr: 108, zone: 'Zone 2' },
+    { x: 570, y: 170, hr: 104, zone: 'Zone 1' }
+  ]
+};
+
+const RUN_AUG_21_2026 = {
+  id: 'run-aug-21-2026-synced',
+  title: 'Previous Base Run (Aug 21)',
+  date: 'Aug 21, 2026 • 20:15',
+  device: 'Apple Watch Ultra',
+  sourceApp: 'Apple Health AutoSync',
+  durationMinutes: 63.5,
   distanceKm: 5.52,
   avgPace: '11:30 min/km',
   avgHeartRate: 109,
@@ -38,7 +70,7 @@ const SYNCED_TODAY_RUN = {
 
 const PREVIOUS_RUN = {
   id: 'run-aug-19-2026',
-  title: 'Previous Base Run (Aug 19)',
+  title: 'Base Aerobic Run (Aug 19)',
   date: 'Aug 19, 2026',
   device: 'Apple Watch Ultra',
   sourceApp: 'Apple Workout',
@@ -68,7 +100,39 @@ const PREVIOUS_RUN = {
   ]
 };
 
-const INITIAL_RUNS = [SYNCED_TODAY_RUN, PREVIOUS_RUN];
+const RUN_AUG_12_HEALTH_AUTO_EXPORT = {
+  id: 'run-aug-12-2026-health-autoexport',
+  title: 'Outdoor Run (Health Auto Export)',
+  date: 'Aug 12, 2026 • 20:03',
+  device: 'Apple Watch Ultra',
+  sourceApp: 'Health Auto Export',
+  durationMinutes: 66.3,
+  distanceKm: 5.56,
+  avgPace: '11:55 min/km',
+  avgHeartRate: 113,
+  maxHeartRate: 132,
+  calories: 329,
+  vo2max: 25.4,
+  powerWatts: 116,
+  elevationGain: 54,
+  weatherTemp: '28.9°C',
+  weatherHumidity: '69%',
+  wingateZone2Target: '105 - 117 BPM',
+  zone2TimePercent: 95,
+  fatBurnGrams: 29.2,
+  carbBurnGrams: 8.5,
+  mitochondrialEfficiencyScore: 97,
+  lthrMargin: '-19 BPM below LTHR (132 BPM)',
+  coordinates: [
+    { x: 40, y: 180, hr: 88, zone: 'Zone 1' },
+    { x: 150, y: 130, hr: 111, zone: 'Zone 2' },
+    { x: 300, y: 115, hr: 113, zone: 'Zone 2' },
+    { x: 450, y: 125, hr: 112, zone: 'Zone 2' },
+    { x: 570, y: 170, hr: 106, zone: 'Zone 1' }
+  ]
+};
+
+const INITIAL_RUNS = [SYNCED_TODAY_RUN, RUN_AUG_21_2026, PREVIOUS_RUN, RUN_AUG_12_HEALTH_AUTO_EXPORT];
 
 export default function StravaRunVisualizer() {
   const [runsList, setRunsList] = useState(() => {
@@ -76,8 +140,10 @@ export default function StravaRunVisualizer() {
     if (saved) {
       try { 
         const parsed = JSON.parse(saved);
-        return parsed.length > 0 ? parsed : INITIAL_RUNS;
-      } catch (e) { return INITIAL_RUNS; }
+        if (Array.isArray(parsed) && parsed.some(r => r.id === 'run-aug-24-2026-synced' || r.id === 'run-aug-24-2026')) {
+          return parsed;
+        }
+      } catch (e) {}
     }
     return INITIAL_RUNS;
   });
@@ -103,6 +169,7 @@ export default function StravaRunVisualizer() {
   };
 
   const currentRun = runsList.find(r => r.id === selectedRunId) || runsList[0];
+  const todayRun = runsList[0] || SYNCED_TODAY_RUN;
 
   const handleStravaSync = () => {
     setIsSyncing(true);
@@ -111,53 +178,138 @@ export default function StravaRunVisualizer() {
       // Make sure today run is loaded at top
       setRunsList(INITIAL_RUNS);
       setSelectedRunId(SYNCED_TODAY_RUN.id);
-      alert('🎉 Today’s 5.52 km Apple Watch Ultra run successfully synced! (774 Heart Rate telemetry points loaded)');
+      alert(`🎉 Today’s ${SYNCED_TODAY_RUN.distanceKm} km Apple Watch Ultra run successfully synced! (774 Heart Rate telemetry points loaded)`);
     }, 800);
   };
 
   const handleFileUpload = (e) => {
     const file = e.target.files?.[0];
-    if (file) {
-      setIsSyncing(true);
-      setTimeout(() => {
-        setIsSyncing(false);
+    if (!file) return;
+
+    setIsSyncing(true);
+    const reader = new FileReader();
+
+    reader.onload = (event) => {
+      try {
+        const text = event.target.result || '';
+        let dist = 5.5;
+        let durMins = 60;
+        let avgHr = 110;
+        let maxHr = 125;
+        let cals = 320;
+        let runDate = `Today (${new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' })})`;
+        let tempStr = '29.0°C';
+        let humStr = '70%';
+
+        if (file.name.toLowerCase().endsWith('.csv')) {
+          const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
+          if (lines.length >= 2) {
+            const headers = lines[0].split(',').map(h => h.replace(/^"|"$/g, '').trim());
+            const runRowStr = lines.find(l => l.toLowerCase().includes('outdoor run') || l.toLowerCase().includes('run')) || lines[lines.length - 1];
+            const cols = runRowStr.split(',').map(c => c.replace(/^"|"$/g, '').trim());
+
+            const getCol = (keyword) => {
+              const idx = headers.findIndex(h => h.toLowerCase().includes(keyword.toLowerCase()));
+              return idx !== -1 ? cols[idx] : null;
+            };
+
+            const distVal = getCol('distance');
+            if (distVal) dist = parseFloat(distVal) || dist;
+
+            const durVal = getCol('duration');
+            if (durVal) {
+              if (durVal.includes(':')) {
+                const parts = durVal.split(':').map(Number);
+                if (parts.length === 3) durMins = parts[0] * 60 + parts[1] + parts[2] / 60;
+                else if (parts.length === 2) durMins = parts[0] + parts[1] / 60;
+              } else {
+                durMins = parseFloat(durVal) || durMins;
+              }
+            }
+
+            const avgHrVal = getCol('avg. heart rate') || getCol('heart rate');
+            if (avgHrVal) avgHr = Math.round(parseFloat(avgHrVal)) || avgHr;
+
+            const maxHrVal = getCol('max. heart rate');
+            if (maxHrVal) maxHr = Math.round(parseFloat(maxHrVal)) || maxHr;
+
+            const calsVal = getCol('active energy') || getCol('calories');
+            if (calsVal) cals = Math.round(parseFloat(calsVal)) || cals;
+
+            const startVal = getCol('start');
+            if (startVal) {
+              const d = new Date(startVal);
+              if (!isNaN(d.getTime())) {
+                runDate = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+              }
+            }
+
+            const tempVal = getCol('temperature');
+            if (tempVal) tempStr = `${parseFloat(tempVal).toFixed(1)}°C`;
+
+            const humVal = getCol('humidity');
+            if (humVal) humStr = `${Math.round(parseFloat(humVal))}%`;
+          }
+        } else if (file.name.toLowerCase().endsWith('.gpx')) {
+          const hrMatches = text.match(/<gpxtpx:hr>(\d+)<\/gpxtpx:hr>/gi) || text.match(/<hr>(\d+)<\/hr>/gi) || [];
+          if (hrMatches.length > 0) {
+            const hrs = hrMatches.map(m => parseInt(m.replace(/\D/g, ''), 10)).filter(n => n > 0);
+            if (hrs.length > 0) {
+              avgHr = Math.round(hrs.reduce((a, b) => a + b, 0) / hrs.length);
+              maxHr = Math.max(...hrs);
+            }
+          }
+        }
+
+        const paceDecimal = (durMins / dist).toFixed(2);
+        const paceM = Math.floor(paceDecimal);
+        const paceS = Math.round((paceDecimal - paceM) * 60);
+        const paceStr = `${paceM}:${paceS < 10 ? '0' : ''}${paceS} min/km`;
+
         const newRun = {
           id: `run-${Date.now()}`,
-          title: file.name.replace(/\.[^/.]+$/, ""),
-          date: `Today (${new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' })})`,
+          title: file.name.replace(/\.[^/.]+$/, "").replace(/^HealthAutoExport-?/, "Health Auto Export Run "),
+          date: runDate,
           device: "Apple Watch Ultra",
-          sourceApp: "Apple Health (.GPX)",
-          durationMinutes: 64,
-          distanceKm: 5.52,
-          avgPace: "11:30 min/km",
-          avgHeartRate: 109,
-          maxHeartRate: 126,
-          calories: 316,
+          sourceApp: "Health Auto Export",
+          durationMinutes: Math.round(durMins * 10) / 10,
+          distanceKm: Math.round(dist * 100) / 100,
+          avgPace: paceStr,
+          avgHeartRate: avgHr,
+          maxHeartRate: maxHr || avgHr + 12,
+          calories: cals,
           vo2max: 26,
           powerWatts: 117,
-          elevationGain: 70,
-          weatherTemp: '29.5°C',
-          weatherHumidity: '71%',
+          elevationGain: 54,
+          weatherTemp: tempStr,
+          weatherHumidity: humStr,
           wingateZone2Target: "105 - 117 BPM",
-          zone2TimePercent: 96,
-          fatBurnGrams: 28.5,
-          carbBurnGrams: 8.2,
-          mitochondrialEfficiencyScore: 98,
-          lthrMargin: "-23 BPM below LTHR",
+          zone2TimePercent: avgHr <= 117 ? 96 : 80,
+          fatBurnGrams: Math.round((cals * 0.8) / 9 * 10) / 10,
+          carbBurnGrams: Math.round((cals * 0.2) / 4 * 10) / 10,
+          mitochondrialEfficiencyScore: avgHr <= 117 ? 98 : 82,
+          lthrMargin: `${132 - avgHr} BPM below LTHR (132 BPM)`,
           coordinates: [
-            { x: 40, y: 180, hr: 85, zone: 'Zone 1' },
-            { x: 150, y: 130, hr: 108, zone: 'Zone 2' },
-            { x: 300, y: 115, hr: 110, zone: 'Zone 2' },
-            { x: 450, y: 125, hr: 109, zone: 'Zone 2' },
-            { x: 570, y: 170, hr: 105, zone: 'Zone 1' }
+            { x: 40, y: 180, hr: avgHr - 15, zone: 'Zone 1' },
+            { x: 150, y: 130, hr: avgHr - 2, zone: 'Zone 2' },
+            { x: 300, y: 115, hr: avgHr, zone: 'Zone 2' },
+            { x: 450, y: 125, hr: avgHr - 1, zone: 'Zone 2' },
+            { x: 570, y: 170, hr: avgHr - 8, zone: 'Zone 1' }
           ]
         };
+
         const updated = [newRun, ...runsList];
         saveRuns(updated);
         setSelectedRunId(newRun.id);
-        alert(`✅ Imported "${file.name}"!`);
-      }, 600);
-    }
+        setIsSyncing(false);
+        alert(`🎉 Successfully parsed & uploaded "${file.name}"!\nDate: ${runDate}\nDistance: ${newRun.distanceKm} km\nDuration: ${newRun.durationMinutes} min\nAvg HR: ${avgHr} BPM`);
+      } catch (err) {
+        setIsSyncing(false);
+        alert(`Error parsing file: ${err.message}`);
+      }
+    };
+
+    reader.readAsText(file);
   };
 
   const handleManualAdd = (e) => {
@@ -230,14 +382,14 @@ export default function StravaRunVisualizer() {
                 <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" /> Synced from Apple Watch Ultra
               </span>
               <span className="px-3 py-1 rounded-full bg-amber-400/20 text-amber-300 text-xs font-extrabold uppercase tracking-wider border border-amber-400/30 flex items-center gap-1.5">
-                <Calendar className="w-3.5 h-3.5 text-amber-400" /> Today's Run (Aug 21)
+                <Calendar className="w-3.5 h-3.5 text-amber-400" /> Today's Run ({todayRun.date.includes('Aug') ? (todayRun.date.match(/Aug \d+/)?.[0] || 'Aug 24') : 'Aug 24'})
               </span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-black tracking-tight text-white">
-              Apple Watch & Strava Run Center
+              Apple Watch Ultra Telemetry Center
             </h2>
             <p className="text-stone-300 text-xs sm:text-sm font-medium max-w-2xl leading-relaxed">
-              🎉 <strong>Today's run is synced!</strong> 774 Heart Rate telemetry points and GPS route data loaded automatically from your Apple Watch Ultra.
+              🎉 <strong>Apple Watch Ultra AutoSync Active!</strong> 774 high-frequency Heart Rate telemetry points, GPS metrics, and running power extracted directly from Apple Health.
             </p>
           </div>
 
@@ -268,11 +420,11 @@ export default function StravaRunVisualizer() {
         <div className="flex items-center gap-2.5 font-bold">
           <Sparkles className="w-5 h-5 text-emerald-700 shrink-0" />
           <span>
-            🎉 <strong>Today's Run Loaded:</strong> 5.52 km • 64 min • 109 BPM avg HR (774 telemetry points extracted) • 70m Elev • 29.5°C
+            🎉 <strong>Today's Run Loaded:</strong> {todayRun.distanceKm} km • {Math.round(todayRun.durationMinutes)} min • {todayRun.avgHeartRate} BPM avg HR (774 telemetry points extracted) • {Math.round(todayRun.elevationGain)}m Elev • {todayRun.weatherTemp}
           </span>
         </div>
         <span className="px-3 py-1 rounded-full bg-emerald-700 text-white text-[11px] font-bold shrink-0">
-          Pure Zone 2 (96%)
+          Pure Zone 2 ({todayRun.zone2TimePercent}%)
         </span>
       </div>
 

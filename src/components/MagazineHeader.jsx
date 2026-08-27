@@ -12,7 +12,7 @@ export default function MagazineHeader({
   const currentObj = PAGES_LIST.find(p => p.id === activeArticle) || PAGES_LIST[0];
 
   const prevPage = () => setActiveArticle(Math.max(activeArticle - 1, 1));
-  const nextPage = () => setActiveArticle(Math.min(activeArticle + 1, 19));
+  const nextPage = () => setActiveArticle(Math.min(activeArticle + 1, PAGES_LIST.length));
 
   // Current page direct URL
   const chapterUrl = `https://ishaypesok.github.io/optimus-magazine/#page=${activeArticle}`;
@@ -52,7 +52,7 @@ export default function MagazineHeader({
           {/* Current Page Title Badge */}
           <div className="min-w-0 flex items-center gap-2">
             <span className="px-2.5 py-0.5 rounded-md bg-emerald-100 text-emerald-900 font-extrabold text-[11px] uppercase tracking-wider shrink-0 border border-emerald-300">
-              Page {activeArticle}/19
+              Page {activeArticle}/{PAGES_LIST.length}
             </span>
             <h2 className="text-xs sm:text-sm font-bold text-stone-900 truncate">
               {chapterTitle}
@@ -74,11 +74,11 @@ export default function MagazineHeader({
               <ChevronLeft className="w-4 h-4" />
             </button>
             <span className="px-2 text-[11px] text-stone-500 font-mono hidden md:inline">
-              {activeArticle} / 19
+              {activeArticle} / {PAGES_LIST.length}
             </span>
             <button
               onClick={nextPage}
-              disabled={activeArticle === 19}
+              disabled={activeArticle === PAGES_LIST.length}
               className="p-1.5 rounded-lg hover:bg-stone-200 disabled:opacity-30 text-stone-700 transition"
               title="Next Page"
             >

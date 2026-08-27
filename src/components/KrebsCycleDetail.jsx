@@ -34,6 +34,9 @@ export default function KrebsCycleDetail() {
             <p className="text-sm text-slate-300 leading-relaxed max-w-2xl">
               Explore the 8 enzymatic steps inside the mitochondrial matrix that strip high-energy electrons from Acetyl-CoA to power the Electron Transport Chain!
             </p>
+            <div className="mt-3 inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-amber-500/15 border border-amber-500/40 text-amber-200 text-xs font-medium">
+              <span>💡 <strong>Quick Bioenergetics Q&A:</strong> How many Krebs cycles are in 1 mitochondrion? <strong>Zero physical structures!</strong> The Krebs cycle is a <em>chemical reaction pathway</em> running millions of times per second across thousands of matrix enzymes.</span>
+            </div>
           </div>
 
           <div className="flex items-center gap-2 shrink-0">

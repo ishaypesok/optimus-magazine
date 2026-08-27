@@ -7,9 +7,26 @@ import {
 
 const INITIAL_RUNS_DATA = [
   {
+    id: 'run-aug-24-2026',
+    date: 'Aug 24, 2026',
+    title: "Latest Outdoor Run (6.11 km Record)",
+    distanceKm: 6.11,
+    durationMin: 72.3,
+    paceStr: '11:50 min/km',
+    paceVal: 11.84,
+    avgHr: 108,
+    maxHr: 124,
+    zone2Percent: 97,
+    fatBurnGrams: 31.5,
+    carbBurnGrams: 8.6,
+    mitoScore: 99,
+    lthrMargin: '-24 BPM',
+    note: 'New Distance Record! Broke 6 km milestone in Zone 2.'
+  },
+  {
     id: 'run-aug-21-2026',
     date: 'Aug 21, 2026',
-    title: "Latest Outdoor Run (Apple Watch)",
+    title: "Outdoor Run (Apple Watch)",
     distanceKm: 5.52,
     durationMin: 63.5,
     paceStr: '11:30 min/km',
@@ -22,6 +39,23 @@ const INITIAL_RUNS_DATA = [
     mitoScore: 98,
     lthrMargin: '-23 BPM',
     note: 'Lowest Average Heart Rate! Perfect Zone 2 Alignment.'
+  },
+  {
+    id: 'run-aug-19-2026',
+    date: 'Aug 19, 2026',
+    title: 'Base Aerobic Run',
+    distanceKm: 4.80,
+    durationMin: 52.0,
+    paceStr: '10:50 min/km',
+    paceVal: 10.83,
+    avgHr: 111,
+    maxHr: 122,
+    zone2Percent: 94,
+    fatBurnGrams: 24.8,
+    carbBurnGrams: 7.1,
+    mitoScore: 95,
+    lthrMargin: '-21 BPM',
+    note: 'Steady recovery base run'
   },
   {
     id: 'run-aug-18-2026',
@@ -116,7 +150,7 @@ export default function RunImprovementsTable() {
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) {
+        if (Array.isArray(parsed) && parsed.some(r => r.id === 'run-aug-24-2026' || r.id === 'run-aug-24-2026-synced')) {
           return parsed.map(r => ({
             id: r.id || `run-${Math.random()}`,
             date: r.date || 'Recent Run',
@@ -216,7 +250,7 @@ export default function RunImprovementsTable() {
             <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
             <div>
               <div className="font-extrabold text-white">Auto-Synced after each run</div>
-              <div className="text-stone-300 text-[11px]">Integrates with Page 10 Watch & Strava Sync</div>
+              <div className="text-stone-300 text-[11px]">Integrates with Page 10 Apple Watch Ultra Sync</div>
             </div>
           </div>
         </div>

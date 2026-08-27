@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { 
   BookOpen, Search, X, Smile, Flame, Cpu, Zap, BarChart2, Activity, Clock, 
-  ShieldCheck, User, Heart, BatteryCharging, TrendingUp, Droplet, Sun, Layers, Award, Dna,
-  ArrowDownAZ, Hash, LayoutGrid, Link, Check, ExternalLink
+  ShieldCheck, User, Heart, BatteryCharging, TrendingUp, Droplet, Sun, Layers, Award, Dna, Trophy,
+  ArrowDownAZ, Hash, LayoutGrid, Link, Check, ExternalLink, Sparkles, Calculator
 } from 'lucide-react';
 
 export const PAGES_LIST = [
@@ -15,7 +15,7 @@ export const PAGES_LIST = [
   { id: 7, title: '1-Hour Field Experiment', label: 'Page 7: 1-Hr Field Study', category: 'Field Studies', icon: Clock, badge: 'Data' },
   { id: 8, title: 'Longevity Masterclass & Protocols', label: 'Page 8: Longevity Masterclass', category: 'Field Studies', icon: ShieldCheck, badge: 'Health' },
   { id: 9, title: 'Ishai Athlete Profile', label: 'Page 9: Ishai Profile', category: 'Personal Data', icon: User, badge: '👤 Profile' },
-  { id: 10, title: 'Watch Runs & Strava Data', label: 'Page 10: Watch Runs', category: 'Personal Data', icon: Heart, badge: '🏃‍♂️ Strava' },
+  { id: 10, title: 'Apple Watch Ultra Telemetry & Runs', label: 'Page 10: Watch Runs', category: 'Personal Data', icon: Heart, badge: '⌚ Apple Watch' },
   { id: 11, title: 'Zone 2 & Recovery Mastery', label: 'Page 11: Zone 2 & Recovery', category: 'Protocols', icon: BatteryCharging, badge: '🔋 Fuel' },
   { id: 12, title: 'Aerobic Expectations & HR Drift', label: 'Page 12: Aerobic Expectations', category: 'Protocols', icon: TrendingUp, badge: 'HR Drift' },
   { id: 13, title: 'Nutrition & Blood Pressure', label: 'Page 13: Nutrition & BP', category: 'Protocols', icon: Droplet, badge: '🥗 Health' },
@@ -25,6 +25,11 @@ export const PAGES_LIST = [
   { id: 17, title: 'Bacterial & Mitochondrial Evolution', label: 'Page 17: Bacterial Reproduction', category: 'Deep Physiology', icon: Dna, badge: '🦠 Evolution' },
   { id: 18, title: "Runner's License & Certification", label: "Page 18: Runner's License", category: 'Fundamentals', icon: Award, badge: '📜 License' },
   { id: 19, title: 'How the Human Body Creates Fat', label: 'Page 19: How Body Creates Fat', category: 'Deep Physiology', icon: Layers, badge: '🧪 Lipogenesis' },
+  { id: 20, title: 'Molecular Assembly Line (Citrate)', label: 'Page 20: Molecular Assembly Line', category: 'Cell Biology', icon: Cpu, badge: '⚡ Interactive' },
+  { id: 21, title: 'The Cellular Cosmos (3D Cell Model)', label: 'Page 21: The Cellular Cosmos', category: 'Cell Biology', icon: Sparkles, badge: '🌌 3D Model' },
+  { id: 22, title: 'Wise 10K Training & Run Tracker', label: 'Page 22: 10K Training Tracker', category: 'Protocols', icon: Trophy, badge: '🏃 10K Tracker' },
+  { id: 23, title: 'Anti-Aging & Longevity Science', label: 'Page 23: Anti-Aging Science', category: 'Deep Physiology', icon: Sparkles, badge: '✨ Anti-Aging' },
+  { id: 24, title: 'Apple Watch Bioenergetics Calculator', label: 'Page 24: Substrate & ATP Calc', category: 'Personal Data', icon: Calculator, badge: '🧮 Calculator' },
 ];
 
 export default function Sidebar({
@@ -142,7 +147,7 @@ export default function Sidebar({
             <Search className="w-4 h-4 text-stone-400 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
               type="text"
-              placeholder="Search 19 magazine articles..."
+              placeholder={`Search ${PAGES_LIST.length} magazine articles...`}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-9 pr-3 py-2 rounded-xl bg-white border border-stone-300 text-xs font-medium text-stone-800 placeholder-stone-400 focus:outline-none focus:border-emerald-600 transition shadow-2xs"
@@ -174,7 +179,7 @@ export default function Sidebar({
                     ? 'bg-emerald-800 text-white shadow-2xs font-extrabold'
                     : 'hover:bg-stone-300/60 text-stone-700'
                 }`}
-                title="Sort by Page Number 1-19"
+                title={`Sort by Page Number 1-${PAGES_LIST.length}`}
               >
                 <Hash className="w-3.5 h-3.5" />
                 <span>By Page #</span>
@@ -288,7 +293,7 @@ export default function Sidebar({
             /* FLAT ALPHABETICAL (A-Z) OR NUMERICAL LIST VIEW */
             <div className="space-y-1">
               <div className="text-[10px] uppercase font-black text-stone-500 tracking-wider px-2 mb-2 flex items-center justify-between">
-                <span>{sortMode === 'atoz' ? 'Articles (A – Z Alphabetical)' : 'Articles (Page 1 – 19)'}</span>
+                <span>{sortMode === 'atoz' ? 'Articles (A – Z Alphabetical)' : `Articles (Page 1 – ${PAGES_LIST.length})`}</span>
                 <span>{sortedPages.length} Pages</span>
               </div>
 
@@ -389,7 +394,7 @@ export default function Sidebar({
               ishaypesok.github.io/optimus-magazine
             </a>
           </div>
-          <div>Optimus Bioenergetics Press • 19 Pages</div>
+          <div>Optimus Bioenergetics Press • {PAGES_LIST.length} Pages</div>
         </div>
 
       </aside>

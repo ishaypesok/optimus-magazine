@@ -22,11 +22,17 @@ import MitochondrialReproduction from './MitochondrialReproduction';
 import LactateMasterclass from './LactateMasterclass';
 import RunnerLicense from './RunnerLicense';
 import HowFatIsCreated from './HowFatIsCreated';
+import MolecularAssemblyLine from './MolecularAssemblyLine';
+import CellularCosmos from './CellularCosmos';
+import TenKTracker from './TenKTracker';
+import AntiAgingMasterclass from './AntiAgingMasterclass';
+import BioenergeticsCalculator from './BioenergeticsCalculator';
+import { PAGES_LIST } from './Sidebar';
 
 export default function MagazineView({ currentZoneId, setCurrentZoneId, activeArticle, setActiveArticle }) {
   const [internalPage, setInternalPage] = useState(1);
   const activePage = (activeArticle && typeof activeArticle === 'number') ? activeArticle : internalPage;
-  const totalPages = 19;
+  const totalPages = PAGES_LIST.length;
 
   const zone2 = ZONES.find(z => z.id === 2) || ZONES[1];
   const currentZone = ZONES.find(z => z.id === currentZoneId) || zone2;
@@ -725,6 +731,31 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
         {/* ==================== PAGE 19: HOW THE HUMAN BODY CREATES FAT ==================== */}
         {activePage === 19 && (
           <HowFatIsCreated />
+        )}
+
+        {/* ==================== PAGE 20: MOLECULAR ASSEMBLY LINE ==================== */}
+        {activePage === 20 && (
+          <MolecularAssemblyLine />
+        )}
+
+        {/* ==================== PAGE 21: THE CELLULAR COSMOS ==================== */}
+        {activePage === 21 && (
+          <CellularCosmos />
+        )}
+
+        {/* ==================== PAGE 22: WISE 10K TRAINING & RUN TRACKER ==================== */}
+        {activePage === 22 && (
+          <TenKTracker />
+        )}
+
+        {/* ==================== PAGE 23: ANTI-AGING & CELLULAR LONGEVITY ==================== */}
+        {activePage === 23 && (
+          <AntiAgingMasterclass />
+        )}
+
+        {/* ==================== PAGE 24: APPLE WATCH BIOENERGETICS CALCULATOR ==================== */}
+        {activePage === 24 && (
+          <BioenergeticsCalculator />
         )}
 
         {/* Page Footer Navigation */}

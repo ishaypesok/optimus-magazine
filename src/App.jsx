@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Sidebar from './components/Sidebar';
+import Sidebar, { PAGES_LIST } from './components/Sidebar';
 import MagazineHeader from './components/MagazineHeader';
 import MagazineView from './components/MagazineView';
 import { BookOpen } from 'lucide-react';
@@ -11,7 +11,7 @@ function getPageFromHash() {
   const match = hash.match(/page[=\-]?(\d+)/i);
   if (match && match[1]) {
     const pageNum = parseInt(match[1], 10);
-    if (pageNum >= 1 && pageNum <= 19) {
+    if (pageNum >= 1 && pageNum <= PAGES_LIST.length) {
       return pageNum;
     }
   }
