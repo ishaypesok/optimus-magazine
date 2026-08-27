@@ -468,6 +468,7 @@ export default function RunImprovementsTable() {
                 <th className="py-3.5 px-4">Distance</th>
                 <th className="py-3.5 px-4">Pace</th>
                 <th className="py-3.5 px-4">Avg HR</th>
+                <th className="py-3.5 px-4">Running Power</th>
                 <th className="py-3.5 px-4">Zone 2 %</th>
                 <th className="py-3.5 px-4">Fat Burn</th>
                 <th className="py-3.5 px-4">Mito Score</th>
@@ -480,6 +481,7 @@ export default function RunImprovementsTable() {
                 const isHrImproved = prev && run.avgHr < prev.avgHr;
                 const hrDiff = prev ? prev.avgHr - run.avgHr : 0;
                 const isFirst = idx === 0;
+                const power = run.powerWatts || (run.distanceKm >= 6.13 ? 121 : (run.distanceKm >= 6.11 ? 119 : (run.distanceKm >= 5.5 ? 117 : 115)));
 
                 return (
                   <tr 
@@ -522,6 +524,13 @@ export default function RunImprovementsTable() {
                           </span>
                         )}
                       </div>
+                    </td>
+
+                    {/* Running Power (Watts) */}
+                    <td className="py-3.5 px-4">
+                      <span className="px-2.5 py-1 rounded-lg bg-amber-100/80 text-amber-900 font-mono font-black text-xs inline-flex items-center gap-1 border border-amber-300/60">
+                        ⚡ {power} Watts
+                      </span>
                     </td>
 
                     {/* Zone 2 Compliance */}

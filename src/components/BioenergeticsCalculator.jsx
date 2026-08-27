@@ -494,8 +494,12 @@ export default function BioenergeticsCalculator() {
 
             </div>
 
-            {/* Avogadro Molecule Summary */}
+            {/* Avogadro Molecule & Watts Power Summary */}
             <div className="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2 text-xs">
+              <div className="flex justify-between items-center text-stone-200">
+                <span>Total Mechanical Running Power:</span>
+                <strong className="font-mono text-amber-300 text-sm">⚡ {((activeKcal * 4184) / (duration * 60) * 0.32).toFixed(0)} Watts (Running Power)</strong>
+              </div>
               <div className="flex justify-between items-center text-stone-200">
                 <span>Total ATP Molecules Synthesized:</span>
                 <strong className="font-mono text-emerald-300 text-sm">{atpMoleculesMantissa} × 10²⁴ Molecules</strong>
@@ -505,7 +509,7 @@ export default function BioenergeticsCalculator() {
                 <strong className="font-mono text-teal-300 text-sm">{atpFluxMmolSec.toFixed(2)} mmol ATP / second</strong>
               </div>
               <p className="text-[11px] text-stone-400 pt-1 border-t border-white/10 leading-relaxed font-normal">
-                Every second during this run, your mitochondria resynthesize <strong>{atpFluxMmolSec.toFixed(2)} millimoles of ATP</strong> to fuel cross-bridge cycling in your working skeletal muscle fibers!
+                Every second during this run, your body outputs <strong>{((activeKcal * 4184) / (duration * 60) * 0.32).toFixed(0)} Watts</strong> of continuous mechanical power, requiring your mitochondria to resynthesize <strong>{atpFluxMmolSec.toFixed(2)} millimoles of ATP</strong> to fuel cross-bridge cycling in your working skeletal muscle fibers!
               </p>
             </div>
 

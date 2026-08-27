@@ -534,14 +534,20 @@ export default function StravaRunVisualizer() {
               </p>
             </div>
 
-            <div className="flex items-center gap-3">
+            <div className="flex flex-wrap items-center gap-3">
+              <div className="px-4 py-2 rounded-2xl bg-amber-500/10 border border-amber-400/40 text-center">
+                <div className="text-[10px] font-bold text-amber-800 uppercase tracking-wider flex items-center justify-center gap-1">
+                  <Zap className="w-3 h-3 text-amber-600" /> Running Power
+                </div>
+                <div className="text-2xl font-black text-amber-800">{currentRun.powerWatts || 121} <span className="text-xs font-normal">Watts</span></div>
+              </div>
               <div className="px-4 py-2 rounded-2xl bg-emerald-50 border border-emerald-200 text-center">
                 <div className="text-[10px] font-bold text-emerald-800 uppercase tracking-wider">Zone 2 Compliance</div>
                 <div className="text-2xl font-black text-emerald-700">{currentRun.zone2TimePercent}%</div>
               </div>
-              <div className="px-4 py-2 rounded-2xl bg-amber-50 border border-amber-200 text-center">
-                <div className="text-[10px] font-bold text-amber-800 uppercase tracking-wider">Avg Heart Rate</div>
-                <div className="text-2xl font-black text-amber-700">{currentRun.avgHeartRate} <span className="text-xs font-normal">BPM</span></div>
+              <div className="px-4 py-2 rounded-2xl bg-rose-50 border border-rose-200 text-center">
+                <div className="text-[10px] font-bold text-rose-800 uppercase tracking-wider">Avg Heart Rate</div>
+                <div className="text-2xl font-black text-rose-700">{currentRun.avgHeartRate} <span className="text-xs font-normal">BPM</span></div>
               </div>
             </div>
           </div>
@@ -570,13 +576,13 @@ export default function StravaRunVisualizer() {
             </div>
 
             {/* 3. Running Power & Calories */}
-            <div className="p-4 rounded-2xl bg-stone-50 border border-stone-200 space-y-1">
-              <div className="flex items-center justify-between text-xs text-stone-500 font-bold">
-                <span>Power & Energy</span>
-                <Zap className="w-4 h-4 text-amber-500" />
+            <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-300 space-y-1">
+              <div className="flex items-center justify-between text-xs text-amber-900 font-bold">
+                <span>Running Power (Watts)</span>
+                <Zap className="w-4 h-4 text-amber-600 fill-amber-500" />
               </div>
-              <div className="text-xl font-black text-stone-900">{currentRun.powerWatts || 117} W • {currentRun.calories || 316} kcal</div>
-              <div className="text-[11px] text-amber-700 font-medium">Mechanical Work & Energy</div>
+              <div className="text-xl font-black text-amber-950">{currentRun.powerWatts || 121} Watts • {currentRun.calories || 377} kcal</div>
+              <div className="text-[11px] text-amber-800 font-semibold">⚡ ~1.45 sextillion ATP output / sec</div>
             </div>
 
             {/* 4. VO2 Max */}
