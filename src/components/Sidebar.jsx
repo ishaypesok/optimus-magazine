@@ -51,7 +51,7 @@ export default function Sidebar({
   searchQuery,
   setSearchQuery
 }) {
-  const [sortMode, setSortMode] = useState('atoz'); // 'atoz' | 'num' | 'cat'
+  const [sortMode, setSortMode] = useState('num'); // 'num' (By Page #) | 'atoz' (A-Z) | 'cat' (Categories)
   const [copiedId, setCopiedId] = useState(null);
   const activeItemRef = useRef(null);
 
@@ -170,6 +170,21 @@ export default function Sidebar({
             <span className="text-stone-500 uppercase text-[10px] tracking-wider shrink-0">Sort:</span>
             
             <div className="flex items-center gap-1 bg-stone-200/80 p-0.5 rounded-xl text-stone-700 w-full justify-end">
+              {/* Left: By Page # */}
+              <button
+                onClick={() => setSortMode('num')}
+                className={`flex-1 flex items-center justify-center gap-1 py-1 px-2 rounded-lg transition ${
+                  sortMode === 'num'
+                    ? 'bg-emerald-800 text-white shadow-2xs font-extrabold'
+                    : 'hover:bg-stone-300/60 text-stone-700'
+                }`}
+                title={`Sort by Page Number 1-${PAGES_LIST.length}`}
+              >
+                <Hash className="w-3.5 h-3.5" />
+                <span>Pages #</span>
+              </button>
+
+              {/* Middle: A-Z */}
               <button
                 onClick={() => setSortMode('atoz')}
                 className={`flex-1 flex items-center justify-center gap-1 py-1 px-2 rounded-lg transition ${
@@ -183,19 +198,7 @@ export default function Sidebar({
                 <span>A-Z</span>
               </button>
 
-              <button
-                onClick={() => setSortMode('num')}
-                className={`flex-1 flex items-center justify-center gap-1 py-1 px-2 rounded-lg transition ${
-                  sortMode === 'num'
-                    ? 'bg-emerald-800 text-white shadow-2xs font-extrabold'
-                    : 'hover:bg-stone-300/60 text-stone-700'
-                }`}
-                title={`Sort by Page Number 1-${PAGES_LIST.length}`}
-              >
-                <Hash className="w-3.5 h-3.5" />
-                <span>By Page #</span>
-              </button>
-
+              {/* Right: Category */}
               <button
                 onClick={() => setSortMode('cat')}
                 className={`flex-1 flex items-center justify-center gap-1 py-1 px-2 rounded-lg transition ${
@@ -206,7 +209,7 @@ export default function Sidebar({
                 title="Group by Category"
               >
                 <LayoutGrid className="w-3.5 h-3.5" />
-                <span>Category</span>
+                <span>Categories</span>
               </button>
             </div>
           </div>
