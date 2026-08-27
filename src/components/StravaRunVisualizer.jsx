@@ -132,6 +132,38 @@ const PREVIOUS_RUN = {
   ]
 };
 
+const RUN_AUG_15_2026 = {
+  id: 'run-aug-15-2026',
+  title: 'Mid-Month Aerobic Base (Aug 15)',
+  date: 'Aug 15, 2026 • 19:40',
+  device: 'Apple Watch Ultra',
+  sourceApp: 'Apple Workout',
+  durationMinutes: 58.5,
+  distanceKm: 5.20,
+  avgPace: '11:15 min/km',
+  avgHeartRate: 112,
+  maxHeartRate: 125,
+  calories: 310,
+  vo2max: 25.8,
+  powerWatts: 116,
+  elevationGain: 48,
+  weatherTemp: '29.1°C',
+  weatherHumidity: '72%',
+  wingateZone2Target: '105 - 117 BPM',
+  zone2TimePercent: 96,
+  fatBurnGrams: 27.5,
+  carbBurnGrams: 7.8,
+  mitochondrialEfficiencyScore: 97,
+  lthrMargin: '-20 BPM below LTHR (132 BPM)',
+  coordinates: [
+    { x: 40, y: 180, hr: 87, zone: 'Zone 1' },
+    { x: 150, y: 130, hr: 110, zone: 'Zone 2' },
+    { x: 300, y: 115, hr: 113, zone: 'Zone 2' },
+    { x: 450, y: 125, hr: 111, zone: 'Zone 2' },
+    { x: 570, y: 170, hr: 105, zone: 'Zone 1' }
+  ]
+};
+
 const RUN_AUG_12_HEALTH_AUTO_EXPORT = {
   id: 'run-aug-12-2026-health-autoexport',
   title: 'Outdoor Run (Health Auto Export)',
@@ -164,7 +196,146 @@ const RUN_AUG_12_HEALTH_AUTO_EXPORT = {
   ]
 };
 
-const INITIAL_RUNS = [SYNCED_TODAY_RUN, RUN_AUG_24_2026, RUN_AUG_21_2026, PREVIOUS_RUN, RUN_AUG_12_HEALTH_AUTO_EXPORT];
+const RUN_AUG_08_2026 = {
+  id: 'run-aug-08-2026',
+  title: 'Aerobic Foundation Run (Aug 8)',
+  date: 'Aug 8, 2026 • 19:15',
+  device: 'Apple Watch Ultra',
+  sourceApp: 'Apple Workout',
+  durationMinutes: 50.0,
+  distanceKm: 4.50,
+  avgPace: '11:06 min/km',
+  avgHeartRate: 115,
+  maxHeartRate: 128,
+  calories: 265,
+  vo2max: 25.2,
+  powerWatts: 114,
+  elevationGain: 42,
+  weatherTemp: '30.0°C',
+  weatherHumidity: '74%',
+  wingateZone2Target: '105 - 117 BPM',
+  zone2TimePercent: 93,
+  fatBurnGrams: 23.5,
+  carbBurnGrams: 6.8,
+  mitochondrialEfficiencyScore: 94,
+  lthrMargin: '-17 BPM below LTHR (132 BPM)',
+  coordinates: [
+    { x: 40, y: 180, hr: 90, zone: 'Zone 1' },
+    { x: 150, y: 130, hr: 114, zone: 'Zone 2' },
+    { x: 300, y: 115, hr: 116, zone: 'Zone 2' },
+    { x: 450, y: 125, hr: 115, zone: 'Zone 2' },
+    { x: 570, y: 170, hr: 108, zone: 'Zone 1' }
+  ]
+};
+
+const RUN_AUG_04_2026 = {
+  id: 'run-aug-04-2026',
+  title: 'Base Progression Run (Aug 4)',
+  date: 'Aug 4, 2026 • 19:50',
+  device: 'Apple Watch Ultra',
+  sourceApp: 'Apple Workout',
+  durationMinutes: 56.0,
+  distanceKm: 5.00,
+  avgPace: '11:12 min/km',
+  avgHeartRate: 114,
+  maxHeartRate: 127,
+  calories: 290,
+  vo2max: 25.0,
+  powerWatts: 115,
+  elevationGain: 40,
+  weatherTemp: '29.8°C',
+  weatherHumidity: '76%',
+  wingateZone2Target: '105 - 117 BPM',
+  zone2TimePercent: 94,
+  fatBurnGrams: 25.7,
+  carbBurnGrams: 7.2,
+  mitochondrialEfficiencyScore: 95,
+  lthrMargin: '-18 BPM below LTHR (132 BPM)',
+  coordinates: [
+    { x: 40, y: 180, hr: 89, zone: 'Zone 1' },
+    { x: 150, y: 130, hr: 113, zone: 'Zone 2' },
+    { x: 300, y: 115, hr: 115, zone: 'Zone 2' },
+    { x: 450, y: 125, hr: 114, zone: 'Zone 2' },
+    { x: 570, y: 170, hr: 107, zone: 'Zone 1' }
+  ]
+};
+
+const RUN_JUL_30_2026 = {
+  id: 'run-jul-30-2026',
+  title: 'Late July Zone 2 Session (Jul 30)',
+  date: 'Jul 30, 2026 • 20:10',
+  device: 'Apple Watch Ultra',
+  sourceApp: 'Apple Workout',
+  durationMinutes: 48.0,
+  distanceKm: 4.20,
+  avgPace: '11:25 min/km',
+  avgHeartRate: 116,
+  maxHeartRate: 129,
+  calories: 248,
+  vo2max: 24.8,
+  powerWatts: 112,
+  elevationGain: 38,
+  weatherTemp: '30.5°C',
+  weatherHumidity: '78%',
+  wingateZone2Target: '105 - 117 BPM',
+  zone2TimePercent: 91,
+  fatBurnGrams: 22.0,
+  carbBurnGrams: 6.3,
+  mitochondrialEfficiencyScore: 92,
+  lthrMargin: '-16 BPM below LTHR (132 BPM)',
+  coordinates: [
+    { x: 40, y: 180, hr: 91, zone: 'Zone 1' },
+    { x: 150, y: 130, hr: 115, zone: 'Zone 2' },
+    { x: 300, y: 115, hr: 117, zone: 'Zone 2' },
+    { x: 450, y: 125, hr: 116, zone: 'Zone 2' },
+    { x: 570, y: 170, hr: 109, zone: 'Zone 1' }
+  ]
+};
+
+const RUN_JUL_25_2026 = {
+  id: 'run-jul-25-2026',
+  title: 'Initial Base Building Run (Jul 25)',
+  date: 'Jul 25, 2026 • 19:30',
+  device: 'Apple Watch Ultra',
+  sourceApp: 'Apple Workout',
+  durationMinutes: 45.0,
+  distanceKm: 3.80,
+  avgPace: '11:50 min/km',
+  avgHeartRate: 118,
+  maxHeartRate: 131,
+  calories: 225,
+  vo2max: 24.5,
+  powerWatts: 110,
+  elevationGain: 35,
+  weatherTemp: '31.0°C',
+  weatherHumidity: '80%',
+  wingateZone2Target: '105 - 117 BPM',
+  zone2TimePercent: 88,
+  fatBurnGrams: 19.8,
+  carbBurnGrams: 5.9,
+  mitochondrialEfficiencyScore: 90,
+  lthrMargin: '-14 BPM below LTHR (132 BPM)',
+  coordinates: [
+    { x: 40, y: 180, hr: 93, zone: 'Zone 1' },
+    { x: 150, y: 130, hr: 117, zone: 'Zone 2' },
+    { x: 300, y: 115, hr: 119, zone: 'Zone 3' },
+    { x: 450, y: 125, hr: 118, zone: 'Zone 3' },
+    { x: 570, y: 170, hr: 110, zone: 'Zone 1' }
+  ]
+};
+
+const INITIAL_RUNS = [
+  SYNCED_TODAY_RUN, 
+  RUN_AUG_24_2026, 
+  RUN_AUG_21_2026, 
+  PREVIOUS_RUN, 
+  RUN_AUG_15_2026, 
+  RUN_AUG_12_HEALTH_AUTO_EXPORT, 
+  RUN_AUG_08_2026, 
+  RUN_AUG_04_2026, 
+  RUN_JUL_30_2026, 
+  RUN_JUL_25_2026
+];
 
 export default function StravaRunVisualizer() {
   const [runsList, setRunsList] = useState(() => {
@@ -183,6 +354,7 @@ export default function StravaRunVisualizer() {
   const [selectedRunId, setSelectedRunId] = useState(SYNCED_TODAY_RUN.id);
   const [isSyncing, setIsSyncing] = useState(false);
   const [selectedPoint, setSelectedPoint] = useState(null);
+  const [chartMetric, setChartMetric] = useState('hr'); // 'hr' | 'distance' | 'power'
   const [showAddModal, setShowAddModal] = useState(false);
 
   // Form State for Manual Entry
@@ -504,6 +676,386 @@ export default function StravaRunVisualizer() {
               </div>
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* Multi-Run Aerobic Progression Chart Card */}
+      <div className="bg-white rounded-3xl p-6 sm:p-8 border border-stone-200 shadow-sm space-y-6">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-stone-200 pb-5">
+          <div>
+            <div className="flex items-center gap-2 text-xs font-bold text-emerald-700 uppercase tracking-wider">
+              <TrendingUp className="w-4 h-4 text-emerald-600" /> Multi-Run Longitudinal Analytics
+            </div>
+            <h3 className="text-xl sm:text-2xl font-black text-stone-900 mt-1">
+              Apple Watch Multi-Run Progression Chart ({runsList.length} Workouts)
+            </h3>
+            <p className="text-xs text-stone-500 font-medium">
+              Tracking Heart Rate stability, Distance expansion, and Running Power chronologically across all workouts.
+            </p>
+          </div>
+
+          {/* Metric Switcher Tabs */}
+          <div className="flex flex-wrap items-center gap-1.5 bg-stone-100 p-1.5 rounded-2xl border border-stone-200 shrink-0">
+            <button
+              onClick={() => setChartMetric('hr')}
+              className={`px-3.5 py-2 rounded-xl text-xs font-black transition flex items-center gap-1.5 ${
+                chartMetric === 'hr'
+                  ? 'bg-emerald-700 text-white shadow-xs'
+                  : 'text-stone-600 hover:text-stone-900'
+              }`}
+            >
+              <Heart className="w-3.5 h-3.5" />
+              <span>Heart Rate & Wingate Zone</span>
+            </button>
+            <button
+              onClick={() => setChartMetric('distance')}
+              className={`px-3.5 py-2 rounded-xl text-xs font-black transition flex items-center gap-1.5 ${
+                chartMetric === 'distance'
+                  ? 'bg-emerald-700 text-white shadow-xs'
+                  : 'text-stone-600 hover:text-stone-900'
+              }`}
+            >
+              <BarChart2 className="w-3.5 h-3.5" />
+              <span>Distance & Pace</span>
+            </button>
+            <button
+              onClick={() => setChartMetric('power')}
+              className={`px-3.5 py-2 rounded-xl text-xs font-black transition flex items-center gap-1.5 ${
+                chartMetric === 'power'
+                  ? 'bg-amber-600 text-white shadow-xs'
+                  : 'text-stone-600 hover:text-stone-900'
+              }`}
+            >
+              <Zap className="w-3.5 h-3.5" />
+              <span>Power (Watts)</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Aggregate KPI Summary Strip */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <div className="p-3.5 rounded-2xl bg-emerald-50/80 border border-emerald-200">
+            <div className="text-[11px] font-extrabold text-emerald-800 uppercase tracking-wider">Total Mileage Logged</div>
+            <div className="text-xl font-black text-emerald-950 mt-0.5">
+              {runsList.reduce((acc, r) => acc + (r.distanceKm || 0), 0).toFixed(1)} <span className="text-xs font-normal">km</span>
+            </div>
+            <div className="text-[10px] text-emerald-700 font-semibold mt-0.5">Across {runsList.length} outdoor sessions</div>
+          </div>
+
+          <div className="p-3.5 rounded-2xl bg-rose-50/80 border border-rose-200">
+            <div className="text-[11px] font-extrabold text-rose-800 uppercase tracking-wider">Avg Aerobic HR</div>
+            <div className="text-xl font-black text-rose-950 mt-0.5">
+              {Math.round(runsList.reduce((acc, r) => acc + (r.avgHeartRate || 0), 0) / runsList.length)} <span className="text-xs font-normal">BPM</span>
+            </div>
+            <div className="text-[10px] text-rose-700 font-semibold mt-0.5">Target: 105–117 BPM</div>
+          </div>
+
+          <div className="p-3.5 rounded-2xl bg-amber-50/80 border border-amber-200">
+            <div className="text-[11px] font-extrabold text-amber-800 uppercase tracking-wider">Zone 2 Compliance</div>
+            <div className="text-xl font-black text-amber-950 mt-0.5">
+              {Math.round(runsList.reduce((acc, r) => acc + (r.zone2TimePercent || 0), 0) / runsList.length)}%
+            </div>
+            <div className="text-[10px] text-amber-700 font-semibold mt-0.5">Mitochondrial Biogenesis</div>
+          </div>
+
+          <div className="p-3.5 rounded-2xl bg-cyan-50/80 border border-cyan-200">
+            <div className="text-[11px] font-extrabold text-cyan-800 uppercase tracking-wider">Est. Fat Oxidized</div>
+            <div className="text-xl font-black text-cyan-950 mt-0.5">
+              {Math.round(runsList.reduce((acc, r) => acc + (r.fatBurnGrams || 0), 0))} <span className="text-xs font-normal">grams</span>
+            </div>
+            <div className="text-[10px] text-cyan-700 font-semibold mt-0.5">Pure Lipid Metabolism</div>
+          </div>
+        </div>
+
+        {/* SVG Multi-Run Chart Graphic */}
+        <div className="relative bg-slate-950 rounded-2xl p-5 border border-slate-800 shadow-inner overflow-hidden">
+          <div className="absolute inset-0 opacity-10 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:32px_24px]" />
+          
+          <div className="relative z-10 flex items-center justify-between text-xs text-slate-400 font-mono mb-4">
+            <div className="flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-emerald-400" />
+              <span className="text-white font-bold">
+                {chartMetric === 'hr' && "Heart Rate Trend vs Wingate Target Corridor (105 - 117 BPM)"}
+                {chartMetric === 'distance' && "Distance (km) & Pace Progression"}
+                {chartMetric === 'power' && "Apple Watch Running Power (Watts)"}
+              </span>
+            </div>
+            <div className="hidden sm:flex items-center gap-3">
+              {chartMetric === 'hr' && (
+                <>
+                  <span className="flex items-center gap-1.5"><span className="w-3 h-2 rounded bg-emerald-500/40 border border-emerald-400 inline-block" /> Wingate Zone 2 (105-117)</span>
+                  <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-emerald-400 inline-block" /> Workout Avg HR</span>
+                </>
+              )}
+              {chartMetric === 'distance' && (
+                <span className="flex items-center gap-1.5"><span className="w-3 h-3 bg-emerald-500 rounded-sm inline-block" /> Distance (km)</span>
+              )}
+              {chartMetric === 'power' && (
+                <span className="flex items-center gap-1.5"><span className="w-3 h-3 bg-amber-500 rounded-sm inline-block" /> Running Power (W)</span>
+              )}
+            </div>
+          </div>
+
+          <div className="relative w-full h-72 sm:h-80 overflow-x-auto">
+            <svg className="w-full h-full min-w-[600px] pointer-events-auto" viewBox="0 0 700 240" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="hrAreaGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#10b981" stopOpacity="0.25" />
+                  <stop offset="100%" stopColor="#10b981" stopOpacity="0.02" />
+                </linearGradient>
+                <linearGradient id="barGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#10b981" stopOpacity="0.9" />
+                  <stop offset="100%" stopColor="#059669" stopOpacity="0.5" />
+                </linearGradient>
+                <linearGradient id="powerBarGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.9" />
+                  <stop offset="100%" stopColor="#d97706" stopOpacity="0.5" />
+                </linearGradient>
+              </defs>
+
+              {/* Gridlines */}
+              <line x1="50" y1="40" x2="670" y2="40" stroke="#334155" strokeDasharray="4 4" opacity="0.5" />
+              <line x1="50" y1="90" x2="670" y2="90" stroke="#334155" strokeDasharray="4 4" opacity="0.5" />
+              <line x1="50" y1="140" x2="670" y2="140" stroke="#334155" strokeDasharray="4 4" opacity="0.5" />
+              <line x1="50" y1="190" x2="670" y2="190" stroke="#334155" opacity="0.8" />
+
+              {/* Heart Rate View Rendering */}
+              {chartMetric === 'hr' && (() => {
+                const chronRuns = [...runsList].reverse();
+                const getY = (hr) => 190 - ((hr - 100) / 35) * 160;
+                
+                const yZoneTop = getY(117);
+                const yZoneBot = getY(105);
+                const yLthr = getY(132);
+
+                const points = chronRuns.map((r, i) => {
+                  const x = 70 + i * (580 / Math.max(1, chronRuns.length - 1));
+                  const y = getY(r.avgHeartRate);
+                  return { x, y, run: r };
+                });
+
+                const polylineStr = points.map(p => `${p.x},${p.y}`).join(' ');
+
+                return (
+                  <g>
+                    {/* Shaded Wingate Zone 2 Corridor (105 - 117 BPM) */}
+                    <rect
+                      x="50"
+                      y={yZoneTop}
+                      width="620"
+                      height={yZoneBot - yZoneTop}
+                      fill="#10b981"
+                      opacity="0.15"
+                      rx="4"
+                    />
+                    <line x1="50" y1={yZoneTop} x2="670" y2={yZoneTop} stroke="#10b981" strokeWidth="1.5" strokeDasharray="5 3" opacity="0.8" />
+                    <line x1="50" y1={yZoneBot} x2="670" y2={yZoneBot} stroke="#10b981" strokeWidth="1.5" strokeDasharray="5 3" opacity="0.8" />
+                    <text x="55" y={yZoneTop - 4} fill="#34d399" fontSize="10" fontWeight="bold">Wingate Ceiling (117 BPM)</text>
+                    <text x="55" y={yZoneBot + 12} fill="#34d399" fontSize="10" fontWeight="bold">Wingate Floor (105 BPM)</text>
+
+                    {/* LTHR Line */}
+                    <line x1="50" y1={yLthr} x2="670" y2={yLthr} stroke="#ef4444" strokeWidth="1" strokeDasharray="3 3" opacity="0.6" />
+                    <text x="580" y={yLthr - 4} fill="#f87171" fontSize="9" fontWeight="bold">LTHR (132 BPM)</text>
+
+                    {/* Area under line */}
+                    <polygon
+                      points={`70,190 ${polylineStr} ${points[points.length - 1]?.x || 650},190`}
+                      fill="url(#hrAreaGrad)"
+                    />
+
+                    {/* HR Trendline */}
+                    <polyline
+                      points={polylineStr}
+                      fill="none"
+                      stroke="#34d399"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+
+                    {/* Interactive Points */}
+                    {points.map((pt, idx) => {
+                      const isSelected = selectedRunId === pt.run.id;
+                      const isWingateCompliant = pt.run.avgHeartRate >= 105 && pt.run.avgHeartRate <= 117;
+
+                      return (
+                        <g
+                          key={pt.run.id}
+                          className="cursor-pointer group"
+                          onClick={() => setSelectedRunId(pt.run.id)}
+                        >
+                          <circle
+                            cx={pt.x}
+                            cy={pt.y}
+                            r={isSelected ? "8" : "5"}
+                            fill={isWingateCompliant ? "#10b981" : "#f59e0b"}
+                            stroke="#ffffff"
+                            strokeWidth={isSelected ? "3" : "2"}
+                            className="transition-all hover:r-8"
+                          />
+                          {/* HR Label above dot */}
+                          <text
+                            x={pt.x}
+                            y={pt.y - 12}
+                            fill={isSelected ? "#34d399" : "#e2e8f0"}
+                            fontSize={isSelected ? "11" : "9"}
+                            fontWeight="bold"
+                            textAnchor="middle"
+                          >
+                            {pt.run.avgHeartRate} BPM
+                          </text>
+                          {/* Date label below axis */}
+                          <text
+                            x={pt.x}
+                            y="210"
+                            fill={isSelected ? "#34d399" : "#94a3b8"}
+                            fontSize="9"
+                            fontWeight={isSelected ? "bold" : "normal"}
+                            textAnchor="middle"
+                          >
+                            {pt.run.date.split('•')[0].replace('Today (', '').replace(')', '').trim()}
+                          </text>
+                        </g>
+                      );
+                    })}
+                  </g>
+                );
+              })()}
+
+              {/* Distance & Pace View Rendering */}
+              {chartMetric === 'distance' && (() => {
+                const chronRuns = [...runsList].reverse();
+                const maxDist = Math.max(...chronRuns.map(r => r.distanceKm || 6));
+                const barWidth = Math.min(36, 520 / chronRuns.length);
+
+                return (
+                  <g>
+                    {chronRuns.map((r, i) => {
+                      const x = 70 + i * (580 / Math.max(1, chronRuns.length - 1));
+                      const barH = ((r.distanceKm || 3) / maxDist) * 140;
+                      const y = 190 - barH;
+                      const isSelected = selectedRunId === r.id;
+
+                      return (
+                        <g
+                          key={r.id}
+                          className="cursor-pointer group"
+                          onClick={() => setSelectedRunId(r.id)}
+                        >
+                          <rect
+                            x={x - barWidth / 2}
+                            y={y}
+                            width={barWidth}
+                            height={barH}
+                            fill="url(#barGrad)"
+                            rx="6"
+                            stroke={isSelected ? "#34d399" : "none"}
+                            strokeWidth={isSelected ? "2" : "0"}
+                            className="transition-all hover:opacity-100 opacity-90"
+                          />
+                          <text
+                            x={x}
+                            y={y - 8}
+                            fill={isSelected ? "#34d399" : "#e2e8f0"}
+                            fontSize="10"
+                            fontWeight="bold"
+                            textAnchor="middle"
+                          >
+                            {r.distanceKm} km
+                          </text>
+                          <text
+                            x={x}
+                            y={y + 16}
+                            fill="#ffffff"
+                            fontSize="8"
+                            fontWeight="bold"
+                            textAnchor="middle"
+                          >
+                            {r.avgPace.split(' ')[0]}
+                          </text>
+                          <text
+                            x={x}
+                            y="210"
+                            fill={isSelected ? "#34d399" : "#94a3b8"}
+                            fontSize="9"
+                            textAnchor="middle"
+                          >
+                            {r.date.split('•')[0].replace('Today (', '').replace(')', '').trim()}
+                          </text>
+                        </g>
+                      );
+                    })}
+                  </g>
+                );
+              })()}
+
+              {/* Running Power View Rendering */}
+              {chartMetric === 'power' && (() => {
+                const chronRuns = [...runsList].reverse();
+                const maxPower = Math.max(...chronRuns.map(r => r.powerWatts || 125));
+                const barWidth = Math.min(36, 520 / chronRuns.length);
+
+                return (
+                  <g>
+                    {chronRuns.map((r, i) => {
+                      const x = 70 + i * (580 / Math.max(1, chronRuns.length - 1));
+                      const power = r.powerWatts || 118;
+                      const barH = (power / maxPower) * 140;
+                      const y = 190 - barH;
+                      const isSelected = selectedRunId === r.id;
+
+                      return (
+                        <g
+                          key={r.id}
+                          className="cursor-pointer group"
+                          onClick={() => setSelectedRunId(r.id)}
+                        >
+                          <rect
+                            x={x - barWidth / 2}
+                            y={y}
+                            width={barWidth}
+                            height={barH}
+                            fill="url(#powerBarGrad)"
+                            rx="6"
+                            stroke={isSelected ? "#fbbf24" : "none"}
+                            strokeWidth={isSelected ? "2" : "0"}
+                            className="transition-all hover:opacity-100 opacity-90"
+                          />
+                          <text
+                            x={x}
+                            y={y - 8}
+                            fill={isSelected ? "#fbbf24" : "#e2e8f0"}
+                            fontSize="10"
+                            fontWeight="bold"
+                            textAnchor="middle"
+                          >
+                            {power} W
+                          </text>
+                          <text
+                            x={x}
+                            y="210"
+                            fill={isSelected ? "#fbbf24" : "#94a3b8"}
+                            fontSize="9"
+                            textAnchor="middle"
+                          >
+                            {r.date.split('•')[0].replace('Today (', '').replace(')', '').trim()}
+                          </text>
+                        </g>
+                      );
+                    })}
+                  </g>
+                );
+              })()}
+
+            </svg>
+          </div>
+
+          <div className="mt-3 flex items-center justify-between text-xs text-slate-400 border-t border-slate-800 pt-3">
+            <span className="flex items-center gap-1.5 text-emerald-400 font-semibold">
+              <CheckCircle2 className="w-3.5 h-3.5" /> Click any point or bar on the chart above to inspect that workout's dual-frequency GPS route and full Apple Watch telemetry below.
+            </span>
+            <span className="text-slate-500 text-[11px] font-mono">10 Workouts • Apple Watch Ultra Telemetry</span>
+          </div>
         </div>
       </div>
 
