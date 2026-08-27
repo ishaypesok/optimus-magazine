@@ -1366,6 +1366,65 @@ export default function StravaRunVisualizer() {
         </div>
       )}
 
+      {/* Physical Microscopic Evidence & TEM Biopsy Section */}
+      <div className="bg-white rounded-3xl p-6 sm:p-8 border border-stone-200 shadow-sm space-y-6">
+        <div className="border-b border-stone-200 pb-4">
+          <div className="flex items-center gap-2 text-xs font-extrabold text-emerald-700 uppercase tracking-wider">
+            <Sparkles className="w-4 h-4 text-emerald-600" /> Physical Cellular Evidence • Microscopic Biopsy Imagery
+          </div>
+          <h3 className="text-xl sm:text-2xl font-black text-stone-900 mt-1">
+            Real Physical Evidence: Transmission Electron Microscopy (TEM) & Biopsy
+          </h3>
+          <p className="text-xs text-stone-500 font-medium">
+            This is what PGC-1α biogenesis physically looks like under an electron microscope inside human muscle tissue.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Card 1: TEM Micrograph */}
+          <div className="space-y-3 bg-stone-50 p-4 rounded-2xl border border-stone-200">
+            <div className="relative rounded-xl overflow-hidden border border-stone-300 shadow-sm bg-slate-900">
+              <img 
+                src="/optimus-magazine/mitochondria_tem_micrograph.jpg" 
+                alt="Transmission Electron Microscope (TEM) Micrograph of Muscle Biopsy"
+                className="w-full h-60 object-cover"
+                onError={(e) => { e.target.src = "./mitochondria_tem_micrograph.jpg"; }}
+              />
+              <span className="absolute bottom-2 left-2 px-2.5 py-1 rounded-md bg-slate-900/90 text-emerald-300 font-mono text-[10px] font-bold border border-slate-700">
+                TEM Micrograph (15,000x Magnification)
+              </span>
+            </div>
+            <div className="space-y-1 text-xs">
+              <div className="font-extrabold text-stone-900">Transmission Electron Micrograph (TEM)</div>
+              <p className="text-stone-600 text-[11px] leading-relaxed">
+                Direct microscopic cross-section of human skeletal muscle fiber. Observe the dense oval mitochondria with dark inner cristae membranes packed tightly alongside myofibrils and capillary vessels.
+              </p>
+            </div>
+          </div>
+
+          {/* Card 2: Microscopic Biopsy Comparison Diagram */}
+          <div className="space-y-3 bg-stone-50 p-4 rounded-2xl border border-stone-200">
+            <div className="relative rounded-xl overflow-hidden border border-stone-300 shadow-sm bg-slate-900">
+              <img 
+                src="/optimus-magazine/zone2_mitochondria_comparison.jpg" 
+                alt="Untrained vs Trained Zone 2 Athlete Muscle Fiber Microscopic Comparison"
+                className="w-full h-60 object-cover"
+                onError={(e) => { e.target.src = "./zone2_mitochondria_comparison.jpg"; }}
+              />
+              <span className="absolute bottom-2 left-2 px-2.5 py-1 rounded-md bg-slate-900/90 text-cyan-300 font-mono text-[10px] font-bold border border-slate-700">
+                Untrained vs. Zone 2 Athlete Biopsy Comparison
+              </span>
+            </div>
+            <div className="space-y-1 text-xs">
+              <div className="font-extrabold text-stone-900">Mitochondrial & Capillary Network Expansion</div>
+              <p className="text-stone-600 text-[11px] leading-relaxed">
+                Left: Untrained muscle fiber with sparse mitochondria. Right: Endurance-trained Zone 2 muscle fiber densely populated with enlarged mitochondria and rich red blood capillary network triggered by PGC-1α.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Manual Entry Modal */}
       {showAddModal && (
         <div className="fixed inset-0 z-50 bg-stone-900/60 backdrop-blur-xs flex items-center justify-center p-4">
