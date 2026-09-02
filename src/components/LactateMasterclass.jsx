@@ -473,7 +473,7 @@ export default function LactateMasterclass() {
             <div className="p-6 rounded-2xl bg-amber-50 border border-amber-300 space-y-4">
               <div className="flex items-center gap-2 text-amber-950 font-extrabold text-base">
                 <Zap className="w-5 h-5 text-amber-700" />
-                <span>Deep Dive: Why Hydrogen Protons ($H^+$) Cause the Burn & How Lactate Buffers Them</span>
+                <span>Deep Dive: Why Hydrogen Protons (H⁺) Cause the Burn & How Lactate Buffers Them</span>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm text-stone-800 leading-relaxed">
@@ -482,10 +482,10 @@ export default function LactateMasterclass() {
                     <span>🔥 1. What Actually Causes the Muscle Burn?</span>
                   </div>
                   <p className="text-stone-700">
-                    During hard sprints, your muscles rapidly break down ATP energy. This chemical reaction releases free <strong>Hydrogen Protons ($H^+$)</strong> directly into the muscle cell.
+                    During hard sprints, your muscles rapidly break down ATP energy. This chemical reaction releases free <strong>Hydrogen Protons (H⁺)</strong> directly into the muscle cell.
                   </p>
                   <p className="text-stone-700">
-                    <strong>Free $H^+$ ions are pure acid!</strong> They drop your intracellular pH from 7.1 down to 6.5, inhibiting muscle contraction enzymes and stimulating nerve pain receptors. <em>This $H^+$ acid accumulation is what causes the intense muscle burn!</em>
+                    <strong>Free H⁺ ions are pure acid!</strong> They drop your intracellular pH from 7.1 down to 6.5, inhibiting muscle contraction enzymes and stimulating nerve pain receptors. <em>This H⁺ acid accumulation is what causes the intense muscle burn!</em>
                   </p>
                 </div>
 
@@ -494,13 +494,13 @@ export default function LactateMasterclass() {
                     <span>🧽 2. How Lactate Acts Like an "Acid Sponge"</span>
                   </div>
                   <p className="text-stone-700">
-                    When the enzyme <strong>Lactate Dehydrogenase (LDH)</strong> converts Pyruvate into Lactate, it <strong>consumes 1 free $H^+$ proton</strong> from the cell cytosol:
+                    When the enzyme <strong>Lactate Dehydrogenase (LDH)</strong> converts Pyruvate into Lactate, it <strong>consumes 1 free H⁺ proton</strong> from the cell cytosol:
                   </p>
                   <div className="px-3 py-1.5 rounded-lg bg-emerald-100 text-emerald-950 font-mono text-[11px] font-bold text-center">
                     Pyruvate + NADH + H⁺ → Lactate + NAD⁺
                   </div>
                   <p className="text-stone-700">
-                    By absorbing a free $H^+$ proton, creating Lactate <strong>removes acid from the cell!</strong> Furthermore, when MCT transporters export Lactate into the blood, it carries another $H^+$ proton out with it!
+                    By absorbing a free H⁺ proton, creating Lactate <strong>removes acid from the cell!</strong> Furthermore, when MCT transporters export Lactate into the blood, it carries another H⁺ proton out with it!
                   </p>
                 </div>
               </div>
@@ -517,7 +517,7 @@ export default function LactateMasterclass() {
                 <div className="p-3.5 rounded-xl bg-white border border-rose-200 space-y-1">
                   <div className="font-extrabold text-rose-950 text-xs uppercase">🌊 1. Acid Sponge Overflooded</div>
                   <p className="text-stone-700 leading-relaxed font-normal">
-                    In Zone 4/5, $H^+$ acid is produced 5x faster than MCT transporters can export it. Acidity spikes, locking muscle enzymes.
+                    In Zone 4/5, H⁺ acid is produced 5x faster than MCT transporters can export it. Acidity spikes, locking muscle enzymes.
                   </p>
                 </div>
 

@@ -6,21 +6,28 @@ import {
 
 const DEFAULT_PROFILE = {
   name: 'Ishai Pesok',
-  age: 38,
-  restingHR: 62,
-  maxHR: 182,
-  targetMinHR: 112,
-  targetMaxHR: 117,
+  age: 79.2,
+  restingHR: 54,
+  maxHR: 137,
+  targetMinHR: 105,
+  targetMaxHR: 121,
   weeklyGoalHours: 3.5,
   labTested: true,
   labName: 'Wingate Institute Ribstein Sports Medicine Center',
-  physiologist: 'Yair Azgad',
-  testDate: 'Jan 8, 2023',
-  lthr: 132,
+  physiologist: 'Ezekiel Frankel, Sc.M & Dr. Shira Ginzburg / Aliza Avraham',
+  testDate: 'Sep 1, 2026 (Corrected: Sep 2, 2026)',
+  lthr: 136,
   lthrSpeed: '7.2 km/h (8:20 min/km)',
-  peakTestHR: 133,
-  testedLactateAtZone2: 1.8,
-  bio: "Ishai is a dedicated runner and health longevity practitioner. Clinical blood lactate threshold testing performed at the Wingate Institute Sports Medicine Center (by physiologist Yair Azgad) established Ishai's Lactate Threshold Heart Rate (LTHR) at 132 BPM (7.2 km/h, 8:20 min/km). Ishai's lab-prescribed Zone 2 aerobic base range is 112–117 BPM (9:48–9:22 min/km pace), optimizing capillary density, mitochondrial biogenesis, and lipid oxidation while avoiding glycolytic fatigue.",
+  peakTestHR: 137,
+  vo2Peak: '34.1 ml/kg/min',
+  weightKg: 83.6,
+  bodyFatPercent: 17.7,
+  vesyncBodyFatPercent: 17.7,
+  vesyncLeanBodyMassKg: 68.8,
+  wingateSkinfoldBodyFatPercent: 32.34,
+  wingateLeanBodyMassKg: 56.6,
+  testedLactateAtZone2: '1.29 – 2.06 mmol/L (105-121 BPM Base Range)',
+  bio: "Ishai is a dedicated runner and health longevity practitioner. Clinical blood lactate threshold and ergometry testing performed at the Wingate Institute Sports Medicine Center (by Ezekiel Frankel, Sc.M & Dr. Shira Ginzburg) established Ishai's Lactate Threshold Heart Rate (LTHR) at 136 BPM (7.2 km/h) with a peak test HR of 137 BPM and an exceptional VO₂ Peak of 34.1 ml/kg/min. Official Wingate report (Sep 1, 2026 • Corrected Sep 2, 2026) prescribes Ishai's Zone 2 aerobic base range at 105–121 BPM for outdoor running biomechanics.",
 };
 
 export default function AthleteProfile() {
@@ -67,8 +74,8 @@ export default function AthleteProfile() {
         
         <div className="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div className="flex items-center gap-5">
-            <div className="w-20 h-20 rounded-2xl bg-gradient-to-tr from-emerald-400 to-teal-200 p-1 shadow-md shrink-0 flex items-center justify-center text-emerald-950 font-black text-2xl">
-              <User className="w-10 h-10 text-emerald-950" />
+            <div className="w-20 h-26 sm:w-24 sm:h-32 rounded-2xl overflow-hidden border-2 border-emerald-400/60 shadow-xl shrink-0 bg-black group hover:scale-105 transition duration-300">
+              <img src="./optimus-logo.jpg" alt="Ishai Pesok" className="w-full h-full object-cover" />
             </div>
             <div>
               <div className="flex items-center gap-2 flex-wrap">
@@ -76,7 +83,7 @@ export default function AthleteProfile() {
                   Personal Bioenergetics Profile
                 </span>
                 <span className="px-2.5 py-0.5 rounded-full bg-amber-400/20 text-amber-300 text-xs font-bold uppercase tracking-wider border border-amber-400/40 flex items-center gap-1">
-                  <Award className="w-3 h-3 text-amber-400" /> Wingate Institute Lab Report (Jan 8, 2023)
+                  <Award className="w-3 h-3 text-amber-400" /> Wingate Institute Lab Report (Sep 1, 2026)
                 </span>
                 <span className="flex items-center gap-1 text-xs text-stone-300 font-mono">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" /> Synced to Local Device
@@ -86,7 +93,7 @@ export default function AthleteProfile() {
                 {profile.name}
               </h2>
               <p className="text-xs sm:text-sm text-stone-300 font-medium mt-0.5">
-                Wingate Zone 2 Range: <strong className="text-emerald-300">{profile.targetMinHR} – {profile.targetMaxHR} BPM</strong> (9:48 – 9:22 min/km) • LTHR: <strong className="text-amber-300">{profile.lthr || 132} BPM</strong> (7.2 km/h)
+                Wingate Zone 2 Range: <strong className="text-emerald-300">{profile.targetMinHR} – {profile.targetMaxHR} BPM</strong> (12:00 – 9:20 min/km) • LTHR: <strong className="text-amber-300">{profile.lthr || 135} BPM</strong> (7.2 km/h) • VO₂ Peak: <strong className="text-cyan-300">34.1 ml/kg/min</strong>
               </p>
               
               <div className="mt-3 flex flex-col gap-1.5 p-3 rounded-2xl bg-emerald-950/80 border border-emerald-400/30 text-emerald-200 text-xs font-medium">
@@ -255,7 +262,7 @@ export default function AthleteProfile() {
                   Wingate Institute Clinical Ergometry Test
                 </span>
                 <span className="text-xs text-amber-300 font-bold font-mono">
-                  Report Date: Jan 8, 2023 • Physiologist: Yair Azgad
+                  Report Date: Sep 1, 2026 (Corrected: Sep 2, 2026) • Physiologist: Ezekiel Frankel, Sc.M
                 </span>
               </div>
               <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight mt-0.5">
@@ -266,7 +273,7 @@ export default function AthleteProfile() {
 
           <div className="flex items-center gap-2">
             <span className="px-3 py-1 rounded-xl bg-emerald-500/20 text-emerald-200 border border-emerald-400/30 text-xs font-bold font-mono">
-              LTHR (סח"ח): {profile.lthr || 132} BPM (7.2 km/h)
+              LTHR (סח"ח): {profile.lthr || 136} BPM (7.2 km/h)
             </span>
           </div>
         </div>
@@ -280,37 +287,37 @@ export default function AthleteProfile() {
             
             <div className="p-3.5 rounded-2xl bg-emerald-900/30 border border-emerald-500/20 space-y-1">
               <div className="text-[10px] font-black uppercase tracking-wider text-stone-400">Zone 1 • Recovery</div>
-              <div className="text-lg font-black text-white font-mono">86 – 112 <span className="text-xs font-semibold text-stone-300">BPM</span></div>
+              <div className="text-lg font-black text-white font-mono">&lt; 105 <span className="text-xs font-semibold text-stone-300">BPM</span></div>
               <p className="text-[10px] text-stone-300 font-mono">Pace &gt; 11:44 min/km</p>
-              <p className="text-[10px] text-stone-400 italic">65–85% of LTHR • Easy walking & recovery</p>
+              <p className="text-[10px] text-stone-400 italic">&lt; 77% of LTHR • Easy recovery walk/jog</p>
             </div>
 
             <div className="p-3.5 rounded-2xl bg-emerald-900/60 border border-emerald-400/50 space-y-1 shadow-sm">
               <div className="text-[10px] font-black uppercase tracking-wider text-emerald-300">Zone 2 • Aerobic Base</div>
-              <div className="text-lg font-black text-emerald-200 font-mono">112 – 117 <span className="text-xs font-semibold text-emerald-300">BPM</span></div>
-              <p className="text-[10px] text-emerald-300 font-mono font-bold">9:48 – 9:22 min/km (6.1–6.4 km/h)</p>
-              <p className="text-[10px] text-emerald-200/90 italic">85–89% LTHR • Long continuous volume</p>
+              <div className="text-lg font-black text-emerald-200 font-mono">105 – 121 <span className="text-xs font-semibold text-emerald-300">BPM</span></div>
+              <p className="text-[10px] text-emerald-300 font-mono font-bold">11:44 – 9:20 min/km (5.1–6.4 km/h)</p>
+              <p className="text-[10px] text-emerald-200/90 italic">77–89% LTHR • Conversational endurance</p>
             </div>
 
             <div className="p-3.5 rounded-2xl bg-teal-900/30 border border-teal-500/20 space-y-1">
-              <div className="text-[10px] font-black uppercase tracking-wider text-teal-300">Zone 3 • Marathon Tempo</div>
-              <div className="text-lg font-black text-white font-mono">119 – 124 <span className="text-xs font-semibold text-stone-300">BPM</span></div>
-              <p className="text-[10px] text-stone-300 font-mono">9:16 – 8:52 min/km (6.5–6.8 km/h)</p>
-              <p className="text-[10px] text-stone-400 italic">90–94% LTHR • Aerobic power & tempo</p>
+              <div className="text-[10px] font-black uppercase tracking-wider text-teal-300">Zone 3 • Tempo</div>
+              <div className="text-lg font-black text-white font-mono">121 – 129 <span className="text-xs font-semibold text-stone-300">BPM</span></div>
+              <p className="text-[10px] text-stone-300 font-mono">9:20 – 8:40 min/km (6.5–6.9 km/h)</p>
+              <p className="text-[10px] text-stone-400 italic">89–95% LTHR • Aerobic power & tempo</p>
             </div>
 
             <div className="p-3.5 rounded-2xl bg-amber-900/30 border border-amber-500/30 space-y-1">
-              <div className="text-[10px] font-black uppercase tracking-wider text-amber-300">Zone 4 • Sub-Threshold</div>
-              <div className="text-lg font-black text-white font-mono">125 – 131 <span className="text-xs font-semibold text-stone-300">BPM</span></div>
-              <p className="text-[10px] text-stone-300 font-mono">8:46 – 8:25 min/km (6.8–7.1 km/h)</p>
-              <p className="text-[10px] text-stone-400 italic">95–99% LTHR • Sustainable tempo</p>
+              <div className="text-[10px] font-black uppercase tracking-wider text-amber-300">Zone 4 • Threshold</div>
+              <div className="text-lg font-black text-white font-mono">129 – 136 <span className="text-xs font-semibold text-stone-300">BPM</span></div>
+              <p className="text-[10px] text-stone-300 font-mono">8:40 – 8:20 min/km (7.0–7.2 km/h)</p>
+              <p className="text-[10px] text-stone-400 italic">95–100% LTHR • Threshold intervals</p>
             </div>
 
             <div className="p-3.5 rounded-2xl bg-red-900/30 border border-red-500/30 space-y-1">
-              <div className="text-[10px] font-black uppercase tracking-wider text-red-300">Zone 5a • At/Above LTHR</div>
-              <div className="text-lg font-black text-white font-mono">132 – 135 <span className="text-xs font-semibold text-stone-300">BPM</span></div>
-              <p className="text-[10px] text-stone-300 font-mono">8:20 – 8:10 min/km (7.2–7.3 km/h)</p>
-              <p className="text-[10px] text-stone-400 italic">100–102% LTHR • Threshold intervals</p>
+              <div className="text-[10px] font-black uppercase tracking-wider text-red-300">Zone 5 • Capacity</div>
+              <div className="text-lg font-black text-white font-mono">&gt; 136 <span className="text-xs font-semibold text-stone-300">BPM</span></div>
+              <p className="text-[10px] text-stone-300 font-mono">&lt; 8:20 min/km (&gt; 7.2 km/h)</p>
+              <p className="text-[10px] text-stone-400 italic">&gt; 100% LTHR • Anaerobic sprint capacity</p>
             </div>
 
           </div>
@@ -321,7 +328,7 @@ export default function AthleteProfile() {
           <div>
             <strong className="text-white font-bold block mb-0.5">Wingate Institute Clinical Report Summary:</strong>
             <span>
-              The clinical lactate ergometry report from the Ribstein Center at Wingate Institute (tested by physiologist Yair Azgad) establishes your Lactate Threshold Heart Rate (LTHR) at <strong>132 BPM (7.2 km/h)</strong>. To maximize mitochondrial biogenesis and capillary density without lactate accumulation, Wingate prescribes your Zone 2 aerobic volume training between <strong>112 and 117 BPM (9:48 – 9:22 min/km pace)</strong>.
+              The clinical lactate ergometry assessment at the Wingate Institute (tested by physiologist Ezekiel Frankel, Sc.M) establishes your Lactate Threshold Heart Rate (LTHR) at <strong>136 BPM (7.2 km/h)</strong>. To maximize mitochondrial biogenesis, fat oxidation, and fluid outdoor running biomechanics, Wingate prescribes your Zone 2 aerobic volume training between <strong>105 and 121 BPM</strong>.
             </span>
           </div>
         </div>

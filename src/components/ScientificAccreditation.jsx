@@ -24,9 +24,9 @@ const AUDIT_PILLARS = [
     subtitle: 'VT1/VT2 Aerobic Threshold & Corridor Calibration',
     status: 'VERIFIED COMPLIANT',
     authorities: ['Wingate Institute for Physical Education and Sports', 'European College of Sport Science (ECSS)'],
-    description: 'Validates that heart rate zone boundaries match laboratory lactate threshold testing (VT1 Aerobic Threshold & VT2 Anaerobic Threshold at 132 BPM LTHR).',
+    description: 'Validates that heart rate zone boundaries match laboratory lactate threshold testing (VT1 Aerobic Threshold & VT2 Anaerobic Threshold at 135 BPM LTHR).',
     checks: [
-      'Individualized Zone 2 target corridor set to 105 - 117 BPM',
+      'Individualized Zone 2 target corridor set to 106 - 123 BPM',
       'Lactate clearance capacity modeled at sub-threshold intensity',
       'Rest interval recovery protocols matching Wingate senior endurance standards'
     ]

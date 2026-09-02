@@ -164,10 +164,10 @@ export default function PresentationDeck({ onClose, currentZoneId, setCurrentZon
             <div className="p-6 rounded-2xl bg-slate-900/80 border border-cyan-500/30 space-y-4">
               <div className="flex items-center gap-3 text-cyan-300 font-bold text-lg">
                 <span className="text-2xl">🫁</span>
-                <span>Oxygen ($O_2$) as the Final Aerobic Magnet</span>
+                <span>Oxygen (O₂) as the Final Aerobic Magnet</span>
               </div>
               <p className="text-xs text-slate-300 leading-relaxed">
-                Oxygen is delivered by red blood cells directly to Complex IV of the Electron Transport Chain inside the inner mitochondrial membrane. It accepts low-energy electrons and bonds with $H^+$ protons to form clean **Metabolic Water ($H_2O$)**, keeping the ATP turbine spinning continuous golden energy sparks!
+                Oxygen is delivered by red blood cells directly to Complex IV of the Electron Transport Chain inside the inner mitochondrial membrane. It accepts low-energy electrons and bonds with H⁺ protons to form clean **Metabolic Water (H₂O)**, keeping the ATP turbine spinning continuous golden energy sparks!
               </p>
             </div>
           )}

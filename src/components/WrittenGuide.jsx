@@ -92,7 +92,7 @@ export default function WrittenGuide() {
         </p>
 
         <p className="text-sm text-slate-300 leading-relaxed">
-          As high-energy electrons stream down Complex I–IV, pumping protons ($H^+$) across the membrane, <strong>Oxygen acts as the final electron magnet</strong>. It picks up 2 electrons and 2 protons to form clean <strong>Metabolic Water ($H_2O$)</strong>.
+          As high-energy electrons stream down Complex I–IV, pumping protons (H⁺) across the membrane, <strong>Oxygen acts as the final electron magnet</strong>. It picks up 2 electrons and 2 protons to form clean <strong>Metabolic Water (H₂O)</strong>.
         </p>
 
         <div className="p-4 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-xs text-cyan-200">
@@ -141,7 +141,7 @@ export default function WrittenGuide() {
           </li>
           <li className="flex items-center gap-2">
             <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-            <span><strong>Expand Capillary Networks (Angiogenesis)</strong> for faster $O_2$ delivery</span>
+            <span><strong>Expand Capillary Networks (Angiogenesis)</strong> for faster O₂ delivery</span>
           </li>
           <li className="flex items-center gap-2">
             <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />

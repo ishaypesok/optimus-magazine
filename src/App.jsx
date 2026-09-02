@@ -20,12 +20,26 @@ function getPageFromHash() {
 
 export default function App() {
   const [currentZoneId, setCurrentZoneId] = useState(2);
+  const [bgTheme, setBgTheme] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('optimus_bg_theme') || 'paper';
+    }
+    return 'paper';
+  });
+
   // Initial page from URL hash or default to Page 1 (Editor's Foreword & Mission)
   const [activeArticle, setActiveArticle] = useState(() => {
     return getPageFromHash() || 1;
   });
   const [searchQuery, setSearchQuery] = useState('');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  // Sync background theme with localStorage
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('optimus_bg_theme', bgTheme);
+    }
+  }, [bgTheme]);
 
   // Sync page state with browser URL hash
   useEffect(() => {
@@ -47,8 +61,14 @@ export default function App() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, [activeArticle]);
 
+  const themeClassMap = {
+    paper: 'bg-editorial-paper text-stone-900',
+    dark: 'bg-bio-obsidian text-stone-100',
+    mint: 'bg-clinical-mint text-stone-900',
+  };
+
   return (
-    <div className="min-h-screen bg-[#f8f6f0] text-stone-900 selection:bg-emerald-200 selection:text-emerald-950 font-sans flex">
+    <div className={`min-h-screen ${themeClassMap[bgTheme] || themeClassMap.paper} selection:bg-emerald-200 selection:text-emerald-950 font-sans flex transition-colors duration-500`}>
       
       {/* Sidebar Navigation */}
       <Sidebar
@@ -69,6 +89,8 @@ export default function App() {
           setActiveArticle={setActiveArticle}
           isSidebarOpen={isSidebarOpen}
           setIsSidebarOpen={setIsSidebarOpen}
+          bgTheme={bgTheme}
+          setBgTheme={setBgTheme}
         />
 
         {/* Main Magazine Layout Container */}

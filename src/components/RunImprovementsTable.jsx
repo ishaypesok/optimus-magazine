@@ -7,6 +7,23 @@ import {
 
 const INITIAL_RUNS_DATA = [
   {
+    id: 'run-sep-01-2026-wingate',
+    date: 'Sep 1, 2026',
+    title: "🏥 Wingate Institute Clinical Test (Lactate & Health)",
+    distanceKm: 4.50,
+    durationMin: 26.0,
+    paceStr: '8:20 min/km (LT2)',
+    paceVal: 8.33,
+    avgHr: 118,
+    maxHr: 137,
+    zone2Percent: 100,
+    fatBurnGrams: 28.0,
+    carbBurnGrams: 12.0,
+    mitoScore: 100,
+    lthrMargin: '0 BPM (LTHR 135)',
+    note: 'Official Wingate Clinical Test! LTHR 135 BPM @ 7.2 km/h • Zone 2 Base Limit: ≤120 BPM • Stage 6 Lactate: 4.34 mmol/L • VO₂ Peak: 34.1 ml/kg/min'
+  },
+  {
     id: 'run-aug-27-2026',
     date: 'Aug 27, 2026',
     title: "Latest Outdoor Run (6.13 km Record)",

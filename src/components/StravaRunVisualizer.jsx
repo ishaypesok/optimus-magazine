@@ -22,7 +22,7 @@ const SYNCED_TODAY_RUN = {
   elevationGain: 59.8,
   weatherTemp: '28.4°C',
   weatherHumidity: '75%',
-  wingateZone2Target: '105 - 117 BPM',
+  wingateZone2Target: '101 - 120 BPM',
   zone2TimePercent: 95,
   fatBurnGrams: 30.2,
   carbBurnGrams: 9.4,
@@ -54,7 +54,7 @@ const RUN_AUG_24_2026 = {
   elevationGain: 69.2,
   weatherTemp: '28.2°C',
   weatherHumidity: '70%',
-  wingateZone2Target: '105 - 117 BPM',
+  wingateZone2Target: '101 - 120 BPM',
   zone2TimePercent: 97,
   fatBurnGrams: 31.5,
   carbBurnGrams: 8.6,
@@ -86,7 +86,7 @@ const RUN_AUG_21_2026 = {
   elevationGain: 70,
   weatherTemp: '29.5°C',
   weatherHumidity: '71%',
-  wingateZone2Target: '105 - 117 BPM',
+  wingateZone2Target: '101 - 120 BPM',
   zone2TimePercent: 96,
   fatBurnGrams: 28.5,
   carbBurnGrams: 8.2,
@@ -118,7 +118,7 @@ const PREVIOUS_RUN = {
   elevationGain: 45,
   weatherTemp: '28.0°C',
   weatherHumidity: '68%',
-  wingateZone2Target: '105 - 117 BPM',
+  wingateZone2Target: '101 - 120 BPM',
   zone2TimePercent: 94,
   fatBurnGrams: 24.8,
   carbBurnGrams: 7.1,
@@ -150,7 +150,7 @@ const RUN_AUG_15_2026 = {
   elevationGain: 48,
   weatherTemp: '29.1°C',
   weatherHumidity: '72%',
-  wingateZone2Target: '105 - 117 BPM',
+  wingateZone2Target: '101 - 120 BPM',
   zone2TimePercent: 96,
   fatBurnGrams: 27.5,
   carbBurnGrams: 7.8,
@@ -182,7 +182,7 @@ const RUN_AUG_12_HEALTH_AUTO_EXPORT = {
   elevationGain: 54,
   weatherTemp: '28.9°C',
   weatherHumidity: '69%',
-  wingateZone2Target: '105 - 117 BPM',
+  wingateZone2Target: '101 - 120 BPM',
   zone2TimePercent: 95,
   fatBurnGrams: 29.2,
   carbBurnGrams: 8.5,
@@ -214,7 +214,7 @@ const RUN_AUG_08_2026 = {
   elevationGain: 42,
   weatherTemp: '30.0°C',
   weatherHumidity: '74%',
-  wingateZone2Target: '105 - 117 BPM',
+  wingateZone2Target: '101 - 120 BPM',
   zone2TimePercent: 93,
   fatBurnGrams: 23.5,
   carbBurnGrams: 6.8,
@@ -246,7 +246,7 @@ const RUN_AUG_04_2026 = {
   elevationGain: 40,
   weatherTemp: '29.8°C',
   weatherHumidity: '76%',
-  wingateZone2Target: '105 - 117 BPM',
+  wingateZone2Target: '101 - 120 BPM',
   zone2TimePercent: 94,
   fatBurnGrams: 25.7,
   carbBurnGrams: 7.2,
@@ -278,7 +278,7 @@ const RUN_JUL_30_2026 = {
   elevationGain: 38,
   weatherTemp: '30.5°C',
   weatherHumidity: '78%',
-  wingateZone2Target: '105 - 117 BPM',
+  wingateZone2Target: '101 - 120 BPM',
   zone2TimePercent: 91,
   fatBurnGrams: 22.0,
   carbBurnGrams: 6.3,
@@ -310,7 +310,7 @@ const RUN_JUL_25_2026 = {
   elevationGain: 35,
   weatherTemp: '31.0°C',
   weatherHumidity: '80%',
-  wingateZone2Target: '105 - 117 BPM',
+  wingateZone2Target: '101 - 120 BPM',
   zone2TimePercent: 88,
   fatBurnGrams: 19.8,
   carbBurnGrams: 5.9,
@@ -590,7 +590,7 @@ export default function StravaRunVisualizer() {
       elevationGain: 40,
       weatherTemp: '29.5°C',
       weatherHumidity: '71%',
-      wingateZone2Target: '105 - 117 BPM',
+      wingateZone2Target: '101 - 120 BPM',
       zone2TimePercent: hr <= 117 ? 96 : 70,
       fatBurnGrams: Math.round((cals * 0.8) / 9 * 10) / 10,
       carbBurnGrams: Math.round((cals * 0.2) / 4 * 10) / 10,
@@ -866,11 +866,11 @@ export default function StravaRunVisualizer() {
               {/* Heart Rate View Rendering */}
               {chartMetric === 'hr' && (() => {
                 const chronRuns = [...runsList].reverse();
-                const getY = (hr) => 190 - ((hr - 100) / 35) * 160;
+                const getY = (hr) => 190 - ((hr - 80) / 60) * 160;
                 
-                const yZoneTop = getY(117);
-                const yZoneBot = getY(105);
-                const yLthr = getY(132);
+                const yZoneTop = getY(123);
+                const yZoneBot = getY(106);
+                const yLthr = getY(135);
 
                 const points = chronRuns.map((r, i) => {
                   const x = 70 + i * (580 / Math.max(1, chronRuns.length - 1));
@@ -882,7 +882,7 @@ export default function StravaRunVisualizer() {
 
                 return (
                   <g>
-                    {/* Shaded Wingate Zone 2 Corridor (105 - 117 BPM) */}
+                    {/* Shaded Wingate Zone 2 Corridor (106 - 123 BPM) */}
                     <rect
                       x="50"
                       y={yZoneTop}
@@ -894,12 +894,12 @@ export default function StravaRunVisualizer() {
                     />
                     <line x1="50" y1={yZoneTop} x2="670" y2={yZoneTop} stroke="#10b981" strokeWidth="1.5" strokeDasharray="5 3" opacity="0.8" />
                     <line x1="50" y1={yZoneBot} x2="670" y2={yZoneBot} stroke="#10b981" strokeWidth="1.5" strokeDasharray="5 3" opacity="0.8" />
-                    <text x="55" y={yZoneTop - 4} fill="#34d399" fontSize="10" fontWeight="bold">Wingate Ceiling (117 BPM)</text>
-                    <text x="55" y={yZoneBot + 12} fill="#34d399" fontSize="10" fontWeight="bold">Wingate Floor (105 BPM)</text>
+                    <text x="55" y={yZoneTop - 4} fill="#34d399" fontSize="10" fontWeight="bold">Wingate Zone 2 Ceiling (123 BPM)</text>
+                    <text x="55" y={yZoneBot + 12} fill="#34d399" fontSize="10" fontWeight="bold">Wingate Floor (106 BPM)</text>
 
                     {/* LTHR Line */}
                     <line x1="50" y1={yLthr} x2="670" y2={yLthr} stroke="#ef4444" strokeWidth="1" strokeDasharray="3 3" opacity="0.6" />
-                    <text x="580" y={yLthr - 4} fill="#f87171" fontSize="9" fontWeight="bold">LTHR (132 BPM)</text>
+                    <text x="580" y={yLthr - 4} fill="#f87171" fontSize="9" fontWeight="bold">LTHR (135 BPM)</text>
 
                     {/* Area under line */}
                     <polygon

@@ -41,6 +41,8 @@ export const PAGES_LIST = [
   { id: 26, title: 'Zone 2 vs. Other Sports', label: 'Article 26: vs. Other Sports', category: 'Cell Biology', icon: BarChart2, badge: 'Comparison' },
   { id: 27, title: '1-Hour Field Experiment', label: 'Article 27: 1-Hr Field Study', category: 'Field Studies', icon: Clock, badge: 'Data' },
   { id: 28, title: 'Run Progress & Analytics Table', label: 'Article 28: Run Progress Table', category: 'Deep Physiology', icon: Award, badge: '📈 Analytics' },
+  { id: 29, title: 'Muscle Hypertrophy Bioenergetics Calculator', label: 'Article 29: Muscle Hypertrophy Calc', category: 'Calculators & Bioenergetics', icon: Calculator, badge: '💪 Muscle Bioenergetics' },
+  { id: 30, title: '12-Week Practical Lean Gains & Recomposition Blueprint', label: 'Article 30: 12-Week Blueprint', category: 'Protocols', icon: Calendar, badge: '📋 12-Wk Blueprint' },
 ];
 
 export default function Sidebar({
@@ -121,23 +123,26 @@ export default function Sidebar({
         }`}
       >
         
-        {/* Top Brand Masthead */}
-        <div className="p-5 border-b border-stone-200 bg-white/70 backdrop-blur-xs flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-600 p-0.5 shadow-sm overflow-hidden shrink-0">
+        {/* Top Brand Masthead with Large Magazine Cover Badge */}
+        <div className="p-4 border-b border-stone-200 bg-white/90 backdrop-blur-xs flex items-center justify-between">
+          <div className="flex items-center gap-3.5 min-w-0">
+            <div className="w-20 h-26 rounded-2xl bg-black p-0.5 shadow-md border-2 border-emerald-500/50 overflow-hidden shrink-0 group">
               <img 
                 src="./optimus-logo.jpg" 
-                alt="Optimus Logo" 
-                className="w-full h-full object-cover rounded-[10px]" 
+                alt="Optimus Cover Logo" 
+                className="w-full h-full object-cover group-hover:scale-105 transition duration-300" 
               />
             </div>
-            <div>
-              <h1 className="text-lg font-black text-stone-900 tracking-tight leading-tight">
-                OPTIMUS <span className="text-emerald-700">MAGAZINE</span>
+            <div className="min-w-0">
+              <h1 className="text-xl font-black text-stone-900 tracking-tight leading-tight">
+                OPTIMUS <span className="text-emerald-700 block">MAGAZINE</span>
               </h1>
-              <p className="text-[11px] font-bold text-emerald-800 tracking-tight">
+              <p className="text-xs font-bold text-emerald-800 tracking-tight mt-1">
                 Zone 2 Bioenergetics Index
               </p>
+              <span className="inline-block mt-1.5 px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-950 text-[10px] font-extrabold border border-emerald-300">
+                Official Issue Cover
+              </span>
             </div>
           </div>
 

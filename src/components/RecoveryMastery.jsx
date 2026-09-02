@@ -808,7 +808,7 @@ export default function RecoveryMastery() {
             </div>
             <h4 className="font-bold text-slate-100 text-sm">Hydration & Electrolyte Homeostasis</h4>
             <p className="text-xs text-slate-300 leading-relaxed">
-              Mitochondrial enzymes (Citrate Synthase, PDH) require fluid homeostasis to maintain matrix volume. Sweat loses Sodium ($Na^+$) and Potassium ($K^+$), which must be replenished.
+              Mitochondrial enzymes (Citrate Synthase, PDH) require fluid homeostasis to maintain matrix volume. Sweat loses Sodium (Na⁺) and Potassium (K⁺), which must be replenished.
             </p>
             <div className="text-[11px] text-cyan-300 font-mono pt-1">Tip: 500mg Sodium per hour Z2</div>
           </div>

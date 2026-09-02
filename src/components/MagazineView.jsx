@@ -31,6 +31,8 @@ import ForewordMission from './ForewordMission';
 import LongevityIndexSystem from './LongevityIndexSystem';
 import ScientificAccreditation from './ScientificAccreditation';
 import WingateLabPrep from './WingateLabPrep';
+import MuscleBioenergeticsCalculator from './MuscleBioenergeticsCalculator';
+import HypertrophyBlueprint12W from './HypertrophyBlueprint12W';
 import { PAGES_LIST } from './Sidebar';
 
 export default function MagazineView({ currentZoneId, setCurrentZoneId, activeArticle, setActiveArticle }) {
@@ -55,25 +57,35 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
       {/* MAGAZINE PAGE SHEET CONTAINER */}
       <main className="magazine-page p-6 sm:p-10 lg:p-12 space-y-8 relative">
         
-        {/* Page Top Header Bar */}
-        <div className="flex items-center justify-between border-b border-stone-200 pb-4 text-xs text-stone-500 font-sans">
-          <div className="flex items-center gap-2 font-bold text-emerald-800">
-            <BookOpen className="w-4 h-4 text-emerald-700" />
-            <span>OPTIMUS MAGAZINE • PAGE {activePage} OF {totalPages}</span>
+        {/* Page Top Header Bar with Large Cover Feature Card */}
+        <div className="flex flex-wrap items-center justify-between border-b border-stone-200 pb-5 gap-4 font-sans">
+          <div className="flex items-center gap-4">
+            <div className="w-20 h-26 sm:w-24 sm:h-32 rounded-2xl overflow-hidden border-2 border-emerald-600/60 shadow-lg shrink-0 bg-black group transition hover:scale-105">
+              <img src="./optimus-logo.jpg" alt="Optimus Magazine Logo" className="w-full h-full object-cover" />
+            </div>
+            <div className="space-y-1">
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-900 font-extrabold text-[10px] uppercase tracking-wider border border-emerald-300">
+                <span>📰 Official Issue Cover</span>
+              </div>
+              <h1 className="text-xl sm:text-2xl font-black text-stone-900 leading-tight">OPTIMUS MAGAZINE</h1>
+              <div className="text-xs text-emerald-800 font-bold font-mono">PAGE {activePage} OF {totalPages} • Zone 2 Bioenergetics Index</div>
+            </div>
           </div>
-          <div className="hidden sm:flex items-center gap-4 text-stone-500 font-medium">
-            <span>The Friendly Guide to Zone 2 Bioenergetics</span>
-            <span>•</span>
-            <span>Bioenergetics Press</span>
+          
+          <div className="flex items-center gap-3">
+            <div className="hidden md:flex flex-col text-right text-xs text-stone-500 font-medium">
+              <span>The Friendly Guide to Zone 2 Bioenergetics</span>
+              <span className="text-[10px] text-emerald-800 font-bold">Bioenergetics Science Press</span>
+            </div>
+            <button 
+              onClick={() => window.print()}
+              className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-emerald-100 hover:bg-emerald-200 text-emerald-950 font-extrabold transition text-xs border border-emerald-300 shadow-xs"
+              title="Export PDF / Print Magazine Page"
+            >
+              <Printer className="w-4 h-4 text-emerald-700" />
+              <span>Export PDF / Print</span>
+            </button>
           </div>
-          <button 
-            onClick={() => window.print()}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-100 hover:bg-emerald-200 text-emerald-900 font-extrabold transition text-xs border border-emerald-300 shadow-xs"
-            title="Export PDF / Print Magazine Page"
-          >
-            <Printer className="w-3.5 h-3.5 text-emerald-700" />
-            <span>Export PDF / Print</span>
-          </button>
         </div>
 
         {/* ==================== PAGE 1: EDITOR'S FOREWORD & MISSION ==================== */}
@@ -133,6 +145,24 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
                 <p className="text-stone-800 text-xs sm:text-sm leading-relaxed font-normal">
                   <strong>Why is it needed?</strong> Your body has two main fuel tanks: <em>Sugar (Carbs)</em> and <em>Fat</em>. Sugar runs out fast (making you tired and hungry). Fat is a huge, steady energy reservoir. In Zone 2, your body unlocks your fat tank for clean, lasting energy!
                 </p>
+              </div>
+            </div>
+
+            {/* Ishai Personal Zone 2 Banner */}
+            <div className="p-5 rounded-2xl bg-gradient-to-r from-emerald-950 via-slate-900 to-slate-950 text-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-md border border-slate-800">
+              <div className="space-y-1">
+                <div className="text-amber-400 font-extrabold text-xs uppercase tracking-wider flex items-center gap-1.5">
+                  <Award className="w-4 h-4 text-amber-400" /> Ishai's Wingate Lab Tested Range
+                </div>
+                <div className="text-lg font-black text-white">
+                  Your Personal Zone 2 Target: <span className="text-emerald-400 font-mono">101 – 120 BPM</span>
+                </div>
+                <p className="text-xs text-slate-300">
+                  Confirmed by the Wingate Institute Ribstein Sports Medicine Center (Sep 2026). Keep your Apple Watch between 101 and 120 BPM during base runs!
+                </p>
+              </div>
+              <div className="px-4 py-2 rounded-xl bg-emerald-500/20 text-emerald-300 border border-emerald-400/40 text-xs font-black shrink-0">
+                Ceiling: 120 BPM Max
               </div>
             </div>
 
@@ -469,6 +499,16 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
         {/* ==================== PAGE 28: RUN PROGRESS & ANALYTICS TABLE ==================== */}
         {activePage === 28 && (
           <RunImprovementsTable />
+        )}
+
+        {/* ==================== PAGE 29: MUSCLE HYPERTROPHY BIOENERGETICS CALCULATOR ==================== */}
+        {activePage === 29 && (
+          <MuscleBioenergeticsCalculator />
+        )}
+
+        {/* ==================== PAGE 30: 12-WEEK PRACTICAL BLUEPRINT ==================== */}
+        {activePage === 30 && (
+          <HypertrophyBlueprint12W />
         )}
 
         {/* Page Footer Navigation */}

@@ -16,7 +16,7 @@ export default function ChemicalByproducts() {
           Chemical By-Products & Molecular Substrates
         </h2>
         <p className="text-sm text-slate-300 leading-relaxed max-w-3xl">
-          Detailed scientific breakdown of what enters the cell, what powers the mitochondrial turbine, and where every chemical output ($CO_2$, $H_2O$, $ATP$, $H^+$, Lactate) goes during Zone 2 exercise.
+          Detailed scientific breakdown of what enters the cell, what powers the mitochondrial turbine, and where every chemical output (CO₂, H₂O, ATP, H⁺, Lactate) goes during Zone 2 exercise.
         </p>
       </div>
 
