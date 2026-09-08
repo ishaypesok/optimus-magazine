@@ -84,3 +84,56 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #059669;
 }
+
+/* HIGH-FIDELITY PRINT & PDF EXPORT STYLESHEET */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 10mm 10mm 15mm 10mm;
+  }
+
+  body {
+    background-color: #ffffff !important;
+    background-image: none !important;
+    color: #000000 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Hide web chrome & interactive elements during PDF export */
+  .no-print, 
+  header, 
+  aside, 
+  footer, 
+  button:not(.print-keep),
+  .no-print-container {
+    display: none !important;
+  }
+
+  /* Main content full width in print */
+  main {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  .magazine-page {
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* Page break controls */
+  .print-page-break {
+    break-before: page !important;
+    page-break-before: always !important;
+  }
+
+  .avoid-page-break {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+}

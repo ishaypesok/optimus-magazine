@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, Share2, ChevronLeft, ChevronRight, Check, Sun, Moon, Sparkles } from 'lucide-react';
+import { Menu, Share2, ChevronLeft, ChevronRight, Check, Sun, Moon, Sparkles, Printer, FileText } from 'lucide-react';
 import { PAGES_LIST } from './Sidebar';
 
 export default function MagazineHeader({ 
@@ -8,7 +8,8 @@ export default function MagazineHeader({
   isSidebarOpen,
   setIsSidebarOpen,
   bgTheme = 'paper',
-  setBgTheme
+  setBgTheme,
+  onPrintFullMagazine
 }) {
   const [copied, setCopied] = useState(false);
   const currentObj = PAGES_LIST.find(p => p.id === activeArticle) || PAGES_LIST[0];
@@ -41,7 +42,7 @@ export default function MagazineHeader({
   ];
 
   return (
-    <header className="sticky top-0 z-30 bg-[#f8f6f0]/90 dark:bg-stone-900/90 backdrop-blur-md border-b border-stone-200 dark:border-stone-800 px-4 lg:px-8 py-3 shadow-xs font-sans">
+    <header className="sticky top-0 z-30 bg-[#f8f6f0]/90 dark:bg-stone-900/90 backdrop-blur-md border-b border-stone-200 dark:border-stone-800 px-4 lg:px-8 py-3 shadow-xs font-sans no-print">
       <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
         
         {/* Left: Sidebar Toggle & Page Indicator */}
@@ -73,9 +74,20 @@ export default function MagazineHeader({
         {/* Right: Background Theme Selector & Navigation Actions */}
         <div className="flex items-center gap-2 shrink-0">
           
+          {/* Print 32-Page Full Magazine Button */}
+          <button
+            onClick={onPrintFullMagazine}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs shadow-sm transition border border-emerald-600"
+            title="Export Entire 32-Page Magazine to PDF for Printing"
+          >
+            <Printer className="w-3.5 h-3.5 text-emerald-200" />
+            <span className="hidden md:inline">Print Full Booklet (32 Pages)</span>
+            <span className="md:hidden">Print PDF</span>
+          </button>
+
           {/* Background Theme Switcher Pill */}
           {setBgTheme && (
-            <div className="flex items-center bg-stone-200/80 dark:bg-stone-800/90 rounded-xl p-1 border border-stone-300 dark:border-stone-700 text-xs font-bold gap-1 shadow-inner">
+            <div className="flex items-center bg-stone-200/80 dark:bg-stone-800/90 rounded-xl p-1 border border-stone-300 dark:border-stone-700 text-xs font-bold gap-1 shadow-inner hidden lg:flex">
               {themes.map((t) => {
                 const IconComponent = t.icon;
                 const isActive = bgTheme === t.id;
@@ -124,7 +136,7 @@ export default function MagazineHeader({
           {/* Copy Direct Page URL Button */}
           <button
             onClick={copyToClipboard}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl font-bold text-xs shadow-xs transition border ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl font-bold text-xs shadow-xs transition border hidden sm:flex ${
               copied
                 ? 'bg-emerald-100 dark:bg-emerald-950 text-emerald-900 dark:text-emerald-300 border-emerald-300 dark:border-emerald-700'
                 : 'bg-white dark:bg-stone-800 text-stone-700 dark:text-stone-200 border-stone-300 dark:border-stone-700 hover:bg-stone-100 dark:hover:bg-stone-700'
@@ -132,17 +144,7 @@ export default function MagazineHeader({
             title="Copy Direct Online Link for this Chapter"
           >
             {copied ? <Check className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400" /> : <Share2 className="w-3.5 h-3.5 text-stone-500 dark:text-stone-400" />}
-            <span className="hidden sm:inline">{copied ? 'Link Copied!' : 'Copy Link'}</span>
-          </button>
-
-          {/* Post on X (Twitter) Button */}
-          <button
-            onClick={shareOnX}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-black dark:bg-stone-100 hover:bg-stone-800 dark:hover:bg-white text-white dark:text-black font-bold text-xs shadow-xs transition"
-            title="Post this Chapter on X (Twitter)"
-          >
-            <span className="font-mono text-sm leading-none">𝕏</span>
-            <span className="hidden sm:inline">Post on X</span>
+            <span>{copied ? 'Link Copied!' : 'Copy Link'}</span>
           </button>
 
         </div>

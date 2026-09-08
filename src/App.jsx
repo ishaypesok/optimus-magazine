@@ -33,6 +33,15 @@ export default function App() {
   });
   const [searchQuery, setSearchQuery] = useState('');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isPrintAllMode, setIsPrintAllMode] = useState(false);
+
+  const handlePrintFullMagazine = () => {
+    setIsPrintAllMode(true);
+    setTimeout(() => {
+      window.print();
+      setIsPrintAllMode(false);
+    }, 400);
+  };
 
   // Sync background theme with localStorage
   useEffect(() => {
@@ -91,6 +100,7 @@ export default function App() {
           setIsSidebarOpen={setIsSidebarOpen}
           bgTheme={bgTheme}
           setBgTheme={setBgTheme}
+          onPrintFullMagazine={handlePrintFullMagazine}
         />
 
         {/* Main Magazine Layout Container */}
@@ -103,6 +113,7 @@ export default function App() {
             activeArticle={activeArticle}
             setActiveArticle={setActiveArticle}
             searchQuery={searchQuery}
+            isPrintAllMode={isPrintAllMode}
           />
 
           {/* Editorial Paper Footer */}

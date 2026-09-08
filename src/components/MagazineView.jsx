@@ -35,15 +35,14 @@ import MuscleBioenergeticsCalculator from './MuscleBioenergeticsCalculator';
 import HypertrophyBlueprint12W from './HypertrophyBlueprint12W';
 import AsAboveSoBelowVisualizer from './AsAboveSoBelowVisualizer';
 import HubermanMitochondriaMasterclass from './HubermanMitochondriaMasterclass';
+import MagazineFrontCover from './MagazineFrontCover';
+import MagazineTableOfContents from './MagazineTableOfContents';
 import { PAGES_LIST } from './Sidebar';
 
-export default function MagazineView({ currentZoneId, setCurrentZoneId, activeArticle, setActiveArticle }) {
+export default function MagazineView({ currentZoneId, setCurrentZoneId, activeArticle, setActiveArticle, isPrintAllMode }) {
   const [internalPage, setInternalPage] = useState(1);
   const activePage = (activeArticle && typeof activeArticle === 'number') ? activeArticle : internalPage;
   const totalPages = PAGES_LIST.length;
-
-  const zone2 = ZONES.find(z => z.id === 2) || ZONES[1];
-  const currentZone = ZONES.find(z => z.id === currentZoneId) || zone2;
 
   const setPage = (page) => {
     setInternalPage(page);
@@ -53,60 +52,16 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
   const nextPage = () => setPage(Math.min(activePage + 1, totalPages));
   const prevPage = () => setPage(Math.max(activePage - 1, 1));
 
-  return (
-    <div className="space-y-6 animate-fade-in text-stone-900 font-sans">
-
-      {/* MAGAZINE PAGE SHEET CONTAINER */}
-      <main className="magazine-page p-6 sm:p-10 lg:p-12 space-y-8 relative">
-        
-        {/* Page Top Header Bar with Large Cover Feature Card */}
-        <div className="flex flex-wrap items-center justify-between border-b border-stone-200 pb-5 gap-4 font-sans">
-          <div className="flex items-center gap-4">
-            <div className="w-20 h-26 sm:w-24 sm:h-32 rounded-2xl overflow-hidden border-2 border-emerald-600/60 shadow-lg shrink-0 bg-black group transition hover:scale-105">
-              <img src="./optimus-logo.jpg" alt="Optimus Magazine Logo" className="w-full h-full object-cover" />
-            </div>
-            <div className="space-y-1">
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-900 font-extrabold text-[10px] uppercase tracking-wider border border-emerald-300">
-                <span>📰 Official Issue Cover</span>
-              </div>
-              <h1 className="text-xl sm:text-2xl font-black text-stone-900 leading-tight">OPTIMUS MAGAZINE</h1>
-              <div className="text-xs text-emerald-800 font-bold font-mono">PAGE {activePage} OF {totalPages} • Zone 2 Bioenergetics Index</div>
-            </div>
-          </div>
-          
-          <div className="flex items-center gap-3">
-            <div className="hidden md:flex flex-col text-right text-xs text-stone-500 font-medium">
-              <span>The Friendly Guide to Zone 2 Bioenergetics</span>
-              <span className="text-[10px] text-emerald-800 font-bold">Bioenergetics Science Press</span>
-            </div>
-            <button 
-              onClick={() => window.print()}
-              className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-emerald-100 hover:bg-emerald-200 text-emerald-950 font-extrabold transition text-xs border border-emerald-300 shadow-xs"
-              title="Export PDF / Print Magazine Page"
-            >
-              <Printer className="w-4 h-4 text-emerald-700" />
-              <span>Export PDF / Print</span>
-            </button>
-          </div>
-        </div>
-
-        {/* ==================== PAGE 1: EDITOR'S FOREWORD & MISSION ==================== */}
-        {activePage === 1 && (
-          <ForewordMission setPage={setPage} />
-        )}
-
-        {/* ==================== PAGE 2: ISHAI ATHLETE PROFILE ==================== */}
-        {activePage === 2 && (
-          <AthleteProfile />
-        )}
-
-        {/* ==================== PAGE 3: APPLE WATCH ULTRA TELEMETRY & RUNS ==================== */}
-        {activePage === 3 && (
-          <StravaRunVisualizer />
-        )}
-
-        {/* ==================== PAGE 4: WHAT IS ZONE 2? (EASY INTRO) ==================== */}
-        {activePage === 4 && (
+  const renderPageContent = (pageNum) => {
+    switch (pageNum) {
+      case 1:
+        return <ForewordMission setPage={setPage} />;
+      case 2:
+        return <AthleteProfile />;
+      case 3:
+        return <StravaRunVisualizer />;
+      case 4:
+        return (
           <article className="space-y-8 animate-fade-in font-sans">
             <div className="space-y-2">
               <span className="px-3.5 py-1 rounded-full bg-emerald-100 text-emerald-900 font-bold text-xs uppercase tracking-wider border border-emerald-200 inline-flex items-center gap-1.5">
@@ -121,7 +76,6 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
               </p>
             </div>
 
-            {/* Simple Friendly Explanations */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 text-stone-800 text-sm lg:text-base leading-relaxed">
               <div className="p-6 rounded-2xl bg-stone-50 border border-stone-200 space-y-3">
                 <div className="flex items-center gap-2 text-emerald-900 font-bold text-base">
@@ -150,7 +104,6 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
               </div>
             </div>
 
-            {/* Ishai Personal Zone 2 Banner */}
             <div className="p-5 rounded-2xl bg-gradient-to-r from-emerald-950 via-slate-900 to-slate-950 text-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-md border border-slate-800">
               <div className="space-y-1">
                 <div className="text-amber-400 font-extrabold text-xs uppercase tracking-wider flex items-center gap-1.5">
@@ -168,7 +121,6 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
               </div>
             </div>
 
-            {/* Section: The 3 Easy Tests */}
             <div className="space-y-4 pt-2">
               <h3 className="text-xl font-bold text-stone-900 flex items-center gap-2">
                 <UserCheck className="w-5 h-5 text-emerald-700" />
@@ -195,22 +147,10 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
                 </div>
               </div>
             </div>
-
-            {/* Page 4 Bottom CTA */}
-            <div className="pt-2 flex justify-end">
-              <button
-                onClick={() => setPage(5)}
-                className="flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold transition shadow-sm"
-              >
-                <span>Continue to Page 5: FATmax Science</span>
-                <ChevronRight className="w-4 h-4" />
-              </button>
-            </div>
           </article>
-        )}
-
-        {/* ==================== PAGE 5: FATMAX SCIENCE ==================== */}
-        {activePage === 5 && (
+        );
+      case 5:
+        return (
           <article className="space-y-8 animate-fade-in font-sans">
             <div className="space-y-2">
               <span className="px-3.5 py-1 rounded-full bg-emerald-100 text-emerald-900 font-bold text-xs uppercase tracking-wider border border-emerald-200">
@@ -238,155 +178,29 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
                 <p>
                   Inside the mitochondrial matrix, fatty acids undergo <strong>Beta-Oxidation</strong>, producing Acetyl-CoA to feed the Krebs Cycle. Every palmitate molecule yields approximately <strong>106 to 120 ATP energy molecules</strong>.
                 </p>
-                <div className="p-4 rounded-2xl bg-stone-50 border border-stone-200 space-y-2">
-                  <div className="flex items-center justify-between text-xs font-bold text-stone-900 border-b border-stone-200 pb-2">
-                    <span>Substrate Energy Comparison</span>
-                    <span className="text-emerald-700 font-semibold">Zone 2 Peak</span>
-                  </div>
-                  <div className="space-y-1.5 text-xs text-stone-700">
-                    <div className="flex justify-between"><span>Fat Oxidation Yield:</span><strong className="text-emerald-800">~106-120 ATP / molecule</strong></div>
-                    <div className="flex justify-between"><span>Glucose Oxidation Yield:</span><strong className="text-amber-800">~32-34 ATP / molecule</strong></div>
-                  </div>
-                </div>
               </div>
             </div>
 
-            <div className="pt-6 border-t border-stone-200 space-y-4">
-              <h3 className="text-lg font-bold text-stone-900 flex items-center gap-2">
-                <BarChart2 className="w-5 h-5 text-emerald-700" />
-                Interactive Fuel Dynamics Chart
-              </h3>
-              <div className="bg-stone-50 p-4 rounded-2xl border border-stone-200">
-                <FuelCharts currentZoneId={currentZoneId} />
-              </div>
+            <div className="pt-4">
+              <FuelCharts currentZoneId={currentZoneId} setCurrentZoneId={setCurrentZoneId} />
             </div>
           </article>
-        )}
-
-        {/* ==================== PAGE 6: WINGATE LAB TEST PREP ==================== */}
-        {activePage === 6 && (
-          <WingateLabPrep />
-        )}
-
-        {/* ==================== PAGE 7: BIOENERGETICS CALCULATOR ==================== */}
-        {activePage === 7 && (
-          <BioenergeticsCalculator />
-        )}
-
-        {/* ==================== PAGE 8: WISE 10K TRACKER ==================== */}
-        {activePage === 8 && (
-          <TenKTracker />
-        )}
-
-        {/* ==================== PAGE 9: OPTIMUS BIOENERGETIC & LONGEVITY INDEX ==================== */}
-        {activePage === 9 && (
-          <LongevityIndexSystem />
-        )}
-
-        {/* ==================== PAGE 10: RUNNER'S LICENSE & CERTIFICATION ==================== */}
-        {activePage === 10 && (
-          <RunnerLicense />
-        )}
-
-        {/* ==================== PAGE 11: SCIENTIFIC ADVISORY & ACCREDITATION ==================== */}
-        {activePage === 11 && (
-          <ScientificAccreditation />
-        )}
-
-        {/* ==================== PAGE 12: LIVE CELL VISUALIZER ==================== */}
-        {activePage === 12 && (
-          <article className="space-y-8 animate-fade-in font-sans">
-            <LiveCellVisualizer />
-          </article>
-        )}
-
-        {/* ==================== PAGE 13: CELL ENGINE & PGC-1α BIOGENESIS ==================== */}
-        {activePage === 13 && (
-          <article className="space-y-8 animate-fade-in font-sans">
-            <div className="space-y-2">
-              <span className="px-3.5 py-1 rounded-full bg-teal-100 text-teal-900 font-bold text-xs uppercase tracking-wider border border-teal-200">
-                Page 13 • Cellular Powerhouse
-              </span>
-              <h2 className="text-3xl lg:text-4xl font-extrabold text-stone-900 leading-tight tracking-tight">
-                Building the Cellular Engine: PGC-1α & Angiogenesis
-              </h2>
-              <p className="text-stone-600 text-sm font-normal">
-                How Zone 2 stimulates mitochondrial biogenesis and expands capillary networks.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              <div className="lg:col-span-2 space-y-4 text-stone-800 text-sm lg:text-base leading-relaxed font-normal">
-                <p>
-                  Chronic adaptation to Zone 2 training is governed by the cellular master regulator <strong>PGC-1α</strong>. When slow-twitch muscle fibers sustain moderate contraction, AMPK activation triggers PGC-1α transcription to build new mitochondria and increase capillary density.
-                </p>
-                <div className="pt-4 space-y-3">
-                  <h3 className="text-base font-bold text-stone-900">Key Metabolic Characters</h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {CHARACTERS.map((char) => (
-                      <div key={char.id} className="p-4 rounded-2xl bg-stone-50 border border-stone-200 space-y-2">
-                        <div className="flex items-center gap-2.5">
-                          <span className="text-3xl">{char.avatar}</span>
-                          <div>
-                            <div className="text-xs font-bold text-stone-900">{char.name}</div>
-                            <div className="text-[10px] text-emerald-700 font-semibold">{char.role}</div>
-                          </div>
-                        </div>
-                        <p className="text-xs text-stone-600 leading-relaxed font-normal">{char.zone2Behavior}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-emerald-900 text-white p-6 rounded-3xl space-y-5 shadow-sm">
-                <h3 className="text-xs font-bold text-emerald-300 uppercase tracking-wider">Mitochondrial Adaptations</h3>
-                <ul className="space-y-4 text-xs text-emerald-100 font-normal">
-                  <li className="flex items-start gap-2.5">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-300 shrink-0 mt-0.5" />
-                    <span><strong>Mitochondrial Density:</strong> Increases functional surface area for Beta-Oxidation.</span>
-                  </li>
-                  <li className="flex items-start gap-2.5">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-300 shrink-0 mt-0.5" />
-                    <span><strong>Enzymatic Upregulation:</strong> Enhances Citrate Synthase and CPT-1 concentrations by up to 40%.</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="pt-6 border-t border-stone-200">
-              <AdaptationSimulator />
-            </div>
-          </article>
-        )}
-
-        {/* ==================== PAGE 14: LACTATE PARADOX & SHUTTLE ==================== */}
-        {activePage === 14 && (
-          <LactateMasterclass />
-        )}
-
-        {/* ==================== PAGE 15: ZONE 2 & RECOVERY MASTERY ==================== */}
-        {activePage === 15 && (
-          <RecoveryMastery />
-        )}
-
-        {/* ==================== PAGE 16: AEROBIC EXPECTATIONS & HR DRIFT ==================== */}
-        {activePage === 16 && (
-          <AerobicExpectations />
-        )}
-
-        {/* ==================== PAGE 17: NUTRITION & BLOOD PRESSURE ==================== */}
-        {activePage === 17 && (
-          <Zone2NutritionBP />
-        )}
-
-        {/* ==================== PAGE 18: HEAT & HUMIDITY GUIDE ==================== */}
-        {activePage === 18 && (
-          <HeatHumidityGuide />
-        )}
-
-        {/* ==================== PAGE 19: LONGEVITY MASTERCLASS ==================== */}
-        {activePage === 19 && (
+        );
+      case 6: return <WingateLabPrep />;
+      case 7: return <BioenergeticsCalculator />;
+      case 8: return <TenKTracker />;
+      case 9: return <LongevityIndexSystem />;
+      case 10: return <RunnerLicense />;
+      case 11: return <ScientificAccreditation />;
+      case 12: return <LiveCellVisualizer />;
+      case 13: return <AdaptationSimulator />;
+      case 14: return <LactateMasterclass />;
+      case 15: return <RecoveryMastery />;
+      case 16: return <AerobicExpectations />;
+      case 17: return <Zone2NutritionBP />;
+      case 18: return <HeatHumidityGuide />;
+      case 19:
+        return (
           <article className="space-y-8 animate-fade-in font-sans">
             <div className="space-y-2">
               <span className="px-3.5 py-1 rounded-full bg-emerald-100 text-emerald-900 font-bold text-xs uppercase tracking-wider border border-emerald-200">
@@ -431,100 +245,86 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
                 </p>
               </div>
             </div>
-
-            <div className="p-6 rounded-2xl bg-gradient-to-r from-emerald-800 to-teal-900 text-white space-y-2 shadow-sm">
-              <h3 className="text-lg font-bold">The 80/20 Endurance Paradigm</h3>
-              <p className="text-xs sm:text-sm text-emerald-100 leading-relaxed font-normal">
-                80% low-intensity Zone 2 aerobic base + 20% high-intensity interval training (Zone 5).
-              </p>
-            </div>
           </article>
-        )}
+        );
+      case 20: return <AntiAgingMasterclass />;
+      case 21: return <BodyMitochondriaSimulator />;
+      case 22: return <HowFatIsCreated />;
+      case 23: return <MolecularAssemblyLine />;
+      case 24: return <CellularCosmos />;
+      case 25: return <MitochondrialReproduction />;
+      case 26: return <Zone2VsOtherSports />;
+      case 27: return <RunnerSimulation />;
+      case 28: return <RunImprovementsTable />;
+      case 29: return <MuscleBioenergeticsCalculator />;
+      case 30: return <HypertrophyBlueprint12W />;
+      case 31: return <AsAboveSoBelowVisualizer />;
+      case 32: return <HubermanMitochondriaMasterclass />;
+      default: return <ForewordMission setPage={setPage} />;
+    }
+  };
 
-        {/* ==================== PAGE 20: ANTI-AGING & CELLULAR LONGEVITY ==================== */}
-        {activePage === 20 && (
-          <AntiAgingMasterclass />
-        )}
-
-        {/* ==================== PAGE 21: WHOLE-BODY MITOCHONDRIAL DISTRIBUTION ==================== */}
-        {activePage === 21 && (
-          <BodyMitochondriaSimulator />
-        )}
-
-        {/* ==================== PAGE 22: HOW THE HUMAN BODY CREATES FAT ==================== */}
-        {activePage === 22 && (
-          <HowFatIsCreated />
-        )}
-
-        {/* ==================== PAGE 23: MOLECULAR ASSEMBLY LINE ==================== */}
-        {activePage === 23 && (
-          <MolecularAssemblyLine />
-        )}
-
-        {/* ==================== PAGE 24: THE CELLULAR COSMOS (3D CELL MODEL) ==================== */}
-        {activePage === 24 && (
-          <CellularCosmos />
-        )}
-
-        {/* ==================== PAGE 25: MITOCHONDRIA EVOLUTION & BACTERIA ==================== */}
-        {activePage === 25 && (
-          <MitochondrialReproduction />
-        )}
-
-        {/* ==================== PAGE 26: ZONE 2 VS OTHER SPORTS ==================== */}
-        {activePage === 26 && (
-          <article className="space-y-8 animate-fade-in font-sans">
-            <Zone2VsOtherSports />
-          </article>
-        )}
-
-        {/* ==================== PAGE 27: 1-HOUR FIELD EXPERIMENT ==================== */}
-        {activePage === 27 && (
-          <article className="space-y-8 animate-fade-in font-sans">
-            <div className="space-y-2">
-              <span className="px-3.5 py-1 rounded-full bg-cyan-100 text-cyan-900 font-bold text-xs uppercase tracking-wider border border-cyan-200">
-                Page 27 • Field Experiment
-              </span>
-              <h2 className="text-3xl lg:text-4xl font-extrabold text-stone-900 leading-tight tracking-tight">
-                The 1-Hour Zone 2 Runner: Real-Time Field Simulation
-              </h2>
-              <p className="text-stone-600 text-sm font-normal">
-                Track how heart rate, fat burn, glycogen depletion, and lactate evolve over a 60-minute session.
-              </p>
+  // FULL 32-PAGE BOOKLET PRINT MODE
+  if (isPrintAllMode) {
+    return (
+      <div className="space-y-10 font-sans print:p-0">
+        <MagazineFrontCover />
+        <div className="print-page-break" />
+        <MagazineTableOfContents setPage={setPage} />
+        {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
+          <div key={pageNum} className="print-page-break space-y-6 pt-6">
+            <div className="flex items-center justify-between border-b border-stone-300 pb-2 text-xs font-mono text-stone-500">
+              <span>OPTIMUS MAGAZINE • Issue 01</span>
+              <span className="font-bold text-emerald-800">PAGE {pageNum} OF {totalPages}</span>
             </div>
-            <div className="pt-2">
-              <RunnerSimulation />
+            {renderPageContent(pageNum)}
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  // STANDARD SINGLE-PAGE INTERACTIVE VIEW
+  return (
+    <div className="space-y-6 animate-fade-in text-stone-900 font-sans">
+      <main className="magazine-page p-6 sm:p-10 lg:p-12 space-y-8 relative">
+        
+        {/* Page Top Header Bar */}
+        <div className="flex flex-wrap items-center justify-between border-b border-stone-200 pb-5 gap-4 font-sans no-print">
+          <div className="flex items-center gap-4">
+            <div className="w-20 h-26 sm:w-24 sm:h-32 rounded-2xl overflow-hidden border-2 border-emerald-600/60 shadow-lg shrink-0 bg-black group transition hover:scale-105">
+              <img src="./optimus-logo.jpg" alt="Optimus Magazine Logo" className="w-full h-full object-cover" />
             </div>
-          </article>
-        )}
+            <div className="space-y-1">
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-900 font-extrabold text-[10px] uppercase tracking-wider border border-emerald-300">
+                <span>📰 Official Issue Cover</span>
+              </div>
+              <h1 className="text-xl sm:text-2xl font-black text-stone-900 leading-tight">OPTIMUS MAGAZINE</h1>
+              <div className="text-xs text-emerald-800 font-bold font-mono">PAGE {activePage} OF {totalPages} • Zone 2 Bioenergetics Index</div>
+            </div>
+          </div>
+          
+          <div className="flex items-center gap-3">
+            <div className="hidden md:flex flex-col text-right text-xs text-stone-500 font-medium">
+              <span>The Friendly Guide to Zone 2 Bioenergetics</span>
+              <span className="text-[10px] text-emerald-800 font-bold">Bioenergetics Science Press</span>
+            </div>
+            <button 
+              onClick={() => window.print()}
+              className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-emerald-100 hover:bg-emerald-200 text-emerald-950 font-extrabold transition text-xs border border-emerald-300 shadow-xs"
+              title="Export PDF / Print Magazine Page"
+            >
+              <Printer className="w-4 h-4 text-emerald-700" />
+              <span>Export Single Page PDF</span>
+            </button>
+          </div>
+        </div>
 
-        {/* ==================== PAGE 28: RUN PROGRESS & ANALYTICS TABLE ==================== */}
-        {activePage === 28 && (
-          <RunImprovementsTable />
-        )}
-
-        {/* ==================== PAGE 29: MUSCLE HYPERTROPHY BIOENERGETICS CALCULATOR ==================== */}
-        {activePage === 29 && (
-          <MuscleBioenergeticsCalculator />
-        )}
-
-        {/* ==================== PAGE 30: 12-WEEK PRACTICAL BLUEPRINT ==================== */}
-        {activePage === 30 && (
-          <HypertrophyBlueprint12W />
-        )}
-
-        {/* ==================== PAGE 31: AS ABOVE, SO BELOW (UNIVERSAL SELF-SIMILARITY) ==================== */}
-        {activePage === 31 && (
-          <AsAboveSoBelowVisualizer />
-        )}
-
-        {/* ==================== PAGE 32: HUBERMAN LAB & DR. JARED RUTTER MASTERCLASS ==================== */}
-        {activePage === 32 && (
-          <HubermanMitochondriaMasterclass />
-        )}
+        {/* ACTIVE PAGE CONTENT */}
+        {renderPageContent(activePage)}
 
         {/* Page Footer Navigation */}
-        <div className="flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-stone-200 font-sans">
+        <div className="flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-stone-200 font-sans no-print">
           <button
             onClick={prevPage}
             disabled={activePage === 1}
@@ -549,7 +349,6 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
         </div>
 
       </main>
-
     </div>
   );
 }
