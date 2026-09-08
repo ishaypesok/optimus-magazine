@@ -14,33 +14,55 @@ export default function RunnerSimulation() {
   const [minute, setMinute] = useState(0); // 0 to maxMins
   const [isRunning, setIsRunning] = useState(false);
   const [speedMultiplier, setSpeedMultiplier] = useState(1);
-  const [selectedRunId, setSelectedRunId] = useState('aug27');
-  const [userVo2Max, setUserVo2Max] = useState(26.2);
+  const [selectedRunId, setSelectedRunId] = useState('sep07');
+  const [userVo2Max, setUserVo2Max] = useState(34.1);
   const [userWeightKg, setUserWeightKg] = useState(82.9);
   const [chartMode, setChartMode] = useState('calories'); // 'calories' | 'cumulative' | 'lactate'
   const [viewStyle, setViewStyle] = useState('progressive'); // 'progressive' | 'full' | 'compare'
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   // New run input form state
-  const [newRunDate, setNewRunDate] = useState('08/27/2026');
-  const [newRunDuration, setNewRunDuration] = useState('69.9');
-  const [newRunDistance, setNewRunDistance] = useState('6.13');
-  const [newRunPace, setNewRunPace] = useState('11.40');
+  const [newRunDate, setNewRunDate] = useState('09/07/2026');
+  const [newRunDuration, setNewRunDuration] = useState('78.3');
+  const [newRunDistance, setNewRunDistance] = useState('6.46');
+  const [newRunPace, setNewRunPace] = useState('12.11');
   const [newRunHr, setNewRunHr] = useState('114');
-  const [newRunCalories, setNewRunCalories] = useState('377');
+  const [newRunCalories, setNewRunCalories] = useState('398');
 
   // Real runs list
   const [runsList, setRunsList] = useState([
     {
+      id: 'sep07',
+      dateLabel: 'Sep 7, 2026 (Latest Run 🏆 Record)',
+      durationMin: 78.3,
+      distanceKm: 6.46,
+      paceMinKm: 12.11,
+      avgHr: 114,
+      watchCalories: 398,
+      color: '#059669',
+      note: 'New Personal Distance Record (6.46 km)! 78.3 mins • 114 BPM Avg HR • 398 kcal • Health AutoExport AutoSync!'
+    },
+    {
+      id: 'sep03',
+      dateLabel: 'Sep 3, 2026',
+      durationMin: 71.0,
+      distanceKm: 6.00,
+      paceMinKm: 11.85,
+      avgHr: 109,
+      watchCalories: 344,
+      color: '#10b981',
+      note: 'Post-Wingate Aerobic Base Run (6.00 km)! 109 BPM Avg HR • 344 kcal • Health AutoExport AutoSync!'
+    },
+    {
       id: 'aug27',
-      dateLabel: 'Aug 27, 2026 (Latest Run ⭐)',
+      dateLabel: 'Aug 27, 2026',
       durationMin: 69.9,
       distanceKm: 6.13,
       paceMinKm: 11.40,
       avgHr: 114,
       watchCalories: 377,
       color: '#047857',
-      note: 'New Distance Record (6.13 km)! Zone 2 Aerobic Run • 114 BPM Avg HR • Apple Watch AutoSync!'
+      note: 'Distance Record (6.13 km)! Zone 2 Aerobic Run • 114 BPM Avg HR • Apple Watch AutoSync!'
     },
     {
       id: 'aug24',

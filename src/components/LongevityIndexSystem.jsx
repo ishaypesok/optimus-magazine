@@ -7,12 +7,12 @@ import {
 
 export default function LongevityIndexSystem() {
   // Input states for interactive Run & Longevity Classifier
-  const [runDistance, setRunDistance] = useState(6.13);
-  const [runDuration, setRunDuration] = useState(69.9);
+  const [runDistance, setRunDistance] = useState(6.46);
+  const [runDuration, setRunDuration] = useState(78.3);
   const [avgHr, setAvgHr] = useState(114);
-  const [powerWatts, setPowerWatts] = useState(121);
+  const [powerWatts, setPowerWatts] = useState(122);
   const [restingHr, setRestingHr] = useState(52);
-  const [vo2Max, setVo2Max] = useState(26.2);
+  const [vo2Max, setVo2Max] = useState(34.1);
   const [weeklyZ2Hours, setWeeklyZ2Hours] = useState(3.5);
 
   // Derived Calculations for Index Scores (0 to 100)

@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { 
   BookOpen, Search, X, Smile, Flame, Cpu, Zap, BarChart2, Activity, Clock, 
   ShieldCheck, User, Heart, BatteryCharging, TrendingUp, Droplet, Sun, Layers, Award, Dna, Trophy,
-  ArrowDownAZ, FileText, LayoutGrid, Link, Check, ExternalLink, Sparkles, Calculator, Calendar
+  ArrowDownAZ, FileText, LayoutGrid, Link, Check, ExternalLink, Sparkles, Calculator, Calendar, Orbit, Tv
 } from 'lucide-react';
 
 export const PAGES_LIST = [
@@ -43,6 +43,8 @@ export const PAGES_LIST = [
   { id: 28, title: 'Run Progress & Analytics Table', label: 'Article 28: Run Progress Table', category: 'Deep Physiology', icon: Award, badge: '📈 Analytics' },
   { id: 29, title: 'Muscle Hypertrophy Bioenergetics Calculator', label: 'Article 29: Muscle Hypertrophy Calc', category: 'Calculators & Bioenergetics', icon: Calculator, badge: '💪 Muscle Bioenergetics' },
   { id: 30, title: '12-Week Practical Lean Gains & Recomposition Blueprint', label: 'Article 30: 12-Week Blueprint', category: 'Protocols', icon: Calendar, badge: '📋 12-Wk Blueprint' },
+  { id: 31, title: 'As Above, So Below (Universal Self-Similarity)', label: 'Article 31: As Above, So Below', category: 'Deep Physiology', icon: Orbit, badge: '✨ Self-Similarity' },
+  { id: 32, title: 'Huberman Lab: How Mitochondria Control Your Metabolism (Dr. Jared Rutter)', label: 'Article 32: Huberman Lab & Dr. Rutter', category: 'Podcast & Bioenergetics', icon: Tv, badge: '🎙️ Huberman Special' },
 ];
 
 export default function Sidebar({

@@ -33,6 +33,8 @@ import ScientificAccreditation from './ScientificAccreditation';
 import WingateLabPrep from './WingateLabPrep';
 import MuscleBioenergeticsCalculator from './MuscleBioenergeticsCalculator';
 import HypertrophyBlueprint12W from './HypertrophyBlueprint12W';
+import AsAboveSoBelowVisualizer from './AsAboveSoBelowVisualizer';
+import HubermanMitochondriaMasterclass from './HubermanMitochondriaMasterclass';
 import { PAGES_LIST } from './Sidebar';
 
 export default function MagazineView({ currentZoneId, setCurrentZoneId, activeArticle, setActiveArticle }) {
@@ -509,6 +511,16 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
         {/* ==================== PAGE 30: 12-WEEK PRACTICAL BLUEPRINT ==================== */}
         {activePage === 30 && (
           <HypertrophyBlueprint12W />
+        )}
+
+        {/* ==================== PAGE 31: AS ABOVE, SO BELOW (UNIVERSAL SELF-SIMILARITY) ==================== */}
+        {activePage === 31 && (
+          <AsAboveSoBelowVisualizer />
+        )}
+
+        {/* ==================== PAGE 32: HUBERMAN LAB & DR. JARED RUTTER MASTERCLASS ==================== */}
+        {activePage === 32 && (
+          <HubermanMitochondriaMasterclass />
         )}
 
         {/* Page Footer Navigation */}

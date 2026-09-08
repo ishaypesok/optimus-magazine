@@ -7,6 +7,40 @@ import {
 
 const INITIAL_RUNS_DATA = [
   {
+    id: 'run-sep-07-2026',
+    date: 'Sep 7, 2026',
+    title: "🔥 Latest Outdoor Run (6.46 km Record • Apple Watch AutoSync)",
+    distanceKm: 6.46,
+    durationMin: 78.3,
+    paceStr: '12:07 min/km',
+    paceVal: 12.11,
+    avgHr: 114,
+    maxHr: 131,
+    zone2Percent: 92,
+    fatBurnGrams: 34.8,
+    carbBurnGrams: 11.2,
+    mitoScore: 98,
+    lthrMargin: '-21 BPM',
+    note: 'New Personal Distance Record! 6.46 km in 78.3 mins • 114 BPM Avg HR • 398 kcal • 74m Elev Gain • Auto Export AutoSync'
+  },
+  {
+    id: 'run-sep-03-2026',
+    date: 'Sep 3, 2026',
+    title: "Outdoor Run (6.00 km • Post-Wingate)",
+    distanceKm: 6.00,
+    durationMin: 71.0,
+    paceStr: '11:51 min/km',
+    paceVal: 11.85,
+    avgHr: 109,
+    maxHr: 130,
+    zone2Percent: 79,
+    fatBurnGrams: 30.5,
+    carbBurnGrams: 8.2,
+    mitoScore: 97,
+    lthrMargin: '-26 BPM',
+    note: 'Post-Wingate Aerobic Base Run! 6.00 km in 71.0 mins • 109 BPM Avg HR • 344 kcal • Health Auto Export AutoSync'
+  },
+  {
     id: 'run-sep-01-2026-wingate',
     date: 'Sep 1, 2026',
     title: "🏥 Wingate Institute Clinical Test (Lactate & Health)",
@@ -184,8 +218,8 @@ export default function RunImprovementsTable() {
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.some(r => r.id === 'run-aug-27-2026' || r.id === 'run-aug-27-2026-synced')) {
-          return parsed.map(r => ({
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          const mapped = parsed.map(r => ({
             id: r.id || `run-${Math.random()}`,
             date: r.date || 'Recent Run',
             title: r.title || 'Outdoor Run',
@@ -202,6 +236,10 @@ export default function RunImprovementsTable() {
             lthrMargin: r.lthrMargin || '-20 BPM',
             note: r.note || 'Synced Workout'
           }));
+          if (!mapped.some(r => r.id === 'run-sep-07-2026')) {
+            mapped.unshift(INITIAL_RUNS_DATA[0]);
+          }
+          return mapped;
         }
       } catch (e) {
         console.error('Failed to parse runs from localStorage', e);

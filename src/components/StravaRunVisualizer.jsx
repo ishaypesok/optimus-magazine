@@ -6,9 +6,73 @@ import {
 } from 'lucide-react';
 
 const SYNCED_TODAY_RUN = {
+  id: 'run-sep-07-2026-synced',
+  title: "Today's Outdoor Run (6.46 km Record • Post-Wingate Aerobic Base)",
+  date: 'Today (Sep 7, 2026 • 19:42)',
+  device: 'Apple Watch Ultra',
+  sourceApp: 'Health Auto Export AutoSync',
+  durationMinutes: 78.3,
+  distanceKm: 6.46,
+  avgPace: '12:07 min/km',
+  avgHeartRate: 114,
+  maxHeartRate: 131,
+  calories: 398,
+  vo2max: 34.1,
+  powerWatts: 122,
+  elevationGain: 74.0,
+  weatherTemp: '28.9°C',
+  weatherHumidity: '71%',
+  wingateZone2Target: '101 - 120 BPM',
+  zone2TimePercent: 92,
+  fatBurnGrams: 34.8,
+  carbBurnGrams: 11.2,
+  mitochondrialEfficiencyScore: 98,
+  lthrMargin: '-21 BPM below LTHR (135 BPM)',
+  coordinates: [
+    { x: 40, y: 180, hr: 84, zone: 'Zone 1' },
+    { x: 150, y: 130, hr: 112, zone: 'Zone 2' },
+    { x: 300, y: 115, hr: 115, zone: 'Zone 2' },
+    { x: 450, y: 125, hr: 114, zone: 'Zone 2' },
+    { x: 570, y: 170, hr: 106, zone: 'Zone 1' }
+  ]
+};
+
+const RUN_SEP_03_2026 = {
+  id: 'run-sep-03-2026-synced',
+  title: "Previous Outdoor Run (6.00 km • Post-Wingate Aerobic Base)",
+  date: 'Sep 3, 2026 • 19:26',
+  device: 'Apple Watch Ultra',
+  sourceApp: 'Health Auto Export AutoSync',
+  durationMinutes: 71.0,
+  distanceKm: 6.00,
+  avgPace: '11:51 min/km',
+  avgHeartRate: 109,
+  maxHeartRate: 130,
+  calories: 344,
+  vo2max: 34.1,
+  powerWatts: 118,
+  elevationGain: 58.3,
+  weatherTemp: '28.3°C',
+  weatherHumidity: '70%',
+  wingateZone2Target: '101 - 120 BPM',
+  zone2TimePercent: 79,
+  fatBurnGrams: 30.5,
+  carbBurnGrams: 8.2,
+  mitochondrialEfficiencyScore: 97,
+  lthrMargin: '-26 BPM below LTHR (135 BPM)',
+  coordinates: [
+    { x: 40, y: 180, hr: 82, zone: 'Zone 1' },
+    { x: 150, y: 130, hr: 107, zone: 'Zone 2' },
+    { x: 300, y: 115, hr: 110, zone: 'Zone 2' },
+    { x: 450, y: 125, hr: 112, zone: 'Zone 2' },
+    { x: 570, y: 170, hr: 103, zone: 'Zone 1' }
+  ]
+};
+
+const RUN_AUG_27_2026 = {
   id: 'run-aug-27-2026-synced',
-  title: "Today's Outdoor Run (6.13 km Record • Apple Watch)",
-  date: 'Today (Aug 27, 2026 • 19:54)',
+  title: "Previous Outdoor Run (6.13 km Record • Apple Watch)",
+  date: 'Aug 27, 2026 • 19:54',
   device: 'Apple Watch Ultra',
   sourceApp: 'Apple Health AutoSync',
   durationMinutes: 69.9,
@@ -327,6 +391,8 @@ const RUN_JUL_25_2026 = {
 
 const INITIAL_RUNS = [
   SYNCED_TODAY_RUN, 
+  RUN_SEP_03_2026,
+  RUN_AUG_27_2026,
   RUN_AUG_24_2026, 
   RUN_AUG_21_2026, 
   PREVIOUS_RUN, 
@@ -344,7 +410,10 @@ export default function StravaRunVisualizer() {
     if (saved) {
       try { 
         const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.some(r => r.id === 'run-aug-27-2026-synced')) {
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          if (!parsed.some(r => r.id === 'run-sep-07-2026-synced')) {
+            parsed.unshift(SYNCED_TODAY_RUN);
+          }
           return parsed;
         }
       } catch (e) {}
