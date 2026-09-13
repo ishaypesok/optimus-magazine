@@ -6,9 +6,41 @@ import {
 } from 'lucide-react';
 
 const SYNCED_TODAY_RUN = {
+  id: 'run-sep-13-2026-synced',
+  title: "Today's Outdoor Run (6.59 km Record 🏆 • Auto Export AutoSync)",
+  date: 'Today (Sep 13, 2026 • 19:43)',
+  device: 'Apple Watch Ultra',
+  sourceApp: 'Health Auto Export AutoSync',
+  durationMinutes: 79.3,
+  distanceKm: 6.59,
+  avgPace: '12:02 min/km',
+  avgHeartRate: 117,
+  maxHeartRate: 132,
+  calories: 391,
+  vo2max: 34.1,
+  powerWatts: 107,
+  elevationGain: 63,
+  weatherTemp: '27.8°C',
+  weatherHumidity: '76%',
+  wingateZone2Target: '101 - 120 BPM',
+  zone2TimePercent: 94,
+  fatBurnGrams: 35.5,
+  carbBurnGrams: 12.1,
+  mitochondrialEfficiencyScore: 99,
+  lthrMargin: '-18 BPM below LTHR (135 BPM)',
+  coordinates: [
+    { x: 40, y: 180, hr: 88, zone: 'Zone 1' },
+    { x: 150, y: 130, hr: 114, zone: 'Zone 2' },
+    { x: 300, y: 115, hr: 118, zone: 'Zone 2' },
+    { x: 450, y: 125, hr: 116, zone: 'Zone 2' },
+    { x: 570, y: 170, hr: 108, zone: 'Zone 1' }
+  ]
+};
+
+const RUN_SEP_07_2026 = {
   id: 'run-sep-07-2026-synced',
-  title: "Today's Outdoor Run (6.46 km Record • Post-Wingate Aerobic Base)",
-  date: 'Today (Sep 7, 2026 • 19:42)',
+  title: "Previous Outdoor Run (6.46 km Record • Post-Wingate Aerobic Base)",
+  date: 'Sep 7, 2026 • 19:42',
   device: 'Apple Watch Ultra',
   sourceApp: 'Health Auto Export AutoSync',
   durationMinutes: 78.3,
@@ -391,6 +423,7 @@ const RUN_JUL_25_2026 = {
 
 const INITIAL_RUNS = [
   SYNCED_TODAY_RUN, 
+  RUN_SEP_07_2026,
   RUN_SEP_03_2026,
   RUN_AUG_27_2026,
   RUN_AUG_24_2026, 

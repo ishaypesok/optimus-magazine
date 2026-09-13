@@ -14,7 +14,7 @@ export default function RunnerSimulation() {
   const [minute, setMinute] = useState(0); // 0 to maxMins
   const [isRunning, setIsRunning] = useState(false);
   const [speedMultiplier, setSpeedMultiplier] = useState(1);
-  const [selectedRunId, setSelectedRunId] = useState('sep07');
+  const [selectedRunId, setSelectedRunId] = useState('sep10');
   const [userVo2Max, setUserVo2Max] = useState(34.1);
   const [userWeightKg, setUserWeightKg] = useState(82.9);
   const [chartMode, setChartMode] = useState('calories'); // 'calories' | 'cumulative' | 'lactate'
@@ -22,25 +22,47 @@ export default function RunnerSimulation() {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   // New run input form state
-  const [newRunDate, setNewRunDate] = useState('09/07/2026');
-  const [newRunDuration, setNewRunDuration] = useState('78.3');
-  const [newRunDistance, setNewRunDistance] = useState('6.46');
-  const [newRunPace, setNewRunPace] = useState('12.11');
-  const [newRunHr, setNewRunHr] = useState('114');
-  const [newRunCalories, setNewRunCalories] = useState('398');
+  const [newRunDate, setNewRunDate] = useState('09/13/2026');
+  const [newRunDuration, setNewRunDuration] = useState('79.3');
+  const [newRunDistance, setNewRunDistance] = useState('6.59');
+  const [newRunPace, setNewRunPace] = useState('12.03');
+  const [newRunHr, setNewRunHr] = useState('117');
+  const [newRunCalories, setNewRunCalories] = useState('391');
 
   // Real runs list
   const [runsList, setRunsList] = useState([
     {
+      id: 'sep13',
+      dateLabel: 'Sep 13, 2026 (Latest Run 🏆 Record)',
+      durationMin: 79.3,
+      distanceKm: 6.59,
+      paceMinKm: 12.03,
+      avgHr: 117,
+      watchCalories: 391,
+      color: '#059669',
+      note: 'New All-Time Personal Distance Record (6.59 km)! 1:19:19 • 117 BPM Avg HR • 107W Power • 391 kcal!'
+    },
+    {
+      id: 'sep10',
+      dateLabel: 'Sep 10, 2026 (Previous Record)',
+      durationMin: 75.7,
+      distanceKm: 6.55,
+      paceMinKm: 11.55,
+      avgHr: 116,
+      watchCalories: 387,
+      color: '#10b981',
+      note: 'Previous Personal Distance Record (6.55 km)! 75.7 mins • 116 BPM Avg HR • 387 kcal • Health AutoExport AutoSync!'
+    },
+    {
       id: 'sep07',
-      dateLabel: 'Sep 7, 2026 (Latest Run 🏆 Record)',
+      dateLabel: 'Sep 7, 2026 (6.46 km Record)',
       durationMin: 78.3,
       distanceKm: 6.46,
       paceMinKm: 12.11,
       avgHr: 114,
       watchCalories: 398,
-      color: '#059669',
-      note: 'New Personal Distance Record (6.46 km)! 78.3 mins • 114 BPM Avg HR • 398 kcal • Health AutoExport AutoSync!'
+      color: '#10b981',
+      note: 'Previous Distance Record (6.46 km)! 78.3 mins • 114 BPM Avg HR • 398 kcal • Health AutoExport AutoSync!'
     },
     {
       id: 'sep03',

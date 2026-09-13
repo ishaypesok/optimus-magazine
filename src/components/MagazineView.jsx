@@ -35,6 +35,7 @@ import MuscleBioenergeticsCalculator from './MuscleBioenergeticsCalculator';
 import HypertrophyBlueprint12W from './HypertrophyBlueprint12W';
 import AsAboveSoBelowVisualizer from './AsAboveSoBelowVisualizer';
 import HubermanMitochondriaMasterclass from './HubermanMitochondriaMasterclass';
+import CapillarizationMasterclass from './CapillarizationMasterclass';
 import MagazineFrontCover from './MagazineFrontCover';
 import MagazineTableOfContents from './MagazineTableOfContents';
 import { PAGES_LIST } from './Sidebar';
@@ -260,6 +261,7 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
       case 30: return <HypertrophyBlueprint12W />;
       case 31: return <AsAboveSoBelowVisualizer />;
       case 32: return <HubermanMitochondriaMasterclass />;
+      case 33: return <CapillarizationMasterclass />;
       default: return <ForewordMission setPage={setPage} />;
     }
   };

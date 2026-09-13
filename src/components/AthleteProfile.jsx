@@ -363,7 +363,7 @@ export default function AthleteProfile() {
               Athlete Bio & Philosophy
             </h4>
             <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
-              {profile.bio || `Ishai is a dedicated runner and health longevity advocate focused on science-backed cellular fitness. Rather than chasing short-term intensity, Ishai's training philosophy prioritizes building a powerful aerobic base through disciplined Zone 2 running (126–140 BPM). By training muscle fibers to oxidize fatty acids efficiently, Ishai preserves glycogen reserves, minimizes oxidative stress, and expands mitochondrial density for lifelong metabolic health.`}
+              {profile.bio || `Ishai is a dedicated runner and health longevity advocate focused on science-backed cellular fitness. Rather than chasing short-term intensity, Ishai's training philosophy prioritizes building a powerful aerobic base through disciplined Zone 2 running (110–124 BPM). By training muscle fibers to oxidize fatty acids efficiently, Ishai preserves glycogen reserves, minimizes oxidative stress, and expands mitochondrial density for lifelong metabolic health.`}
             </p>
             <div className="p-3.5 rounded-2xl bg-emerald-50/80 border border-emerald-200/70 text-xs text-emerald-950 font-medium flex items-start gap-2.5">
               <Quote className="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" />
@@ -432,7 +432,8 @@ export default function AthleteProfile() {
               </div>
               <div>
                 <div className="text-[10px] font-bold text-amber-800 uppercase tracking-wider font-mono">Running Shoes</div>
-                <div className="text-xs font-black text-stone-900">Brooks Adrenaline GTS 25</div>
+                <div className="text-xs font-black text-stone-900">Brooks Ghost (+insole)</div>
+                <div className="text-[9px] font-medium text-amber-700">First used yesterday • Active Pair</div>
               </div>
             </div>
 
@@ -456,7 +457,7 @@ export default function AthleteProfile() {
               <span>Aerobic Discipline</span>
             </div>
             <p className="text-[11px] text-stone-600 leading-normal">
-              Keeping pace controlled in the 126–140 BPM box to maximize lipid burn and prevent lactate accumulation.
+              Keeping pace controlled in the 110–124 BPM box to maximize lipid burn and prevent lactate accumulation.
             </p>
           </div>
 
@@ -637,7 +638,7 @@ export default function AthleteProfile() {
         
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
           <div className="bg-stone-800/80 p-4 rounded-2xl border border-stone-700 space-y-2">
-            <div className="font-bold text-emerald-300 text-sm">1. Stay in the 126–140 BPM Box</div>
+            <div className="font-bold text-emerald-300 text-sm">1. Stay in the 110–124 BPM Box</div>
             <p className="text-stone-300 leading-relaxed">
               If your heart rate creeps above 142 BPM on hills, slow your pace to keep muscle cells operating in pure FATmax mode.
             </p>

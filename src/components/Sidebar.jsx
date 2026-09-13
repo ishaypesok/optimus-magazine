@@ -45,6 +45,7 @@ export const PAGES_LIST = [
   { id: 30, title: '12-Week Practical Lean Gains & Recomposition Blueprint', label: 'Article 30: 12-Week Blueprint', category: 'Protocols', icon: Calendar, badge: '📋 12-Wk Blueprint' },
   { id: 31, title: 'As Above, So Below (Universal Self-Similarity)', label: 'Article 31: As Above, So Below', category: 'Deep Physiology', icon: Orbit, badge: '✨ Self-Similarity' },
   { id: 32, title: 'Huberman Lab: How Mitochondria Control Your Metabolism (Dr. Jared Rutter)', label: 'Article 32: Huberman Lab & Dr. Rutter', category: 'Podcast & Bioenergetics', icon: Tv, badge: '🎙️ Huberman Special' },
+  { id: 33, title: 'Microscopic Muscle Capillarization & Blood Health Masterclass', label: 'Article 33: Capillarization & Blood Health', category: 'Deep Physiology', icon: Droplet, badge: '🩸 Blood Health' },
 ];
 
 export default function Sidebar({

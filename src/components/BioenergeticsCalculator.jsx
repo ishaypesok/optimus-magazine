@@ -6,7 +6,19 @@ import {
 } from 'lucide-react';
 
 export default function BioenergeticsCalculator() {
-  // Preset 1: Ishai's Actual Sep 7, 2026 Run (New Distance Record)
+  // Preset 1: Ishai's Actual Sep 10, 2026 Run (New All-Time Distance Record 🏆)
+  const ishaiSep13Preset = {
+    name: "Ishai's Sep 13 Real Run (Record 🏆)",
+    description: "Actual Apple Watch recorded run from September 13, 2026",
+    weight: 82.9,
+    restingHr: 52,
+    vo2max: 34.1,
+    maxHr: 175,
+    workoutHr: 117,
+    duration: 79.3,
+    distance: 6.59
+  };
+
   const ishaiSep07Preset = {
     name: "Ishai's Sep 7 Real Run",
     description: "Actual Apple Watch recorded run from September 7, 2026",
@@ -68,17 +80,18 @@ export default function BioenergeticsCalculator() {
   };
 
   // Input states
-  const [weight, setWeight] = useState(ishaiSep07Preset.weight);
-  const [restingHr, setRestingHr] = useState(ishaiSep07Preset.restingHr);
-  const [vo2max, setVo2max] = useState(ishaiSep07Preset.vo2max);
-  const [maxHr, setMaxHr] = useState(ishaiSep07Preset.maxHr);
-  const [workoutHr, setWorkoutHr] = useState(ishaiSep07Preset.workoutHr);
-  const [duration, setDuration] = useState(ishaiSep07Preset.duration);
-  const [activePreset, setActivePreset] = useState('ishai_sep07');
+  const [weight, setWeight] = useState(ishaiSep10Preset.weight);
+  const [restingHr, setRestingHr] = useState(ishaiSep10Preset.restingHr);
+  const [vo2max, setVo2max] = useState(ishaiSep10Preset.vo2max);
+  const [maxHr, setMaxHr] = useState(ishaiSep10Preset.maxHr);
+  const [workoutHr, setWorkoutHr] = useState(ishaiSep10Preset.workoutHr);
+  const [duration, setDuration] = useState(ishaiSep10Preset.duration);
+  const [activePreset, setActivePreset] = useState('ishai_sep10');
 
   const applyPreset = (presetKey) => {
     setActivePreset(presetKey);
-    let p = ishaiSep07Preset;
+    let p = ishaiSep10Preset;
+    if (presetKey === 'ishai_sep07') p = ishaiSep07Preset;
     if (presetKey === 'ishai_sep03') p = ishaiSep03Preset;
     if (presetKey === 'ishai_real') p = ishaiAug27Preset;
     if (presetKey === 'wingate') p = ishaiWingatePreset;
@@ -178,6 +191,26 @@ export default function BioenergeticsCalculator() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pt-1">
           
           <button
+            onClick={() => applyPreset('ishai_sep13')}
+            className={`p-3.5 rounded-xl text-left border transition flex flex-col justify-between ${
+              activePreset === 'ishai_sep13' || activePreset === 'ishai_sep10'
+                ? 'bg-emerald-700/80 border-emerald-400 text-white shadow-sm ring-2 ring-emerald-400/40'
+                : 'bg-white/10 border-white/15 text-stone-200 hover:bg-white/15'
+            }`}
+          >
+            <div>
+              <div className="font-extrabold text-xs flex items-center gap-1.5">
+                <span>🔥 Sep 13 Real Run (6.59 km Record 🏆)</span>
+                <span className="px-1.5 py-0.5 rounded bg-emerald-900/90 text-[10px] text-emerald-200 font-mono">Record 🏆</span>
+              </div>
+              <p className="text-[11px] text-stone-300 mt-1">1:19:19 • 117 BPM avg • 107W • 391 kcal</p>
+            </div>
+            <div className="text-[10px] font-mono text-emerald-300 pt-2 border-t border-white/10 mt-2">
+              82.9 kg • 52 RHR • 34.1 VO₂max
+            </div>
+          </button>
+
+          <button
             onClick={() => applyPreset('ishai_sep07')}
             className={`p-3.5 rounded-xl text-left border transition flex flex-col justify-between ${
               activePreset === 'ishai_sep07'
@@ -187,8 +220,7 @@ export default function BioenergeticsCalculator() {
           >
             <div>
               <div className="font-extrabold text-xs flex items-center gap-1.5">
-                <span>🏆 Sep 7 Real Run (6.46 km Record)</span>
-                <span className="px-1.5 py-0.5 rounded bg-emerald-900/90 text-[10px] text-emerald-200 font-mono">Record 🏆</span>
+                <span>⚡ Sep 7 Real Run (6.46 km)</span>
               </div>
               <p className="text-[11px] text-stone-300 mt-1">78.3 min • 114 BPM avg • 398 kcal</p>
             </div>

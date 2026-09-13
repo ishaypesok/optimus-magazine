@@ -25,7 +25,7 @@ export default function LiveCellVisualizer() {
       desc: 'Idling engine. High fat % (85%), but tiny total energy output. No stimulus for building new mitochondria.'
     },
     2: {
-      name: "Zone 2 (Ishai's Target: 126–140 BPM)",
+      name: "Zone 2 (Ishai's Target: 110–124 BPM)",
       fatRate: 0.65,
       carbRate: 0.25,
       o2Supply: 95,

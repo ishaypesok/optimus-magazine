@@ -29,11 +29,11 @@ export default function MagazineTableOfContents({ setPage }) {
             Table of Contents
           </h1>
           <p className="text-stone-600 text-sm font-normal">
-            Complete Page Index for Issue 1 • 32 Articles Across Bioenergetics, Telemetry & Physiology
+            Complete Page Index for Issue 1 • {PAGES_LIST.length} Articles Across Bioenergetics, Telemetry & Physiology
           </p>
         </div>
         <div className="text-xs font-mono font-bold text-emerald-800 bg-emerald-50 px-4 py-2 rounded-xl border border-emerald-200">
-          32 Articles Cataloged
+          {PAGES_LIST.length} Articles Cataloged
         </div>
       </div>
 

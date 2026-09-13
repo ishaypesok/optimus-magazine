@@ -9,13 +9,33 @@ export default function MetabolismCanvas({ currentZoneId, onSelectStage }) {
   const [secondsElapsed, setSecondsElapsed] = useState(0);
   const [isRunning, setIsRunning] = useState(true);
   const [speedMultiplier, setSpeedMultiplier] = useState(1); // 1x, 5x, 10x speed!
-  const [selectedRunId, setSelectedRunId] = useState('sep07');
+  const [selectedRunId, setSelectedRunId] = useState('sep13');
 
   // Real Apple Health Workouts
   const REAL_RUNS = [
     {
+      id: 'sep13',
+      dateLabel: 'Sep 13, 2026 Run 🏆 (1:19:19 @ 117 bpm • 107W • 6.59 km Record)',
+      durationMin: 79.3,
+      distanceKm: 6.59,
+      paceMinKm: 12.03,
+      avgHr: 117,
+      watchCalories: 391,
+      o2LitersTotal: 127.5
+    },
+    {
+      id: 'sep10',
+      dateLabel: 'Sep 10, 2026 Run (75.7 min @ 116 bpm • 6.55 km)',
+      durationMin: 75.7,
+      distanceKm: 6.55,
+      paceMinKm: 11.55,
+      avgHr: 116,
+      watchCalories: 387,
+      o2LitersTotal: 121.8
+    },
+    {
       id: 'sep07',
-      dateLabel: 'Sep 7, 2026 Run 🏆 (78.3 min @ 114 bpm • 6.46 km Record)',
+      dateLabel: 'Sep 7, 2026 Run ⭐ (78.3 min @ 114 bpm • 6.46 km)',
       durationMin: 78.3,
       distanceKm: 6.46,
       paceMinKm: 12.11,
