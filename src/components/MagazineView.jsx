@@ -36,6 +36,7 @@ import HypertrophyBlueprint12W from './HypertrophyBlueprint12W';
 import AsAboveSoBelowVisualizer from './AsAboveSoBelowVisualizer';
 import HubermanMitochondriaMasterclass from './HubermanMitochondriaMasterclass';
 import CapillarizationMasterclass from './CapillarizationMasterclass';
+import SanMillanVO2maxSpotlight from './SanMillanVO2maxSpotlight';
 import MagazineFrontCover from './MagazineFrontCover';
 import MagazineTableOfContents from './MagazineTableOfContents';
 import { PAGES_LIST } from './Sidebar';
@@ -262,6 +263,7 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
       case 31: return <AsAboveSoBelowVisualizer />;
       case 32: return <HubermanMitochondriaMasterclass />;
       case 33: return <CapillarizationMasterclass />;
+      case 34: return <SanMillanVO2maxSpotlight />;
       default: return <ForewordMission setPage={setPage} />;
     }
   };

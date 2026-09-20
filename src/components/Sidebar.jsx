@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { 
   BookOpen, Search, X, Smile, Flame, Cpu, Zap, BarChart2, Activity, Clock, 
   ShieldCheck, User, Heart, BatteryCharging, TrendingUp, Droplet, Sun, Layers, Award, Dna, Trophy,
-  ArrowDownAZ, FileText, LayoutGrid, Link, Check, ExternalLink, Sparkles, Calculator, Calendar, Orbit, Tv
+  ArrowDownAZ, FileText, LayoutGrid, Link, Check, ExternalLink, Sparkles, Calculator, Calendar, Orbit, Tv, MessageSquare
 } from 'lucide-react';
 
 export const PAGES_LIST = [
@@ -46,6 +46,9 @@ export const PAGES_LIST = [
   { id: 31, title: 'As Above, So Below (Universal Self-Similarity)', label: 'Article 31: As Above, So Below', category: 'Deep Physiology', icon: Orbit, badge: '✨ Self-Similarity' },
   { id: 32, title: 'Huberman Lab: How Mitochondria Control Your Metabolism (Dr. Jared Rutter)', label: 'Article 32: Huberman Lab & Dr. Rutter', category: 'Podcast & Bioenergetics', icon: Tv, badge: '🎙️ Huberman Special' },
   { id: 33, title: 'Microscopic Muscle Capillarization & Blood Health Masterclass', label: 'Article 33: Capillarization & Blood Health', category: 'Deep Physiology', icon: Droplet, badge: '🩸 Blood Health' },
+
+  // TIER 5: EXPERT SPOTLIGHTS & LIVE RESEARCH
+  { id: 34, title: 'Dr. San Millán: VO₂max vs. Lactate (Expert Spotlight)', label: 'Article 34: VO₂max vs. Lactate', category: 'Expert Spotlights', icon: MessageSquare, badge: '🔬 San Millán' },
 ];
 
 export default function Sidebar({
