@@ -32,15 +32,37 @@ export default function RunnerSimulation() {
   // Real runs list
   const [runsList, setRunsList] = useState([
     {
+      id: 'sep22',
+      dateLabel: 'Sep 22, 2026 (Latest Run • 6.29 km)',
+      durationMin: 74.0,
+      distanceKm: 6.29,
+      paceMinKm: 11.77,
+      avgHr: 118,
+      watchCalories: 427,
+      color: '#059669',
+      note: 'Latest Outdoor Run! 1:14:00 • 118 BPM Avg HR • 142 BPM Max HR • 112W Power • 427 kcal Active • 9,762 Steps • 131 SPM • 78.6m Elev Gain!'
+    },
+    {
+      id: 'sep19',
+      dateLabel: 'Sep 19, 2026 (Record 🏆 7.11 km)',
+      durationMin: 84.2,
+      distanceKm: 7.11,
+      paceMinKm: 12.00,
+      avgHr: 117,
+      watchCalories: 452,
+      color: '#0d9488',
+      note: 'New All-Time Distance Record (7.11 km)! 1:24:12 • 117 BPM Avg HR • 112W Power • 452 kcal Active • Elev Gain: 73.2m!'
+    },
+    {
       id: 'sep13',
-      dateLabel: 'Sep 13, 2026 (Latest Run 🏆 Record)',
+      dateLabel: 'Sep 13, 2026 (Previous Record)',
       durationMin: 79.3,
       distanceKm: 6.59,
       paceMinKm: 12.03,
       avgHr: 117,
       watchCalories: 391,
-      color: '#059669',
-      note: 'New All-Time Personal Distance Record (6.59 km)! 1:19:19 • 117 BPM Avg HR • 107W Power • 391 kcal!'
+      color: '#0d9488',
+      note: 'Previous All-Time Personal Distance Record (6.59 km)! 1:19:19 • 117 BPM Avg HR • 107W Power • 391 kcal!'
     },
     {
       id: 'sep10',

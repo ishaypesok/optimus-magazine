@@ -7,9 +7,63 @@ import {
 
 const INITIAL_RUNS_DATA = [
   {
+    id: 'run-sep-22-2026',
+    date: 'Sep 22, 2026',
+    title: "🔥 Latest Outdoor Run (6.29 km • Apple Watch AutoSync)",
+    distanceKm: 6.29,
+    durationMin: 74.0,
+    paceStr: '11:46 min/km',
+    paceVal: 11.77,
+    avgHr: 118,
+    maxHr: 142,
+    powerWatts: 112,
+    zone2Percent: 68,
+    fatBurnGrams: 34.2,
+    carbBurnGrams: 22.5,
+    mitoScore: 97,
+    lthrMargin: '-17 BPM',
+    note: 'Latest Outdoor Run! 6.29 km in 1:14:00 • 118 BPM Avg HR • 142 BPM Max HR • 112W Power • 427 kcal Active • 9,762 Steps • 131 SPM • 78.6m Elev Gain • Auto Export AutoSync'
+  },
+  {
+    id: 'run-sep-19-2026',
+    date: 'Sep 19, 2026',
+    title: "Outdoor Run (7.11 km Record 🏆 • Apple Watch AutoSync)",
+    distanceKm: 7.11,
+    durationMin: 84.2,
+    paceStr: '12:00 min/km',
+    paceVal: 12.00,
+    avgHr: 117,
+    maxHr: 129,
+    powerWatts: 112,
+    zone2Percent: 72,
+    fatBurnGrams: 39.1,
+    carbBurnGrams: 21.8,
+    mitoScore: 98,
+    lthrMargin: '-18 BPM',
+    note: 'New Distance Record! 7.11 km in 1:24:12 • 117 BPM Avg HR • 112W Power • 452 kcal Active • Elev Gain: 73.2m • Auto Export AutoSync'
+  },
+  {
+    id: 'run-sep-16-2026',
+    date: 'Sep 16, 2026',
+    title: "Outdoor Run (6.51 km • Apple Watch AutoSync)",
+    distanceKm: 6.51,
+    durationMin: 77.6,
+    paceStr: '11:55 min/km',
+    paceVal: 11.92,
+    avgHr: 115,
+    maxHr: 132,
+    powerWatts: 111,
+    zone2Percent: 70,
+    fatBurnGrams: 34.8,
+    carbBurnGrams: 19.6,
+    mitoScore: 98,
+    lthrMargin: '-20 BPM',
+    note: 'Latest Outdoor Run! 6.51 km in 1:17:33 • 115 BPM Avg HR • 111W Power • 80.6m Elev Gain • Auto Export AutoSync'
+  },
+  {
     id: 'run-sep-13-2026',
     date: 'Sep 13, 2026',
-    title: "🔥 Latest Outdoor Run (6.59 km Record 🏆 • Apple Watch AutoSync)",
+    title: "Outdoor Run (6.59 km Record 🏆 • Apple Watch AutoSync)",
     distanceKm: 6.59,
     durationMin: 79.3,
     paceStr: '12:02 min/km',
@@ -22,7 +76,7 @@ const INITIAL_RUNS_DATA = [
     carbBurnGrams: 12.1,
     mitoScore: 99,
     lthrMargin: '-18 BPM',
-    note: 'New Personal Distance Record! 6.59 km in 1:19:19 • 117 BPM Avg HR • 107W Power • 126 SPM Cadence • 391 kcal'
+    note: 'Previous Personal Distance Record! 6.59 km in 1:19:19 • 117 BPM Avg HR • 107W Power • 126 SPM Cadence • 391 kcal'
   },
   {
     id: 'run-sep-10-2026',
@@ -262,7 +316,7 @@ const INITIAL_RUNS_DATA = [
 
 export default function RunImprovementsTable() {
   const [runs, setRuns] = useState(() => {
-    const saved = localStorage.getItem('optimus_ishai_runs');
+    const saved = localStorage.getItem('optimus_ishai_runs_v3');
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
@@ -285,7 +339,7 @@ export default function RunImprovementsTable() {
             lthrMargin: r.lthrMargin || '-20 BPM',
             note: r.note || 'Synced Workout'
           }));
-          if (!mapped.some(r => r.id === 'run-sep-07-2026')) {
+          if (!mapped.some(r => r.id === 'run-sep-22-2026')) {
             mapped.unshift(INITIAL_RUNS_DATA[0]);
           }
           return mapped;
@@ -300,7 +354,7 @@ export default function RunImprovementsTable() {
   // Listen for changes in localStorage
   useEffect(() => {
     const handleStorage = () => {
-      const saved = localStorage.getItem('optimus_ishai_runs');
+      const saved = localStorage.getItem('optimus_ishai_runs_v3');
       if (saved) {
         try {
           const parsed = JSON.parse(saved);
