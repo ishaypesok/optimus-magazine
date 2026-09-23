@@ -40,7 +40,7 @@ export default function RunnerSimulation() {
       avgHr: 118,
       watchCalories: 427,
       color: '#059669',
-      note: 'Latest Outdoor Run! 1:14:00 • 118 BPM Avg HR • 142 BPM Max HR • 112W Power • 427 kcal Active • 9,762 Steps • 131 SPM • 78.6m Elev Gain!'
+      note: 'Latest Outdoor Run! 1:14:00 • 118 BPM Avg HR • 142 BPM Max HR • 124W Power • 427 kcal Active • 9,762 Steps • 131 SPM • 78.6m Elev Gain!'
     },
     {
       id: 'sep19',

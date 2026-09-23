@@ -229,7 +229,7 @@ export default function BioenergeticsCalculator() {
                 <span>🔥 Sep 22 Real Run (6.29 km)</span>
                 <span className="px-1.5 py-0.5 rounded bg-emerald-900/90 text-[10px] text-emerald-200 font-mono">Latest 🏃</span>
               </div>
-              <p className="text-[11px] text-stone-300 mt-1">1:14:00 • 118 BPM avg • 112W • 427 kcal</p>
+              <p className="text-[11px] text-stone-300 mt-1">1:14:00 • 118 BPM avg • 124W • 427 kcal</p>
             </div>
             <div className="text-[10px] font-mono text-emerald-300 pt-2 border-t border-white/10 mt-2">
               82.9 kg • 52 RHR • 34.1 VO₂max

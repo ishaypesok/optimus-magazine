@@ -16,13 +16,13 @@ const INITIAL_RUNS_DATA = [
     paceVal: 11.77,
     avgHr: 118,
     maxHr: 142,
-    powerWatts: 112,
+    powerWatts: 124,
     zone2Percent: 68,
     fatBurnGrams: 34.2,
     carbBurnGrams: 22.5,
     mitoScore: 97,
     lthrMargin: '-17 BPM',
-    note: 'Latest Outdoor Run! 6.29 km in 1:14:00 • 118 BPM Avg HR • 142 BPM Max HR • 112W Power • 427 kcal Active • 9,762 Steps • 131 SPM • 78.6m Elev Gain • Auto Export AutoSync'
+    note: 'Latest Outdoor Run! 6.29 km in 1:14:00 • 118 BPM Avg HR • 142 BPM Max HR • 124W Power • 427 kcal Active • 9,762 Steps • 131 SPM • 78.6m Elev Gain • Auto Export AutoSync'
   },
   {
     id: 'run-sep-19-2026',

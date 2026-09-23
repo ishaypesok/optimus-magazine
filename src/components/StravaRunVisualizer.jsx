@@ -18,7 +18,7 @@ const SYNCED_TODAY_RUN = {
   maxHeartRate: 142,
   calories: 427,
   vo2max: 34.1,
-  powerWatts: 112,
+  powerWatts: 124,
   elevationGain: 78.6,
   weatherTemp: '—',
   weatherHumidity: '—',
