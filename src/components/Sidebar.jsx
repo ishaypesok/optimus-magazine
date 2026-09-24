@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { 
   BookOpen, Search, X, Smile, Flame, Cpu, Zap, BarChart2, Activity, Clock, 
   ShieldCheck, User, Heart, BatteryCharging, TrendingUp, Droplet, Sun, Layers, Award, Dna, Trophy,
-  ArrowDownAZ, FileText, LayoutGrid, Link, Check, ExternalLink, Sparkles, Calculator, Calendar, Orbit, Tv, MessageSquare
+  ArrowDownAZ, FileText, LayoutGrid, Link, Check, ExternalLink, Sparkles, Calculator, Calendar, Orbit, Tv, MessageSquare, Dumbbell
 } from 'lucide-react';
 
 export const PAGES_LIST = [
@@ -49,6 +49,7 @@ export const PAGES_LIST = [
 
   // TIER 5: EXPERT SPOTLIGHTS & LIVE RESEARCH
   { id: 34, title: 'Dr. San Millán: VO₂max vs. Lactate (Expert Spotlight)', label: 'Article 34: VO₂max vs. Lactate', category: 'Expert Spotlights', icon: MessageSquare, badge: '🔬 San Millán' },
+  { id: 35, title: 'Muscle Growth vs. Mitochondrial Biogenesis & Oxygen Journey', label: 'Article 35: Muscle vs. Mitochondria', category: 'Deep Physiology', icon: Dumbbell, badge: '💪 Muscle vs. Mito' },
 ];
 
 export default function Sidebar({

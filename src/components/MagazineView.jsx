@@ -37,6 +37,7 @@ import AsAboveSoBelowVisualizer from './AsAboveSoBelowVisualizer';
 import HubermanMitochondriaMasterclass from './HubermanMitochondriaMasterclass';
 import CapillarizationMasterclass from './CapillarizationMasterclass';
 import SanMillanVO2maxSpotlight from './SanMillanVO2maxSpotlight';
+import Zone2MuscleMitochondria from './Zone2MuscleMitochondria';
 import MagazineFrontCover from './MagazineFrontCover';
 import MagazineTableOfContents from './MagazineTableOfContents';
 import { PAGES_LIST } from './Sidebar';
@@ -264,6 +265,7 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
       case 32: return <HubermanMitochondriaMasterclass />;
       case 33: return <CapillarizationMasterclass />;
       case 34: return <SanMillanVO2maxSpotlight />;
+      case 35: return <Zone2MuscleMitochondria />;
       default: return <ForewordMission setPage={setPage} />;
     }
   };

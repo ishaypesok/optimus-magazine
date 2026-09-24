@@ -12,7 +12,8 @@ export default function MagazineTableOfContents({ setPage }) {
     'Deep Physiology',
     'Calculators & Bioenergetics',
     'Field Studies',
-    'Podcast & Bioenergetics'
+    'Podcast & Bioenergetics',
+    'Expert Spotlights'
   ];
 
   return (
