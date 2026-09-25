@@ -50,6 +50,7 @@ export const PAGES_LIST = [
   // TIER 5: EXPERT SPOTLIGHTS & LIVE RESEARCH
   { id: 34, title: 'Dr. San Millán: VO₂max vs. Lactate (Expert Spotlight)', label: 'Article 34: VO₂max vs. Lactate', category: 'Expert Spotlights', icon: MessageSquare, badge: '🔬 San Millán' },
   { id: 35, title: 'Muscle Growth vs. Mitochondrial Biogenesis & Oxygen Journey', label: 'Article 35: Muscle vs. Mitochondria', category: 'Deep Physiology', icon: Dumbbell, badge: '💪 Muscle vs. Mito' },
+  { id: 36, title: 'Prof. Asker Jeukendrup: Marathon Fueling Masterclass', label: 'Article 36: Marathon Fueling Guide', category: 'Expert Spotlights', icon: Flame, badge: '🏃 Marathon Fueling' },
 ];
 
 export default function Sidebar({
