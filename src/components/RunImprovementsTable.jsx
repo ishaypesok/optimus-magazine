@@ -7,9 +7,27 @@ import {
 
 const INITIAL_RUNS_DATA = [
   {
+    id: 'run-sep-25-2026',
+    date: 'Sep 25, 2026',
+    title: "🔥 Latest Outdoor Run (6.49 km • Apple Watch AutoSync)",
+    distanceKm: 6.49,
+    durationMin: 73.6,
+    paceStr: '11:21 min/km',
+    paceVal: 11.35,
+    avgHr: 113,
+    maxHr: 131,
+    powerWatts: 122,
+    zone2Percent: 88,
+    fatBurnGrams: 37.8,
+    carbBurnGrams: 14.2,
+    mitoScore: 99,
+    lthrMargin: '-22 BPM',
+    note: 'Latest Outdoor Run! 6.49 km in 1:13:36 • 113 BPM Avg HR (Deep Zone 2!) • 131 BPM Max HR • 122W Power • 390 kcal Active • 9,882 Steps • 134 SPM • 72.6m Elev Gain • Auto Export AutoSync'
+  },
+  {
     id: 'run-sep-22-2026',
     date: 'Sep 22, 2026',
-    title: "🔥 Latest Outdoor Run (6.29 km • Apple Watch AutoSync)",
+    title: "Outdoor Run (6.29 km • Apple Watch AutoSync)",
     distanceKm: 6.29,
     durationMin: 74.0,
     paceStr: '11:46 min/km',
@@ -22,7 +40,7 @@ const INITIAL_RUNS_DATA = [
     carbBurnGrams: 22.5,
     mitoScore: 97,
     lthrMargin: '-17 BPM',
-    note: 'Latest Outdoor Run! 6.29 km in 1:14:00 • 118 BPM Avg HR • 142 BPM Max HR • 124W Power • 427 kcal Active • 9,762 Steps • 131 SPM • 78.6m Elev Gain • Auto Export AutoSync'
+    note: 'Outdoor Run: 6.29 km in 1:14:00 • 118 BPM Avg HR • 142 BPM Max HR • 124W Power • 427 kcal Active • 9,762 Steps • 131 SPM • 78.6m Elev Gain • Auto Export AutoSync'
   },
   {
     id: 'run-sep-19-2026',
@@ -339,7 +357,7 @@ export default function RunImprovementsTable() {
             lthrMargin: r.lthrMargin || '-20 BPM',
             note: r.note || 'Synced Workout'
           }));
-          if (!mapped.some(r => r.id === 'run-sep-22-2026')) {
+          if (!mapped.some(r => r.id === 'run-sep-25-2026')) {
             mapped.unshift(INITIAL_RUNS_DATA[0]);
           }
           return mapped;

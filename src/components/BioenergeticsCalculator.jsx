@@ -6,9 +6,22 @@ import {
 } from 'lucide-react';
 
 export default function BioenergeticsCalculator() {
-  // Preset 1: Ishai's Actual Sep 22, 2026 Run (Latest)
+  // Preset 1: Ishai's Actual Sep 25, 2026 Run (Latest)
+  const ishaiSep25Preset = {
+    name: "Ishai's Sep 25 Real Run (Latest)",
+    description: "Actual Apple Watch recorded run from September 25, 2026",
+    weight: 82.9,
+    restingHr: 52,
+    vo2max: 34.1,
+    maxHr: 175,
+    workoutHr: 113,
+    duration: 73.6,
+    distance: 6.49
+  };
+
+  // Preset 2: Ishai's Actual Sep 22, 2026 Run
   const ishaiSep22Preset = {
-    name: "Ishai's Sep 22 Real Run (Latest)",
+    name: "Ishai's Sep 22 Real Run",
     description: "Actual Apple Watch recorded run from September 22, 2026",
     weight: 82.9,
     restingHr: 52,
@@ -104,17 +117,18 @@ export default function BioenergeticsCalculator() {
   };
 
   // Input states
-  const [weight, setWeight] = useState(ishaiSep22Preset.weight);
-  const [restingHr, setRestingHr] = useState(ishaiSep22Preset.restingHr);
-  const [vo2max, setVo2max] = useState(ishaiSep22Preset.vo2max);
-  const [maxHr, setMaxHr] = useState(ishaiSep22Preset.maxHr);
-  const [workoutHr, setWorkoutHr] = useState(ishaiSep22Preset.workoutHr);
-  const [duration, setDuration] = useState(ishaiSep22Preset.duration);
-  const [activePreset, setActivePreset] = useState('ishai_sep22');
+  const [weight, setWeight] = useState(ishaiSep25Preset.weight);
+  const [restingHr, setRestingHr] = useState(ishaiSep25Preset.restingHr);
+  const [vo2max, setVo2max] = useState(ishaiSep25Preset.vo2max);
+  const [maxHr, setMaxHr] = useState(ishaiSep25Preset.maxHr);
+  const [workoutHr, setWorkoutHr] = useState(ishaiSep25Preset.workoutHr);
+  const [duration, setDuration] = useState(ishaiSep25Preset.duration);
+  const [activePreset, setActivePreset] = useState('ishai_sep25');
 
   const applyPreset = (presetKey) => {
     setActivePreset(presetKey);
-    let p = ishaiSep22Preset;
+    let p = ishaiSep25Preset;
+    if (presetKey === 'ishai_sep22') p = ishaiSep22Preset;
     if (presetKey === 'ishai_sep16') p = ishaiSep16Preset;
     if (presetKey === 'ishai_sep13') p = ishaiSep13Preset;
     if (presetKey === 'ishai_sep07') p = ishaiSep07Preset;
@@ -217,6 +231,26 @@ export default function BioenergeticsCalculator() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pt-1">
           
           <button
+            onClick={() => applyPreset('ishai_sep25')}
+            className={`p-3.5 rounded-xl text-left border transition flex flex-col justify-between ${
+              activePreset === 'ishai_sep25'
+                ? 'bg-emerald-700/80 border-emerald-400 text-white shadow-sm ring-2 ring-emerald-400/40'
+                : 'bg-white/10 border-white/15 text-stone-200 hover:bg-white/15'
+            }`}
+          >
+            <div>
+              <div className="font-extrabold text-xs flex items-center gap-1.5">
+                <span>🔥 Sep 25 Real Run (6.49 km)</span>
+                <span className="px-1.5 py-0.5 rounded bg-emerald-900/90 text-[10px] text-emerald-200 font-mono">Latest 🏃</span>
+              </div>
+              <p className="text-[11px] text-stone-300 mt-1">1:13:36 • 113 BPM avg • 122W • 390 kcal</p>
+            </div>
+            <div className="text-[10px] font-mono text-emerald-300 pt-2 border-t border-white/10 mt-2">
+              82.9 kg • 52 RHR • 34.1 VO₂max
+            </div>
+          </button>
+
+          <button
             onClick={() => applyPreset('ishai_sep22')}
             className={`p-3.5 rounded-xl text-left border transition flex flex-col justify-between ${
               activePreset === 'ishai_sep22'
@@ -226,8 +260,7 @@ export default function BioenergeticsCalculator() {
           >
             <div>
               <div className="font-extrabold text-xs flex items-center gap-1.5">
-                <span>🔥 Sep 22 Real Run (6.29 km)</span>
-                <span className="px-1.5 py-0.5 rounded bg-emerald-900/90 text-[10px] text-emerald-200 font-mono">Latest 🏃</span>
+                <span>Sep 22 Real Run (6.29 km)</span>
               </div>
               <p className="text-[11px] text-stone-300 mt-1">1:14:00 • 118 BPM avg • 124W • 427 kcal</p>
             </div>
