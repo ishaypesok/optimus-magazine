@@ -39,6 +39,7 @@ import CapillarizationMasterclass from './CapillarizationMasterclass';
 import SanMillanVO2maxSpotlight from './SanMillanVO2maxSpotlight';
 import Zone2MuscleMitochondria from './Zone2MuscleMitochondria';
 import MarathonFuelingMasterclass from './MarathonFuelingMasterclass';
+import AlanCouzensEnduranceCode from './AlanCouzensEnduranceCode';
 import MagazineFrontCover from './MagazineFrontCover';
 import MagazineTableOfContents from './MagazineTableOfContents';
 import { PAGES_LIST } from './Sidebar';
@@ -268,6 +269,7 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
       case 34: return <SanMillanVO2maxSpotlight />;
       case 35: return <Zone2MuscleMitochondria />;
       case 36: return <MarathonFuelingMasterclass />;
+      case 37: return <AlanCouzensEnduranceCode />;
       default: return <ForewordMission setPage={setPage} />;
     }
   };
