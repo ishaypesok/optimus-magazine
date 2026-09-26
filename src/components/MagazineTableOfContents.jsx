@@ -10,6 +10,7 @@ export default function MagazineTableOfContents({ setPage }) {
     'Protocols',
     'Cell Biology',
     'Deep Physiology',
+    'Neuroscience & Cognition',
     'Calculators & Bioenergetics',
     'Field Studies',
     'Podcast & Bioenergetics',

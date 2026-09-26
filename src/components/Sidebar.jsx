@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { 
   BookOpen, Search, X, Smile, Flame, Cpu, Zap, BarChart2, Activity, Clock, 
   ShieldCheck, User, Heart, BatteryCharging, TrendingUp, Droplet, Sun, Layers, Award, Dna, Trophy,
-  ArrowDownAZ, FileText, LayoutGrid, Link, Check, ExternalLink, Sparkles, Calculator, Calendar, Orbit, Tv, MessageSquare, Dumbbell
+  ArrowDownAZ, FileText, LayoutGrid, Link, Check, ExternalLink, Sparkles, Calculator, Calendar, Orbit, Tv, MessageSquare, Dumbbell, Brain
 } from 'lucide-react';
 
 export const PAGES_LIST = [
@@ -52,6 +52,7 @@ export const PAGES_LIST = [
   { id: 35, title: 'Muscle Growth vs. Mitochondrial Biogenesis & Oxygen Journey', label: 'Article 35: Muscle vs. Mitochondria', category: 'Deep Physiology', icon: Dumbbell, badge: '💪 Muscle vs. Mito' },
   { id: 36, title: 'Prof. Asker Jeukendrup: Marathon Fueling Masterclass', label: 'Article 36: Marathon Fueling Guide', category: 'Expert Spotlights', icon: Flame, badge: '🏃 Marathon Fueling' },
   { id: 37, title: 'Alan Couzens: Aerobic Base vs. Threshold (The Endurance Code)', label: 'Article 37: The Endurance Code', category: 'Expert Spotlights', icon: TrendingUp, badge: '📈 Endurance Code' },
+  { id: 38, title: 'Zone 2 & Working Memory: How Aerobic Exercise Rewires the Brain', label: 'Article 38: Zone 2 & Memory', category: 'Neuroscience & Cognition', icon: Brain, badge: '🧠 Brain & Memory' },
 ];
 
 export default function Sidebar({
