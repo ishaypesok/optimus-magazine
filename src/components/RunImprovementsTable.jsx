@@ -446,7 +446,7 @@ export default function RunImprovementsTable() {
               Distance Per Heartbeat
             </h2>
             <p className="text-stone-300 text-xs sm:text-sm leading-relaxed font-normal">
-              Rather than assuming raw heart rate indicates fitness, this calculated metric normalizes your ground speed by myocardial pulse:
+              Rather than assuming raw heart rate indicates fitness, this calculated metric normalizes running speed by recorded heart rate:
               <strong className="text-white"> 6.49 km at 113 BPM vs. 6.29 km at 118 BPM</strong> (a faster pace was achieved with a lower average heart rate, resulting in more distance covered per heartbeat).
             </p>
           </div>
@@ -518,7 +518,7 @@ export default function RunImprovementsTable() {
               <MetabolicTierBadge tier="calculated" size="xs" />
             </div>
             <div className="text-xs font-mono font-bold text-sky-900">
-              Distance/Beat • Cardiac Cost • HR Drift
+              Distance/Beat • Cardiac Cost Index • HR Drift
             </div>
             <p className="text-[11px] text-stone-600 leading-snug">
               Pure mathematical formulas combining measured variables (e.g. Beats/km = HR [beats/min] × Pace [min/km], Speed ÷ HR = m/beat).
@@ -549,7 +549,7 @@ export default function RunImprovementsTable() {
             <Gauge className="w-4 h-4 text-emerald-700" />
             <span>The 6 Pillar Adaptation Matrix</span>
           </h3>
-          <span className="text-xs text-stone-500 font-medium">Standardized against laboratory Wingate LTHR (135 BPM)</span>
+          <span className="text-xs text-stone-500 font-medium">Standardized against laboratory-measured LTHR (135 BPM)</span>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -578,7 +578,7 @@ export default function RunImprovementsTable() {
           <div className="p-5 rounded-2xl bg-white border border-stone-200 shadow-xs space-y-2 hover:border-emerald-300 transition">
             <div className="flex items-center justify-between text-xs text-stone-500 font-bold uppercase tracking-wider">
               <span className="flex items-center gap-1.5">
-                <span>2. Cardiac Cost</span>
+                <span>2. Cardiac Cost Index</span>
                 <MetabolicTierBadge tier="calculated" size="xs" />
               </span>
               <Heart className="w-4 h-4 text-rose-500" />
@@ -590,7 +590,7 @@ export default function RunImprovementsTable() {
               <TrendingDown className="w-3.5 h-3.5" /> -{Math.abs(cardiacCostDelta)} beats/km vs previous run
             </p>
             <div className="text-[10px] text-stone-500 leading-tight pt-1 border-t border-stone-100">
-              Beats/km = HR (beats/min) × Pace (min/km). Pure physical units: heartbeats required to travel 1,000 meters.
+              Beats/km = HR (beats/min) × Pace (min/km). Calculated index of heartbeats required to travel 1,000 meters.
             </div>
           </div>
 
@@ -607,10 +607,10 @@ export default function RunImprovementsTable() {
               11:21 <span className="text-xs font-sans font-bold text-stone-500">min/km @ 113 BPM</span>
             </div>
             <p className="text-[11px] text-emerald-700 font-semibold flex items-center gap-1">
-              <CheckCircle2 className="w-3.5 h-3.5" /> 22 BPM below laboratory LTHR (135 BPM)
+              <CheckCircle2 className="w-3.5 h-3.5" /> 22 BPM below laboratory-measured LTHR (135 BPM)
             </p>
             <div className="text-[10px] text-stone-500 leading-tight pt-1 border-t border-stone-100">
-              Direct measured pace achieved within target aerobic base corridor (105–117 BPM) based on empirical Pace & HR inputs.
+              Direct measured pace achieved within target aerobic base corridor (105–117 BPM) established relative to laboratory-measured LTHR.
             </div>
           </div>
 
@@ -630,7 +630,7 @@ export default function RunImprovementsTable() {
               <CheckCircle2 className="w-3.5 h-3.5" /> Minimal cardiac drift across 73 min
             </p>
             <div className="text-[10px] text-stone-500 leading-tight pt-1 border-t border-stone-100">
-              Drift between 1st & 2nd half. Values &lt;5% indicate deep aerobic durability.
+              Drift between 1st & 2nd half. Values &lt;5% are classified by this model as low cardiac drift.
             </div>
           </div>
 
@@ -667,7 +667,7 @@ export default function RunImprovementsTable() {
               {latestRun.mitoScore} <span className="text-xs font-sans font-bold text-purple-700">— MODELLED</span>
             </div>
             <p className="text-[11px] text-purple-700 font-semibold flex items-center gap-1">
-              <ShieldCheck className="w-3.5 h-3.5" /> High Cellular Oxidative Flux
+              <ShieldCheck className="w-3.5 h-3.5" /> High Model-Estimated Oxidative Flux
             </p>
             <div className="text-[10px] text-stone-500 leading-tight pt-1 border-t border-stone-100">
               A longitudinal model-based indicator. Does not directly measure mitochondrial function.
@@ -752,10 +752,10 @@ export default function RunImprovementsTable() {
             <div className="text-[10px] text-stone-500 pt-0.5">Meters per heartbeat</div>
           </div>
 
-          {/* Card 4: Cardiac Cost */}
+          {/* Card 4: Cardiac Cost Index */}
           <div className="p-3.5 rounded-xl bg-white border border-emerald-200 flex flex-col justify-between space-y-1.5 shadow-2xs">
             <div className="text-[11px] text-stone-500 font-bold flex items-center justify-between">
-              <span>Cardiac Cost</span>
+              <span>Cardiac Cost Index</span>
               <MetabolicTierBadge tier="calculated" size="xs" />
             </div>
             <div className="space-y-1">
@@ -869,7 +869,7 @@ export default function RunImprovementsTable() {
                 </th>
                 <th className="py-3.5 px-4">
                   <span className="flex items-center gap-1">
-                    <span>Cardiac Cost</span>
+                    <span>Cardiac Cost Index</span>
                     <MetabolicTierBadge tier="calculated" size="xs" />
                   </span>
                 </th>
