@@ -31,10 +31,11 @@ export const METABOLIC_TIERS = {
   }
 };
 
-export default function MetabolicTierBadge({ tier = 'modeled', size = 'sm', showLabel = true, className = '' }) {
+export default function MetabolicTierBadge({ tier = 'modeled', label: customLabel, size = 'sm', showLabel = true, className = '' }) {
   const [showTooltip, setShowTooltip] = useState(false);
   const config = METABOLIC_TIERS[tier] || METABOLIC_TIERS.modeled;
   const Icon = config.icon;
+  const displayLabel = customLabel || config.label;
 
   const sizeClasses = {
     xs: 'text-[9px] px-1.5 py-0.5 gap-1',
@@ -50,11 +51,11 @@ export default function MetabolicTierBadge({ tier = 'modeled', size = 'sm', show
         onMouseEnter={() => setShowTooltip(true)}
         onMouseLeave={() => setShowTooltip(false)}
         className={`inline-flex items-center font-mono font-extrabold uppercase rounded-md border tracking-wider transition-all duration-150 cursor-pointer shadow-2xs hover:brightness-95 ${config.colorClasses} ${sizeClasses}`}
-        title={`${config.label}: ${config.shortDesc}`}
+        title={`${displayLabel}: ${config.shortDesc}`}
       >
         <span className={`w-1.5 h-1.5 rounded-full ${config.dotColor} animate-pulse`} />
         <Icon className="w-3 h-3 opacity-80" />
-        {showLabel && <span>{config.label}</span>}
+        {showLabel && <span>{displayLabel}</span>}
       </button>
 
       {/* Floating Hover/Click Explainer Tooltip */}

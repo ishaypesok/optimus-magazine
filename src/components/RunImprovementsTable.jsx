@@ -24,7 +24,7 @@ const INITIAL_RUNS_DATA = [
     mitoScore: 99,
     hrDriftPercent: 3.6,
     lthrMargin: '-22 BPM',
-    note: 'Higher aerobic efficiency than recent baseline: 6.49 km in 1:13:36 • 113 BPM Avg HR (Deep Zone 2) • 131 BPM Max • 122W • 0.780 m/beat • AutoSync'
+    note: 'Run-level efficiency metrics higher than Sep 22: 6.49 km in 1:13:36 • 113 BPM Avg HR (Zone 2 corridor) • 131 BPM Max • 122W • 0.780 m/beat • AutoSync'
   },
   {
     id: 'run-sep-22-2026',
@@ -408,7 +408,7 @@ export default function RunImprovementsTable() {
             </h1>
             <p className="text-stone-300 text-xs sm:text-sm font-medium max-w-2xl leading-relaxed">
               Tracking physiological adaptation patterns across continuous workouts. Solves the central aerobic question: 
-              <span className="text-emerald-300 font-bold"> Are you running faster at the same heart rate, or maintaining identical pace with lower cardiac strain?</span>
+              <span className="text-emerald-300 font-bold"> Are you running faster at the same heart rate, or maintaining the same pace at a lower heart rate?</span>
             </p>
           </div>
 
@@ -425,7 +425,7 @@ export default function RunImprovementsTable() {
               <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
               <div>
                 <div className="font-extrabold text-white">Apple Watch Ultra Sync</div>
-                <div className="text-stone-300 text-[10px]">Empirical Photoplethysmography</div>
+                <div className="text-stone-300 text-[10px]">Empirical Photoplethysmography (Optical Heart-Rate Measurement)</div>
               </div>
             </div>
           </div>
@@ -447,7 +447,7 @@ export default function RunImprovementsTable() {
             </h2>
             <p className="text-stone-300 text-xs sm:text-sm leading-relaxed font-normal">
               Rather than assuming raw heart rate indicates fitness, this calculated metric normalizes running speed by recorded heart rate:
-              <strong className="text-white"> 6.49 km at 113 BPM vs. 6.29 km at 118 BPM</strong> (a faster pace was achieved with a lower average heart rate, resulting in more distance covered per heartbeat).
+              <strong className="text-white"> 6.49 km at 113 BPM vs. 6.29 km at 118 BPM</strong> (a faster pace was achieved with a lower average heart rate, resulting in more distance covered per recorded heartbeat).
             </p>
           </div>
 
@@ -570,7 +570,7 @@ export default function RunImprovementsTable() {
               <ArrowUpRight className="w-3.5 h-3.5" /> +8.3% vs Sep 22 (0.720 → 0.780 m/beat)
             </p>
             <div className="text-[10px] text-stone-500 leading-tight pt-1 border-t border-stone-100">
-              Aerobic Efficiency Index = Pace/HR-derived metric. May reflect improved cardiovascular efficiency when conditions are comparable; indicates more distance covered per heartbeat.
+              Aerobic Efficiency Index = Pace/HR-derived metric. May reflect improved cardiovascular efficiency when conditions are comparable; represents more distance covered per recorded heartbeat.
             </div>
           </div>
 
@@ -599,7 +599,7 @@ export default function RunImprovementsTable() {
             <div className="flex items-center justify-between text-xs text-stone-500 font-bold uppercase tracking-wider">
               <span className="flex items-center gap-1.5">
                 <span>3. Pace at Zone 2 HR</span>
-                <MetabolicTierBadge tier="measured" size="xs" />
+                <MetabolicTierBadge tier="measured" label="MEASURED RELATIONSHIP" size="xs" />
               </span>
               <TrendingUp className="w-4 h-4 text-sky-600" />
             </div>
@@ -610,7 +610,7 @@ export default function RunImprovementsTable() {
               <CheckCircle2 className="w-3.5 h-3.5" /> 22 BPM below laboratory-measured LTHR (135 BPM)
             </p>
             <div className="text-[10px] text-stone-500 leading-tight pt-1 border-t border-stone-100">
-              Direct measured pace achieved within target aerobic base corridor (105–117 BPM) established relative to laboratory-measured LTHR.
+              Direct measured pace achieved within the Optimus training corridor of 105–117 BPM, selected within the laboratory-derived aerobic range (limit ≤120 BPM).
             </div>
           </div>
 
@@ -670,7 +670,7 @@ export default function RunImprovementsTable() {
               <ShieldCheck className="w-3.5 h-3.5" /> High Model-Estimated Oxidative Flux — NOT DIRECTLY MEASURED
             </p>
             <div className="text-[10px] text-stone-500 leading-tight pt-1 border-t border-stone-100">
-              A longitudinal model-based indicator. Does not directly measure mitochondrial function.
+              Composite proxy index (0–100): 40% drift resistance (&lt;5%), 35% estimated lipid oxidation, 25% pace/HR efficiency. Does not directly measure mitochondrial function.
             </div>
           </div>
 
@@ -692,7 +692,7 @@ export default function RunImprovementsTable() {
             </div>
           </div>
           <span className="px-3 py-1 rounded-full bg-emerald-800 text-white font-extrabold text-xs">
-            Higher Aerobic Efficiency Than Previous Run
+            Improved Aerobic Efficiency Metrics vs. Previous Run
           </span>
         </div>
 
@@ -713,7 +713,7 @@ export default function RunImprovementsTable() {
                 <span>{hrDelta > 0 ? `+${hrDelta}` : hrDelta} BPM</span>
               </div>
             </div>
-            <div className="text-[10px] text-stone-500 pt-0.5">Lower cardiac strain</div>
+            <div className="text-[10px] text-stone-500 pt-0.5">Lower average heart rate</div>
           </div>
 
           {/* Card 2: Pace */}
@@ -731,7 +731,7 @@ export default function RunImprovementsTable() {
                 <span>-25 sec/km (faster)</span>
               </div>
             </div>
-            <div className="text-[10px] text-stone-500 pt-0.5">Speed acceleration</div>
+            <div className="text-[10px] text-stone-500 pt-0.5">Faster pace</div>
           </div>
 
           {/* Card 3: Dist / Beat */}
@@ -943,38 +943,52 @@ export default function RunImprovementsTable() {
 
                     {/* Avg Heart Rate */}
                     <td className="py-3.5 px-4 whitespace-nowrap">
-                      <div className="flex flex-col font-mono leading-tight">
-                        <span className="font-black text-stone-900 text-sm">{run.avgHr} BPM</span>
+                      <div className="flex flex-col leading-tight">
+                        <span className="font-black text-stone-900 text-sm font-mono">{run.avgHr} BPM</span>
                         {isFirst && isHrImproved && (
-                          <span className="text-[10px] font-bold text-emerald-700 flex items-center gap-0.5 mt-0.5">
-                            <TrendingDown className="w-3 h-3 text-emerald-600" /> -{hrDiff} BPM (vs Sep 22)
-                          </span>
+                          <div className="mt-1 flex items-center gap-1">
+                            <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-emerald-100/90 text-emerald-800 text-[10px] font-mono font-bold">
+                              <span>↓</span>
+                              <span>{hrDiff} BPM</span>
+                            </span>
+                            <span className="text-[9px] text-stone-500 font-sans font-medium">(vs Sep 22)</span>
+                          </div>
                         )}
                       </div>
                     </td>
 
                     {/* Distance per Heartbeat (m/beat) */}
-                    <td className="py-3.5 px-4 bg-emerald-50/40 font-mono whitespace-nowrap">
-                      <div className="flex flex-col font-mono leading-tight">
-                        <span className="font-black text-emerald-950 text-xs">
-                          {runMetersPerBeat.toFixed(3)} <span className="text-[10px] text-emerald-700">m/beat</span>
+                    <td className="py-3.5 px-4 bg-emerald-50/40 whitespace-nowrap">
+                      <div className="flex flex-col leading-tight">
+                        <span className="font-black text-emerald-950 text-sm font-mono">
+                          {runMetersPerBeat.toFixed(3)} <span className="text-[10px] text-emerald-700 font-sans font-semibold">m/beat</span>
                         </span>
                         {isFirst && isEffImproved && (
-                          <span className="text-[10px] font-bold text-emerald-700 flex items-center gap-0.5 mt-0.5">
-                            <ArrowUpRight className="w-2.5 h-2.5 text-emerald-600" /> +{(runMetersPerBeat - prevMetersPerBeat).toFixed(3)} m/beat (vs Sep 22)
-                          </span>
+                          <div className="mt-1 flex items-center gap-1 font-sans">
+                            <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-emerald-100/90 text-emerald-800 text-[10px] font-mono font-bold">
+                              <span>↑</span>
+                              <span>{(runMetersPerBeat - prevMetersPerBeat).toFixed(3)}</span>
+                            </span>
+                            <span className="text-[9px] text-stone-500 font-medium">(vs Sep 22)</span>
+                          </div>
                         )}
                       </div>
                     </td>
 
                     {/* Cardiac Cost Index (beats/km) */}
-                    <td className="py-3.5 px-4 font-mono whitespace-nowrap">
-                      <div className="flex flex-col leading-tight">
-                        <span className="font-extrabold text-stone-900 text-xs">{currentCost.toLocaleString()} beats/km</span>
+                    <td className="py-3.5 px-4 whitespace-nowrap">
+                      <div className="flex flex-col leading-tight font-mono">
+                        <span className="font-black text-stone-900 text-sm">
+                          {currentCost.toLocaleString()} <span className="text-[10px] text-stone-500 font-sans font-normal">beats/km</span>
+                        </span>
                         {isFirst && isCostImproved && (
-                          <span className="text-[10px] font-bold text-emerald-700 flex items-center gap-0.5 mt-0.5">
-                            <TrendingDown className="w-3 h-3 text-emerald-600" /> -{costDiff} beats/km (vs Sep 22)
-                          </span>
+                          <div className="mt-1 flex items-center gap-1 font-sans">
+                            <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-emerald-100/90 text-emerald-800 text-[10px] font-mono font-bold">
+                              <span>↓</span>
+                              <span>{costDiff}</span>
+                            </span>
+                            <span className="text-[9px] text-stone-500 font-medium">(vs Sep 22)</span>
+                          </div>
                         )}
                       </div>
                     </td>
@@ -1099,10 +1113,10 @@ export default function RunImprovementsTable() {
             <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 space-y-1.5">
               <div className="flex items-center justify-between">
                 <span className="font-bold text-white">Pace at Standard Base HR</span>
-                <MetabolicTierBadge tier="measured" size="xs" />
+                <MetabolicTierBadge tier="measured" label="MEASURED RELATIONSHIP" size="xs" />
               </div>
               <p className="text-stone-300 text-[11px] leading-relaxed">
-                <strong>Speed in 105–117 BPM.</strong> Benchmarked against laboratory-measured LTHR to define the target aerobic-intensity corridor.
+                <strong>Speed in 105–117 BPM.</strong> Direct measured pace within the Optimus training corridor of 105–117 BPM, selected within the laboratory-derived aerobic range (limit ≤120 BPM).
               </p>
             </div>
 
@@ -1132,7 +1146,7 @@ export default function RunImprovementsTable() {
                 <MetabolicTierBadge tier="modeled" size="xs" />
               </div>
               <p className="text-stone-300 text-[11px] leading-relaxed">
-                <strong>Composite Proxy Index.</strong> Integrates drift resistance, estimated lipid oxidation, and cardiovascular efficiency trends over longitudinal runs.
+                <strong>Composite Proxy Index (0–100).</strong> Weighted model integrating: 40% low drift resistance (&lt;5% drift), 35% estimated lipid oxidation, and 25% pace-to-heart-rate efficiency index.
               </p>
             </div>
 

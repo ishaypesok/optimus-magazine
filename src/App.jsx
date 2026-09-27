@@ -131,7 +131,7 @@ export default function App() {
             <div className="flex flex-wrap items-center justify-center gap-4 text-[11px] font-mono text-stone-500 pt-2 border-t border-stone-200">
               <span>Bioenergetics Science Press</span>
               <span>•</span>
-              <span>Peer-Reviewed Physiology Data</span>
+              <span>Based on Peer-Reviewed Physiology Literature</span>
               <span>•</span>
               <span className="text-emerald-800 font-bold">Published via GitHub Pages</span>
             </div>
