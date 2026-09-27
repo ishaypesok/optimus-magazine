@@ -608,7 +608,7 @@ export default function RunImprovementsTable() {
           <div className="p-5 rounded-2xl bg-white border border-stone-200 shadow-xs space-y-2 hover:border-emerald-300 transition">
             <div className="flex items-center justify-between text-xs text-stone-500 font-bold uppercase tracking-wider">
               <span className="flex items-center gap-1.5">
-                <span>3. Pace at Zone 2 HR</span>
+                <span>3. Pace at Optimus Aerobic HR</span>
                 <MetabolicTierBadge tier="measured" label="MEASURED RELATIONSHIP" size="xs" />
               </span>
               <TrendingUp className="w-4 h-4 text-sky-600" />
@@ -1075,7 +1075,7 @@ export default function RunImprovementsTable() {
 
             <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 space-y-1.5">
               <div className="flex items-center justify-between">
-                <span className="font-bold text-white">Pace at Standard Base HR</span>
+                <span className="font-bold text-white">Pace at Optimus Aerobic HR</span>
                 <MetabolicTierBadge tier="measured" label="MEASURED RELATIONSHIP" size="xs" />
               </div>
               <p className="text-stone-300 text-[11px] leading-relaxed">
@@ -1119,7 +1119,7 @@ export default function RunImprovementsTable() {
                 <div className="text-white font-bold pt-0.5 border-t border-white/10">Composite: (0.40 × 98) + (0.35 × 98) + (0.25 × 98) = 98.0 → 98 / 100</div>
               </div>
               <p className="text-[10px] text-stone-400 italic pt-1 leading-normal font-sans">
-                Reference values and weighting coefficients are model-defined parameters for longitudinal tracking; they are not universal physiological thresholds. Applied consistently across all 13 sessions.
+                Reference values and weighting coefficients are model-defined parameters for longitudinal tracking; they are not universal physiological thresholds. Applied consistently across the 12 outdoor runs; the clinical test serves as a laboratory reference point.
               </p>
             </div>
 
