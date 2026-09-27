@@ -6,6 +6,16 @@ import {
 } from 'lucide-react';
 import MetabolicTierBadge, { MetabolicTierLegend } from './MetabolicTierBadge';
 
+// Deterministic model for Mitochondrial Adaptation Proxy (0–100)
+export const calcMitoAdaptationProxy = (paceVal, avgHr, hrDriftPercent, zone2Percent) => {
+  if (!paceVal || !avgHr) return 90;
+  const mpb = 1000.0 / (paceVal * avgHr);
+  const s_drift = Math.min(100, Math.max(50, Math.round(105 - ((hrDriftPercent || 3.8) * 2.0))));
+  const s_adh = Math.min(100, Math.round(((zone2Percent || 85) / 90.0) * 100));
+  const s_eff = Math.min(100, Math.round((mpb / 0.720) * 90));
+  return Math.round((0.40 * s_drift) + (0.35 * s_adh) + (0.25 * s_eff));
+};
+
 const INITIAL_RUNS_DATA = [
   {
     id: 'run-sep-25-2026',
@@ -21,7 +31,7 @@ const INITIAL_RUNS_DATA = [
     zone2Percent: 88,
     fatBurnGrams: 37.8,
     carbBurnGrams: 14.2,
-    mitoScore: 99,
+    mitoScore: 98,
     hrDriftPercent: 3.6,
     lthrMargin: '-22 BPM',
     note: 'Run-level efficiency metrics higher than Sep 22: 6.49 km in 1:13:36 • 113 BPM Avg HR (Zone 2 corridor) • 131 BPM Max • 122W • 0.780 m/beat • AutoSync'
@@ -40,7 +50,7 @@ const INITIAL_RUNS_DATA = [
     zone2Percent: 68,
     fatBurnGrams: 34.2,
     carbBurnGrams: 22.5,
-    mitoScore: 97,
+    mitoScore: 87,
     hrDriftPercent: 5.2,
     lthrMargin: '-17 BPM',
     note: 'Outdoor Run: 6.29 km in 1:14:00 • 118 BPM Avg HR • 142 BPM Max • 124W • 0.720 m/beat • Elevated cardiac cost on warm afternoon • AutoSync'
@@ -59,7 +69,7 @@ const INITIAL_RUNS_DATA = [
     zone2Percent: 72,
     fatBurnGrams: 39.1,
     carbBurnGrams: 21.8,
-    mitoScore: 98,
+    mitoScore: 89,
     hrDriftPercent: 4.1,
     lthrMargin: '-18 BPM',
     note: 'Distance Record: 7.11 km in 1:24:12 • 117 BPM Avg HR • 112W • 452 kcal • High aerobic volume tolerance • AutoSync'
@@ -78,7 +88,7 @@ const INITIAL_RUNS_DATA = [
     zone2Percent: 70,
     fatBurnGrams: 34.8,
     carbBurnGrams: 19.6,
-    mitoScore: 98,
+    mitoScore: 88,
     hrDriftPercent: 4.4,
     lthrMargin: '-20 BPM',
     note: 'Solid Aerobic Base: 6.51 km in 1:17:33 • 115 BPM Avg HR • 111W • Smooth cadence in Zone 2 • AutoSync'
@@ -97,7 +107,7 @@ const INITIAL_RUNS_DATA = [
     zone2Percent: 94,
     fatBurnGrams: 35.5,
     carbBurnGrams: 12.1,
-    mitoScore: 99,
+    mitoScore: 96,
     hrDriftPercent: 3.8,
     lthrMargin: '-18 BPM',
     note: '94% Zone 2 Consistency: 6.59 km in 1:19:19 • 117 BPM Avg HR • 107W • 126 SPM • AutoSync'
@@ -116,7 +126,7 @@ const INITIAL_RUNS_DATA = [
     zone2Percent: 95,
     fatBurnGrams: 40.2,
     carbBurnGrams: 13.5,
-    mitoScore: 99,
+    mitoScore: 97,
     hrDriftPercent: 3.5,
     lthrMargin: '-19 BPM',
     note: 'Peak Zone 2 Consistency (95%): 6.55 km in 75.7 mins • 116 BPM Avg HR • 40.2g estimated fat oxidized • AutoSync'
@@ -135,7 +145,7 @@ const INITIAL_RUNS_DATA = [
     zone2Percent: 92,
     fatBurnGrams: 34.8,
     carbBurnGrams: 11.2,
-    mitoScore: 98,
+    mitoScore: 97,
     hrDriftPercent: 3.9,
     lthrMargin: '-21 BPM',
     note: '6.46 km in 78.3 mins • 114 BPM Avg HR • 92% Zone 2 • Low cardiac strain • AutoSync'
@@ -154,7 +164,7 @@ const INITIAL_RUNS_DATA = [
     zone2Percent: 79,
     fatBurnGrams: 30.5,
     carbBurnGrams: 8.2,
-    mitoScore: 97,
+    mitoScore: 94,
     hrDriftPercent: 3.7,
     lthrMargin: '-26 BPM',
     note: 'Post-Wingate Base: 6.00 km in 71.0 mins • 109 BPM Avg HR (Lowest HR recorded) • AutoSync'
@@ -230,7 +240,7 @@ const INITIAL_RUNS_DATA = [
     zone2Percent: 96,
     fatBurnGrams: 28.5,
     carbBurnGrams: 8.2,
-    mitoScore: 98,
+    mitoScore: 99,
     hrDriftPercent: 3.5,
     lthrMargin: '-23 BPM',
     note: 'Smooth aerobic pacing • 109 BPM Avg HR • 119W Power'
@@ -249,7 +259,7 @@ const INITIAL_RUNS_DATA = [
     zone2Percent: 86,
     fatBurnGrams: 21.0,
     carbBurnGrams: 12.5,
-    mitoScore: 87,
+    mitoScore: 94,
     hrDriftPercent: 5.8,
     lthrMargin: '-13 BPM',
     note: 'Initial Baseline: 119 BPM Avg HR • Cardiac Cost: 1,372 beats/km • 0.729 m/beat'
@@ -258,7 +268,7 @@ const INITIAL_RUNS_DATA = [
 
 export default function RunImprovementsTable() {
   const [runs, setRuns] = useState(() => {
-    const saved = localStorage.getItem('optimus_ishai_runs_v3');
+    const saved = localStorage.getItem('optimus_ishai_runs_v4');
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
@@ -504,10 +514,10 @@ export default function RunImprovementsTable() {
               <MetabolicTierBadge tier="measured" size="xs" />
             </div>
             <div className="text-xs font-mono font-bold text-emerald-900">
-              Distance • Pace • Heart Rate • Running Power (estimated)
+              Measured: Distance • Pace • Heart Rate | Device-Estimated: Running Power
             </div>
             <p className="text-[11px] text-stone-600 leading-snug">
-              Empirical telemetry captured by Apple Watch Ultra optical photoplethysmography and dual-frequency GPS (with running power estimated via accelerometer models).
+              Direct empirical telemetry captured by Apple Watch Ultra optical photoplethysmography and dual-frequency GPS (running power is device-estimated via biomechanical accelerometer models).
             </p>
           </div>
 
@@ -590,7 +600,7 @@ export default function RunImprovementsTable() {
               <TrendingDown className="w-3.5 h-3.5" /> -{Math.abs(cardiacCostDelta)} beats/km vs previous run
             </p>
             <div className="text-[10px] text-stone-500 leading-tight pt-1 border-t border-stone-100">
-              Beats/km = HR (beats/min) × Pace (min/km). Calculated index of heartbeats required to travel 1,000 meters.
+              Mathematical inverse of Distance/Beat (1,000 ÷ m/beat). Expresses the identical ground-speed-to-heart-rate ratio in total heartbeats required to travel 1,000 meters.
             </div>
           </div>
 
@@ -654,23 +664,23 @@ export default function RunImprovementsTable() {
             </div>
           </div>
 
-          {/* Card 6: Mitochondrial Adaptation Index — MODELLED */}
+          {/* Card 6: Mitochondrial Adaptation Proxy — MODELLED */}
           <div className="p-5 rounded-2xl bg-white border border-stone-200 shadow-xs space-y-2 hover:border-purple-300 transition">
             <div className="flex items-center justify-between text-xs text-stone-500 font-bold uppercase tracking-wider">
               <span className="flex items-center gap-1.5">
-                <span>6. Mito Adaptation</span>
+                <span>6. Mito Adaptation Proxy</span>
                 <MetabolicTierBadge tier="modeled" size="xs" />
               </span>
               <Sparkles className="w-4 h-4 text-purple-600" />
             </div>
             <div className="text-2xl sm:text-3xl font-black text-stone-900 font-mono">
-              {latestRun.mitoScore} <span className="text-xs font-sans font-bold text-purple-700">— MODELLED</span>
+              {latestRun.mitoScore} <span className="text-xs font-sans font-bold text-purple-700">— MODELLED PROXY</span>
             </div>
             <p className="text-[11px] text-purple-700 font-semibold flex items-center gap-1">
-              <ShieldCheck className="w-3.5 h-3.5" /> Model-Estimated Aerobic Adaptation Index — NOT DIRECTLY MEASURED
+              <ShieldCheck className="w-3.5 h-3.5" /> Model-Estimated Aerobic Adaptation Proxy — NOT DIRECTLY MEASURED
             </p>
             <div className="text-[10px] text-stone-500 leading-tight pt-1 border-t border-stone-100">
-              Composite Proxy Index (0–100). Weighted model integrating normalized component scores: 40% HR-drift resistance, 35% estimated lipid oxidation, and 25% pace-to-heart-rate efficiency. Does not directly measure mitochondrial function.
+              Composite Proxy Index (0–100). Weighted model integrating normalized component scores: 40% HR-drift resistance, 35% Zone 2 corridor adherence, and 25% pace-to-heart-rate efficiency. Does not directly measure mitochondrial function.
             </div>
           </div>
 
@@ -788,10 +798,10 @@ export default function RunImprovementsTable() {
             <div className="text-[10px] text-stone-500 pt-0.5">In 105–117 corridor</div>
           </div>
 
-          {/* Card 6: Mito Adapt. */}
+          {/* Card 6: Mito Proxy */}
           <div className="p-3.5 rounded-xl bg-white border border-emerald-200 flex flex-col justify-between space-y-1.5 shadow-2xs">
             <div className="text-[11px] text-stone-500 font-bold flex items-center justify-between">
-              <span>Mito Adapt.</span>
+              <span>Mito Proxy</span>
               <MetabolicTierBadge tier="modeled" size="xs" />
             </div>
             <div className="space-y-1">
@@ -800,10 +810,10 @@ export default function RunImprovementsTable() {
               </div>
               <div className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-800 bg-emerald-100/90 px-1.5 py-0.5 rounded">
                 <ArrowUpRight className="w-3 h-3 text-emerald-700" />
-                <span>+{mitoDelta} pts</span>
+                <span>+{mitoDelta} pts vs Sep 22</span>
               </div>
             </div>
-            <div className="text-[10px] text-stone-500 pt-0.5">Model-derived index</div>
+            <div className="text-[10px] text-stone-500 pt-0.5">Model-derived proxy</div>
           </div>
 
         </div>
@@ -825,7 +835,7 @@ export default function RunImprovementsTable() {
           
           <button
             onClick={() => {
-              const saved = localStorage.getItem('optimus_ishai_runs_v3') || localStorage.getItem('optimus_ishai_runs');
+              const saved = localStorage.getItem('optimus_ishai_runs_v4') || localStorage.getItem('optimus_ishai_runs_v3');
               if (saved) {
                 try { setRuns(JSON.parse(saved)); } catch (e) {}
               }
@@ -887,7 +897,7 @@ export default function RunImprovementsTable() {
                 </th>
                 <th className="py-3.5 px-4 whitespace-nowrap">
                   <span className="flex items-center gap-1">
-                    <span>Mito Adapt.</span>
+                    <span>Mito Proxy</span>
                     <span className="select-none"><MetabolicTierBadge tier="modeled" size="xs" /></span>
                   </span>
                 </th>
@@ -996,7 +1006,7 @@ export default function RunImprovementsTable() {
             * <strong>ESTIMATED FAT OXIDATION:</strong> Modeled substrate utilization based on Wingate laboratory lactate threshold profiles. Not a direct metabolic cart RER/VO₂ measurement.
           </div>
           <div>
-            * <strong>MITOCHONDRIAL ADAPTATION INDEX:</strong> A longitudinal model-based indicator. It does not directly measure mitochondrial function or cellular respiration.
+            * <strong>MITOCHONDRIAL ADAPTATION PROXY:</strong> A longitudinal model-based indicator. It does not directly measure mitochondrial function or cellular respiration.
           </div>
         </div>
 
@@ -1022,7 +1032,7 @@ export default function RunImprovementsTable() {
           <div className="flex items-center gap-2">
             <Sparkles className="w-4 h-4 text-purple-400 shrink-0" />
             <h4 className="text-xs sm:text-sm font-black tracking-wide text-purple-200 uppercase font-mono">
-              MITOCHONDRIAL ADAPTATION INDEX: 99 — MODELLED
+              MITOCHONDRIAL ADAPTATION PROXY: 98 — MODELLED
             </h4>
             <span className="px-2 py-0.5 rounded text-[9px] font-extrabold uppercase bg-purple-500/20 text-purple-300 border border-purple-400/30">
               Non-Invasive Physiological Modeling
@@ -1059,7 +1069,7 @@ export default function RunImprovementsTable() {
                 <MetabolicTierBadge tier="calculated" size="xs" />
               </div>
               <p className="text-stone-300 text-[11px] leading-relaxed">
-                <strong>Average HR × Pace.</strong> Indicates how many heartbeats are required to cover 1 km. At comparable running intensity and conditions, a lower value may be consistent with improved cardiovascular efficiency.
+                <strong>Average HR × Pace.</strong> Mathematical inverse of Distance/Beat (1,000 ÷ m/beat). While derived from the same underlying pace-to-heart-rate relationship, expressing it as heartbeats per kilometer provides an intuitive gauge of myocardial cost over a fixed distance.
               </p>
             </div>
 
@@ -1069,7 +1079,7 @@ export default function RunImprovementsTable() {
                 <MetabolicTierBadge tier="measured" label="MEASURED RELATIONSHIP" size="xs" />
               </div>
               <p className="text-stone-300 text-[11px] leading-relaxed">
-                <strong>Speed in 105–117 BPM.</strong> Measured pace achieved within the Optimus training corridor of 105–117 BPM, selected within the laboratory-derived aerobic range (limit ≤120 BPM).
+                <strong>Pace achieved within 105–117 BPM.</strong> Measured pace achieved within the Optimus training corridor of 105–117 BPM, selected within the laboratory-derived aerobic range (limit ≤120 BPM).
               </p>
             </div>
 
@@ -1095,18 +1105,18 @@ export default function RunImprovementsTable() {
 
             <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 space-y-1.5">
               <div className="flex items-center justify-between">
-                <span className="font-bold text-white">Mitochondrial Adaptation</span>
+                <span className="font-bold text-white">Mitochondrial Adaptation Proxy</span>
                 <MetabolicTierBadge tier="modeled" size="xs" />
               </div>
               <p className="text-stone-300 text-[11px] leading-relaxed">
-                <strong>Composite Proxy Index (0–100).</strong> Weighted model integrating normalized component scores: 40% HR-drift resistance, 35% estimated lipid oxidation, and 25% pace-to-heart-rate efficiency.
+                <strong>Composite Proxy Index (0–100).</strong> Weighted model integrating normalized component scores: 40% HR-drift resistance, 35% Zone 2 corridor adherence, and 25% pace-to-heart-rate efficiency.
               </p>
               <div className="text-[10px] text-stone-300 bg-black/25 p-2 rounded-lg font-mono space-y-0.5 mt-1 border border-white/10">
-                <div className="text-emerald-300 font-bold mb-0.5">Component Normalization Formulas:</div>
-                <div>• HR-Drift Score: max(0, 100 - (Drift% × 10)) [3.6% drift → 100/100]</div>
-                <div>• Lipid Stability Score: (Corridor Duration % / 100) × 100 [88% → 96/100 normalized]</div>
-                <div>• Efficiency Score: min(100, (Distance/Beat ÷ 0.720 m/beat) × 90) [0.780 → 98/100]</div>
-                <div className="text-white font-bold pt-0.5 border-t border-white/10">Composite: (0.40 × 100) + (0.35 × 96) + (0.25 × 98) = 98.1 → 99 / 100</div>
+                <div className="text-emerald-300 font-bold mb-0.5">Component Normalization Formulas (Sep 25):</div>
+                <div>• HR-Drift Score: min(100, round(105 - (Drift% × 2))) [3.6% drift → 98 / 100]</div>
+                <div>• Corridor Adherence: min(100, round((Corridor Duration % / 90) × 100)) [88% in corridor → 98 / 100]</div>
+                <div>• Efficiency Score: min(100, round((Distance/Beat ÷ 0.720 m/beat) × 90)) [0.780 m/beat → 98 / 100]</div>
+                <div className="text-white font-bold pt-0.5 border-t border-white/10">Composite: (0.40 × 98) + (0.35 × 98) + (0.25 × 98) = 98.0 → 98 / 100</div>
               </div>
             </div>
 
