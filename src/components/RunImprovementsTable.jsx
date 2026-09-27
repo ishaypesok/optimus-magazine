@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { 
   TrendingUp, TrendingDown, Activity, Heart, Flame, Calendar, Award, 
   Sparkles, CheckCircle2, ArrowUpRight, ArrowDownRight, RefreshCw, 
-  Zap, ShieldCheck, Filter, Info, PlusCircle, Printer, Compass, Gauge, AlertCircle
+  Zap, ShieldCheck, Filter, Info, PlusCircle, Printer, Compass, Gauge, AlertCircle, ArrowDown
 } from 'lucide-react';
 import MetabolicTierBadge, { MetabolicTierLegend } from './MetabolicTierBadge';
 
@@ -24,7 +24,7 @@ const INITIAL_RUNS_DATA = [
     mitoScore: 99,
     hrDriftPercent: 3.6,
     lthrMargin: '-22 BPM',
-    note: 'Outstanding Aerobic Efficiency! 6.49 km in 1:13:36 • 113 BPM Avg HR (Deep Zone 2) • 131 BPM Max • 122W • 0.78 m/beat • AutoSync'
+    note: 'Higher aerobic efficiency than recent baseline: 6.49 km in 1:13:36 • 113 BPM Avg HR (Deep Zone 2) • 131 BPM Max • 122W • 0.780 m/beat • AutoSync'
   },
   {
     id: 'run-sep-22-2026',
@@ -43,7 +43,7 @@ const INITIAL_RUNS_DATA = [
     mitoScore: 97,
     hrDriftPercent: 5.2,
     lthrMargin: '-17 BPM',
-    note: 'Outdoor Run: 6.29 km in 1:14:00 • 118 BPM Avg HR • 142 BPM Max • 124W • Elevated cardiac cost on warm afternoon • AutoSync'
+    note: 'Outdoor Run: 6.29 km in 1:14:00 • 118 BPM Avg HR • 142 BPM Max • 124W • 0.720 m/beat • Elevated cardiac cost on warm afternoon • AutoSync'
   },
   {
     id: 'run-sep-19-2026',
@@ -62,7 +62,7 @@ const INITIAL_RUNS_DATA = [
     mitoScore: 98,
     hrDriftPercent: 4.1,
     lthrMargin: '-18 BPM',
-    note: 'New Distance Record! 7.11 km in 1:24:12 • 117 BPM Avg HR • 112W • 452 kcal • High aerobic volume tolerance • AutoSync'
+    note: 'Distance Record: 7.11 km in 1:24:12 • 117 BPM Avg HR • 112W • 452 kcal • High aerobic volume tolerance • AutoSync'
   },
   {
     id: 'run-sep-16-2026',
@@ -100,7 +100,7 @@ const INITIAL_RUNS_DATA = [
     mitoScore: 99,
     hrDriftPercent: 3.8,
     lthrMargin: '-18 BPM',
-    note: '94% Zone 2 Consistency! 6.59 km in 1:19:19 • 117 BPM Avg HR • 107W • 126 SPM • AutoSync'
+    note: '94% Zone 2 Consistency: 6.59 km in 1:19:19 • 117 BPM Avg HR • 107W • 126 SPM • AutoSync'
   },
   {
     id: 'run-sep-10-2026',
@@ -119,7 +119,7 @@ const INITIAL_RUNS_DATA = [
     mitoScore: 99,
     hrDriftPercent: 3.5,
     lthrMargin: '-19 BPM',
-    note: 'Peak Zone 2 Consistency (95%)! 6.55 km in 75.7 mins • 116 BPM Avg HR • 40.2g fat oxidized • AutoSync'
+    note: 'Peak Zone 2 Consistency (95%): 6.55 km in 75.7 mins • 116 BPM Avg HR • 40.2g estimated fat oxidized • AutoSync'
   },
   {
     id: 'run-sep-07-2026',
@@ -157,7 +157,7 @@ const INITIAL_RUNS_DATA = [
     mitoScore: 97,
     hrDriftPercent: 3.7,
     lthrMargin: '-26 BPM',
-    note: 'Post-Wingate Aerobic Base Run! 6.00 km in 71.0 mins • 109 BPM Avg HR (Lowest HR) • AutoSync'
+    note: 'Post-Wingate Base: 6.00 km in 71.0 mins • 109 BPM Avg HR (Lowest HR recorded) • AutoSync'
   },
   {
     id: 'run-sep-01-2026-wingate',
@@ -341,7 +341,7 @@ export default function RunImprovementsTable() {
     return dateStr.split(',')[0].replace(/Today\s*\(/i, '').trim();
   };
 
-  // Aerobic Efficiency: meters per heartbeat = 1000 / (paceVal * avgHr)
+  // Distance per Heartbeat = 1000 / (paceVal * avgHr) meters
   const calcMetersPerBeat = (paceVal, avgHr) => {
     if (!paceVal || !avgHr) return 0.70;
     return (1000 / (paceVal * avgHr));
@@ -353,13 +353,7 @@ export default function RunImprovementsTable() {
     return (60 / paceVal);
   };
 
-  // Efficiency Factor index: (Speed km/h / HR) * 100
-  const calcEfficiencyFactor = (paceVal, avgHr) => {
-    if (!paceVal || !avgHr) return 4.0;
-    return ((calcSpeedKmh(paceVal) / avgHr) * 100);
-  };
-
-  // Cardiac Cost = paceVal * avgHr (heartbeats to travel 1 km)
+  // Cardiac Cost = paceVal * avgHr (exact heartbeats to travel 1 km)
   const calcCardiacCost = (paceVal, avgHr) => {
     if (!paceVal || !avgHr) return 1300;
     return Math.round(paceVal * avgHr);
@@ -386,10 +380,9 @@ export default function RunImprovementsTable() {
   const highestZone2 = Math.max(...runs.map(r => r.zone2Percent));
   const maxFatBurn = Math.max(...runs.map(r => r.fatBurnGrams));
   const avgMitoScore = Math.round(runs.reduce((acc, r) => acc + r.mitoScore, 0) / runs.length);
-  const bestMetersPerBeat = Math.max(...runs.map(r => calcMetersPerBeat(r.paceVal, r.avgHr)));
 
   return (
-    <article className="space-y-8 animate-fade-in font-sans text-stone-900 pb-12">
+    <article className="space-y-8 animate-fade-in font-sans text-stone-900 pb-16">
       
       {/* 1. TOP HERO BANNER */}
       <div className="bg-gradient-to-br from-stone-950 via-slate-900 to-emerald-950 text-white p-6 sm:p-8 rounded-3xl shadow-xl relative overflow-hidden border border-emerald-500/20">
@@ -414,8 +407,8 @@ export default function RunImprovementsTable() {
               Run Progress & Adaptation Matrix
             </h1>
             <p className="text-stone-300 text-xs sm:text-sm font-medium max-w-2xl leading-relaxed">
-              Tracking real physiological adaptations across continuous workouts. Solves the central endurance question: 
-              <span className="text-emerald-300 font-bold"> Are you running faster at the same heart rate, or maintaining the same velocity with lower cardiac strain?</span>
+              Evaluating true physiological adaptations across continuous workouts. Solves the central aerobic question: 
+              <span className="text-emerald-300 font-bold"> Are you running faster at the same heart rate, or maintaining identical pace with lower cardiac strain?</span>
             </p>
           </div>
 
@@ -439,36 +432,36 @@ export default function RunImprovementsTable() {
         </div>
       </div>
 
-      {/* 2. HERO METRIC SPOTLIGHT: AEROBIC EFFICIENCY (SPEED ÷ HEART RATE) */}
+      {/* 2. HERO METRIC: DISTANCE PER HEARTBEAT (AEROBIC EFFICIENCY INDEX) */}
       <div className="p-6 sm:p-7 rounded-3xl bg-gradient-to-r from-emerald-900 via-teal-950 to-slate-900 text-white border border-emerald-500/30 shadow-lg relative overflow-hidden">
         <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
           <div className="space-y-2 max-w-xl">
             <div className="flex items-center gap-2">
               <span className="px-2.5 py-0.5 rounded-md bg-emerald-500/20 text-emerald-300 text-[11px] font-mono font-black uppercase tracking-wider border border-emerald-400/30">
-                Primary Aerobic North Star
+                Aerobic Efficiency Index = Pace/HR-Derived Metric
               </span>
               <MetabolicTierBadge tier="calculated" size="xs" />
             </div>
             <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
-              Aerobic Efficiency Factor (EF): Distance per Heartbeat
+              Distance Per Heartbeat
             </h2>
             <p className="text-stone-300 text-xs sm:text-sm leading-relaxed font-normal">
-              Raw heart rate without speed can be deceiving. The purest marker of aerobic expansion is your 
-              <strong> Distance Traveled per Single Myocardial Contraction</strong> (Pace ÷ HR normalized).
+              Rather than assuming raw heart rate indicates fitness, this calculated metric normalizes your ground speed by myocardial pulse:
+              <strong className="text-white"> 6.49 km at 113 BPM vs. 6.29 km at 118 BPM</strong> (faster velocity at lower cardiac cost).
             </p>
           </div>
 
           <div className="flex flex-wrap sm:flex-nowrap items-center gap-4 bg-white/10 backdrop-blur-md p-4 sm:p-5 rounded-2xl border border-white/15 shrink-0">
             <div className="space-y-1">
               <div className="text-[11px] font-bold text-emerald-300 uppercase tracking-wider">
-                Current Efficiency
+                Current Distance / Pulse
               </div>
               <div className="text-3xl sm:text-4xl font-mono font-black text-white flex items-baseline gap-1.5">
                 {latestMetersPerBeat.toFixed(3)}
                 <span className="text-xs font-sans text-stone-300 font-bold">m / beat</span>
               </div>
               <div className="text-[11px] text-stone-300">
-                ({(latestMetersPerBeat * 100).toFixed(1)} cm covered per pulse)
+                ({(latestMetersPerBeat * 100).toFixed(1)} cm covered per beat)
               </div>
             </div>
 
@@ -476,21 +469,80 @@ export default function RunImprovementsTable() {
 
             <div className="space-y-1.5">
               <div className="text-[11px] font-bold text-stone-300 uppercase tracking-wider">
-                Longitudinal Gain
+                vs. July Baseline
               </div>
               <div className="text-lg font-mono font-extrabold text-emerald-400 flex items-center gap-1">
                 <ArrowUpRight className="w-4 h-4 text-emerald-300" />
                 +{metersPerBeatBaselineDeltaPercent}%
               </div>
               <div className="text-[10px] text-stone-300">
-                vs. July Baseline (0.729 m/beat)
+                0.729 $\rightarrow$ 0.780 m/beat
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* 3. THE 6 PILLAR ADAPTATION MATRIX CARDS */}
+      {/* 3. THREE-TIER SCIENTIFIC EPISTEMOLOGY HIERARCHY BAR */}
+      <div className="p-5 rounded-2xl bg-white border border-stone-200 shadow-xs space-y-3">
+        <div className="flex items-center justify-between border-b border-stone-100 pb-2">
+          <div className="flex items-center gap-2">
+            <ShieldCheck className="w-4 h-4 text-emerald-700" />
+            <h3 className="text-xs sm:text-sm font-black text-stone-900 uppercase tracking-tight">
+              Optimus 3-Tier Scientific Hierarchy: Empirical Grounding
+            </h3>
+          </div>
+          <span className="text-[10px] font-mono text-stone-500">Methodological Transparency</span>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+          
+          {/* TIER 1: MEASURED */}
+          <div className="p-3.5 rounded-xl bg-emerald-50/60 border border-emerald-200 space-y-1.5">
+            <div className="flex items-center justify-between">
+              <span className="font-extrabold text-emerald-950 text-xs">1. MEASURED</span>
+              <MetabolicTierBadge tier="measured" size="xs" />
+            </div>
+            <div className="text-xs font-mono font-bold text-emerald-900">
+              Distance • Pace • Heart Rate • Power
+            </div>
+            <p className="text-[11px] text-stone-600 leading-snug">
+              Direct empirical data captured by Apple Watch Ultra optical photoplethysmography and dual-frequency GPS.
+            </p>
+          </div>
+
+          {/* TIER 2: CALCULATED */}
+          <div className="p-3.5 rounded-xl bg-sky-50/60 border border-sky-200 space-y-1.5">
+            <div className="flex items-center justify-between">
+              <span className="font-extrabold text-sky-950 text-xs">2. CALCULATED</span>
+              <MetabolicTierBadge tier="calculated" size="xs" />
+            </div>
+            <div className="text-xs font-mono font-bold text-sky-900">
+              Distance/Beat • Cardiac Cost • HR Drift
+            </div>
+            <p className="text-[11px] text-stone-600 leading-snug">
+              Pure mathematical formulas combining measured variables (e.g. Pace × HR = Beats/km, Speed ÷ HR = m/beat).
+            </p>
+          </div>
+
+          {/* TIER 3: MODELED */}
+          <div className="p-3.5 rounded-xl bg-purple-50/60 border border-purple-200 space-y-1.5">
+            <div className="flex items-center justify-between">
+              <span className="font-extrabold text-purple-950 text-xs">3. MODELED</span>
+              <MetabolicTierBadge tier="modeled" size="xs" />
+            </div>
+            <div className="text-xs font-mono font-bold text-purple-900">
+              Estimated Fat Oxidation • Mito Adapt.
+            </div>
+            <p className="text-[11px] text-stone-600 leading-snug">
+              Physiological simulations based on Wingate laboratory lactate tests. Explicitly not direct cellular biopsies.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      {/* 4. THE 6 PILLAR ADAPTATION MATRIX CARDS */}
       <div className="space-y-3">
         <div className="flex items-center justify-between">
           <h3 className="text-sm font-extrabold uppercase tracking-wider text-stone-500 flex items-center gap-2">
@@ -502,27 +554,27 @@ export default function RunImprovementsTable() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           
-          {/* Card 1: Aerobic Efficiency */}
+          {/* Card 1: Distance Per Heartbeat */}
           <div className="p-5 rounded-2xl bg-white border border-stone-200 shadow-xs space-y-2 hover:border-emerald-300 transition">
             <div className="flex items-center justify-between text-xs text-stone-500 font-bold uppercase tracking-wider">
               <span className="flex items-center gap-1.5">
-                <span>1. Aerobic Efficiency</span>
+                <span>1. Distance / Heartbeat</span>
                 <MetabolicTierBadge tier="calculated" size="xs" />
               </span>
               <Gauge className="w-4 h-4 text-emerald-600" />
             </div>
             <div className="text-2xl sm:text-3xl font-black text-stone-900 font-mono">
-              {latestMetersPerBeat.toFixed(2)} <span className="text-xs font-sans font-bold text-stone-500">m / beat</span>
+              {latestMetersPerBeat.toFixed(3)} <span className="text-xs font-sans font-bold text-stone-500">m / beat</span>
             </div>
             <p className="text-[11px] text-emerald-700 font-semibold flex items-center gap-1">
-              <ArrowUpRight className="w-3.5 h-3.5" /> Speed ÷ Heart Rate ratio ({calcEfficiencyFactor(latestRun.paceVal, latestRun.avgHr).toFixed(2)})
+              <ArrowUpRight className="w-3.5 h-3.5" /> +8.3% vs Sep 22 (0.720 $\rightarrow$ 0.780 m/beat)
             </p>
             <div className="text-[10px] text-stone-500 leading-tight pt-1 border-t border-stone-100">
-              Measures stroke volume expansion & skeletal muscle capillarization.
+              Aerobic Efficiency Index = Pace/HR-derived metric. Reflects stroke volume capacity.
             </div>
           </div>
 
-          {/* Card 2: Cardiac Cost */}
+          {/* Card 2: Cardiac Cost (Beats / km) */}
           <div className="p-5 rounded-2xl bg-white border border-stone-200 shadow-xs space-y-2 hover:border-emerald-300 transition">
             <div className="flex items-center justify-between text-xs text-stone-500 font-bold uppercase tracking-wider">
               <span className="flex items-center gap-1.5">
@@ -535,10 +587,10 @@ export default function RunImprovementsTable() {
               {latestCardiacCost} <span className="text-xs font-sans font-bold text-stone-500">beats / km</span>
             </div>
             <p className="text-[11px] text-emerald-700 font-semibold flex items-center gap-1">
-              <TrendingDown className="w-3.5 h-3.5" /> -{Math.abs(cardiacCostDelta)} beats vs previous run
+              <TrendingDown className="w-3.5 h-3.5" /> -{Math.abs(cardiacCostDelta)} beats/km vs previous run
             </p>
             <div className="text-[10px] text-stone-500 leading-tight pt-1 border-t border-stone-100">
-              Total ventricular contractions to cover 1,000 meters. Lower = higher efficiency.
+              Pace (min/km) × HR. Pure physical units: heartbeats required to travel 1,000 meters.
             </div>
           </div>
 
@@ -602,7 +654,7 @@ export default function RunImprovementsTable() {
             </div>
           </div>
 
-          {/* Card 6: Mitochondrial Adaptation Index */}
+          {/* Card 6: Mitochondrial Adaptation Index — MODELLED */}
           <div className="p-5 rounded-2xl bg-white border border-stone-200 shadow-xs space-y-2 hover:border-purple-300 transition">
             <div className="flex items-center justify-between text-xs text-stone-500 font-bold uppercase tracking-wider">
               <span className="flex items-center gap-1.5">
@@ -612,30 +664,35 @@ export default function RunImprovementsTable() {
               <Sparkles className="w-4 h-4 text-purple-600" />
             </div>
             <div className="text-2xl sm:text-3xl font-black text-stone-900 font-mono">
-              {latestRun.mitoScore} <span className="text-xs font-sans font-bold text-stone-500">/ 100 (Model)</span>
+              {latestRun.mitoScore} <span className="text-xs font-sans font-bold text-purple-700">— MODELLED</span>
             </div>
             <p className="text-[11px] text-purple-700 font-semibold flex items-center gap-1">
               <ShieldCheck className="w-3.5 h-3.5" /> High Cellular Oxidative Flux
             </p>
             <div className="text-[10px] text-stone-500 leading-tight pt-1 border-t border-stone-100">
-              Model-derived proxy. Estimated from longitudinal efficiency deltas.
+              A longitudinal model-based indicator. Does not directly measure mitochondrial function.
             </div>
           </div>
 
         </div>
       </div>
 
-      {/* 4. LATEST RUN DELTA HIGHLIGHT (SEP 25 vs SEP 22) */}
+      {/* 5. ACUTE COMPARISON DELTA (SEP 25 vs SEP 22) */}
       <div className="p-6 rounded-3xl bg-emerald-50/70 border border-emerald-300 shadow-xs space-y-4">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
           <div className="flex items-center gap-2">
             <Sparkles className="w-5 h-5 text-emerald-700 shrink-0" />
-            <h3 className="text-lg font-black text-emerald-950">
-              Chronological Adaptation Delta ({getShortDate(latestRun.date)} vs. {getShortDate(previousRun.date)})
-            </h3>
+            <div>
+              <h3 className="text-lg font-black text-emerald-950">
+                Acute Comparison ({getShortDate(latestRun.date)} vs. {getShortDate(previousRun.date)})
+              </h3>
+              <p className="text-xs text-emerald-800">
+                * Note: A 3-day window demonstrates acute efficiency; chronic adaptation requires 10–20+ continuous runs.
+              </p>
+            </div>
           </div>
-          <span className="px-3 py-1 rounded-full bg-emerald-700 text-white font-extrabold text-xs">
-            ⭐ Verified Aerobic Improvement
+          <span className="px-3 py-1 rounded-full bg-emerald-800 text-white font-extrabold text-xs">
+            Higher Aerobic Efficiency Than Recent Baseline
           </span>
         </div>
 
@@ -671,7 +728,7 @@ export default function RunImprovementsTable() {
 
           <div className="p-3.5 rounded-xl bg-white border border-emerald-200 space-y-1">
             <div className="text-[11px] text-stone-500 font-bold flex items-center justify-between">
-              <span>Aerobic Eff.</span>
+              <span>Dist / Beat</span>
               <MetabolicTierBadge tier="calculated" size="xs" />
             </div>
             <div className="text-base sm:text-lg font-black text-stone-900 flex items-center gap-1 font-mono">
@@ -717,7 +774,7 @@ export default function RunImprovementsTable() {
               <MetabolicTierBadge tier="modeled" size="xs" />
             </div>
             <div className="text-base sm:text-lg font-black text-stone-900 flex items-center gap-1 font-mono">
-              {latestRun.mitoScore}/100
+              {latestRun.mitoScore}
               <span className="text-[10px] font-bold text-emerald-700 bg-emerald-100 px-1 py-0.5 rounded flex items-center">
                 +{mitoDelta} pts
               </span>
@@ -728,7 +785,7 @@ export default function RunImprovementsTable() {
         </div>
       </div>
 
-      {/* 5. MAIN LOG TABLE: CHRONOLOGICAL RUNS WITH EXPLICIT TIERS */}
+      {/* 6. MAIN CHRONOLOGICAL WORKOUT LOG */}
       <div className="bg-white rounded-3xl p-6 border border-stone-200 shadow-sm space-y-4">
         
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-3 border-b border-stone-100">
@@ -738,7 +795,7 @@ export default function RunImprovementsTable() {
               <span>Longitudinal Workout Log ({runs.length} Workouts)</span>
             </h3>
             <p className="text-xs text-stone-500 font-medium">
-              Every workout compared chronologically. Green indicators reflect verified cardiovascular and mechanical adaptations.
+              Every workout evaluated chronologically. Shows the primary empirical evidence: running faster at lower heart rates over time.
             </p>
           </div>
           
@@ -782,7 +839,7 @@ export default function RunImprovementsTable() {
                 </th>
                 <th className="py-3.5 px-4 bg-emerald-50/50">
                   <span className="flex items-center gap-1 text-emerald-900">
-                    <span>Aerobic Eff.</span>
+                    <span>Dist / Beat</span>
                     <MetabolicTierBadge tier="calculated" size="xs" />
                   </span>
                 </th>
@@ -800,7 +857,7 @@ export default function RunImprovementsTable() {
                 </th>
                 <th className="py-3.5 px-4">
                   <span className="flex items-center gap-1">
-                    <span>Fat Burn</span>
+                    <span>Est. Fat Ox.</span>
                     <MetabolicTierBadge tier="modeled" size="xs" />
                   </span>
                 </th>
@@ -872,7 +929,7 @@ export default function RunImprovementsTable() {
                       </div>
                     </td>
 
-                    {/* Aerobic Efficiency (m/beat) */}
+                    {/* Distance per Heartbeat (m/beat) */}
                     <td className="py-3.5 px-4 bg-emerald-50/40 font-mono">
                       <div className="flex items-center gap-1.5">
                         <span className="font-black text-emerald-950 text-xs">
@@ -913,9 +970,9 @@ export default function RunImprovementsTable() {
                       </div>
                     </td>
 
-                    {/* Fat Burn */}
+                    {/* Estimated Fat Oxidation */}
                     <td className="py-3.5 px-4 font-bold text-amber-900 font-mono">
-                      {run.fatBurnGrams}g <span className="text-[10px] font-sans font-normal text-stone-500">fat</span>
+                      {run.fatBurnGrams}g <span className="text-[10px] font-sans font-normal text-stone-500">est.</span>
                     </td>
 
                     {/* Modeled Mito Index */}
@@ -928,7 +985,7 @@ export default function RunImprovementsTable() {
                           : 'bg-stone-100 text-stone-800'
                       }`}>
                         <span>{run.mitoScore}</span>
-                        <span className="text-[9px] text-stone-400 font-normal">/100</span>
+                        <span className="text-[9px] text-purple-700 font-semibold uppercase">M</span>
                       </span>
                     </td>
 
@@ -944,9 +1001,19 @@ export default function RunImprovementsTable() {
           </table>
         </div>
 
+        {/* Scientific Footnotes for the Table */}
+        <div className="pt-2 text-[10px] text-stone-500 border-t border-stone-100 space-y-1">
+          <div>
+            * <strong>ESTIMATED FAT OXIDATION:</strong> Modeled substrate utilization based on Wingate laboratory lactate threshold profiles. Not a direct metabolic cart RER/VO₂ measurement.
+          </div>
+          <div>
+            * <strong>MITOCHONDRIAL ADAPTATION INDEX:</strong> A longitudinal model-based indicator. It does not directly measure mitochondrial function or cellular respiration.
+          </div>
+        </div>
+
       </div>
 
-      {/* 6. SCIENTIFIC EPISTEMOLOGY & CONFOUNDER CONTROL PANEL */}
+      {/* 7. SCIENTIFIC EPISTEMOLOGY & CONFOUNDER CONTROL PANEL */}
       <div className="p-6 sm:p-7 rounded-3xl bg-slate-950 text-white space-y-6 shadow-xl border border-slate-800">
         
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-4">
@@ -966,14 +1033,14 @@ export default function RunImprovementsTable() {
           <div className="flex items-center gap-2">
             <Sparkles className="w-4 h-4 text-purple-400 shrink-0" />
             <h4 className="text-xs sm:text-sm font-black tracking-wide text-purple-200 uppercase font-mono">
-              MITOCHONDRIAL ADAPTATION: Model-Derived Index
+              MITOCHONDRIAL ADAPTATION INDEX: 88 — MODELLED
             </h4>
             <span className="px-2 py-0.5 rounded text-[9px] font-extrabold uppercase bg-purple-500/20 text-purple-300 border border-purple-400/30">
               Non-Invasive Physiological Modeling
             </span>
           </div>
           <p className="text-xs sm:text-sm text-stone-300 italic leading-relaxed">
-            "Estimated from longitudinal changes in aerobic efficiency, heart-rate response and performance. Not a direct measurement of mitochondrial function or cellular respiration."
+            "A longitudinal model-based indicator. It does not directly measure mitochondrial function or cellular respiration."
           </p>
           <div className="text-[11px] text-stone-400 pt-1 leading-normal font-sans">
             By distinguishing empirical biometrics from cellular modeling, Optimus maintains peer-reviewed scientific credibility without confusing wrist-worn photoplethysmography with in-vitro muscle biopsy respirometry.
@@ -989,7 +1056,7 @@ export default function RunImprovementsTable() {
             
             <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 space-y-1.5">
               <div className="flex items-center justify-between">
-                <span className="font-bold text-white">Aerobic Efficiency (EF)</span>
+                <span className="font-bold text-white">Distance per Heartbeat</span>
                 <MetabolicTierBadge tier="calculated" size="xs" />
               </div>
               <p className="text-stone-300 text-[11px] leading-relaxed">
@@ -1066,8 +1133,8 @@ export default function RunImprovementsTable() {
               Grade changes alter metabolic cost. Standard routes in Kfar Saba maintain flat elevation profiles (net 0% slope).
             </div>
             <div>
-              <strong className="text-white block mb-0.5">3. Sleep & Pre-Workout Hydration:</strong>
-              Hypovolemia reduces stroke volume, falsely elevating HR. Longitudinal moving averages neutralize acute day-to-day noise.
+              <strong className="text-white block mb-0.5">3. Longitudinal 10–20 Run Trends:</strong>
+              Three days between runs reflects acute response; true structural remodeling requires 10–20+ continuous sessions.
             </div>
           </div>
         </div>
