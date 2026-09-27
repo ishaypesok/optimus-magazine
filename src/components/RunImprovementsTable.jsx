@@ -180,11 +180,11 @@ const INITIAL_RUNS_DATA = [
     avgHr: 118,
     maxHr: 137,
     powerWatts: 174,
-    zone2Percent: 100,
-    fatBurnGrams: 28.0,
-    carbBurnGrams: 12.0,
-    mitoScore: 100,
-    hrDriftPercent: 2.1,
+    zone2Percent: null,
+    fatBurnGrams: null,
+    carbBurnGrams: null,
+    mitoScore: null,
+    hrDriftPercent: null,
     lthrMargin: '0 BPM (LTHR 135)',
     note: 'Wingate Institute Clinical Test — Lactate & Health: LTHR 135 BPM @ 7.2 km/h • Zone 2 Base Limit: ≤120 BPM • VO₂ Peak: 34.1 ml/kg/min'
   },
@@ -387,9 +387,12 @@ export default function RunImprovementsTable() {
   // Best/extreme statistics across all loaded workouts
   const lowestHr = Math.min(...runs.map(r => r.avgHr));
   const lowestCardiacCost = Math.min(...runs.map(r => calcCardiacCost(r.paceVal, r.avgHr)));
-  const highestZone2 = Math.max(...runs.map(r => r.zone2Percent));
-  const maxFatBurn = Math.max(...runs.map(r => r.fatBurnGrams));
-  const avgMitoScore = Math.round(runs.reduce((acc, r) => acc + r.mitoScore, 0) / runs.length);
+  const highestZone2 = Math.max(...runs.map(r => r.zone2Percent || 0));
+  const maxFatBurn = Math.max(...runs.map(r => r.fatBurnGrams || 0));
+  const outdoorRunsWithMito = runs.filter(r => r.mitoScore != null);
+  const avgMitoScore = outdoorRunsWithMito.length 
+    ? Math.round(outdoorRunsWithMito.reduce((acc, r) => acc + r.mitoScore, 0) / outdoorRunsWithMito.length) 
+    : 95;
 
   return (
     <article className="space-y-8 animate-fade-in font-sans text-stone-900 pb-16">
@@ -958,34 +961,48 @@ export default function RunImprovementsTable() {
 
                     {/* Zone 2 Compliance */}
                     <td className="py-3.5 px-4">
-                      <div className="flex items-center gap-2">
-                        <div className="w-12 bg-stone-100 rounded-full h-2 overflow-hidden border border-stone-200">
-                          <div 
-                            className="bg-emerald-600 h-full rounded-full" 
-                            style={{ width: `${Math.min(run.zone2Percent, 100)}%` }} 
-                          />
+                      {run.zone2Percent != null ? (
+                        <div className="flex items-center gap-2">
+                          <div className="w-12 bg-stone-100 rounded-full h-2 overflow-hidden border border-stone-200">
+                            <div 
+                              className="bg-emerald-600 h-full rounded-full" 
+                              style={{ width: `${Math.min(run.zone2Percent, 100)}%` }} 
+                            />
+                          </div>
+                          <span className="font-extrabold text-stone-900 font-mono">{run.zone2Percent}%</span>
                         </div>
-                        <span className="font-extrabold text-stone-900 font-mono">{run.zone2Percent}%</span>
-                      </div>
+                      ) : (
+                        <span className="text-xs text-stone-400 font-mono font-semibold">N/A</span>
+                      )}
                     </td>
 
                     {/* Estimated Fat Oxidation */}
                     <td className="py-3.5 px-4 font-bold text-amber-900 font-mono">
-                      {run.fatBurnGrams}g <span className="text-[10px] font-sans font-normal text-stone-500">est.</span>
+                      {run.fatBurnGrams != null ? (
+                        <>{run.fatBurnGrams}g <span className="text-[10px] font-sans font-normal text-stone-500">est.</span></>
+                      ) : (
+                        <span className="text-xs text-stone-400 font-mono font-semibold">N/A</span>
+                      )}
                     </td>
 
                     {/* Modeled Mito Index */}
                     <td className="py-3.5 px-4">
-                      <span className={`px-2 py-0.5 rounded-lg font-mono font-black text-xs inline-flex items-center gap-1 ${
-                        run.mitoScore >= 98 
-                          ? 'bg-purple-100 text-purple-900 border border-purple-200' 
-                          : run.mitoScore >= 92
-                          ? 'bg-purple-50 text-purple-800 border border-purple-100'
-                          : 'bg-stone-100 text-stone-800'
-                      }`}>
-                        <span>{run.mitoScore}</span>
-                        <span className="text-[9px] text-purple-700 font-semibold uppercase">M</span>
-                      </span>
+                      {run.mitoScore != null ? (
+                        <span className={`px-2 py-0.5 rounded-lg font-mono font-black text-xs inline-flex items-center gap-1 ${
+                          run.mitoScore >= 98 
+                            ? 'bg-purple-100 text-purple-900 border border-purple-200' 
+                            : run.mitoScore >= 92
+                            ? 'bg-purple-50 text-purple-800 border border-purple-100'
+                            : 'bg-stone-100 text-stone-800'
+                        }`}>
+                          <span>{run.mitoScore}</span>
+                          <span className="text-[9px] text-purple-700 font-semibold uppercase">M</span>
+                        </span>
+                      ) : (
+                        <span className="px-2 py-0.5 rounded-lg font-mono font-semibold text-xs text-stone-400 bg-stone-100 border border-stone-200">
+                          N/A
+                        </span>
+                      )}
                     </td>
 
                     {/* Adaptation Note */}
