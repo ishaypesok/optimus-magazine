@@ -72,7 +72,7 @@ const INITIAL_RUNS_DATA = [
     mitoScore: 89,
     hrDriftPercent: 4.1,
     lthrMargin: '-18 BPM',
-    note: 'Distance Record: 7.11 km in 1:24:12 • 117 BPM Avg HR • 112W • 452 kcal • High aerobic volume tolerance • AutoSync'
+    note: 'Distance Record: 7.11 km in 1:24:12 • 117 BPM Avg HR • 112W • 452 kcal • High aerobic volume: 7.11 km at 117 BPM • AutoSync'
   },
   {
     id: 'run-sep-16-2026',
@@ -186,7 +186,7 @@ const INITIAL_RUNS_DATA = [
     mitoScore: 100,
     hrDriftPercent: 2.1,
     lthrMargin: '0 BPM (LTHR 135)',
-    note: 'Official Wingate Clinical Test! LTHR 135 BPM @ 7.2 km/h • Zone 2 Base Limit: ≤120 BPM • VO₂ Peak: 34.1 ml/kg/min'
+    note: 'Wingate Institute Clinical Test — Lactate & Health: LTHR 135 BPM @ 7.2 km/h • Zone 2 Base Limit: ≤120 BPM • VO₂ Peak: 34.1 ml/kg/min'
   },
   {
     id: 'run-aug-27-2026',
@@ -668,7 +668,7 @@ export default function RunImprovementsTable() {
           <div className="p-5 rounded-2xl bg-white border border-stone-200 shadow-xs space-y-2 hover:border-purple-300 transition">
             <div className="flex items-center justify-between text-xs text-stone-500 font-bold uppercase tracking-wider">
               <span className="flex items-center gap-1.5">
-                <span>6. Mito Adaptation Proxy</span>
+                <span>6. Mitochondrial Adaptation Proxy (Modelled)</span>
                 <MetabolicTierBadge tier="modeled" size="xs" />
               </span>
               <Sparkles className="w-4 h-4 text-purple-600" />
@@ -677,7 +677,7 @@ export default function RunImprovementsTable() {
               {latestRun.mitoScore} <span className="text-xs font-sans font-bold text-purple-700">— MODELLED PROXY</span>
             </div>
             <p className="text-[11px] text-purple-700 font-semibold flex items-center gap-1">
-              <ShieldCheck className="w-3.5 h-3.5" /> Model-Estimated Aerobic Adaptation Proxy — NOT DIRECTLY MEASURED
+              <ShieldCheck className="w-3.5 h-3.5" /> Mitochondrial Adaptation Proxy (Modelled) — NOT DIRECTLY MEASURED
             </p>
             <div className="text-[10px] text-stone-500 leading-tight pt-1 border-t border-stone-100">
               Composite Proxy Index (0–100). Weighted model integrating normalized component scores: 40% HR-drift resistance, 35% Zone 2 corridor adherence, and 25% pace-to-heart-rate efficiency. Does not directly measure mitochondrial function.
@@ -1032,7 +1032,7 @@ export default function RunImprovementsTable() {
           <div className="flex items-center gap-2">
             <Sparkles className="w-4 h-4 text-purple-400 shrink-0" />
             <h4 className="text-xs sm:text-sm font-black tracking-wide text-purple-200 uppercase font-mono">
-              MITOCHONDRIAL ADAPTATION PROXY: 98 — MODELLED
+              MITOCHONDRIAL ADAPTATION PROXY (MODELLED): 98
             </h4>
             <span className="px-2 py-0.5 rounded text-[9px] font-extrabold uppercase bg-purple-500/20 text-purple-300 border border-purple-400/30">
               Non-Invasive Physiological Modeling
@@ -1105,19 +1105,22 @@ export default function RunImprovementsTable() {
 
             <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 space-y-1.5">
               <div className="flex items-center justify-between">
-                <span className="font-bold text-white">Mitochondrial Adaptation Proxy</span>
+                <span className="font-bold text-white">Mitochondrial Adaptation Proxy (Modelled)</span>
                 <MetabolicTierBadge tier="modeled" size="xs" />
               </div>
               <p className="text-stone-300 text-[11px] leading-relaxed">
                 <strong>Composite Proxy Index (0–100).</strong> Weighted model integrating normalized component scores: 40% HR-drift resistance, 35% Zone 2 corridor adherence, and 25% pace-to-heart-rate efficiency.
               </p>
               <div className="text-[10px] text-stone-300 bg-black/25 p-2 rounded-lg font-mono space-y-0.5 mt-1 border border-white/10">
-                <div className="text-emerald-300 font-bold mb-0.5">Component Normalization Formulas (Sep 25):</div>
+                <div className="text-emerald-300 font-bold mb-0.5">Component Normalization Formulas:</div>
                 <div>• HR-Drift Score: min(100, round(105 - (Drift% × 2))) [3.6% drift → 98 / 100]</div>
                 <div>• Corridor Adherence: min(100, round((Corridor Duration % / 90) × 100)) [88% in corridor → 98 / 100]</div>
                 <div>• Efficiency Score: min(100, round((Distance/Beat ÷ 0.720 m/beat) × 90)) [0.780 m/beat → 98 / 100]</div>
                 <div className="text-white font-bold pt-0.5 border-t border-white/10">Composite: (0.40 × 98) + (0.35 × 98) + (0.25 × 98) = 98.0 → 98 / 100</div>
               </div>
+              <p className="text-[10px] text-stone-400 italic pt-1 leading-normal font-sans">
+                Reference values and weighting coefficients are model-defined parameters for longitudinal tracking; they are not universal physiological thresholds. Applied consistently across all 13 sessions.
+              </p>
             </div>
 
           </div>
