@@ -624,7 +624,7 @@ export default function RunImprovementsTable() {
               <Activity className="w-4 h-4 text-amber-500" />
             </div>
             <div className="text-2xl sm:text-3xl font-black text-stone-900 font-mono">
-              &lt; {latestRun.hrDriftPercent || 3.6}% <span className="text-xs font-sans font-bold text-emerald-600">Optimal (&lt;5%)</span>
+              &lt; {latestRun.hrDriftPercent || 3.6}% <span className="text-xs font-sans font-bold text-emerald-600">Low Drift (&lt;5%)</span>
             </div>
             <p className="text-[11px] text-emerald-700 font-semibold flex items-center gap-1">
               <CheckCircle2 className="w-3.5 h-3.5" /> Minimal cardiac drift across 73 min
@@ -819,7 +819,7 @@ export default function RunImprovementsTable() {
               <span>Longitudinal Workout Log ({runs.length} Workouts)</span>
             </h3>
             <p className="text-xs text-stone-500 font-medium">
-              Every workout evaluated chronologically. Shows the primary empirical evidence: running faster at lower heart rates over time.
+              Every workout evaluated chronologically. Shows longitudinal evidence of changes in pace and heart rate across workouts.
             </p>
           </div>
           
@@ -842,56 +842,56 @@ export default function RunImprovementsTable() {
           <table className="w-full text-left text-xs border-collapse">
             <thead>
               <tr className="border-b border-stone-200 text-stone-500 font-extrabold uppercase tracking-wider bg-stone-50/80">
-                <th className="py-3.5 px-4 rounded-l-xl">Date & Workout</th>
-                <th className="py-3.5 px-4">
+                <th className="py-3.5 px-4 rounded-l-xl whitespace-nowrap">Date & Workout</th>
+                <th className="py-3.5 px-4 whitespace-nowrap">
                   <span className="flex items-center gap-1">
                     <span>Distance</span>
-                    <MetabolicTierBadge tier="measured" size="xs" />
+                    <span className="select-none"><MetabolicTierBadge tier="measured" size="xs" /></span>
                   </span>
                 </th>
-                <th className="py-3.5 px-4">
+                <th className="py-3.5 px-4 whitespace-nowrap">
                   <span className="flex items-center gap-1">
                     <span>Pace</span>
-                    <MetabolicTierBadge tier="measured" size="xs" />
+                    <span className="select-none"><MetabolicTierBadge tier="measured" size="xs" /></span>
                   </span>
                 </th>
-                <th className="py-3.5 px-4">
+                <th className="py-3.5 px-4 whitespace-nowrap">
                   <span className="flex items-center gap-1">
                     <span>Avg HR</span>
-                    <MetabolicTierBadge tier="measured" size="xs" />
+                    <span className="select-none"><MetabolicTierBadge tier="measured" size="xs" /></span>
                   </span>
                 </th>
-                <th className="py-3.5 px-4 bg-emerald-50/50">
+                <th className="py-3.5 px-4 bg-emerald-50/50 whitespace-nowrap">
                   <span className="flex items-center gap-1 text-emerald-900">
                     <span>Dist / Beat</span>
-                    <MetabolicTierBadge tier="calculated" size="xs" />
+                    <span className="select-none"><MetabolicTierBadge tier="calculated" size="xs" /></span>
                   </span>
                 </th>
-                <th className="py-3.5 px-4">
+                <th className="py-3.5 px-4 whitespace-nowrap">
                   <span className="flex items-center gap-1">
                     <span>Cardiac Cost Index</span>
-                    <MetabolicTierBadge tier="calculated" size="xs" />
+                    <span className="select-none"><MetabolicTierBadge tier="calculated" size="xs" /></span>
                   </span>
                 </th>
-                <th className="py-3.5 px-4">
+                <th className="py-3.5 px-4 whitespace-nowrap">
                   <span className="flex items-center gap-1">
                     <span>Zone 2 %</span>
-                    <MetabolicTierBadge tier="measured" size="xs" />
+                    <span className="select-none"><MetabolicTierBadge tier="measured" size="xs" /></span>
                   </span>
                 </th>
-                <th className="py-3.5 px-4">
+                <th className="py-3.5 px-4 whitespace-nowrap">
                   <span className="flex items-center gap-1">
                     <span>Est. Fat Ox.</span>
-                    <MetabolicTierBadge tier="modeled" size="xs" />
+                    <span className="select-none"><MetabolicTierBadge tier="modeled" size="xs" /></span>
                   </span>
                 </th>
-                <th className="py-3.5 px-4">
+                <th className="py-3.5 px-4 whitespace-nowrap">
                   <span className="flex items-center gap-1">
                     <span>Mito Adapt.</span>
-                    <MetabolicTierBadge tier="modeled" size="xs" />
+                    <span className="select-none"><MetabolicTierBadge tier="modeled" size="xs" /></span>
                   </span>
                 </th>
-                <th className="py-3.5 px-4 rounded-r-xl">Physiological Insight</th>
+                <th className="py-3.5 px-4 rounded-r-xl whitespace-nowrap">Physiological Insight</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-stone-100 font-medium text-stone-800">
@@ -932,29 +932,29 @@ export default function RunImprovementsTable() {
                     </td>
 
                     {/* Distance */}
-                    <td className="py-3.5 px-4 font-bold text-stone-900 font-mono">
+                    <td className="py-3.5 px-4 font-bold text-stone-900 font-mono whitespace-nowrap">
                       {run.distanceKm} <span className="text-[11px] font-sans font-normal text-stone-500">km</span>
                     </td>
 
                     {/* Pace */}
-                    <td className="py-3.5 px-4 font-bold text-stone-900 font-mono">
+                    <td className="py-3.5 px-4 font-bold text-stone-900 font-mono whitespace-nowrap">
                       {run.paceStr}
                     </td>
 
                     {/* Avg Heart Rate */}
-                    <td className="py-3.5 px-4">
-                      <div className="flex items-center gap-1.5 font-mono">
+                    <td className="py-3.5 px-4 whitespace-nowrap">
+                      <div className="flex items-center gap-2 font-mono">
                         <span className="font-black text-stone-900 text-sm">{run.avgHr} BPM</span>
                         {isHrImproved && (
-                          <span className="px-1.5 py-0.5 rounded-md bg-emerald-100 text-emerald-800 text-[10px] font-extrabold flex items-center">
-                            <TrendingDown className="w-3 h-3" /> -{hrDiff}
+                          <span className="px-1.5 py-0.5 rounded-md bg-emerald-100 text-emerald-800 text-[10px] font-extrabold inline-flex items-center gap-0.5">
+                            <TrendingDown className="w-3 h-3 text-emerald-700" /> -{hrDiff} BPM
                           </span>
                         )}
                       </div>
                     </td>
 
                     {/* Distance per Heartbeat (m/beat) */}
-                    <td className="py-3.5 px-4 bg-emerald-50/40 font-mono">
+                    <td className="py-3.5 px-4 bg-emerald-50/40 font-mono whitespace-nowrap">
                       <div className="flex items-center gap-1.5">
                         <span className="font-black text-emerald-950 text-xs">
                           {runMetersPerBeat.toFixed(3)}
@@ -968,14 +968,13 @@ export default function RunImprovementsTable() {
                       </div>
                     </td>
 
-                    {/* Cardiac Cost (beats/km) */}
-                    <td className="py-3.5 px-4 font-mono">
-                      <div className="flex items-center gap-1.5">
-                        <span className="font-extrabold text-stone-900 text-xs">{currentCost}</span>
-                        <span className="text-[10px] text-stone-500">bts/km</span>
+                    {/* Cardiac Cost Index (beats/km) */}
+                    <td className="py-3.5 px-4 font-mono whitespace-nowrap">
+                      <div className="flex items-center gap-2">
+                        <span className="font-extrabold text-stone-900 text-xs">{currentCost.toLocaleString()} beats/km</span>
                         {isCostImproved && (
-                          <span className="px-1.5 py-0.5 rounded-md bg-emerald-100 text-emerald-800 text-[10px] font-extrabold flex items-center">
-                            <TrendingDown className="w-3 h-3" /> -{costDiff}
+                          <span className="px-1.5 py-0.5 rounded-md bg-emerald-100 text-emerald-800 text-[10px] font-extrabold inline-flex items-center gap-0.5">
+                            <TrendingDown className="w-3 h-3 text-emerald-700" /> -{costDiff} beats/km
                           </span>
                         )}
                       </div>
