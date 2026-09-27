@@ -660,7 +660,7 @@ export default function RunImprovementsTable() {
               <Sparkles className="w-3.5 h-3.5" /> 64.8 min strictly inside 105–117 BPM
             </p>
             <div className="text-[10px] text-stone-500 leading-tight pt-1 border-t border-stone-100">
-              Maintains planned aerobic-intensity corridor and supports the modeled estimate of predominantly fat-based energy contribution.
+              Maintains the planned aerobic-intensity corridor and contributes to the model-based estimate of substrate utilization.
             </div>
           </div>
 
@@ -826,10 +826,10 @@ export default function RunImprovementsTable() {
           <div>
             <h3 className="text-xl font-black text-stone-900 flex items-center gap-2">
               <Calendar className="w-5 h-5 text-emerald-700" />
-              <span>Longitudinal Exercise Dataset ({runs.length} Sessions)</span>
+              <span>Longitudinal Exercise Dataset (12 Runs + 1 Clinical Test)</span>
             </h3>
             <p className="text-xs text-stone-500 font-medium">
-              Every workout evaluated chronologically. Shows longitudinal evidence of changes in pace and heart rate across workouts.
+              Every run evaluated chronologically; the Sep 1 clinical test is retained as a laboratory reference point and is not directly comparable to outdoor training sessions.
             </p>
           </div>
           
