@@ -102,7 +102,7 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
                   What is "FATmax" and why is it needed?
                 </div>
                 <p className="text-stone-800 text-xs sm:text-sm leading-relaxed font-normal">
-                  <strong>FATmax means "Fat Maximum."</strong> It is the exact exercise speed where your body burns the highest amount of fat per minute.
+                  <strong>FATmax means "Fat Maximum."</strong> It is the exercise intensity zone where your body burns the highest absolute rate of fat per minute (grams/min).
                 </p>
                 <p className="text-stone-800 text-xs sm:text-sm leading-relaxed font-normal">
                   <strong>Why is it needed?</strong> Your body has two main fuel tanks: <em>Sugar (Carbs)</em> and <em>Fat</em>. Sugar runs out fast (making you tired and hungry). Fat is a huge, steady energy reservoir. In Zone 2, your body unlocks your fat tank for clean, lasting energy!
@@ -173,7 +173,7 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 text-stone-800 text-sm lg:text-base leading-relaxed font-normal">
               <div className="space-y-4">
                 <p>
-                  When exercise intensity is maintained at roughly 60% to 70% of maximal heart rate, human skeletal muscle experiences a sweet spot in substrate utilization known as <strong>FATmax</strong>. At this exact metabolic state, fatty acid oxidation peaks in absolute rate (grams per minute).
+                  When exercise intensity is maintained in the aerobic base zone (typically roughly 60% to 70% of maximal heart rate in recreational athletes, shifting higher with aerobic training), human skeletal muscle experiences a metabolic inflection point known as <strong>FATmax</strong>. In this physiological state, fatty acid oxidation peaks in absolute rate (grams per minute) before glycolytic flux takes over.
                 </p>
                 <p>
                   Unlike carbohydrates, which are stored in limited quantities (~400-500g of glycogen), fat stores are virtually infinite. In Zone 2, Free Fatty Acids cross the mitochondrial membrane through the <strong>CPT-1</strong> gatekeeper.

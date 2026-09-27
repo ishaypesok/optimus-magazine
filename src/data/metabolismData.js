@@ -114,19 +114,19 @@ export const ZONES = [
   {
     id: 2,
     name: "Zone 2",
-    label: "Aerobic Base (FATmax)",
+    label: "Aerobic Base (Reference FATmax Zone)",
     hrRange: "60-70% HRmax",
     color: "teal",
     badgeColor: "bg-teal-500/20 text-teal-300 border-teal-500/40",
     glowColor: "rgba(20, 184, 166, 0.5)",
     fatOxidation: 75,
     carbOxidation: 25,
-    fatOxidationRate: 0.65, // Maximum absolute fat burning (FATmax!)
+    fatOxidationRate: 0.65, // Modeled benchmark absolute fat burning rate
     lactate: 1.6, // Steady around ~1.5 - 2.0 mmol/L (below Aerobic Threshold / LT1)
     atpSpeed: 0.75,
     o2Demand: "Optimal Steady State (~1.8 - 2.4 L/min O2)",
     conversationalText: "🗣️ Comfortable conversational pace. You can talk in full sentences continuously.",
-    metabolicState: "🔥 Peak Fat Oxidation (FATmax)! Mitochondria are fully engaged in Beta-Oxidation & Krebs Cycle.",
+    metabolicState: "🔥 Peak Fat Oxidation Zone (FATmax). Mitochondria are fully engaged in Beta-Oxidation & Krebs Cycle without glycolytic suppression.",
     pyruvateFate: "Pyruvate is fully shuttled into mitochondria via PDH. Zero excess lactate spillover.",
     lactateStatus: "Optimal clearance. Type I (slow-twitch) fibers consume any stray lactate as fuel!"
   },
@@ -599,7 +599,7 @@ export const LACTATE_MASTERCLASS_DATA = {
 export const LAB_LACTATE_TEST_DATA = {
   overview: {
     title: "Laboratory Blood Lactate Testing (Graded Exercise Test - GXT)",
-    subtitle: "The Gold Standard for pinpointing your exact Zone 2 ceiling (LT1) and Threshold (LT2)",
+    subtitle: "The Gold Standard for pinpointing your empirical Zone 2 ceiling (LT1) and Threshold (LT2)",
     description: "In sports science laboratories, athletes undergo a treadmill or bicycle ergometer test with incremental speed/wattage increases every 3 to 4 minutes. At the end of each stage, a technician pricks the athlete's earlobe or fingertip to measure blood lactate concentration in millimoles per liter (mmol/L).",
     equipment: ["Portable/Benchtop Lactate Analyzer (e.g., Lactate Scout / Biosen)", "Capillary Micro-Lancet (Finger-Prick)", "Calibrated Treadmill or Ergometer", "Heart Rate Chest Strap / VO2 Gas Analyzer Mask"]
   },
@@ -617,7 +617,7 @@ export const LAB_LACTATE_TEST_DATA = {
       range: "1.5 - 2.0 mmol/L",
       color: "emerald",
       badge: "🎯 ZONE 2 UPPER CEILING",
-      desc: "The exact point where blood lactate first rises +0.4-1.0 mmol/L above baseline. Marks FATmax oxidation peak and upper boundary of Zone 2!"
+      desc: "The clinical inflection point where blood lactate first rises +0.4-1.0 mmol/L above baseline. Demarcates the aerobic threshold (LT1) and upper boundary of Zone 2."
     },
     {
       code: "LT2",
@@ -631,7 +631,7 @@ export const LAB_LACTATE_TEST_DATA = {
   stages: [
     { stage: 1, speedKmh: 6.0, paceMinKm: "10:00", hrBpm: 102, lactateMmol: 1.1, zone: 1, status: "Resting Baseline", note: "Light walking. Aerobic metabolism operating easily." },
     { stage: 2, speedKmh: 7.5, paceMinKm: "8:00", hrBpm: 116, lactateMmol: 1.3, zone: 1, status: "Easy Active Warmup", note: "Lactate remains near baseline. Fat oxidation starting to ramp up." },
-    { stage: 3, speedKmh: 9.0, paceMinKm: "6:40", hrBpm: 132, lactateMmol: 1.7, zone: 2, isLT1: true, status: "🎯 LT1 Threshold (Zone 2 Sweet Spot)", note: "FIRST RISE! Blood lactate increases +0.5 mmol/L to 1.7 mmol/L. Exact Zone 2 FATmax ceiling for Ishai!" },
+    { stage: 3, speedKmh: 9.0, paceMinKm: "6:40", hrBpm: 132, lactateMmol: 1.7, zone: 2, isLT1: true, status: "🎯 LT1 Threshold (Zone 2 Sweet Spot)", note: "FIRST RISE! Blood lactate increases +0.5 mmol/L to 1.7 mmol/L. Clinical Zone 2 LT1 ceiling for Ishai!" },
     { stage: 4, speedKmh: 10.5, paceMinKm: "5:42", hrBpm: 148, lactateMmol: 2.6, zone: 3, status: "Zone 3 Aerobic Tempo", note: "Glycolysis increasing. MCT-1 transporters operating near peak capacity." },
     { stage: 5, speedKmh: 12.0, paceMinKm: "5:00", hrBpm: 164, lactateMmol: 4.3, zone: 4, isLT2: true, status: "⚠️ LT2 Threshold (MLSS / Zone 4)", note: "EXPONENTIAL RISE! Lactate exceeds 4.0 mmol/L. Pyruvate outpaces mitochondrial intake." },
     { stage: 6, speedKmh: 13.5, paceMinKm: "4:26", hrBpm: 182, lactateMmol: 9.2, zone: 5, status: "Zone 5 VO2max Sprint", note: "Severe metabolic acidosis (pH < 7.1). Test terminated due to muscular exhaustion." }

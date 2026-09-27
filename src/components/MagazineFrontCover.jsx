@@ -55,7 +55,7 @@ export default function MagazineFrontCover() {
             FATmax Science & Bioenergetics
           </h3>
           <p className="text-xs text-stone-400 leading-relaxed">
-            Unlocking the exact exercise speed where fat oxidation peaks and blood lactate remains at steady state.
+            Targeting the aerobic intensity where fat oxidation peaks (FATmax) and blood lactate remains in steady state.
           </p>
         </div>
 

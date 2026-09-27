@@ -407,7 +407,7 @@ export default function RunImprovementsTable() {
               Run Progress & Adaptation Matrix
             </h1>
             <p className="text-stone-300 text-xs sm:text-sm font-medium max-w-2xl leading-relaxed">
-              Evaluating true physiological adaptations across continuous workouts. Solves the central aerobic question: 
+              Tracking physiological adaptation patterns across continuous workouts. Solves the central aerobic question: 
               <span className="text-emerald-300 font-bold"> Are you running faster at the same heart rate, or maintaining identical pace with lower cardiac strain?</span>
             </p>
           </div>
@@ -447,7 +447,7 @@ export default function RunImprovementsTable() {
             </h2>
             <p className="text-stone-300 text-xs sm:text-sm leading-relaxed font-normal">
               Rather than assuming raw heart rate indicates fitness, this calculated metric normalizes your ground speed by myocardial pulse:
-              <strong className="text-white"> 6.49 km at 113 BPM vs. 6.29 km at 118 BPM</strong> (faster velocity at lower cardiac cost).
+              <strong className="text-white"> 6.49 km at 113 BPM vs. 6.29 km at 118 BPM</strong> (a faster pace was achieved with a lower average heart rate, resulting in more distance covered per heartbeat).
             </p>
           </div>
 
@@ -476,7 +476,7 @@ export default function RunImprovementsTable() {
                 +{metersPerBeatBaselineDeltaPercent}%
               </div>
               <div className="text-[10px] text-stone-300">
-                0.729 $\rightarrow$ 0.780 m/beat
+                Distance-per-Heartbeat (0.729 → 0.780 m/beat)
               </div>
             </div>
           </div>
@@ -521,7 +521,7 @@ export default function RunImprovementsTable() {
               Distance/Beat • Cardiac Cost • HR Drift
             </div>
             <p className="text-[11px] text-stone-600 leading-snug">
-              Pure mathematical formulas combining measured variables (e.g. Pace × HR = Beats/km, Speed ÷ HR = m/beat).
+              Pure mathematical formulas combining measured variables (e.g. Beats/km = HR [beats/min] × Pace [min/km], Speed ÷ HR = m/beat).
             </p>
           </div>
 
@@ -535,7 +535,7 @@ export default function RunImprovementsTable() {
               Estimated Fat Oxidation • Mito Adapt.
             </div>
             <p className="text-[11px] text-stone-600 leading-snug">
-              Physiological simulations based on Wingate laboratory lactate tests. Explicitly not direct cellular biopsies.
+              Model-based physiological estimates informed by laboratory and longitudinal exercise data. Explicitly not direct cellular biopsies.
             </p>
           </div>
 
@@ -549,7 +549,7 @@ export default function RunImprovementsTable() {
             <Gauge className="w-4 h-4 text-emerald-700" />
             <span>The 6 Pillar Adaptation Matrix</span>
           </h3>
-          <span className="text-xs text-stone-500 font-medium">Standardized against Wingate LTHR (135 BPM)</span>
+          <span className="text-xs text-stone-500 font-medium">Standardized against laboratory Wingate LTHR (135 BPM)</span>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -567,10 +567,10 @@ export default function RunImprovementsTable() {
               {latestMetersPerBeat.toFixed(3)} <span className="text-xs font-sans font-bold text-stone-500">m / beat</span>
             </div>
             <p className="text-[11px] text-emerald-700 font-semibold flex items-center gap-1">
-              <ArrowUpRight className="w-3.5 h-3.5" /> +8.3% vs Sep 22 (0.720 $\rightarrow$ 0.780 m/beat)
+              <ArrowUpRight className="w-3.5 h-3.5" /> +8.3% vs Sep 22 (0.720 → 0.780 m/beat)
             </p>
             <div className="text-[10px] text-stone-500 leading-tight pt-1 border-t border-stone-100">
-              Aerobic Efficiency Index = Pace/HR-derived metric. Reflects stroke volume capacity.
+              Aerobic Efficiency Index = Pace/HR-derived metric. May reflect improved cardiovascular efficiency when conditions are comparable; indicates more distance covered per heartbeat.
             </div>
           </div>
 
@@ -584,13 +584,13 @@ export default function RunImprovementsTable() {
               <Heart className="w-4 h-4 text-rose-500" />
             </div>
             <div className="text-2xl sm:text-3xl font-black text-stone-900 font-mono">
-              {latestCardiacCost} <span className="text-xs font-sans font-bold text-stone-500">beats / km</span>
+              {latestCardiacCost.toLocaleString()} <span className="text-xs font-sans font-bold text-stone-500">beats / km</span>
             </div>
             <p className="text-[11px] text-emerald-700 font-semibold flex items-center gap-1">
               <TrendingDown className="w-3.5 h-3.5" /> -{Math.abs(cardiacCostDelta)} beats/km vs previous run
             </p>
             <div className="text-[10px] text-stone-500 leading-tight pt-1 border-t border-stone-100">
-              Pace (min/km) × HR. Pure physical units: heartbeats required to travel 1,000 meters.
+              Beats/km = HR (beats/min) × Pace (min/km). Pure physical units: heartbeats required to travel 1,000 meters.
             </div>
           </div>
 
@@ -607,10 +607,10 @@ export default function RunImprovementsTable() {
               11:21 <span className="text-xs font-sans font-bold text-stone-500">min/km @ 113 BPM</span>
             </div>
             <p className="text-[11px] text-emerald-700 font-semibold flex items-center gap-1">
-              <CheckCircle2 className="w-3.5 h-3.5" /> 22 BPM below Wingate LTHR (135)
+              <CheckCircle2 className="w-3.5 h-3.5" /> 22 BPM below laboratory LTHR (135 BPM)
             </p>
             <div className="text-[10px] text-stone-500 leading-tight pt-1 border-t border-stone-100">
-              Direct speed achieved inside certified base ceiling (105–117 BPM).
+              Direct measured pace achieved within target aerobic base corridor (105–117 BPM) based on empirical Pace & HR inputs.
             </div>
           </div>
 
@@ -627,7 +627,7 @@ export default function RunImprovementsTable() {
               &lt; {latestRun.hrDriftPercent || 3.6}% <span className="text-xs font-sans font-bold text-emerald-600">Optimal (&lt;5%)</span>
             </div>
             <p className="text-[11px] text-emerald-700 font-semibold flex items-center gap-1">
-              <CheckCircle2 className="w-3.5 h-3.5" /> Zero cardiac fatigue drift across 73 min
+              <CheckCircle2 className="w-3.5 h-3.5" /> Minimal cardiac drift across 73 min
             </p>
             <div className="text-[10px] text-stone-500 leading-tight pt-1 border-t border-stone-100">
               Drift between 1st & 2nd half. Values &lt;5% indicate deep aerobic durability.
@@ -650,7 +650,7 @@ export default function RunImprovementsTable() {
               <Sparkles className="w-3.5 h-3.5" /> 64.8 min strictly inside 105–117 BPM
             </p>
             <div className="text-[10px] text-stone-500 leading-tight pt-1 border-t border-stone-100">
-              Prevents glycogen depletion and keeps fat oxidation at maximum capacity.
+              Maintains planned aerobic-intensity corridor and supports the modeled estimate of predominantly fat-based energy contribution.
             </div>
           </div>
 
@@ -687,7 +687,7 @@ export default function RunImprovementsTable() {
                 Acute Comparison ({getShortDate(latestRun.date)} vs. {getShortDate(previousRun.date)})
               </h3>
               <p className="text-xs text-emerald-800">
-                * Note: A 3-day window demonstrates acute efficiency; chronic adaptation requires 10–20+ continuous runs.
+                * Note: A 3-day window demonstrates acute performance differences; evidence of chronic adaptation requires a substantially longer longitudinal dataset.
               </p>
             </div>
           </div>
@@ -698,88 +698,112 @@ export default function RunImprovementsTable() {
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 pt-1">
           
-          <div className="p-3.5 rounded-xl bg-white border border-emerald-200 space-y-1">
+          {/* Card 1: Avg Heart Rate */}
+          <div className="p-3.5 rounded-xl bg-white border border-emerald-200 flex flex-col justify-between space-y-1.5 shadow-2xs">
             <div className="text-[11px] text-stone-500 font-bold flex items-center justify-between">
               <span>Avg Heart Rate</span>
               <MetabolicTierBadge tier="measured" size="xs" />
             </div>
-            <div className="text-base sm:text-lg font-black text-stone-900 flex items-center gap-1 font-mono">
-              {latestRun.avgHr} BPM
-              <span className="text-[10px] font-bold text-emerald-700 bg-emerald-100 px-1 py-0.5 rounded flex items-center">
-                <ArrowDownRight className="w-3 h-3" /> {Math.abs(hrDelta)}
-              </span>
+            <div className="space-y-1">
+              <div className="text-base sm:text-lg font-black text-stone-900 font-mono">
+                {latestRun.avgHr} <span className="text-xs font-sans font-semibold text-stone-500">BPM</span>
+              </div>
+              <div className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-800 bg-emerald-100/90 px-1.5 py-0.5 rounded">
+                <ArrowDownRight className="w-3 h-3 text-emerald-700" />
+                <span>{hrDelta > 0 ? `+${hrDelta}` : hrDelta} BPM</span>
+              </div>
             </div>
-            <div className="text-[10px] text-stone-500">Lower cardiac strain</div>
+            <div className="text-[10px] text-stone-500 pt-0.5">Lower cardiac strain</div>
           </div>
 
-          <div className="p-3.5 rounded-xl bg-white border border-emerald-200 space-y-1">
+          {/* Card 2: Pace */}
+          <div className="p-3.5 rounded-xl bg-white border border-emerald-200 flex flex-col justify-between space-y-1.5 shadow-2xs">
             <div className="text-[11px] text-stone-500 font-bold flex items-center justify-between">
               <span>Pace</span>
               <MetabolicTierBadge tier="measured" size="xs" />
             </div>
-            <div className="text-base sm:text-lg font-black text-stone-900 flex items-center gap-1 font-mono">
-              {latestRun.paceStr.split(' ')[0]}
-              <span className="text-[10px] font-bold text-emerald-700 bg-emerald-100 px-1 py-0.5 rounded flex items-center">
-                <ArrowUpRight className="w-3 h-3" /> +25s faster
-              </span>
+            <div className="space-y-1">
+              <div className="text-base sm:text-lg font-black text-stone-900 font-mono">
+                {latestRun.paceStr.split(' ')[0]} <span className="text-xs font-sans font-semibold text-stone-500">min/km</span>
+              </div>
+              <div className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-800 bg-emerald-100/90 px-1.5 py-0.5 rounded">
+                <ArrowDownRight className="w-3 h-3 text-emerald-700" />
+                <span>-25 sec/km (faster)</span>
+              </div>
             </div>
-            <div className="text-[10px] text-stone-500">Speed acceleration</div>
+            <div className="text-[10px] text-stone-500 pt-0.5">Speed acceleration</div>
           </div>
 
-          <div className="p-3.5 rounded-xl bg-white border border-emerald-200 space-y-1">
+          {/* Card 3: Dist / Beat */}
+          <div className="p-3.5 rounded-xl bg-white border border-emerald-200 flex flex-col justify-between space-y-1.5 shadow-2xs">
             <div className="text-[11px] text-stone-500 font-bold flex items-center justify-between">
               <span>Dist / Beat</span>
               <MetabolicTierBadge tier="calculated" size="xs" />
             </div>
-            <div className="text-base sm:text-lg font-black text-stone-900 flex items-center gap-1 font-mono">
-              {latestMetersPerBeat.toFixed(2)} m
-              <span className="text-[10px] font-bold text-emerald-700 bg-emerald-100 px-1 py-0.5 rounded flex items-center">
-                +{metersPerBeatDelta.toFixed(2)}
-              </span>
+            <div className="space-y-1">
+              <div className="text-base sm:text-lg font-black text-stone-900 font-mono">
+                {latestMetersPerBeat.toFixed(3)} <span className="text-xs font-sans font-semibold text-stone-500">m</span>
+              </div>
+              <div className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-800 bg-emerald-100/90 px-1.5 py-0.5 rounded">
+                <ArrowUpRight className="w-3 h-3 text-emerald-700" />
+                <span>+{metersPerBeatDelta.toFixed(3)} m/beat</span>
+              </div>
             </div>
-            <div className="text-[10px] text-stone-500">Meters per heartbeat</div>
+            <div className="text-[10px] text-stone-500 pt-0.5">Meters per heartbeat</div>
           </div>
 
-          <div className="p-3.5 rounded-xl bg-white border border-emerald-200 space-y-1">
+          {/* Card 4: Cardiac Cost */}
+          <div className="p-3.5 rounded-xl bg-white border border-emerald-200 flex flex-col justify-between space-y-1.5 shadow-2xs">
             <div className="text-[11px] text-stone-500 font-bold flex items-center justify-between">
               <span>Cardiac Cost</span>
               <MetabolicTierBadge tier="calculated" size="xs" />
             </div>
-            <div className="text-base sm:text-lg font-black text-stone-900 flex items-center gap-1 font-mono">
-              {latestCardiacCost}
-              <span className="text-[10px] font-bold text-emerald-700 bg-emerald-100 px-1 py-0.5 rounded flex items-center">
-                <ArrowDownRight className="w-3 h-3" /> {Math.abs(cardiacCostDelta)}
-              </span>
+            <div className="space-y-1">
+              <div className="text-base sm:text-lg font-black text-stone-900 font-mono">
+                {latestCardiacCost.toLocaleString()} <span className="text-xs font-sans font-semibold text-stone-500">beats/km</span>
+              </div>
+              <div className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-800 bg-emerald-100/90 px-1.5 py-0.5 rounded">
+                <ArrowDownRight className="w-3 h-3 text-emerald-700" />
+                <span>{cardiacCostDelta > 0 ? `+${cardiacCostDelta}` : cardiacCostDelta} beats/km</span>
+              </div>
             </div>
-            <div className="text-[10px] text-stone-500">Beats per km</div>
+            <div className="text-[10px] text-stone-500 pt-0.5">Fewer beats per km</div>
           </div>
 
-          <div className="p-3.5 rounded-xl bg-white border border-emerald-200 space-y-1">
+          {/* Card 5: Zone 2 Score */}
+          <div className="p-3.5 rounded-xl bg-white border border-emerald-200 flex flex-col justify-between space-y-1.5 shadow-2xs">
             <div className="text-[11px] text-stone-500 font-bold flex items-center justify-between">
               <span>Zone 2 Score</span>
               <MetabolicTierBadge tier="measured" size="xs" />
             </div>
-            <div className="text-base sm:text-lg font-black text-stone-900 flex items-center gap-1 font-mono">
-              {latestRun.zone2Percent}%
-              <span className="text-[10px] font-bold text-emerald-700 bg-emerald-100 px-1 py-0.5 rounded flex items-center">
-                +{zone2Delta}%
-              </span>
+            <div className="space-y-1">
+              <div className="text-base sm:text-lg font-black text-stone-900 font-mono">
+                {latestRun.zone2Percent}%
+              </div>
+              <div className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-800 bg-emerald-100/90 px-1.5 py-0.5 rounded">
+                <ArrowUpRight className="w-3 h-3 text-emerald-700" />
+                <span>+{zone2Delta}% pts</span>
+              </div>
             </div>
-            <div className="text-[10px] text-stone-500">In 105–117 corridor</div>
+            <div className="text-[10px] text-stone-500 pt-0.5">In 105–117 corridor</div>
           </div>
 
-          <div className="p-3.5 rounded-xl bg-white border border-emerald-200 space-y-1">
+          {/* Card 6: Mito Adapt. */}
+          <div className="p-3.5 rounded-xl bg-white border border-emerald-200 flex flex-col justify-between space-y-1.5 shadow-2xs">
             <div className="text-[11px] text-stone-500 font-bold flex items-center justify-between">
               <span>Mito Adapt.</span>
               <MetabolicTierBadge tier="modeled" size="xs" />
             </div>
-            <div className="text-base sm:text-lg font-black text-stone-900 flex items-center gap-1 font-mono">
-              {latestRun.mitoScore}
-              <span className="text-[10px] font-bold text-emerald-700 bg-emerald-100 px-1 py-0.5 rounded flex items-center">
-                +{mitoDelta} pts
-              </span>
+            <div className="space-y-1">
+              <div className="text-base sm:text-lg font-black text-stone-900 font-mono">
+                {latestRun.mitoScore}
+              </div>
+              <div className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-800 bg-emerald-100/90 px-1.5 py-0.5 rounded">
+                <ArrowUpRight className="w-3 h-3 text-emerald-700" />
+                <span>+{mitoDelta} pts</span>
+              </div>
             </div>
-            <div className="text-[10px] text-stone-500">Model-derived index</div>
+            <div className="text-[10px] text-stone-500 pt-0.5">Model-derived index</div>
           </div>
 
         </div>

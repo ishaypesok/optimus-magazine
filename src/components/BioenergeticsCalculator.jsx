@@ -4,6 +4,7 @@ import {
   BookOpen, Heart, Clock, User, CheckCircle2, BarChart2, Info, 
   TrendingUp, ArrowRight, ShieldCheck, RefreshCw
 } from 'lucide-react';
+import MetabolicTierBadge from './MetabolicTierBadge';
 
 export default function BioenergeticsCalculator() {
   // Preset 1: Ishai's Actual Sep 25, 2026 Run (Latest)
@@ -208,13 +209,14 @@ export default function BioenergeticsCalculator() {
           <span className="px-3 py-1 rounded-full bg-teal-50 text-teal-800 font-extrabold text-xs border border-teal-200">
             Frayn Stoichiometry + ATP Flux
           </span>
+          <MetabolicTierBadge tier="modeled" size="sm" />
         </div>
 
         <h2 className="text-3xl lg:text-4xl font-extrabold text-stone-900 leading-tight tracking-tight">
           Personal Substrate Oxidation & Cellular ATP Calculator
         </h2>
         <p className="text-stone-600 text-xs sm:text-sm leading-relaxed max-w-4xl font-normal">
-          This interactive model translates raw Apple Watch telemetry (heart rate, duration, body mass, and VO₂max) into real-time rates of <strong>Fat combustion</strong>, <strong>Carbohydrate combustion</strong>, and mitochondrial <strong>ATP synthesis</strong>.
+          This digital twin translates wearable telemetry into a physiological simulation of <strong>Fat combustion</strong>, <strong>Carbohydrate combustion</strong>, and mitochondrial <strong>ATP synthesis</strong>.
         </p>
       </div>
 
@@ -392,8 +394,11 @@ export default function BioenergeticsCalculator() {
 
           {/* Slider 1: Body Weight */}
           <div className="space-y-1.5">
-            <div className="flex justify-between text-xs font-bold text-stone-800">
-              <span>Body Mass (kg)</span>
+            <div className="flex justify-between items-center text-xs font-bold text-stone-800">
+              <span className="flex items-center gap-1.5">
+                Body Mass (kg)
+                <MetabolicTierBadge tier="measured" size="xs" />
+              </span>
               <span className="font-mono text-emerald-800 font-extrabold">{weight} kg</span>
             </div>
             <input 
@@ -411,8 +416,11 @@ export default function BioenergeticsCalculator() {
 
           {/* Slider 2: Resting Heart Rate */}
           <div className="space-y-1.5">
-            <div className="flex justify-between text-xs font-bold text-stone-800">
-              <span>Resting Heart Rate (HR rest)</span>
+            <div className="flex justify-between items-center text-xs font-bold text-stone-800">
+              <span className="flex items-center gap-1.5">
+                Resting Heart Rate (HR rest)
+                <MetabolicTierBadge tier="measured" size="xs" />
+              </span>
               <span className="font-mono text-emerald-800 font-extrabold">{restingHr} BPM</span>
             </div>
             <input 
@@ -430,8 +438,11 @@ export default function BioenergeticsCalculator() {
 
           {/* Slider 3: VO2max */}
           <div className="space-y-1.5">
-            <div className="flex justify-between text-xs font-bold text-stone-800">
-              <span>Cardiorespiratory Fitness (VO₂max)</span>
+            <div className="flex justify-between items-center text-xs font-bold text-stone-800">
+              <span className="flex items-center gap-1.5">
+                Cardiorespiratory Fitness (VO₂max)
+                <MetabolicTierBadge tier="calculated" size="xs" />
+              </span>
               <span className="font-mono text-emerald-800 font-extrabold">{vo2max} mL/kg/min</span>
             </div>
             <input 
@@ -449,8 +460,11 @@ export default function BioenergeticsCalculator() {
 
           {/* Slider 4: Workout Heart Rate */}
           <div className="space-y-1.5">
-            <div className="flex justify-between text-xs font-bold text-stone-800">
-              <span>Workout Average Heart Rate (HR avg)</span>
+            <div className="flex justify-between items-center text-xs font-bold text-stone-800">
+              <span className="flex items-center gap-1.5">
+                Workout Heart Rate (HR avg)
+                <MetabolicTierBadge tier="measured" size="xs" />
+              </span>
               <span className="font-mono text-emerald-800 font-extrabold">{workoutHr} BPM</span>
             </div>
             <input 
@@ -468,8 +482,11 @@ export default function BioenergeticsCalculator() {
 
           {/* Slider 5: Workout Duration */}
           <div className="space-y-1.5">
-            <div className="flex justify-between text-xs font-bold text-stone-800">
-              <span>Workout Duration (mins)</span>
+            <div className="flex justify-between items-center text-xs font-bold text-stone-800">
+              <span className="flex items-center gap-1.5">
+                Workout Duration (mins)
+                <MetabolicTierBadge tier="measured" size="xs" />
+              </span>
               <span className="font-mono text-emerald-800 font-extrabold">{duration} mins</span>
             </div>
             <input 
@@ -488,11 +505,17 @@ export default function BioenergeticsCalculator() {
           {/* Calculated Metabolic Intensity Callout */}
           <div className="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 space-y-1">
             <div className="flex justify-between items-center text-xs font-bold text-emerald-950">
-              <span>% Heart Rate Reserve (%HRR):</span>
+              <span className="flex items-center gap-1.5">
+                % Heart Rate Reserve (%HRR):
+                <MetabolicTierBadge tier="calculated" size="xs" />
+              </span>
               <span className="font-mono text-emerald-800 font-black">{(hrr * 100).toFixed(1)}%</span>
             </div>
             <div className="flex justify-between items-center text-xs font-bold text-emerald-950">
-              <span>Estimated RER (VCO₂ / VO₂):</span>
+              <span className="flex items-center gap-1.5">
+                Modeled RER (VCO₂ / VO₂):
+                <MetabolicTierBadge tier="modeled" size="xs" />
+              </span>
               <span className="font-mono text-emerald-800 font-black">{rer.toFixed(3)}</span>
             </div>
             <div className="text-[11px] text-stone-600 pt-1 border-t border-emerald-200/60 font-medium">
@@ -518,9 +541,12 @@ export default function BioenergeticsCalculator() {
                 <TrendingUp className="w-4 h-4 text-emerald-700" />
                 <span>1. Oxygen Consumption & Caloric Expenditure</span>
               </h3>
-              <span className="text-[10px] font-mono uppercase bg-emerald-100 text-emerald-900 px-2 py-0.5 rounded font-extrabold">
-                Fick Principle
-              </span>
+              <div className="flex items-center gap-2">
+                <MetabolicTierBadge tier="calculated" size="xs" />
+                <span className="text-[10px] font-mono uppercase bg-emerald-100 text-emerald-900 px-2 py-0.5 rounded font-extrabold">
+                  Fick Principle
+                </span>
+              </div>
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -555,11 +581,14 @@ export default function BioenergeticsCalculator() {
             <div className="flex items-center justify-between border-b border-stone-100 pb-3">
               <h3 className="font-bold text-sm text-stone-900 flex items-center gap-2">
                 <Flame className="w-4 h-4 text-emerald-700" />
-                <span>2. Substrate Combustion Breakdown (Frayn's Formula)</span>
+                <span>2. Substrate Combustion Breakdown (Frayn's Model)</span>
               </h3>
-              <span className="text-[10px] font-mono uppercase bg-teal-100 text-teal-900 px-2 py-0.5 rounded font-extrabold">
-                Fat vs Carbs
-              </span>
+              <div className="flex items-center gap-2">
+                <MetabolicTierBadge tier="modeled" size="xs" />
+                <span className="text-[10px] font-mono uppercase bg-teal-100 text-teal-900 px-2 py-0.5 rounded font-extrabold">
+                  Fat vs Carbs
+                </span>
+              </div>
             </div>
 
             {/* Visual Energy Split Bar */}
@@ -623,9 +652,12 @@ export default function BioenergeticsCalculator() {
                 <Zap className="w-4 h-4 text-emerald-400" />
                 <span>3. Cellular ATP Turnover & Resynthesis Yield</span>
               </h3>
-              <span className="text-[10px] font-mono uppercase bg-emerald-900/80 text-emerald-200 px-2 py-0.5 rounded font-extrabold border border-emerald-700">
-                Avogadro Bioenergetics
-              </span>
+              <div className="flex items-center gap-2">
+                <MetabolicTierBadge tier="modeled" size="xs" />
+                <span className="text-[10px] font-mono uppercase bg-emerald-900/80 text-emerald-200 px-2 py-0.5 rounded font-extrabold border border-emerald-700">
+                  Avogadro Bioenergetics
+                </span>
+              </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -756,13 +788,23 @@ export default function BioenergeticsCalculator() {
         </div>
 
         {/* Bottom Direct Answer Summary Banner */}
-        <div className="p-4 rounded-xl bg-teal-900 text-white text-xs leading-relaxed space-y-1 shadow-xs">
-          <div className="font-extrabold text-teal-200 text-sm flex items-center gap-1.5">
-            <span>📌 Summary: Why This Calculation Is Scientifically Exact</span>
+        <div className="p-4 rounded-xl bg-teal-950 text-white text-xs leading-relaxed space-y-2 shadow-xs border border-teal-800">
+          <div className="font-extrabold text-teal-200 text-sm flex flex-wrap items-center justify-between gap-2">
+            <span className="flex items-center gap-1.5">
+              <span>📌 Summary: Stoichiometric & Physiological Simulation Framework</span>
+            </span>
+            <div className="flex items-center gap-2">
+              <MetabolicTierBadge tier="measured" size="xs" />
+              <MetabolicTierBadge tier="calculated" size="xs" />
+              <MetabolicTierBadge tier="modeled" size="xs" />
+            </div>
           </div>
           <p className="text-teal-100 font-normal">
-            Your results are calculated based on your <strong>actual heart rate ({workoutHr} BPM)</strong>, <strong>resting HR ({restingHr} BPM)</strong>, and <strong>VO₂max ({vo2max} mL/kg/min)</strong> mapped through <strong>Frayn's non-protein gas exchange stoichiometry</strong> and mitochondrial beta-oxidation ATP yields.
+            Your results represent a physiological bioenergetic simulation. The model is anchored in your <strong>empirically measured heart rate ({workoutHr} BPM)</strong>, <strong>resting HR ({restingHr} BPM)</strong>, and <strong>VO₂max ({vo2max} mL/kg/min)</strong>, mapped through <strong>Frayn's non-protein gas exchange equations</strong> and biochemical ATP yields (P/O stoichiometry).
           </p>
+          <div className="text-[11px] text-teal-300/90 pt-1 border-t border-teal-800/80 font-mono">
+            * Scientific Note: Wearable optical HR sensors provide biometric proxies; exact indirect calorimetry requires laboratory gas exchange analysis (VO₂/VCO₂).
+          </div>
         </div>
 
       </div>

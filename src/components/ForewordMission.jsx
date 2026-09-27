@@ -3,6 +3,7 @@ import {
   BookOpen, Sparkles, Compass, ShieldCheck, Flame, Zap, 
   Activity, ChevronRight, Award, Layers, Cpu, Heart, CheckCircle2, Target, Globe
 } from 'lucide-react';
+import { MetabolicTierLegend } from './MetabolicTierBadge';
 
 export default function ForewordMission({ setPage }) {
   return (
@@ -170,7 +171,7 @@ export default function ForewordMission({ setPage }) {
               <span>1. Digital Metabolic Twin</span>
             </div>
             <p className="text-xs text-stone-700 leading-relaxed">
-              Translates raw Apple Watch heart rate, duration, and VO₂max into exact Frayn substrate combustion grams (Fat vs Carbs) and ATP turnover rates.
+              Translates raw Apple Watch biometric telemetry into modeled Frayn substrate combustion (Fat vs Carbs) and cellular ATP turnover simulations.
             </p>
           </div>
 
@@ -207,6 +208,9 @@ export default function ForewordMission({ setPage }) {
         </div>
 
       </div>
+
+      {/* Scientific Transparency: 3-Tier Data Architecture */}
+      <MetabolicTierLegend />
 
       {/* Bottom CTA Banner */}
       <div className="p-6 rounded-2xl bg-gradient-to-r from-emerald-800 to-teal-900 text-white flex flex-wrap items-center justify-between gap-4 shadow-sm font-sans">

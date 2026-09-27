@@ -3,6 +3,7 @@ import {
   User, Activity, Heart, Flame, Zap, ShieldCheck, Award, 
   RotateCcw, Sliders, CheckCircle2, BookOpen, Clock, BatteryCharging, TrendingUp, Sparkles, Quote, Target, Radio, Headphones
 } from 'lucide-react';
+import MetabolicTierBadge from './MetabolicTierBadge';
 
 const DEFAULT_PROFILE = {
   name: 'Ishai Pesok',
@@ -242,7 +243,10 @@ export default function AthleteProfile() {
           </div>
 
           <div className="pt-2 flex items-center justify-between text-xs text-emerald-900 font-medium">
-            <span>Formula Calculated Zone 2 (Karvonen 60%-70% HRR): <strong>{calculatedZone2Low} – {calculatedZone2High} BPM</strong></span>
+            <span className="flex items-center gap-1.5">
+              <span>Formula Calculated Zone 2 (Karvonen 60%-70% HRR): <strong>{calculatedZone2Low} – {calculatedZone2High} BPM</strong></span>
+              <MetabolicTierBadge tier="calculated" size="xs" />
+            </span>
           </div>
         </div>
       )}
@@ -261,6 +265,7 @@ export default function AthleteProfile() {
                 <span className="px-2.5 py-0.5 rounded-full bg-emerald-400/20 text-emerald-300 text-[10px] font-black uppercase tracking-widest border border-emerald-400/40">
                   Wingate Institute Clinical Ergometry Test
                 </span>
+                <MetabolicTierBadge tier="measured" size="xs" />
                 <span className="text-xs text-amber-300 font-bold font-mono">
                   Report Date: Sep 1, 2026 (Corrected: Sep 2, 2026) • Physiologist: Ezekiel Frankel, Sc.M
                 </span>
@@ -498,7 +503,10 @@ export default function AthleteProfile() {
         
         <div className="magazine-card p-5 space-y-2 border border-emerald-200/80 bg-white">
           <div className="flex items-center justify-between text-emerald-800">
-            <span className="text-xs font-bold uppercase tracking-wider">Target HR Range</span>
+            <span className="text-xs font-bold uppercase tracking-wider flex items-center gap-1.5">
+              <span>Target HR Range</span>
+              <MetabolicTierBadge tier="measured" size="xs" />
+            </span>
             <Heart className="w-5 h-5 text-emerald-600 fill-emerald-100" />
           </div>
           <div className="text-2xl font-black text-stone-900">
@@ -511,7 +519,10 @@ export default function AthleteProfile() {
 
         <div className="magazine-card p-5 space-y-2 border border-amber-200/80 bg-white">
           <div className="flex items-center justify-between text-amber-800">
-            <span className="text-xs font-bold uppercase tracking-wider">FATmax Rate</span>
+            <span className="text-xs font-bold uppercase tracking-wider flex items-center gap-1.5">
+              <span>FATmax Rate</span>
+              <MetabolicTierBadge tier="modeled" size="xs" />
+            </span>
             <Flame className="w-5 h-5 text-amber-600 fill-amber-100" />
           </div>
           <div className="text-2xl font-black text-stone-900">
@@ -524,7 +535,10 @@ export default function AthleteProfile() {
 
         <div className="magazine-card p-5 space-y-2 border border-teal-200/80 bg-white">
           <div className="flex items-center justify-between text-teal-800">
-            <span className="text-xs font-bold uppercase tracking-wider">Weekly Target</span>
+            <span className="text-xs font-bold uppercase tracking-wider flex items-center gap-1.5">
+              <span>Weekly Target</span>
+              <MetabolicTierBadge tier="calculated" size="xs" />
+            </span>
             <Clock className="w-5 h-5 text-teal-600" />
           </div>
           <div className="text-2xl font-black text-stone-900">
@@ -537,7 +551,10 @@ export default function AthleteProfile() {
 
         <div className="magazine-card p-5 space-y-2 border border-emerald-200/80 bg-white">
           <div className="flex items-center justify-between text-emerald-800">
-            <span className="text-xs font-bold uppercase tracking-wider">Mito Biogenesis</span>
+            <span className="text-xs font-bold uppercase tracking-wider flex items-center gap-1.5">
+              <span>Mito Biogenesis</span>
+              <MetabolicTierBadge tier="modeled" size="xs" />
+            </span>
             <BatteryCharging className="w-5 h-5 text-emerald-600" />
           </div>
           <div className="text-2xl font-black text-emerald-700">

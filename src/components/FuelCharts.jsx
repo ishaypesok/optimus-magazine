@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ZONES } from '../data/metabolismData';
 import { AreaChart, Area, LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, Legend } from 'recharts';
 import { BarChart3, Flame, Droplet, Zap, Info, PieChart as PieIcon } from 'lucide-react';
+import MetabolicTierBadge from './MetabolicTierBadge';
 
 export default function FuelCharts({ currentZoneId }) {
   const [chartMode, setChartMode] = useState('rate'); // 'rate', 'lactate', 'percentage', 'consumption'
@@ -54,6 +55,7 @@ export default function FuelCharts({ currentZoneId }) {
           <div className="flex items-center gap-2">
             <BarChart3 className="w-5 h-5 text-emerald-700" />
             <h3 className="text-lg font-extrabold text-stone-900">Substrate & Fuel Consumption Charts</h3>
+            <MetabolicTierBadge tier="modeled" size="sm" />
           </div>
           <p className="text-xs text-stone-700 font-medium mt-0.5">
             Real-time visual curves and consumption mix for Fat vs Carbohydrate fuel sources.
@@ -150,7 +152,10 @@ export default function FuelCharts({ currentZoneId }) {
           <div className="space-y-3">
             <div className="flex items-center justify-between text-xs font-bold text-stone-800">
               <span>Substrate Contribution Percentage (%)</span>
-              <span className="text-emerald-800 font-extrabold">Zone 2 = 75% Fat / 25% Carbs</span>
+              <span className="text-emerald-800 font-extrabold flex items-center gap-1.5">
+                <span>Zone 2 Archetype: ~75% Fat / 25% Carbs</span>
+                <MetabolicTierBadge tier="modeled" size="xs" />
+              </span>
             </div>
 
             <div className="h-64 sm:h-72 w-full">
@@ -243,9 +248,14 @@ export default function FuelCharts({ currentZoneId }) {
       {/* Explanatory Footer */}
       <div className="p-4 rounded-xl bg-white border border-stone-200 text-xs text-stone-800 flex items-start gap-3">
         <Info className="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" />
-        <p className="leading-relaxed font-normal">
-          <strong>Chart Interpretation:</strong> Zone 2 (60-70% HRmax) maximizes total grams of fat oxidized per minute (~0.65 g/min). Beyond Zone 2, carbohydrate oxidation skyrockets while fat oxidation drops sharply as pyruvate dehydrogenase turns away fatty acids.
-        </p>
+        <div className="space-y-1 leading-relaxed font-normal">
+          <p>
+            <strong>Physiological Interpretation & Model Context:</strong> This simulation illustrates the classic metabolic crossover curve (Brooks & Mercier / Jeukendrup). In this benchmark model, Zone 2 (~60–70% HRmax) represents peak absolute fat oxidation (FATmax ~0.65 g/min).
+          </p>
+          <p className="text-[11px] text-stone-600">
+            * Note on Individual Biology: In living athletes, FATmax is not a fixed universal constant—it shifts rightward (up to 75–80% HRmax in endurance-trained runners) as mitochondrial density and Type I fiber capillarization increase.
+          </p>
+        </div>
       </div>
     </section>
   );
