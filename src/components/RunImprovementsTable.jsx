@@ -451,7 +451,7 @@ export default function RunImprovementsTable() {
           <div className="space-y-2 max-w-xl">
             <div className="flex items-center gap-2">
               <span className="px-2.5 py-0.5 rounded-md bg-emerald-500/20 text-emerald-300 text-[11px] font-mono font-black uppercase tracking-wider border border-emerald-400/30">
-                Aerobic Efficiency Index = Pace/HR-Derived Metric
+                Aerobic Efficiency Index = Distance-Per-Heartbeat
               </span>
               <MetabolicTierBadge tier="calculated" size="xs" />
             </div>
@@ -583,7 +583,7 @@ export default function RunImprovementsTable() {
               <ArrowUpRight className="w-3.5 h-3.5" /> +8.3% vs Sep 22 (0.720 → 0.780 m/beat)
             </p>
             <div className="text-[10px] text-stone-500 leading-tight pt-1 border-t border-stone-100">
-              Aerobic Efficiency Index = Pace/HR-derived metric. May reflect improved cardiovascular efficiency when conditions are comparable; represents more distance covered per recorded heartbeat.
+              Aerobic Efficiency Index = Distance-per-heartbeat metric. May reflect improved cardiovascular efficiency when conditions are comparable; represents more distance covered per recorded heartbeat.
             </div>
           </div>
 
@@ -832,7 +832,7 @@ export default function RunImprovementsTable() {
               <span>Longitudinal Exercise Dataset (12 Runs + 1 Clinical Test)</span>
             </h3>
             <p className="text-xs text-stone-500 font-medium">
-              Every run evaluated chronologically; the Sep 1 clinical test is retained as a laboratory reference point and is not directly comparable to outdoor training sessions.
+              Every run is evaluated chronologically; the Sep 1 clinical test is retained as a laboratory reference point and is not directly comparable to outdoor training sessions.
             </p>
           </div>
           
@@ -923,13 +923,8 @@ export default function RunImprovementsTable() {
                     
                     {/* Date & Title */}
                     <td className="py-3.5 px-4">
-                      <div className="font-extrabold text-stone-900 flex items-center gap-1.5">
-                        {run.date}
-                        {isFirst && (
-                          <span className="px-2 py-0.5 rounded-full bg-emerald-700 text-white text-[10px] font-black">
-                            Latest ⭐
-                          </span>
-                        )}
+                      <div className="font-extrabold text-stone-900">
+                        {run.date}{isFirst ? ' — Latest ⭐' : ''}
                       </div>
                       <div className="text-[11px] text-stone-500">{run.title}</div>
                     </td>
@@ -1076,7 +1071,7 @@ export default function RunImprovementsTable() {
                 <MetabolicTierBadge tier="calculated" size="xs" />
               </div>
               <p className="text-stone-300 text-[11px] leading-relaxed">
-                <strong>Speed ÷ Heart Rate.</strong> Helps assess whether you run faster at the same heart rate or at a lower heart rate at the same speed.
+                <strong>Speed ÷ Heart Rate. </strong>Helps assess whether you run faster at the same heart rate or at a lower heart rate at the same speed.
               </p>
             </div>
 
@@ -1086,7 +1081,7 @@ export default function RunImprovementsTable() {
                 <MetabolicTierBadge tier="calculated" size="xs" />
               </div>
               <p className="text-stone-300 text-[11px] leading-relaxed">
-                <strong>Average HR × Pace.</strong> Mathematical inverse of Distance/Beat (1,000 ÷ m/beat). While derived from the same underlying pace-to-heart-rate relationship, expressing it as heartbeats per kilometer provides an intuitive gauge of cardiac workload over a fixed distance.
+                <strong>Average HR × Pace. </strong>Mathematical inverse of Distance/Beat (1,000 ÷ m/beat). While derived from the same underlying pace-to-heart-rate relationship, expressing it as heartbeats per kilometer provides an intuitive gauge of cardiac workload over a fixed distance.
               </p>
             </div>
 
@@ -1096,7 +1091,7 @@ export default function RunImprovementsTable() {
                 <MetabolicTierBadge tier="measured" label="MEASURED RELATIONSHIP" size="xs" />
               </div>
               <p className="text-stone-300 text-[11px] leading-relaxed">
-                <strong>Pace achieved within 105–117 BPM.</strong> Measured pace achieved within the Optimus training corridor of 105–117 BPM, selected within the laboratory-derived aerobic range (limit ≤120 BPM).
+                <strong>Pace achieved within 105–117 BPM. </strong>Measured pace achieved within the Optimus training corridor of 105–117 BPM, selected within the laboratory-derived aerobic range (limit ≤120 BPM).
               </p>
             </div>
 
@@ -1106,7 +1101,7 @@ export default function RunImprovementsTable() {
                 <MetabolicTierBadge tier="calculated" size="xs" />
               </div>
               <p className="text-stone-300 text-[11px] leading-relaxed">
-                <strong>1st Half vs 2nd Half HR.</strong> Evaluates cardiovascular decoupling over 60–80+ minutes. Drift &lt;5% is classified by this model as low cardiac drift.
+                <strong>1st Half vs 2nd Half HR. </strong>Evaluates cardiovascular decoupling over 60–80+ minutes. Drift &lt;5% is classified by this model as low cardiac drift.
               </p>
             </div>
 
@@ -1116,7 +1111,7 @@ export default function RunImprovementsTable() {
                 <MetabolicTierBadge tier="measured" size="xs" />
               </div>
               <p className="text-stone-300 text-[11px] leading-relaxed">
-                <strong>% Duration in Target.</strong> Tracks the percentage of the workout performed within the predefined aerobic-intensity corridor.
+                <strong>% Duration in Target. </strong>Tracks the percentage of the workout performed within the predefined aerobic-intensity corridor.
               </p>
             </div>
 
@@ -1126,7 +1121,7 @@ export default function RunImprovementsTable() {
                 <MetabolicTierBadge tier="modeled" size="xs" />
               </div>
               <p className="text-stone-300 text-[11px] leading-relaxed">
-                <strong>Composite Proxy Index (0–100).</strong> Weighted model integrating normalized component scores: 40% HR-drift resistance, 35% Zone 2 corridor adherence, and 25% pace-to-heart-rate efficiency.
+                <strong>Composite Proxy Index (0–100). </strong>Weighted model integrating normalized component scores: 40% HR-drift resistance, 35% Zone 2 corridor adherence, and 25% pace-to-heart-rate efficiency.
               </p>
               <div className="text-[10px] text-stone-300 bg-black/25 p-2 rounded-lg font-mono space-y-0.5 mt-1 border border-white/10">
                 <div className="text-emerald-300 font-bold mb-0.5">Component Normalization Formulas:</div>
@@ -1151,15 +1146,15 @@ export default function RunImprovementsTable() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-[11px] text-stone-300 leading-relaxed">
             <div>
-              <strong className="text-white block mb-0.5">1. Ambient Temperature & Heat:</strong>
+              <strong className="text-white inline font-bold mr-1">1. Ambient Temperature & Heat:</strong>{' '}
               Hot weather elevates heart rate via cutaneous vasodilation. Ambient temperature and humidity are recognized as potential confounders and should be considered when comparing runs.
             </div>
             <div>
-              <strong className="text-white block mb-0.5">2. Course Gradient & Elevation:</strong>
+              <strong className="text-white inline font-bold mr-1">2. Course Gradient & Elevation:</strong>{' '}
               Grade changes alter metabolic cost. Route elevation and grade changes are treated as potential confounders across training courses.
             </div>
             <div>
-              <strong className="text-white block mb-0.5">3. Longitudinal Dataset Requirements:</strong>
+              <strong className="text-white inline font-bold mr-1">3. Longitudinal Dataset Requirements:</strong>{' '}
               A 3-day window demonstrates acute performance differences; evidence of chronic adaptation requires a substantially longer longitudinal dataset.
             </div>
           </div>
