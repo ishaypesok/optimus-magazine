@@ -126,7 +126,7 @@ export default function App() {
               Zone 2 exercise is a low-to-moderate aerobic training intensity characterized by sustained oxidative metabolism. Training at this intensity can contribute to mitochondrial and metabolic adaptations, while the exercise intensity associated with maximal fat oxidation (FATmax) varies between individuals and is not synonymous with Zone 2. The target aerobic corridor in Optimus is individualized using laboratory-measured LTHR.
             </p>
             <div className="text-xs font-semibold text-emerald-800 italic pt-1">
-              <span>📌 Footnote: “Rest two days after. This is how we build cellular health at 79.”</span>
+              <span>📌 Training Note: “Two days of recovery between runs — part of my current aerobic training approach at 79.”</span>
             </div>
             <div className="flex flex-wrap items-center justify-center gap-4 text-[11px] font-mono text-stone-500 pt-2 border-t border-stone-200">
               <span>Bioenergetics Science Press</span>

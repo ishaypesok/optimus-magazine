@@ -945,9 +945,9 @@ export default function RunImprovementsTable() {
                     <td className="py-3.5 px-4 whitespace-nowrap">
                       <div className="flex flex-col font-mono leading-tight">
                         <span className="font-black text-stone-900 text-sm">{run.avgHr} BPM</span>
-                        {isHrImproved && (
+                        {isFirst && isHrImproved && (
                           <span className="text-[10px] font-bold text-emerald-700 flex items-center gap-0.5 mt-0.5">
-                            <TrendingDown className="w-3 h-3 text-emerald-600" /> -{hrDiff} BPM
+                            <TrendingDown className="w-3 h-3 text-emerald-600" /> -{hrDiff} BPM (vs Sep 22)
                           </span>
                         )}
                       </div>
@@ -955,14 +955,13 @@ export default function RunImprovementsTable() {
 
                     {/* Distance per Heartbeat (m/beat) */}
                     <td className="py-3.5 px-4 bg-emerald-50/40 font-mono whitespace-nowrap">
-                      <div className="flex items-center gap-1.5">
+                      <div className="flex flex-col font-mono leading-tight">
                         <span className="font-black text-emerald-950 text-xs">
-                          {runMetersPerBeat.toFixed(3)}
+                          {runMetersPerBeat.toFixed(3)} <span className="text-[10px] text-emerald-700">m/beat</span>
                         </span>
-                        <span className="text-[10px] text-emerald-700">m/beat</span>
-                        {isEffImproved && (
-                          <span className="px-1 py-0.5 rounded bg-emerald-200 text-emerald-900 text-[9px] font-black flex items-center">
-                            <ArrowUpRight className="w-2.5 h-2.5" />
+                        {isFirst && isEffImproved && (
+                          <span className="text-[10px] font-bold text-emerald-700 flex items-center gap-0.5 mt-0.5">
+                            <ArrowUpRight className="w-2.5 h-2.5 text-emerald-600" /> +{(runMetersPerBeat - prevMetersPerBeat).toFixed(3)} m/beat (vs Sep 22)
                           </span>
                         )}
                       </div>
@@ -972,9 +971,9 @@ export default function RunImprovementsTable() {
                     <td className="py-3.5 px-4 font-mono whitespace-nowrap">
                       <div className="flex flex-col leading-tight">
                         <span className="font-extrabold text-stone-900 text-xs">{currentCost.toLocaleString()} beats/km</span>
-                        {isCostImproved && (
+                        {isFirst && isCostImproved && (
                           <span className="text-[10px] font-bold text-emerald-700 flex items-center gap-0.5 mt-0.5">
-                            <TrendingDown className="w-3 h-3 text-emerald-600" /> -{costDiff} beats/km
+                            <TrendingDown className="w-3 h-3 text-emerald-600" /> -{costDiff} beats/km (vs Sep 22)
                           </span>
                         )}
                       </div>
@@ -1083,7 +1082,7 @@ export default function RunImprovementsTable() {
                 <MetabolicTierBadge tier="calculated" size="xs" />
               </div>
               <p className="text-stone-300 text-[11px] leading-relaxed">
-                <strong>Speed ÷ Heart Rate.</strong> Directly answers whether you run faster at the same pulse or at a lower pulse at the same speed.
+                <strong>Speed ÷ Heart Rate.</strong> Helps assess whether you run faster at the same heart rate or at a lower heart rate at the same speed.
               </p>
             </div>
 
