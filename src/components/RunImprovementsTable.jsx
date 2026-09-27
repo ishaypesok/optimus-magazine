@@ -504,10 +504,10 @@ export default function RunImprovementsTable() {
               <MetabolicTierBadge tier="measured" size="xs" />
             </div>
             <div className="text-xs font-mono font-bold text-emerald-900">
-              Distance • Pace • Heart Rate • Power
+              Distance • Pace • Heart Rate • Running Power (estimated)
             </div>
             <p className="text-[11px] text-stone-600 leading-snug">
-              Direct empirical data captured by Apple Watch Ultra optical photoplethysmography and dual-frequency GPS.
+              Empirical telemetry captured by Apple Watch Ultra optical photoplethysmography and dual-frequency GPS (with running power estimated via accelerometer models).
             </p>
           </div>
 
@@ -943,11 +943,11 @@ export default function RunImprovementsTable() {
 
                     {/* Avg Heart Rate */}
                     <td className="py-3.5 px-4 whitespace-nowrap">
-                      <div className="flex items-center gap-2 font-mono">
+                      <div className="flex flex-col font-mono leading-tight">
                         <span className="font-black text-stone-900 text-sm">{run.avgHr} BPM</span>
                         {isHrImproved && (
-                          <span className="px-1.5 py-0.5 rounded-md bg-emerald-100 text-emerald-800 text-[10px] font-extrabold inline-flex items-center gap-0.5">
-                            <TrendingDown className="w-3 h-3 text-emerald-700" /> -{hrDiff} BPM
+                          <span className="text-[10px] font-bold text-emerald-700 flex items-center gap-0.5 mt-0.5">
+                            <TrendingDown className="w-3 h-3 text-emerald-600" /> -{hrDiff} BPM
                           </span>
                         )}
                       </div>
@@ -970,11 +970,11 @@ export default function RunImprovementsTable() {
 
                     {/* Cardiac Cost Index (beats/km) */}
                     <td className="py-3.5 px-4 font-mono whitespace-nowrap">
-                      <div className="flex items-center gap-2">
+                      <div className="flex flex-col leading-tight">
                         <span className="font-extrabold text-stone-900 text-xs">{currentCost.toLocaleString()} beats/km</span>
                         {isCostImproved && (
-                          <span className="px-1.5 py-0.5 rounded-md bg-emerald-100 text-emerald-800 text-[10px] font-extrabold inline-flex items-center gap-0.5">
-                            <TrendingDown className="w-3 h-3 text-emerald-700" /> -{costDiff} beats/km
+                          <span className="text-[10px] font-bold text-emerald-700 flex items-center gap-0.5 mt-0.5">
+                            <TrendingDown className="w-3 h-3 text-emerald-600" /> -{costDiff} beats/km
                           </span>
                         )}
                       </div>
@@ -1056,7 +1056,7 @@ export default function RunImprovementsTable() {
           <div className="flex items-center gap-2">
             <Sparkles className="w-4 h-4 text-purple-400 shrink-0" />
             <h4 className="text-xs sm:text-sm font-black tracking-wide text-purple-200 uppercase font-mono">
-              MITOCHONDRIAL ADAPTATION INDEX: 88 — MODELLED
+              MITOCHONDRIAL ADAPTATION INDEX: 99 — MODELLED
             </h4>
             <span className="px-2 py-0.5 rounded text-[9px] font-extrabold uppercase bg-purple-500/20 text-purple-300 border border-purple-400/30">
               Non-Invasive Physiological Modeling
@@ -1066,7 +1066,7 @@ export default function RunImprovementsTable() {
             "A longitudinal model-based indicator. It does not directly measure mitochondrial function or cellular respiration."
           </p>
           <div className="text-[11px] text-stone-400 pt-1 leading-normal font-sans">
-            By distinguishing empirical biometrics from cellular modeling, Optimus maintains peer-reviewed scientific credibility without confusing wrist-worn photoplethysmography with in-vitro muscle biopsy respirometry.
+            By distinguishing empirical biometrics from model-based physiological estimates, Optimus makes the methodological limitations of wearable-derived metrics explicit, without confusing wrist-worn photoplethysmography with in-vitro muscle biopsy respirometry.
           </div>
         </div>
 
@@ -1089,11 +1089,11 @@ export default function RunImprovementsTable() {
 
             <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 space-y-1.5">
               <div className="flex items-center justify-between">
-                <span className="font-bold text-white">Cardiac Cost (beats/km)</span>
+                <span className="font-bold text-white">Cardiac Cost Index (beats/km)</span>
                 <MetabolicTierBadge tier="calculated" size="xs" />
               </div>
               <p className="text-stone-300 text-[11px] leading-relaxed">
-                <strong>Avg HR × Pace.</strong> Reflects left-ventricular stroke volume. As stroke volume grows, fewer total beats are needed to cover 1 km.
+                <strong>Avg HR × Pace.</strong> Indicates how many heartbeats are required to cover 1 km. At comparable running intensity and conditions, a lower value may be consistent with improved cardiovascular efficiency.
               </p>
             </div>
 
@@ -1103,7 +1103,7 @@ export default function RunImprovementsTable() {
                 <MetabolicTierBadge tier="measured" size="xs" />
               </div>
               <p className="text-stone-300 text-[11px] leading-relaxed">
-                <strong>Speed in 105–117 BPM.</strong> Benchmarked against clinical Wingate lactate testing to confirm pure lipid fuel utilization.
+                <strong>Speed in 105–117 BPM.</strong> Benchmarked against laboratory-measured LTHR to define the target aerobic-intensity corridor.
               </p>
             </div>
 
@@ -1113,7 +1113,7 @@ export default function RunImprovementsTable() {
                 <MetabolicTierBadge tier="calculated" size="xs" />
               </div>
               <p className="text-stone-300 text-[11px] leading-relaxed">
-                <strong>1st Half vs 2nd Half HR.</strong> Evaluates cardiovascular decoupling over 60–80+ minutes. Drift &lt;5% confirms aerobic durability.
+                <strong>1st Half vs 2nd Half HR.</strong> Evaluates cardiovascular decoupling over 60–80+ minutes. Drift &lt;5% is classified by this model as low cardiac drift.
               </p>
             </div>
 
@@ -1123,7 +1123,7 @@ export default function RunImprovementsTable() {
                 <MetabolicTierBadge tier="measured" size="xs" />
               </div>
               <p className="text-stone-300 text-[11px] leading-relaxed">
-                <strong>% Duration in Target.</strong> Tracks athlete discipline, avoiding glycogen depletion spikes and excess systemic cortisol.
+                <strong>% Duration in Target.</strong> Tracks the percentage of the workout performed within the predefined aerobic-intensity corridor.
               </p>
             </div>
 
@@ -1133,7 +1133,7 @@ export default function RunImprovementsTable() {
                 <MetabolicTierBadge tier="modeled" size="xs" />
               </div>
               <p className="text-stone-300 text-[11px] leading-relaxed">
-                <strong>Composite Proxy Index.</strong> Integrates drift resistance, lipid oxidation capacity, and stroke volume over longitudinal runs.
+                <strong>Composite Proxy Index.</strong> Integrates drift resistance, estimated lipid oxidation, and cardiovascular efficiency trends over longitudinal runs.
               </p>
             </div>
 
@@ -1149,15 +1149,15 @@ export default function RunImprovementsTable() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-[11px] text-stone-300 leading-relaxed">
             <div>
               <strong className="text-white block mb-0.5">1. Ambient Temperature & Heat:</strong>
-              Hot weather elevates heart rate via cutaneous vasodilation. Optimus normalizes runs against ambient heat and humidity.
+              Hot weather elevates heart rate via cutaneous vasodilation. Ambient temperature and humidity are recognized as potential confounders and should be considered when comparing runs.
             </div>
             <div>
               <strong className="text-white block mb-0.5">2. Course Gradient & Elevation:</strong>
-              Grade changes alter metabolic cost. Standard routes in Kfar Saba maintain flat elevation profiles (net 0% slope).
+              Grade changes alter metabolic cost. Route elevation and grade changes are treated as potential confounders across training courses.
             </div>
             <div>
-              <strong className="text-white block mb-0.5">3. Longitudinal 10–20 Run Trends:</strong>
-              Three days between runs reflects acute response; true structural remodeling requires 10–20+ continuous sessions.
+              <strong className="text-white block mb-0.5">3. Longitudinal Dataset Requirements:</strong>
+              A 3-day window demonstrates acute performance differences; evidence of chronic adaptation requires a substantially longer longitudinal dataset.
             </div>
           </div>
         </div>
