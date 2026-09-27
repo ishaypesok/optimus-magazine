@@ -118,9 +118,12 @@ export default function App() {
 
           {/* Editorial Paper Footer */}
           <footer className="magazine-page p-8 text-center space-y-3 shadow-xs border border-stone-200">
-            <div className="flex items-center justify-center gap-2 font-bold text-stone-900 text-lg">
-              <BookOpen className="w-5 h-5 text-emerald-700" />
-              <span>OPTIMUS MAGAZINE</span>
+            <div className="flex flex-col items-center justify-center gap-1 font-bold text-stone-900">
+              <div className="flex items-center gap-2 text-lg">
+                <BookOpen className="w-5 h-5 text-emerald-700" />
+                <span>OPTIMUS — Longevity 65+</span>
+              </div>
+              <p className="text-xs text-stone-500 font-medium">Science, fitness & bioenergetics for healthy aging</p>
             </div>
             <p className="max-w-3xl mx-auto text-xs text-stone-600 leading-relaxed font-normal">
               Zone 2 exercise is a low-to-moderate aerobic training intensity characterized by sustained oxidative metabolism. Training at this intensity can contribute to mitochondrial and metabolic adaptations, while the exercise intensity associated with maximal fat oxidation (FATmax) varies between individuals and is not synonymous with Zone 2. The target aerobic corridor in Optimus is individualized using laboratory-measured LTHR.

@@ -575,7 +575,7 @@ export default function MarathonFuelingMasterclass() {
 
       {/* Article Footer & Citation */}
       <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-2xl bg-stone-100 border border-stone-200 text-xs font-mono text-stone-600">
-        <div>Optimus Magazine • Issue 01 • Article 36</div>
+        <div>OPTIMUS — Longevity 65+ • Issue 01 • Article 36</div>
         <div className="flex items-center gap-3">
           <span>Author: Asker Jeukendrup, PhD</span>
           <span>•</span>

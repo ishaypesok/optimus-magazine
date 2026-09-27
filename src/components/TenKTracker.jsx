@@ -479,7 +479,7 @@ export default function TenKTracker() {
             {runLogs.length === 0 ? (
               <div className="p-8 text-center text-stone-500 text-xs sm:text-sm space-y-2">
                 <Info className="w-8 h-8 mx-auto text-stone-400 mb-2" />
-                <p>No Apple Watch Pacer runs logged yet in Optimus Magazine.</p>
+                <p>No Apple Watch Pacer runs logged yet in OPTIMUS — Longevity 65+.</p>
                 <p className="text-stone-400">Click "Log Pacer Run" above after finishing your run!</p>
               </div>
             ) : (

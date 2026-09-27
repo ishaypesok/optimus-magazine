@@ -30,7 +30,7 @@ export default function MagazineHeader({
   };
 
   const shareOnX = () => {
-    const text = encodeURIComponent(`Reading "${chapterTitle}" in Optimus Magazine 🏃‍♂️⚡`);
+    const text = encodeURIComponent(`Reading "${chapterTitle}" in OPTIMUS — Longevity 65+ 🏃‍♂️⚡`);
     const url = encodeURIComponent(chapterUrl);
     window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank', 'noopener,noreferrer');
   };

@@ -115,7 +115,7 @@ export default function ScientificAccreditation() {
           </h2>
 
           <p className="text-slate-300 text-xs sm:text-sm font-medium leading-relaxed max-w-3xl">
-            Formal scientific audit framework certifying that <strong>Optimus Magazine’s 26 chapters</strong>, bioenergetic ATP stoichiometry, Wingate Zone 2 target algorithms (105–117 BPM), and Apple Watch dual-L1/L5 telemetry processing conform strictly to peer-reviewed sports physiology literature.
+            Formal scientific audit framework certifying that <strong>OPTIMUS — Longevity 65+’s chapters</strong>, bioenergetic ATP stoichiometry, Wingate Zone 2 target algorithms (105–117 BPM), and Apple Watch dual-L1/L5 telemetry processing conform strictly to peer-reviewed sports physiology literature.
           </p>
 
           {/* Navigation Tab Buttons */}
@@ -167,7 +167,7 @@ export default function ScientificAccreditation() {
                 The 4 Pillars of Scientific Audit & Compliance
               </h3>
               <p className="text-xs text-stone-500 font-medium">
-                Every calculation and visualizer in Optimus Magazine has been audited against established exercise science literature.
+                Every calculation and visualizer in OPTIMUS — Longevity 65+ has been audited against established exercise science literature.
               </p>
             </div>
 
@@ -233,7 +233,7 @@ export default function ScientificAccreditation() {
                 </div>
                 <div className="font-extrabold text-white text-sm">Indirect Calorimetry Validation</div>
                 <p className="text-slate-300 text-[11px] leading-relaxed">
-                  Comparative validation matching Optimus Magazine telemetry against lab PNOĒ / Parvo Medics metabolic carts.
+                  Comparative validation matching OPTIMUS — Longevity 65+ telemetry against lab PNOĒ / Parvo Medics metabolic carts.
                 </p>
               </div>
 
@@ -260,7 +260,7 @@ export default function ScientificAccreditation() {
               Peer-Reviewed Scientific Literature Directory
             </h3>
             <p className="text-xs text-stone-500 font-medium">
-              Every chapter in Optimus Magazine is derived from published peer-reviewed studies in sports physiology and biochemistry.
+              Every chapter in OPTIMUS — Longevity 65+ is derived from published peer-reviewed studies in sports physiology and biochemistry.
             </p>
           </div>
 
@@ -341,7 +341,7 @@ export default function ScientificAccreditation() {
               
               <div className="text-center space-y-3 relative z-10 border-b border-amber-500/30 pb-6">
                 <div className="text-xs font-mono font-bold text-amber-400 tracking-widest uppercase">
-                  OPTIMUS MAGAZINE • SPORTS SCIENCE ADVISORY BOARD
+                  OPTIMUS — LONGEVITY 65+ • SPORTS SCIENCE ADVISORY BOARD
                 </div>
                 <h1 className="text-3xl sm:text-5xl font-black text-amber-300 tracking-tight">
                   CERTIFICATE OF SCIENTIFIC AUDIT

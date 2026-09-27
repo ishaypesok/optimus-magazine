@@ -78,7 +78,7 @@ export default function HubermanMitochondriaMasterclass() {
       summaryTitle: 'Scientific Summary & Takeaway',
       prevChapter: '← Previous Chapter',
       nextChapter: 'Next Chapter →',
-      editorialTitle: 'Optimus Magazine Editorial Take: Zone 2 Application',
+      editorialTitle: 'OPTIMUS — Longevity 65+ Editorial Take: Zone 2 Application',
       editorialSub: "How Dr. Rutter's Research Validates Ishai's Bioenergetic Protocol",
       editorialPillars: [
         { title: '1. Maintain High MPC Density', text: 'Training consistently in Zone 2 upregulates MPC1 and MPC2 expression, allowing high rates of aerobic pyruvate oxidation without cytosolic lactate overflow.' },
@@ -123,7 +123,7 @@ export default function HubermanMitochondriaMasterclass() {
       summaryTitle: 'Resumen Científico y Conclusión Clave',
       prevChapter: '← Capítulo Anterior',
       nextChapter: 'Siguiente Capítulo →',
-      editorialTitle: 'Visión Editorial de Optimus Magazine: Aplicación en Zona 2',
+      editorialTitle: 'Visión Editorial de OPTIMUS — Longevity 65+: Aplicación en Zona 2',
       editorialSub: 'Cómo la investigación del Dr. Rutter valida el protocolo bioenergético de Ishai',
       editorialPillars: [
         { title: '1. Mantener Alta Densidad de MPC', text: 'Entrenar constantemente en Zona 2 aumenta la expresión de MPC1 y MPC2, permitiendo altas tasas de oxidación aeróbica de piruvato sin desbordamiento de lactato citosólico.' },
@@ -168,7 +168,7 @@ export default function HubermanMitochondriaMasterclass() {
       summaryTitle: 'סיכום מדעי ותובנה מרכזית',
       prevChapter: '→ הפרק הקודם',
       nextChapter: 'הפרק הבא ←',
-      editorialTitle: 'זווית המערכת של אופטימוס מגזין: יישום בזון 2',
+      editorialTitle: 'זווית המערכת של OPTIMUS — Longevity 65+: יישום בזון 2',
       editorialSub: 'כיצד המחקר של ד״ר ראטר מאשש את הפרוטוקול הביואנרגטי של ישי',
       editorialPillars: [
         { title: '1. שמירה על צפיפות MPC גבוהה', text: 'אימון עקבי בזון 2 מעלה את הביטוי של MPC1 ו-MPC2, מה שמאפשר קצב גבוה של חמצון פירובט אירובי ללא הצפה של לקטט בציטוזול.' },

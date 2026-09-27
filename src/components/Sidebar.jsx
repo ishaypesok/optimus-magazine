@@ -89,7 +89,7 @@ export default function Sidebar({
   const shareOnX = (e, page) => {
     e.stopPropagation();
     const chapterUrl = `https://ishaypesok.github.io/optimus-magazine/#page=${page.id}`;
-    const text = encodeURIComponent(`Reading "${page.title}" in Optimus Magazine 🏃‍♂️⚡`);
+    const text = encodeURIComponent(`Reading "${page.title}" in OPTIMUS — Longevity 65+ 🏃‍♂️⚡`);
     const url = encodeURIComponent(chapterUrl);
     window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank', 'noopener,noreferrer');
   };
@@ -144,11 +144,11 @@ export default function Sidebar({
               />
             </div>
             <div className="min-w-0">
-              <h1 className="text-xl font-black text-stone-900 tracking-tight leading-tight">
-                OPTIMUS <span className="text-emerald-700 block">MAGAZINE</span>
+              <h1 className="text-base sm:text-lg font-black text-stone-900 tracking-tight leading-tight">
+                OPTIMUS <span className="text-emerald-700 block">Longevity 65+</span>
               </h1>
-              <p className="text-xs font-bold text-emerald-800 tracking-tight mt-1">
-                Zone 2 Bioenergetics Index
+              <p className="text-[10px] sm:text-[11px] font-semibold text-stone-600 tracking-tight mt-1 leading-snug">
+                Science, fitness & bioenergetics for healthy aging
               </p>
               <span className="inline-block mt-1.5 px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-950 text-[10px] font-extrabold border border-emerald-300">
                 Official Issue Cover

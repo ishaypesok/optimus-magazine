@@ -106,7 +106,7 @@ export default function WingateLabPrep() {
                 <div className="rounded-2xl overflow-hidden border-2 border-emerald-400/60 shadow-2xl bg-black">
                   <img 
                     src="./optimus-cover.jpg" 
-                    alt="Optimus Magazine Feature Cover" 
+                    alt="OPTIMUS — Longevity 65+ Feature Cover" 
                     className="w-full h-64 object-cover hover:scale-105 transition duration-500" 
                   />
                 </div>

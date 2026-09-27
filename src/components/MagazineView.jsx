@@ -286,7 +286,7 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
         {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
           <div key={pageNum} className="print-page-break space-y-6 pt-6">
             <div className="flex items-center justify-between border-b border-stone-300 pb-2 text-xs font-mono text-stone-500">
-              <span>OPTIMUS MAGAZINE • Issue 01</span>
+              <span>OPTIMUS — Longevity 65+ • Issue 01</span>
               <span className="font-bold text-emerald-800">PAGE {pageNum} OF {totalPages}</span>
             </div>
             {renderPageContent(pageNum)}
@@ -311,14 +311,16 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
               <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-900 font-extrabold text-[10px] uppercase tracking-wider border border-emerald-300">
                 <span>📰 Official Issue Cover</span>
               </div>
-              <h1 className="text-xl sm:text-2xl font-black text-stone-900 leading-tight">OPTIMUS MAGAZINE</h1>
-              <div className="text-xs text-emerald-800 font-bold font-mono">PAGE {activePage} OF {totalPages} • Zone 2 Bioenergetics Index</div>
+              <h1 className="text-xl sm:text-2xl font-black text-stone-900 leading-tight">
+                OPTIMUS <span className="text-emerald-700">— Longevity 65+</span>
+              </h1>
+              <div className="text-xs text-emerald-800 font-bold font-mono">PAGE {activePage} OF {totalPages} • Science, fitness & bioenergetics for healthy aging</div>
             </div>
           </div>
           
           <div className="flex items-center gap-3">
             <div className="hidden md:flex flex-col text-right text-xs text-stone-500 font-medium">
-              <span>The Friendly Guide to Zone 2 Bioenergetics</span>
+              <span>Science, fitness & bioenergetics for healthy aging</span>
               <span className="text-[10px] text-emerald-800 font-bold">Bioenergetics Science Press</span>
             </div>
             <button 

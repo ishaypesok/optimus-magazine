@@ -87,7 +87,7 @@ export default function MagazineTableOfContents({ setPage }) {
 
       {/* FOOTER ACCENT */}
       <div className="p-4 rounded-xl bg-stone-900 text-white text-xs font-mono flex items-center justify-between">
-        <span>Optimus Magazine • Issue 01</span>
+        <span>OPTIMUS — Longevity 65+ • Issue 01</span>
         <span className="text-emerald-400 font-bold">Bioenergetics Science Press</span>
       </div>
 

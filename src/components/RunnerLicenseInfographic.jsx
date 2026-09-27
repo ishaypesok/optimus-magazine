@@ -67,7 +67,7 @@ export default function RunnerLicenseInfographic() {
               The Official Runner's Manifesto & License
             </h3>
             <p className="text-xs text-stone-500 font-medium">
-              Optimus Magazine • Page 18 Final Masterpiece Infographic
+              OPTIMUS — Longevity 65+ • Page 18 Final Masterpiece Infographic
             </p>
           </div>
         </div>
@@ -125,7 +125,7 @@ export default function RunnerLicenseInfographic() {
           <div className="flex flex-wrap items-center justify-between gap-3 text-xs font-semibold text-stone-600 bg-stone-50 p-3.5 rounded-2xl border border-stone-200">
             <div className="flex items-center gap-2 text-emerald-800 font-bold">
               <CheckCircle2 className="w-4 h-4 text-emerald-700" />
-              <span>Full-resolution Page 18 manifesto infographic added to Optimus Magazine</span>
+              <span>Full-resolution Page 18 manifesto infographic added to OPTIMUS — Longevity 65+</span>
             </div>
             
             <div className="flex items-center gap-2">
@@ -422,7 +422,7 @@ export default function RunnerLicenseInfographic() {
           <div className="w-full max-w-6xl flex items-center justify-between mb-4 text-white">
             <div className="flex items-center gap-2">
               <Sparkles className="w-5 h-5 text-emerald-400" />
-              <span className="font-extrabold text-sm sm:text-base">Optimus Magazine Page 18 • The Official Runner's License</span>
+              <span className="font-extrabold text-sm sm:text-base">OPTIMUS — Longevity 65+ Page 18 • The Official Runner's License</span>
             </div>
             <div className="flex items-center gap-3">
               <a 

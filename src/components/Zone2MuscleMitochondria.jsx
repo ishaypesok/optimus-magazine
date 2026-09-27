@@ -578,7 +578,7 @@ export default function Zone2MuscleMitochondria() {
 
       {/* Magazine Footer Reference Badge */}
       <div className="p-4 rounded-xl bg-stone-100 text-stone-600 text-xs font-mono flex flex-wrap items-center justify-between gap-2 border border-stone-200">
-        <span>Optimus Magazine • Issue 01 • Article 35</span>
+        <span>OPTIMUS — Longevity 65+ • Issue 01 • Article 35</span>
         <span className="text-emerald-800 font-bold">Bioenergetics & Longevity Science Press</span>
       </div>
 

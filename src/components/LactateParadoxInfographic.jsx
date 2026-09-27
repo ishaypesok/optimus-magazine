@@ -22,7 +22,7 @@ export default function LactateParadoxInfographic() {
               The Lactate Paradox: Fuel, Not Poison
             </h3>
             <p className="text-xs text-stone-500 font-medium">
-              Optimus Magazine • Page 11 Metabolic Education Infographic
+              OPTIMUS — Longevity 65+ • Page 11 Metabolic Education Infographic
             </p>
           </div>
         </div>
@@ -288,7 +288,7 @@ export default function LactateParadoxInfographic() {
           <div className="w-full max-w-6xl flex items-center justify-between mb-4 text-white">
             <div className="flex items-center gap-2">
               <Sparkles className="w-5 h-5 text-emerald-400" />
-              <span className="font-extrabold text-sm sm:text-base">Optimus Magazine Page 11 • The Lactate Paradox</span>
+              <span className="font-extrabold text-sm sm:text-base">OPTIMUS — Longevity 65+ Page 11 • The Lactate Paradox</span>
             </div>
             <div className="flex items-center gap-3">
               <a 

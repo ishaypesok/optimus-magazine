@@ -377,7 +377,7 @@ export default function LiveCellVisualizer() {
           </div>
           <div className="flex items-center gap-2">
             <a
-              href={`https://twitter.com/intent/tweet?text=${encodeURIComponent('Check out the Live Cell Visualizer in Optimus Magazine! 🔬 Watch oxygen, mitochondria & fat-burning in real-time:')}&url=${encodeURIComponent('https://ishaypesok.github.io/optimus-magazine/#page=4')}`}
+              href={`https://twitter.com/intent/tweet?text=${encodeURIComponent('Check out the Live Cell Visualizer in OPTIMUS — Longevity 65+! 🔬 Watch oxygen, mitochondria & fat-burning in real-time:')}&url=${encodeURIComponent('https://ishaypesok.github.io/optimus-magazine/#page=4')}`}
               target="_blank"
               rel="noopener noreferrer"
               className="px-3 py-1.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-white font-bold text-xs flex items-center gap-1.5 transition shadow-sm"
