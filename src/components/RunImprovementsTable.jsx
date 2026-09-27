@@ -1069,7 +1069,7 @@ export default function RunImprovementsTable() {
                 <MetabolicTierBadge tier="measured" label="MEASURED RELATIONSHIP" size="xs" />
               </div>
               <p className="text-stone-300 text-[11px] leading-relaxed">
-                <strong>Speed in 105–117 BPM.</strong> Direct measured pace within the Optimus training corridor of 105–117 BPM, selected within the laboratory-derived aerobic range (limit ≤120 BPM).
+                <strong>Speed in 105–117 BPM.</strong> Measured pace achieved within the Optimus training corridor of 105–117 BPM, selected within the laboratory-derived aerobic range (limit ≤120 BPM).
               </p>
             </div>
 
