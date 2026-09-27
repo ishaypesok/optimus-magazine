@@ -148,7 +148,7 @@ const INITIAL_RUNS_DATA = [
     mitoScore: 97,
     hrDriftPercent: 3.9,
     lthrMargin: '-21 BPM',
-    note: '6.46 km in 78.3 mins • 114 BPM Avg HR • 92% Zone 2 • Low cardiac strain • AutoSync'
+    note: '6.46 km in 78.3 mins • 114 BPM Avg HR • 92% Zone 2 • Low HR within target corridor • AutoSync'
   },
   {
     id: 'run-sep-03-2026',
@@ -1006,7 +1006,7 @@ export default function RunImprovementsTable() {
             * <strong>ESTIMATED FAT OXIDATION:</strong> Modeled substrate utilization based on Wingate laboratory lactate threshold profiles. Not a direct metabolic cart RER/VO₂ measurement.
           </div>
           <div>
-            * <strong>MITOCHONDRIAL ADAPTATION PROXY:</strong> A longitudinal model-based indicator. It does not directly measure mitochondrial function or cellular respiration.
+            * <strong>Mitochondrial Adaptation Proxy (Modelled):</strong> A longitudinal model-based indicator. It does not directly measure mitochondrial function or cellular respiration.
           </div>
         </div>
 
@@ -1031,8 +1031,8 @@ export default function RunImprovementsTable() {
         <div className="p-5 rounded-2xl bg-gradient-to-r from-purple-950/60 to-slate-900 border border-purple-500/30 space-y-2">
           <div className="flex items-center gap-2">
             <Sparkles className="w-4 h-4 text-purple-400 shrink-0" />
-            <h4 className="text-xs sm:text-sm font-black tracking-wide text-purple-200 uppercase font-mono">
-              MITOCHONDRIAL ADAPTATION PROXY (MODELLED): 98
+            <h4 className="text-xs sm:text-sm font-bold tracking-wide text-purple-200 font-mono">
+              Mitochondrial Adaptation Proxy (Modelled): 98
             </h4>
             <span className="px-2 py-0.5 rounded text-[9px] font-extrabold uppercase bg-purple-500/20 text-purple-300 border border-purple-400/30">
               Non-Invasive Physiological Modeling
@@ -1069,7 +1069,7 @@ export default function RunImprovementsTable() {
                 <MetabolicTierBadge tier="calculated" size="xs" />
               </div>
               <p className="text-stone-300 text-[11px] leading-relaxed">
-                <strong>Average HR × Pace.</strong> Mathematical inverse of Distance/Beat (1,000 ÷ m/beat). While derived from the same underlying pace-to-heart-rate relationship, expressing it as heartbeats per kilometer provides an intuitive gauge of myocardial cost over a fixed distance.
+                <strong>Average HR × Pace.</strong> Mathematical inverse of Distance/Beat (1,000 ÷ m/beat). While derived from the same underlying pace-to-heart-rate relationship, expressing it as heartbeats per kilometer provides an intuitive gauge of cardiac workload over a fixed distance.
               </p>
             </div>
 
