@@ -667,7 +667,7 @@ export default function RunImprovementsTable() {
               {latestRun.mitoScore} <span className="text-xs font-sans font-bold text-purple-700">— MODELLED</span>
             </div>
             <p className="text-[11px] text-purple-700 font-semibold flex items-center gap-1">
-              <ShieldCheck className="w-3.5 h-3.5" /> High Model-Estimated Oxidative Flux
+              <ShieldCheck className="w-3.5 h-3.5" /> High Model-Estimated Oxidative Flux — NOT DIRECTLY MEASURED
             </p>
             <div className="text-[10px] text-stone-500 leading-tight pt-1 border-t border-stone-100">
               A longitudinal model-based indicator. Does not directly measure mitochondrial function.
@@ -692,7 +692,7 @@ export default function RunImprovementsTable() {
             </div>
           </div>
           <span className="px-3 py-1 rounded-full bg-emerald-800 text-white font-extrabold text-xs">
-            Higher Aerobic Efficiency Than Recent Baseline
+            Higher Aerobic Efficiency Than Previous Run
           </span>
         </div>
 
@@ -816,7 +816,7 @@ export default function RunImprovementsTable() {
           <div>
             <h3 className="text-xl font-black text-stone-900 flex items-center gap-2">
               <Calendar className="w-5 h-5 text-emerald-700" />
-              <span>Longitudinal Workout Log ({runs.length} Workouts)</span>
+              <span>Longitudinal Exercise Dataset ({runs.length} Sessions)</span>
             </h3>
             <p className="text-xs text-stone-500 font-medium">
               Every workout evaluated chronologically. Shows longitudinal evidence of changes in pace and heart rate across workouts.
@@ -1093,7 +1093,7 @@ export default function RunImprovementsTable() {
                 <MetabolicTierBadge tier="calculated" size="xs" />
               </div>
               <p className="text-stone-300 text-[11px] leading-relaxed">
-                <strong>Avg HR × Pace.</strong> Indicates how many heartbeats are required to cover 1 km. At comparable running intensity and conditions, a lower value may be consistent with improved cardiovascular efficiency.
+                <strong>Average HR × Pace.</strong> Indicates how many heartbeats are required to cover 1 km. At comparable running intensity and conditions, a lower value may be consistent with improved cardiovascular efficiency.
               </p>
             </div>
 
