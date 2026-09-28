@@ -474,51 +474,63 @@ export default function SanMillanZone2MetabolicState() {
         </div>
       </section>
 
-      {/* Fullscreen High-Resolution Lightbox Modal */}
+      {/* Comfortable Centered Preview Dialog */}
       {isModalOpen && (
         <div 
-          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex flex-col p-4 sm:p-6 transition-all"
+          className="fixed inset-0 z-50 bg-black/70 backdrop-blur-xs flex items-center justify-center p-4 sm:p-8 transition-all"
           onClick={() => setIsModalOpen(false)}
         >
-          <div className="flex items-center justify-between text-white pb-3 max-w-5xl w-full mx-auto" onClick={(e) => e.stopPropagation()}>
-            <div className="flex items-center gap-3">
-              <span className="text-emerald-400 font-mono text-xs font-bold px-2.5 py-1 rounded bg-stone-800">
-                Slide {currentSlide.id} / 4
-              </span>
-              <h3 className="font-extrabold text-sm sm:text-base text-white">
-                {currentSlide.title}
-              </h3>
+          <div 
+            className="bg-stone-900 border border-stone-700 rounded-3xl shadow-2xl max-w-3xl w-full flex flex-col overflow-hidden max-h-[85vh]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Header with Title and Close Button */}
+            <div className="flex items-center justify-between text-white p-4 border-b border-stone-800 bg-stone-950">
+              <div className="flex items-center gap-2.5">
+                <span className="text-emerald-400 font-mono text-xs font-bold px-2 py-0.5 rounded bg-stone-800">
+                  Slide {currentSlide.id} / 4
+                </span>
+                <h3 className="font-bold text-sm sm:text-base text-stone-100 truncate">
+                  {currentSlide.title}
+                </h3>
+              </div>
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="p-1.5 rounded-lg bg-stone-800 hover:bg-stone-700 text-stone-300 hover:text-white transition flex items-center gap-1 text-xs font-semibold"
+                title="Close (or press Esc)"
+              >
+                <span>Close</span>
+                <X className="w-4 h-4" />
+              </button>
             </div>
-            <button
-              onClick={() => setIsModalOpen(false)}
-              className="p-2 rounded-xl bg-stone-800 hover:bg-stone-700 text-stone-200 transition"
-              title="Close Fullscreen View"
-            >
-              <X className="w-6 h-6" />
-            </button>
-          </div>
 
-          <div className="flex-1 flex items-center justify-center max-w-5xl w-full mx-auto overflow-hidden" onClick={(e) => e.stopPropagation()}>
-            <img
-              src={currentSlide.src}
-              alt={currentSlide.alt}
-              className="max-h-[85vh] max-w-full object-contain rounded-2xl shadow-2xl"
-            />
-          </div>
+            {/* Image Preview Container */}
+            <div className="flex-1 flex items-center justify-center p-3 bg-black min-h-[300px] max-h-[55vh] overflow-hidden">
+              <img
+                src={currentSlide.src}
+                alt={currentSlide.alt}
+                className="max-h-full max-w-full object-contain rounded-xl"
+              />
+            </div>
 
-          <div className="flex items-center justify-center gap-4 pt-3" onClick={(e) => e.stopPropagation()}>
-            <button
-              onClick={prevSlide}
-              className="px-4 py-2 rounded-xl bg-stone-800 hover:bg-stone-700 text-white text-xs font-bold flex items-center gap-1.5 transition"
-            >
-              <ChevronLeft className="w-4 h-4" /> Previous Slide
-            </button>
-            <button
-              onClick={nextSlide}
-              className="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold flex items-center gap-1.5 transition"
-            >
-              Next Slide <ChevronRight className="w-4 h-4" />
-            </button>
+            {/* Footer Navigation */}
+            <div className="flex items-center justify-between p-3.5 bg-stone-950 border-t border-stone-800">
+              <button
+                onClick={prevSlide}
+                className="px-3 py-1.5 rounded-xl bg-stone-800 hover:bg-stone-700 text-stone-200 text-xs font-semibold flex items-center gap-1 transition"
+              >
+                <ChevronLeft className="w-4 h-4" /> Prev Slide
+              </button>
+              <span className="text-xs text-stone-400 font-mono">
+                Click outside or Esc to exit
+              </span>
+              <button
+                onClick={nextSlide}
+                className="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold flex items-center gap-1 transition"
+              >
+                Next Slide <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
           </div>
         </div>
       )}
