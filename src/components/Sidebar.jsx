@@ -61,6 +61,7 @@ export const PAGES_LIST = [
   { id: 36, title: 'Prof. Asker Jeukendrup: Marathon Fueling Masterclass', label: 'Article 36: Marathon Fueling Guide', category: 'Expert Spotlights', icon: Flame, badge: '🏃 Marathon Fueling' },
   { id: 37, title: 'Alan Couzens: Aerobic Base vs. Threshold (The Endurance Code)', label: 'Article 37: The Endurance Code', category: 'Expert Spotlights', icon: TrendingUp, badge: '📈 Endurance Code' },
   { id: 38, title: 'Zone 2 & Working Memory: How Aerobic Exercise Rewires the Brain', label: 'Article 38: Zone 2 & Memory', category: 'Neuroscience & Cognition', icon: Brain, badge: '🧠 Brain & Memory' },
+  { id: 39, title: 'Dr. San Millán: What is Zone 2? Metabolic Equilibrium vs. Drift', label: 'Article 39: Zone 2 Metabolic State', category: 'Expert Spotlights', icon: Zap, badge: '🔬 Metabolic State' },
 ];
 
 export default function Sidebar({

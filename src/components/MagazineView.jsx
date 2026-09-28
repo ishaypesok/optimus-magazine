@@ -41,6 +41,7 @@ import Zone2MuscleMitochondria from './Zone2MuscleMitochondria';
 import MarathonFuelingMasterclass from './MarathonFuelingMasterclass';
 import AlanCouzensEnduranceCode from './AlanCouzensEnduranceCode';
 import Zone2BrainMemoryMasterclass from './Zone2BrainMemoryMasterclass';
+import SanMillanZone2MetabolicState from './SanMillanZone2MetabolicState';
 import MagazineFrontCover from './MagazineFrontCover';
 import MagazineTableOfContents from './MagazineTableOfContents';
 import { PAGES_LIST } from './Sidebar';
@@ -272,6 +273,7 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
       case 36: return <MarathonFuelingMasterclass />;
       case 37: return <AlanCouzensEnduranceCode />;
       case 38: return <Zone2BrainMemoryMasterclass />;
+      case 39: return <SanMillanZone2MetabolicState />;
       default: return <ForewordMission setPage={setPage} />;
     }
   };
@@ -285,9 +287,15 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
         <MagazineTableOfContents setPage={setPage} />
         {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
           <div key={pageNum} className="print-page-break space-y-6 pt-6">
-            <div className="flex items-center justify-between border-b border-stone-300 pb-2 text-xs font-mono text-stone-500">
-              <span>OPTIMUS — Longevity 65+ • Issue 01</span>
-              <span className="font-bold text-emerald-800">PAGE {pageNum} OF {totalPages}</span>
+            <div className="flex items-center justify-between border-b border-stone-300 pb-2 text-xs font-sans text-stone-500">
+              <div className="flex items-center gap-2">
+                <span className="font-black text-stone-900">OPTIMUS <span className="text-emerald-700">— Longevity 65+</span></span>
+                <span>•</span>
+                <span className="text-stone-500 font-medium">Issue 01</span>
+              </div>
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-stone-100 text-stone-800 font-extrabold font-mono text-[10px] uppercase tracking-wider border border-stone-300 shadow-2xs">
+                <span>📄 PAGE {pageNum} OF {totalPages}</span>
+              </div>
             </div>
             {renderPageContent(pageNum)}
           </div>
@@ -307,14 +315,19 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
             <div className="w-20 h-26 sm:w-24 sm:h-32 rounded-2xl overflow-hidden border-2 border-emerald-600/60 shadow-lg shrink-0 bg-black group transition hover:scale-105">
               <img src="./optimus-logo.jpg" alt="Optimus Magazine Logo" className="w-full h-full object-cover" />
             </div>
-            <div className="space-y-1">
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-900 font-extrabold text-[10px] uppercase tracking-wider border border-emerald-300">
-                <span>📰 Official Issue Cover</span>
+            <div className="space-y-1.5">
+              <div className="flex flex-wrap items-center gap-2">
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-900 font-extrabold text-[10px] uppercase tracking-wider border border-emerald-300">
+                  <span>📰 Official Issue Cover</span>
+                </div>
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-stone-100 text-stone-800 font-extrabold font-mono text-[10px] uppercase tracking-wider border border-stone-300 shadow-2xs">
+                  <span>📄 PAGE {activePage} OF {totalPages}</span>
+                </div>
               </div>
               <h1 className="text-xl sm:text-2xl font-black text-stone-900 leading-tight">
                 OPTIMUS <span className="text-emerald-700">— Longevity 65+</span>
               </h1>
-              <div className="text-xs text-emerald-800 font-bold font-mono">PAGE {activePage} OF {totalPages} • Science, fitness & bioenergetics for healthy aging</div>
+              <p className="text-xs sm:text-sm text-stone-600 font-medium">Science, fitness & bioenergetics for healthy aging</p>
             </div>
           </div>
           
