@@ -14,7 +14,7 @@ export default function RunnerSimulation() {
   const [minute, setMinute] = useState(0); // 0 to maxMins
   const [isRunning, setIsRunning] = useState(false);
   const [speedMultiplier, setSpeedMultiplier] = useState(1);
-  const [selectedRunId, setSelectedRunId] = useState('sep25');
+  const [selectedRunId, setSelectedRunId] = useState('sep28');
   const [userVo2Max, setUserVo2Max] = useState(34.1);
   const [userWeightKg, setUserWeightKg] = useState(82.9);
   const [chartMode, setChartMode] = useState('calories'); // 'calories' | 'cumulative' | 'lactate'
@@ -22,25 +22,36 @@ export default function RunnerSimulation() {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   // New run input form state
-  const [newRunDate, setNewRunDate] = useState('09/25/2026');
-  const [newRunDuration, setNewRunDuration] = useState('73.6');
-  const [newRunDistance, setNewRunDistance] = useState('6.49');
-  const [newRunPace, setNewRunPace] = useState('11.35');
-  const [newRunHr, setNewRunHr] = useState('113');
-  const [newRunCalories, setNewRunCalories] = useState('390');
+  const [newRunDate, setNewRunDate] = useState('09/28/2026');
+  const [newRunDuration, setNewRunDuration] = useState('88.2');
+  const [newRunDistance, setNewRunDistance] = useState('7.59');
+  const [newRunPace, setNewRunPace] = useState('11.61');
+  const [newRunHr, setNewRunHr] = useState('114');
+  const [newRunCalories, setNewRunCalories] = useState('454');
 
   // Real runs list
   const [runsList, setRunsList] = useState([
     {
+      id: 'sep28',
+      dateLabel: 'Sep 28, 2026 (New Record 🏆 • 7.59 km)',
+      durationMin: 88.2,
+      distanceKm: 7.59,
+      paceMinKm: 11.61,
+      avgHr: 114,
+      watchCalories: 454,
+      color: '#10b981',
+      note: 'New All-Time Distance Record! 1:28:09 • 114 BPM Avg HR (Pure Zone 2) • 127 BPM Max HR • 118W Power • 454 kcal Active • 11,936 Steps • 135 SPM • 76.4m Elev Gain!'
+    },
+    {
       id: 'sep25',
-      dateLabel: 'Sep 25, 2026 (Latest Run • 6.49 km)',
+      dateLabel: 'Sep 25, 2026 (6.49 km)',
       durationMin: 73.6,
       distanceKm: 6.49,
       paceMinKm: 11.35,
       avgHr: 113,
       watchCalories: 390,
-      color: '#10b981',
-      note: 'Latest Outdoor Run! 1:13:36 • 113 BPM Avg HR (Zone 2 corridor) • 131 BPM Max HR • 122W Power • 390 kcal Active • 9,882 Steps • 134 SPM • 72.6m Elev Gain!'
+      color: '#059669',
+      note: 'Outdoor Run: 1:13:36 • 113 BPM Avg HR (Zone 2 corridor) • 131 BPM Max HR • 122W Power • 390 kcal Active • 9,882 Steps • 134 SPM • 72.6m Elev Gain!'
     },
     {
       id: 'sep22',

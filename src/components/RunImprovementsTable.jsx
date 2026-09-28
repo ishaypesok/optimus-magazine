@@ -18,9 +18,28 @@ export const calcMitoAdaptationProxy = (paceVal, avgHr, hrDriftPercent, zone2Per
 
 const INITIAL_RUNS_DATA = [
   {
+    id: 'run-sep-28-2026',
+    date: 'Sep 28, 2026',
+    title: "🔥 Latest Outdoor Run (7.59 km • Apple Watch AutoSync • New Record 🏆)",
+    distanceKm: 7.59,
+    durationMin: 88.2,
+    paceStr: '11:36 min/km',
+    paceVal: 11.61,
+    avgHr: 114,
+    maxHr: 127,
+    powerWatts: 118,
+    zone2Percent: 91,
+    fatBurnGrams: 44.5,
+    carbBurnGrams: 16.8,
+    mitoScore: 99,
+    hrDriftPercent: 3.2,
+    lthrMargin: '-21 BPM',
+    note: 'New All-Time Distance Record! 7.59 km in 1:28:09 • 114 BPM Avg HR (Pure Zone 2) • 127 BPM Max • 118W • 0.755 m/beat • 11,936 steps • AutoSync'
+  },
+  {
     id: 'run-sep-25-2026',
     date: 'Sep 25, 2026',
-    title: "🔥 Latest Outdoor Run (6.49 km • Apple Watch AutoSync)",
+    title: "Outdoor Run (6.49 km • Apple Watch AutoSync)",
     distanceKm: 6.49,
     durationMin: 73.6,
     paceStr: '11:21 min/km',
@@ -580,7 +599,8 @@ export default function RunImprovementsTable() {
               {latestMetersPerBeat.toFixed(3)} <span className="text-xs font-sans font-bold text-stone-500">m / beat</span>
             </div>
             <p className="text-[11px] text-emerald-700 font-semibold flex items-center gap-1">
-              <ArrowUpRight className="w-3.5 h-3.5" /> +8.3% vs Sep 22 (0.720 → 0.780 m/beat)
+              {metersPerBeatDelta >= 0 ? <ArrowUpRight className="w-3.5 h-3.5" /> : <ArrowDownRight className="w-3.5 h-3.5" />}
+              <span>{metersPerBeatDelta >= 0 ? `+${((metersPerBeatDelta/prevMetersPerBeat)*100).toFixed(1)}%` : `${((metersPerBeatDelta/prevMetersPerBeat)*100).toFixed(1)}%`} vs {getShortDate(previousRun.date)} ({prevMetersPerBeat.toFixed(3)} → {latestMetersPerBeat.toFixed(3)} m/beat)</span>
             </p>
             <div className="text-[10px] text-stone-500 leading-tight pt-1 border-t border-stone-100">
               Aerobic Efficiency Index = Distance-per-heartbeat metric. May reflect improved cardiovascular efficiency when conditions are comparable; represents more distance covered per recorded heartbeat.
@@ -640,7 +660,7 @@ export default function RunImprovementsTable() {
               &lt; {latestRun.hrDriftPercent || 3.6}% <span className="text-xs font-sans font-bold text-emerald-600">Low Drift (&lt;5%)</span>
             </div>
             <p className="text-[11px] text-emerald-700 font-semibold flex items-center gap-1">
-              <CheckCircle2 className="w-3.5 h-3.5" /> Minimal cardiac drift across 73 min
+              <CheckCircle2 className="w-3.5 h-3.5" /> Minimal cardiac drift across {latestRun.durationMin.toFixed(0)} min
             </p>
             <div className="text-[10px] text-stone-500 leading-tight pt-1 border-t border-stone-100">
               Drift between 1st & 2nd half. Values &lt;5% are classified by this model as low cardiac drift.
@@ -660,7 +680,7 @@ export default function RunImprovementsTable() {
               {latestRun.zone2Percent}% <span className="text-xs font-sans font-bold text-stone-500">Compliance</span>
             </div>
             <p className="text-[11px] text-emerald-700 font-semibold flex items-center gap-1">
-              <Sparkles className="w-3.5 h-3.5" /> 64.8 min strictly inside 105–117 BPM
+              <Sparkles className="w-3.5 h-3.5" /> {((latestRun.durationMin * (latestRun.zone2Percent || 85)) / 100).toFixed(1)} min strictly inside Zone 2 corridor
             </p>
             <div className="text-[10px] text-stone-500 leading-tight pt-1 border-t border-stone-100">
               Maintains the planned aerobic-intensity corridor and contributes to the model-based estimate of substrate utilization.
@@ -740,11 +760,11 @@ export default function RunImprovementsTable() {
                 {latestRun.paceStr.split(' ')[0]} <span className="text-xs font-sans font-semibold text-stone-500">min/km</span>
               </div>
               <div className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-800 bg-emerald-100/90 px-1.5 py-0.5 rounded">
-                <ArrowDownRight className="w-3 h-3 text-emerald-700" />
-                <span>-25 sec/km (faster)</span>
+                {paceDelta <= 0 ? <ArrowDownRight className="w-3 h-3 text-emerald-700" /> : <ArrowUpRight className="w-3 h-3 text-emerald-700" />}
+                <span>{paceDelta <= 0 ? `${Math.abs(Math.round(paceDelta * 60))} sec/km (faster)` : `+${Math.round(paceDelta * 60)} sec/km (steady)`}</span>
               </div>
             </div>
-            <div className="text-[10px] text-stone-500 pt-0.5">Faster pace</div>
+            <div className="text-[10px] text-stone-500 pt-0.5">{paceDelta <= 0 ? 'Faster pace' : 'Controlled Zone 2 pace'}</div>
           </div>
 
           {/* Card 3: Dist / Beat */}

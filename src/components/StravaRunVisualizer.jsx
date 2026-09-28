@@ -6,8 +6,40 @@ import {
 } from 'lucide-react';
 
 const SYNCED_TODAY_RUN = {
+  id: 'run-sep-28-2026-synced',
+  title: "Latest Outdoor Run (7.59 km • Auto Export AutoSync • New Record 🏆)",
+  date: 'Sep 28, 2026 • 19:44',
+  device: 'Apple Watch Ultra',
+  sourceApp: 'Health Auto Export AutoSync',
+  durationMinutes: 88.2,
+  distanceKm: 7.59,
+  avgPace: '11:36 min/km',
+  avgHeartRate: 114,
+  maxHeartRate: 127,
+  calories: 454,
+  vo2max: 34.1,
+  powerWatts: 118,
+  elevationGain: 76.4,
+  weatherTemp: '25.3°C',
+  weatherHumidity: '68%',
+  wingateZone2Target: '101 - 120 BPM',
+  zone2TimePercent: 91,
+  fatBurnGrams: 44.5,
+  carbBurnGrams: 16.8,
+  mitochondrialEfficiencyScore: 99,
+  lthrMargin: '-21 BPM below LTHR (135 BPM)',
+  coordinates: [
+    { x: 40, y: 185, hr: 80, zone: 'Zone 1' },
+    { x: 150, y: 130, hr: 114, zone: 'Zone 2' },
+    { x: 300, y: 110, hr: 116, zone: 'Zone 2' },
+    { x: 420, y: 100, hr: 118, zone: 'Zone 2' },
+    { x: 570, y: 165, hr: 110, zone: 'Zone 1' }
+  ]
+};
+
+const RUN_SEP_25_2026 = {
   id: 'run-sep-25-2026-synced',
-  title: "Latest Outdoor Run (6.49 km • Auto Export AutoSync)",
+  title: "Previous Outdoor Run (6.49 km • Auto Export AutoSync)",
   date: 'Sep 25, 2026 • 19:19',
   device: 'Apple Watch Ultra',
   sourceApp: 'Health Auto Export AutoSync',
@@ -551,6 +583,7 @@ const RUN_JUL_25_2026 = {
 
 const INITIAL_RUNS = [
   SYNCED_TODAY_RUN,
+  RUN_SEP_25_2026,
   RUN_SEP_22_2026,
   RUN_SEP_19_2026,
   RUN_SEP_16_2026,
@@ -576,8 +609,8 @@ export default function StravaRunVisualizer() {
       try { 
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          if (!parsed.some(r => r.id === 'run-sep-25-2026-synced')) {
-            if (!parsed.some(r => r.id === 'run-sep-22-2026-synced')) { parsed.unshift(RUN_SEP_22_2026); }
+          if (!parsed.some(r => r.id === 'run-sep-28-2026-synced')) {
+            if (!parsed.some(r => r.id === 'run-sep-25-2026-synced')) { parsed.unshift(RUN_SEP_25_2026); }
             parsed.unshift(SYNCED_TODAY_RUN);
           }
           return parsed;
@@ -661,7 +694,7 @@ export default function StravaRunVisualizer() {
       // Make sure today run is loaded at top
       setRunsList(INITIAL_RUNS);
       setSelectedRunId(SYNCED_TODAY_RUN.id);
-      alert(`🎉 Today's ${SYNCED_TODAY_RUN.distanceKm} km Apple Watch Ultra run (Sep 25) successfully synced! (9,882 steps · Avg HR ${SYNCED_TODAY_RUN.avgHeartRate} BPM loaded)`);
+      alert(`🎉 Today's ${SYNCED_TODAY_RUN.distanceKm} km Apple Watch Ultra run (Sep 28) successfully synced! (11,936 steps · Avg HR ${SYNCED_TODAY_RUN.avgHeartRate} BPM loaded)`);
     }, 800);
   };
 
