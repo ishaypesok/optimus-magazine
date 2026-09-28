@@ -262,7 +262,7 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
       case 25: return <MitochondrialReproduction />;
       case 26: return <Zone2VsOtherSports />;
       case 27: return <RunnerSimulation />;
-      case 28: return <RunImprovementsTable />;
+      case 28: return <RunImprovementsTable prevPage={prevPage} nextPage={nextPage} setPage={setPage} />;
       case 29: return <MuscleBioenergeticsCalculator />;
       case 30: return <HypertrophyBlueprint12W />;
       case 31: return <AsAboveSoBelowVisualizer />;
@@ -320,8 +320,29 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
                 <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-900 font-extrabold text-[10px] uppercase tracking-wider border border-emerald-300">
                   <span>📰 Official Issue Cover</span>
                 </div>
-                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-stone-100 text-stone-800 font-extrabold font-mono text-[10px] uppercase tracking-wider border border-stone-300 shadow-2xs">
-                  <span>📄 PAGE {activePage} OF {totalPages}</span>
+                {/* Interactive Page Movement Toggle at Top */}
+                <div className="inline-flex items-center bg-stone-100/90 hover:bg-stone-200/80 border border-stone-300 rounded-full shadow-2xs overflow-hidden p-0.5 transition">
+                  <button
+                    onClick={prevPage}
+                    disabled={activePage === 1}
+                    className="p-1 px-2 hover:bg-white disabled:opacity-30 text-stone-700 transition flex items-center gap-0.5 font-bold text-[10px] rounded-full"
+                    title="Previous Page"
+                  >
+                    <ChevronLeft className="w-3.5 h-3.5" />
+                    <span className="hidden sm:inline">Prev</span>
+                  </button>
+                  <span className="px-2 py-0.5 font-mono font-extrabold text-[10px] text-stone-900 border-x border-stone-300/80">
+                    📄 PAGE {activePage} OF {totalPages}
+                  </span>
+                  <button
+                    onClick={nextPage}
+                    disabled={activePage === totalPages}
+                    className="p-1 px-2 hover:bg-white disabled:opacity-30 text-stone-700 transition flex items-center gap-0.5 font-bold text-[10px] rounded-full"
+                    title="Next Page"
+                  >
+                    <span className="hidden sm:inline">Next</span>
+                    <ChevronRight className="w-3.5 h-3.5" />
+                  </button>
                 </div>
               </div>
               <h1 className="text-xl sm:text-2xl font-black text-stone-900 leading-tight">
@@ -331,18 +352,41 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
             </div>
           </div>
           
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <div className="hidden md:flex flex-col text-right text-xs text-stone-500 font-medium">
               <span>Science, fitness & bioenergetics for healthy aging</span>
               <span className="text-[10px] text-emerald-800 font-bold">Bioenergetics Science Press</span>
             </div>
+
+            {/* Top Page Movement Buttons */}
+            <div className="flex items-center gap-1 bg-stone-100 p-1 rounded-xl border border-stone-300 shadow-2xs">
+              <button 
+                onClick={prevPage}
+                disabled={activePage === 1}
+                className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-white hover:bg-stone-50 disabled:opacity-30 text-stone-800 text-xs font-bold transition border border-stone-200 shadow-2xs"
+                title="Go to Previous Page"
+              >
+                <ChevronLeft className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">Previous</span>
+              </button>
+              <button 
+                onClick={nextPage}
+                disabled={activePage === totalPages}
+                className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-emerald-700 hover:bg-emerald-800 disabled:opacity-30 text-white text-xs font-bold transition shadow-xs"
+                title="Go to Next Page"
+              >
+                <span className="hidden sm:inline">Next</span>
+                <ChevronRight className="w-3.5 h-3.5" />
+              </button>
+            </div>
+
             <button 
               onClick={() => window.print()}
-              className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-emerald-100 hover:bg-emerald-200 text-emerald-950 font-extrabold transition text-xs border border-emerald-300 shadow-xs"
+              className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-emerald-100 hover:bg-emerald-200 text-emerald-950 font-extrabold transition text-xs border border-emerald-300 shadow-xs"
               title="Export PDF / Print Magazine Page"
             >
               <Printer className="w-4 h-4 text-emerald-700" />
-              <span>Export Single Page PDF</span>
+              <span className="hidden sm:inline">Export Single Page PDF</span>
             </button>
           </div>
         </div>

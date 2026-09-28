@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { 
   TrendingUp, TrendingDown, Activity, Heart, Flame, Calendar, Award, 
   Sparkles, CheckCircle2, ArrowUpRight, ArrowDownRight, RefreshCw, 
-  Zap, ShieldCheck, Filter, Info, PlusCircle, Printer, Compass, Gauge, AlertCircle, ArrowDown
+  Zap, ShieldCheck, Filter, Info, PlusCircle, Printer, Compass, Gauge, AlertCircle, ArrowDown,
+  ChevronLeft, ChevronRight
 } from 'lucide-react';
 import MetabolicTierBadge, { MetabolicTierLegend } from './MetabolicTierBadge';
 
@@ -285,7 +286,7 @@ const INITIAL_RUNS_DATA = [
   }
 ];
 
-export default function RunImprovementsTable() {
+export default function RunImprovementsTable({ prevPage, nextPage, setPage } = {}) {
   const [runs, setRuns] = useState(() => {
     const saved = localStorage.getItem('optimus_ishai_runs_v4');
     if (saved) {
@@ -311,7 +312,7 @@ export default function RunImprovementsTable() {
             lthrMargin: r.lthrMargin || '-20 BPM',
             note: r.note || 'Synced Workout'
           }));
-          if (!mapped.some(r => r.id === 'run-sep-25-2026')) {
+          if (!mapped.some(r => r.id === 'run-sep-28-2026')) {
             mapped.unshift(INITIAL_RUNS_DATA[0]);
           }
           return mapped;
@@ -428,6 +429,32 @@ export default function RunImprovementsTable() {
                 <TrendingUp className="w-3.5 h-3.5 text-emerald-400" />
                 Page 28 • Longitudinal Aerobic Engine
               </span>
+
+              {/* Direct Page Movement Toggle at Top of Page 28 */}
+              {prevPage && nextPage && (
+                <div className="inline-flex items-center bg-white/10 hover:bg-white/15 border border-white/20 rounded-full p-0.5 shadow-2xs transition">
+                  <button
+                    onClick={prevPage}
+                    className="p-1 px-2.5 hover:bg-white/20 text-white transition flex items-center gap-1 font-bold text-[11px] rounded-full"
+                    title="Move to Previous Page (Page 27)"
+                  >
+                    <ChevronLeft className="w-3.5 h-3.5 text-emerald-300" />
+                    <span>Page 27</span>
+                  </button>
+                  <span className="px-2 text-[10px] font-mono font-bold text-emerald-200 border-x border-white/20">
+                    28
+                  </span>
+                  <button
+                    onClick={nextPage}
+                    className="p-1 px-2.5 hover:bg-white/20 text-white transition flex items-center gap-1 font-bold text-[11px] rounded-full"
+                    title="Move to Next Page (Page 29)"
+                  >
+                    <span>Page 29</span>
+                    <ChevronRight className="w-3.5 h-3.5 text-emerald-300" />
+                  </button>
+                </div>
+              )}
+
               <div className="flex items-center gap-1.5">
                 <MetabolicTierBadge tier="measured" size="xs" />
                 <MetabolicTierBadge tier="calculated" size="xs" />
