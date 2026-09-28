@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   TrendingUp, TrendingDown, Activity, Heart, Flame, Calendar, Award, 
   Sparkles, CheckCircle2, ArrowUpRight, ArrowDownRight, RefreshCw, 
@@ -287,6 +287,10 @@ const INITIAL_RUNS_DATA = [
 ];
 
 export default function RunImprovementsTable({ prevPage, nextPage, setPage } = {}) {
+  const tableContainerRef = useRef(null);
+  const topScrollContainerRef = useRef(null);
+  const [tableScrollWidth, setTableScrollWidth] = useState(1400);
+
   const [runs, setRuns] = useState(() => {
     const saved = localStorage.getItem('optimus_ishai_runs_v4');
     if (saved) {
@@ -358,6 +362,41 @@ export default function RunImprovementsTable({ prevPage, nextPage, setPage } = {
     window.addEventListener('storage', handleStorage);
     return () => window.removeEventListener('storage', handleStorage);
   }, []);
+
+  // Sync scroll width dynamically between top scrollbar and table
+  useEffect(() => {
+    const updateScrollWidth = () => {
+      if (tableContainerRef.current) {
+        setTableScrollWidth(tableContainerRef.current.scrollWidth);
+      }
+    };
+    updateScrollWidth();
+    const timer = setTimeout(updateScrollWidth, 150);
+    window.addEventListener('resize', updateScrollWidth);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('resize', updateScrollWidth);
+    };
+  }, [runs]);
+
+  // Synchronized scroll handlers
+  const handleTableScroll = (e) => {
+    if (topScrollContainerRef.current && Math.abs(topScrollContainerRef.current.scrollLeft - e.target.scrollLeft) > 1) {
+      topScrollContainerRef.current.scrollLeft = e.target.scrollLeft;
+    }
+  };
+
+  const handleTopScroll = (e) => {
+    if (tableContainerRef.current && Math.abs(tableContainerRef.current.scrollLeft - e.target.scrollLeft) > 1) {
+      tableContainerRef.current.scrollLeft = e.target.scrollLeft;
+    }
+  };
+
+  const scrollTableBy = (delta) => {
+    if (tableContainerRef.current) {
+      tableContainerRef.current.scrollBy({ left: delta, behavior: 'smooth' });
+    }
+  };
 
   const latestRun = runs[0] || INITIAL_RUNS_DATA[0];
   const previousRun = runs[1] || INITIAL_RUNS_DATA[1];
@@ -897,8 +936,58 @@ export default function RunImprovementsTable({ prevPage, nextPage, setPage } = {
           </button>
         </div>
 
+        {/* Top Horizontal Scrollbar Track & Scroll Toggle Navigation */}
+        <div className="bg-stone-50 border border-stone-200 rounded-2xl p-3 space-y-2 shadow-2xs">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <div className="flex items-center gap-2">
+              <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-900 font-extrabold text-xs border border-emerald-300">
+                ↔️ Table Scroll Toggle
+              </span>
+              <span className="text-xs text-stone-600 font-medium">
+                Scroll horizontally to view all metric columns
+              </span>
+            </div>
+
+            <div className="flex items-center gap-1.5">
+              <button
+                type="button"
+                onClick={() => scrollTableBy(-320)}
+                className="flex items-center gap-1 px-3 py-1.5 rounded-xl bg-white hover:bg-stone-200 text-stone-800 text-xs font-bold border border-stone-300 shadow-2xs transition cursor-pointer"
+                title="Scroll Table Left"
+              >
+                <ChevronLeft className="w-4 h-4 text-emerald-700" />
+                <span>Scroll Left</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => scrollTableBy(320)}
+                className="flex items-center gap-1 px-3.5 py-1.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold shadow-xs transition cursor-pointer"
+                title="Scroll Table Right"
+              >
+                <span>Scroll Right</span>
+                <ChevronRight className="w-4 h-4 text-white" />
+              </button>
+            </div>
+          </div>
+
+          {/* Synchronized Top Horizontal Scrollbar Track */}
+          <div
+            ref={topScrollContainerRef}
+            onScroll={handleTopScroll}
+            className="overflow-x-auto overflow-y-hidden rounded-lg bg-stone-200/90 border border-stone-300 shadow-inner"
+            style={{ height: '22px' }}
+          >
+            <div style={{ width: `${tableScrollWidth}px`, height: '1px' }} />
+          </div>
+        </div>
+
         {/* Scrollable Table */}
-        <div className="overflow-x-auto">
+        <div 
+          ref={tableContainerRef}
+          onScroll={handleTableScroll}
+          className="overflow-x-auto"
+        >
           <table className="w-full text-left text-xs border-collapse">
             <thead>
               <tr className="border-b border-stone-200 text-stone-500 font-extrabold uppercase tracking-wider bg-stone-50/80">
