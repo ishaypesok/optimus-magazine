@@ -18,29 +18,29 @@ const APPLE_WATCH_PACER_PROGRAM = [
   },
   { 
     week: 2, 
-    focus: "Week 2 — PGC-1α Mitochondrial Adaptation (11.3 min/km)", 
+    focus: "Week 2 — PGC-1α Surge & Landmark 7.59 km Run (11.0 min/km)", 
     workouts: [
-      { id: "w2d1", day: "Run 1 (e.g. Tue)", title: "Zone 2 Base Pacer", pacerPace: "11.3 min/km", desc: "Set Watch Pacer to 11.3 min/km. Soft stride under hips, peak fat oxidation." },
-      { id: "w2d2", day: "Run 2 (e.g. Thu)", title: "Steady Z2 Pacer Groove", pacerPace: "11.3 min/km", desc: "Set Watch Pacer to 11.3 min/km. Feel how light conversational breathing stays." },
-      { id: "w2d3", day: "Run 3 (e.g. Sat)", title: "Time-on-Feet Pacer Run", pacerPace: "11.3 min/km", desc: "Set Watch Pacer to 11.3 min/km. Building cellular mitochondrial density." }
+      { id: "w2d1", day: "Run 1 (e.g. Tue)", title: "Zone 2 Base Pacer (5.0 km)", pacerPace: "11.3 min/km", desc: "Set Watch Pacer to 11.3 min/km. Soft stride under hips, peak fat oxidation." },
+      { id: "w2d2", day: "Run 2 (e.g. Thu)", title: "Steady Z2 Pacer Cruise (5.5 km)", pacerPace: "11.3 min/km", desc: "Set Watch Pacer to 11.3 min/km. Feel how light conversational breathing stays." },
+      { id: "w2d3", day: "Run 3 (e.g. Sat)", title: "🏆 Landmark Run: 7.59 km Completed!", pacerPace: "11.0 min/km", desc: "7.59 km in 1:28:09 at 114 BPM average HR! 76% of full 10K goal accomplished." }
     ]
   },
   { 
     week: 3, 
-    focus: "Week 3 — Aerobic Efficiency Gain & Landmark 7.59 km Run (11.0 min/km)", 
+    focus: "Week 3 — Recovery & Cellular Consolidation Deload (11.5–11.8 min/km)", 
     workouts: [
-      { id: "w3d1", day: "Run 1 (e.g. Tue)", title: "Zone 2 Base Pacer", pacerPace: "11.0 min/km", desc: "Set Watch Pacer to 11.0 min/km. Notice pace feels easier at same heart rate." },
-      { id: "w3d2", day: "Run 2 (e.g. Thu)", title: "Steady Z2 Pacer Cruise", pacerPace: "11.0 min/km", desc: "Set Watch Pacer to 11.0 min/km. Beta-oxidation running smoothly." },
-      { id: "w3d3", day: "Run 3 (e.g. Sat)", title: "🏆 Landmark Run: 7.59 km Completed!", pacerPace: "11.0 min/km", desc: "7.59 km in 1:28:09 at 114 BPM average HR! 76% of full 10K goal accomplished." }
+      { id: "w3d1", day: "Run 1 (e.g. Tue)", title: "Active Recovery Pacer (4.5 km)", pacerPace: "11.8 min/km", desc: "Deload run! Allows cells to consolidate daughter mitochondria and VEGF capillaries." },
+      { id: "w3d2", day: "Run 2 (e.g. Thu)", title: "Light Form Pacer Run (5.0 km)", pacerPace: "11.8 min/km", desc: "Keep it light, bouncy, and effortless. Zero joint pounding." },
+      { id: "w3d3", day: "Run 3 (e.g. Sat)", title: "Consolidation Checkpoint (5.5–6.0 km)", pacerPace: "11.5 min/km", desc: "Consolidate your base before stepping to next progression." }
     ]
   },
   { 
     week: 4, 
-    focus: "Week 4 — Recovery & Cellular Consolidation Deload (11.5–11.8 min/km)", 
+    focus: "Week 4 — Base Re-Expansion (6.5–7.5 km • 11.2 min/km)", 
     workouts: [
-      { id: "w4d1", day: "Run 1 (e.g. Tue)", title: "Active Recovery Pacer (4.5 km)", pacerPace: "11.8 min/km", desc: "Deload run! Allows cells to consolidate daughter mitochondria and VEGF capillaries." },
-      { id: "w4d2", day: "Run 2 (e.g. Thu)", title: "Light Form Pacer Run (5.0 km)", pacerPace: "11.8 min/km", desc: "Keep it light, bouncy, and effortless. Zero joint pounding." },
-      { id: "w4d3", day: "Run 3 (e.g. Sat)", title: "Consolidation Checkpoint (5.5–6.0 km)", pacerPace: "11.5 min/km", desc: "Consolidate your base before stepping to 8.5 km in Week 5." }
+      { id: "w4d1", day: "Run 1 (e.g. Tue)", title: "Rhythmic Base Flow (5.5 km)", pacerPace: "11.2 min/km", desc: "Fresh mitochondria fully operational; smooth and effortless glide." },
+      { id: "w4d2", day: "Run 2 (e.g. Thu)", title: "Aerobic Cruise Run (6.0 km)", pacerPace: "11.2 min/km", desc: "Building consistent time-on-feet without fatigue." },
+      { id: "w4d3", day: "Run 3 (e.g. Sat)", title: "Base Endurance Run (7.0–7.5 km)", pacerPace: "11.0 min/km", desc: "Re-confirming 7+ km with lower heart rate and zero strain." }
     ]
   },
   { 
@@ -115,7 +115,7 @@ export default function TenKTracker() {
 
   // Finish Calculator State
   const [calcPace, setCalcPace] = useState(11.0); // min/km
-  const [selectedPathwayWeek, setSelectedPathwayWeek] = useState(3);
+  const [selectedPathwayWeek, setSelectedPathwayWeek] = useState(2);
 
   // Modal State
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -216,8 +216,8 @@ export default function TenKTracker() {
 
   const PATHWAY_STEPS = [
     {
-      week: 3,
-      title: 'Week 3: The 7.59 km Landmark Run',
+      week: 2,
+      title: 'Week 2: The 7.59 km Landmark Run',
       badge: 'CURRENT STATUS • 76% ACCOMPLISHED',
       badgeColor: 'bg-emerald-100 text-emerald-950 border-emerald-300',
       dist: '7.59 km',
@@ -229,8 +229,8 @@ export default function TenKTracker() {
       rules: 'Take two full recovery days (48 hours) to let newly split daughter mitochondria mature.'
     },
     {
-      week: 4,
-      title: 'Week 4: The Consolidation Trap & Deload',
+      week: 3,
+      title: 'Week 3: The Consolidation Trap & Deload',
       badge: 'CRITICAL CONSOLIDATION DELOAD',
       badgeColor: 'bg-amber-100 text-amber-950 border-amber-300',
       dist: '5.0 – 6.0 km',
@@ -238,8 +238,21 @@ export default function TenKTracker() {
       duration: '~55 – 65 min',
       hr: '105 – 112 BPM',
       focus: 'Cellular Consolidation & Capillary Solidification',
-      details: 'Resist the urge to push for 8.5 km immediately! Week 4 allows your muscles to synthesize cristae folding proteins, mature micro-capillaries (VEGF), and protect tendons from micro-tears.',
+      details: 'Resist the urge to push for 8.5 km immediately! Week 3 allows your muscles to synthesize cristae folding proteins, mature micro-capillaries (VEGF), and protect tendons from micro-tears.',
       rules: 'Dial distance back by ~25%. Keep pace relaxed and bouncy. Two rest days between runs.'
+    },
+    {
+      week: 4,
+      title: 'Week 4: Base Re-Expansion (6.5–7.5 km)',
+      badge: 'AEROBIC RE-EXPANSION',
+      badgeColor: 'bg-emerald-100 text-emerald-900 border-emerald-300',
+      dist: '6.5 – 7.5 km',
+      pace: '11.0 – 11.2 min/km',
+      duration: '~72 – 82 min',
+      hr: '108 – 114 BPM',
+      focus: 'Testing Newly Minted Mitochondria',
+      details: 'Following the Week 3 deload, your newly mature daughter mitochondria are online! Re-running the 7+ km range feels noticeably easier on your legs and breathing.',
+      rules: 'Maintain smooth heel-to-toe stride cadence. Take 2 rest days between sessions.'
     },
     {
       week: 5,
@@ -251,7 +264,7 @@ export default function TenKTracker() {
       duration: '~90 – 95 min',
       hr: '108 – 115 BPM',
       focus: 'Expanding the Mitochondrial Grid',
-      details: 'Following the Week 4 deload, your muscle fibers feel refreshed with expanded capillary density. Stepping to 8.5 km feels noticeably easier on your lungs and legs.',
+      details: 'Following the solid foundation of Weeks 2–4, your muscle fibers feel refreshed with expanded capillary density. Stepping to 8.5 km feels noticeably easier on your lungs and legs.',
       rules: 'Carry a handheld water bottle with electrolytes. Sip lightly every 20 minutes.'
     },
     {
@@ -312,7 +325,7 @@ export default function TenKTracker() {
             </span>
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/20 border border-amber-400/40 text-amber-300 text-xs font-bold uppercase tracking-wider">
               <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-              Week 3 Landmark: 7.59 km Completed (76%)
+              Week 2 Landmark: 7.59 km Completed (76%)
             </span>
           </div>
           
@@ -357,7 +370,7 @@ export default function TenKTracker() {
           }`}
         >
           <Trophy className="w-4 h-4 text-emerald-300" />
-          <span>🏆 Week 3 to 10K Blueprint & Nutrition</span>
+          <span>🏆 Week 2 to 10K Blueprint & Nutrition</span>
         </button>
 
         <button
@@ -459,7 +472,7 @@ export default function TenKTracker() {
               <div>
                 <h3 className="text-xl sm:text-2xl font-black text-stone-900 flex items-center gap-2">
                   <TrendingUp className="w-5 h-5 text-emerald-700" />
-                  The 5-Week Pathway: From Week 3 to the 10K Finish
+                  The 7-Week Pathway: From Week 2 to the 10K Finish
                 </h3>
                 <p className="text-xs text-stone-600 font-medium">
                   Click any week below to inspect the distance, pace targets, biological focus, and mandatory rest rules.
@@ -467,7 +480,7 @@ export default function TenKTracker() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2">
               {PATHWAY_STEPS.map((step) => (
                 <button
                   key={step.week}
@@ -480,7 +493,7 @@ export default function TenKTracker() {
                 >
                   <div className="flex items-center justify-between">
                     <span className="font-mono text-[10px] font-black opacity-80">Week {step.week}</span>
-                    {step.week === 3 && (
+                    {step.week === 2 && (
                       <span className="text-[9px] bg-amber-400 text-amber-950 font-black px-1.5 py-0.2 rounded-full">
                         CURRENT
                       </span>
@@ -535,14 +548,14 @@ export default function TenKTracker() {
                     </div>
                   </div>
 
-                  {cur.week === 4 && (
+                  {cur.week === 3 && (
                     <div className="p-4 rounded-2xl bg-amber-50 border border-amber-300 text-amber-950 text-xs sm:text-sm space-y-1.5">
                       <div className="font-black flex items-center gap-2 text-amber-900">
                         <AlertTriangle className="w-4 h-4 text-amber-700" />
                         BEWARE THE "CONSOLIDATION TRAP"!
                       </div>
                       <p className="leading-relaxed">
-                        After running a big milestone like 7.59 km, it is tempting to jump to 8.5 km or 9.0 km immediately. <strong>Do not do this.</strong> Week 4 is specifically designed as a <em>cellular deload</em>. Your muscle fibers need lower distance (5.0–6.0 km) to finish assembling the newly created daughter mitochondria (via DRP1) and allow microscopic blood capillaries (VEGF) to mature. Trust the deload!
+                        After running a big milestone like 7.59 km in Week 2, it is tempting to jump to 8.5 km or 9.0 km immediately. <strong>Do not do this.</strong> Week 3 is specifically designed as a <em>cellular deload</em>. Your muscle fibers need lower distance (5.0–6.0 km) to finish assembling the newly created daughter mitochondria (via DRP1) and allow microscopic blood capillaries (VEGF) to mature. Trust the deload!
                       </p>
                     </div>
                   )}
