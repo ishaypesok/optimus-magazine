@@ -622,7 +622,7 @@ export default function TenKTracker() {
                   </div>
                   <ul className="space-y-1.5 text-xs text-stone-700 list-disc list-inside">
                     <li><strong>Hydration:</strong> Drink 400–500 ml of water with a pinch of electrolytes (sodium + potassium).</li>
-                    <li><strong>The Medjool Date Hack:</strong> 1 or 2 Medjool dates (תמר מג'הול) stuffed with raw tahini or a walnut! The healthy fats blunt insulin so CPT-1 fat gates stay wide open while delivering steady natural energy.</li>
+                    <li><strong>The Medjool Date Hack:</strong> 1 or 2 Medjool dates (תמר מג'הול) paired with <strong>1 to 2 whole walnuts (1 walnut half inside each date)</strong> or 1 tsp raw tahini! The healthy fats blunt insulin so CPT-1 fat gates stay wide open while delivering steady natural energy without stomach heaviness.</li>
                     <li><strong>Rule:</strong> Avoid processed sugars or high glycemic snacks that spike insulin. Insulin halts fatty acid beta-oxidation!</li>
                   </ul>
                 </div>
@@ -690,8 +690,8 @@ export default function TenKTracker() {
                   <p className="text-stone-700">Packed with natural potassium to power the sodium-potassium pump during 12,000+ footstrikes, preventing cramps and muscle twitches.</p>
                 </div>
                 <div className="p-3 bg-white rounded-xl border border-amber-200 space-y-1">
-                  <strong className="text-amber-950 block">3. The Tahini/Walnut Pairing</strong>
-                  <p className="text-stone-700">Pairing a date with raw tahini or walnuts slows absorption, preventing insulin spikes so CPT-1 fat-burning gates stay wide open in Zone 2!</p>
+                  <strong className="text-amber-950 block">3. The Walnut / Tahini Pairing</strong>
+                  <p className="text-stone-700">Pairing each date with <strong>1 walnut half</strong> (or 1 whole walnut for 2 dates) slows gastric absorption, preventing insulin spikes so CPT-1 fat-burning gates stay wide open in Zone 2!</p>
                 </div>
               </div>
             </div>
