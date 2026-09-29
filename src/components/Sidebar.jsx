@@ -63,6 +63,7 @@ export const PAGES_LIST = [
   { id: 38, title: 'Zone 2 & Working Memory: How Aerobic Exercise Rewires the Brain', label: 'Article 38: Zone 2 & Memory', category: 'Neuroscience & Cognition', icon: Brain, badge: '🧠 Brain & Memory' },
   { id: 39, title: 'Dr. San Millán: What is Zone 2? Metabolic Equilibrium vs. Drift', label: 'Article 39: Zone 2 Metabolic State', category: 'Expert Spotlights', icon: Zap, badge: '🔬 Metabolic State' },
   { id: 40, title: 'Mitochondrial Biogenesis Masterclass: Rebuilding Cellular Powerhouses at 65+ (Zone 2 vs. HIIT)', label: 'Article 40: Mito Biogenesis & HIIT', category: 'Deep Physiology', icon: Dna, badge: '⚡ Flagship 65+' },
+  { id: 41, title: 'Targeting Visceral & Abdominal Fat: Bioenergetics of Running, Receptor Densities & Lipolysis', label: 'Article 41: Visceral & Belly Fat Science', category: 'Deep Physiology', icon: Flame, badge: '🔥 Visceral Fat' },
 ];
 
 export default function Sidebar({
