@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-import { Activity, Zap, ExternalLink, ChevronRight, ChevronLeft, Droplet, Heart, TrendingUp, Award } from 'lucide-react';
+import { 
+  Activity, Zap, ExternalLink, ChevronRight, ChevronLeft, Droplet, 
+  Heart, TrendingUp, Award, ShieldAlert, CheckCircle2, MessageSquare, 
+  Flame, Scale, Sparkles, AlertTriangle 
+} from 'lucide-react';
 
 const TWEET_IMAGES = [
   {
@@ -53,6 +57,7 @@ const KEY_INSIGHTS = [
 
 export default function SanMillanVO2maxSpotlight() {
   const [activeSlide, setActiveSlide] = useState(0);
+  const [activeConsensusTab, setActiveConsensusTab] = useState('bioenergetics');
 
   const prevSlide = () => setActiveSlide(i => Math.max(i - 1, 0));
   const nextSlide = () => setActiveSlide(i => Math.min(i + 1, TWEET_IMAGES.length - 1));
@@ -226,6 +231,213 @@ export default function SanMillanVO2maxSpotlight() {
           })}
         </div>
       </div>
+
+      {/* The Couzens–San Millán Consensus Spotlight */}
+      <section className="p-6 md:p-8 rounded-3xl bg-stone-900 text-stone-100 border border-stone-700 shadow-xl space-y-6">
+        
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-stone-800 pb-5">
+          <div>
+            <div className="flex items-center gap-2 mb-2">
+              <span className="px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 font-extrabold text-xs uppercase tracking-wider border border-amber-500/40 inline-flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                Expert Consensus Spotlight
+              </span>
+              <span className="px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xs uppercase tracking-wider border border-blue-500/40">
+                Couzens 🤝 San Millán
+              </span>
+            </div>
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+              "You Earn the Right to Do HIIT"
+            </h3>
+            <p className="text-xs sm:text-sm text-stone-400 mt-1">
+              Why world-class exercise physiologists agree that a Zone 2 base must always precede high-intensity intervals.
+            </p>
+          </div>
+        </div>
+
+        {/* The Viral Exchange Dialogue Box */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          
+          {/* Dr. San Millán Tweet */}
+          <div className="p-5 rounded-2xl bg-stone-950/80 border border-stone-800 space-y-3 relative overflow-hidden">
+            <div className="flex items-center gap-3">
+              <img
+                src="https://pbs.twimg.com/profile_images/2010643137417347072/uj9F7xEs_normal.jpg"
+                alt="Dr. Iñigo San Millán"
+                className="w-10 h-10 rounded-full border border-blue-400 object-cover"
+              />
+              <div>
+                <div className="flex items-center gap-1 text-sm font-bold text-white">
+                  <span>Iñigo San Millán, PhD</span>
+                  <span className="text-blue-400 text-xs">@doctorinigo</span>
+                </div>
+                <div className="text-[11px] text-stone-400">Physiologist & Coach to Tour de France Champions</div>
+              </div>
+            </div>
+            <p className="text-xs sm:text-sm text-stone-200 leading-relaxed italic border-l-2 border-blue-500 pl-3">
+              "In competitive sports the debate of <strong>Zone 2 vs HIIT has never existed</strong>, even though some scientists who have never worked with elite athletes believe. That being said, in non-elite athletes, it depends on personal circumstances. Both are valuable, but base volume is non-negotiable."
+            </p>
+          </div>
+
+          {/* Alan Couzens Tweet */}
+          <div className="p-5 rounded-2xl bg-stone-950/80 border border-stone-800 space-y-3 relative overflow-hidden">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-amber-500/20 border border-amber-400 flex items-center justify-center font-black text-amber-300 text-sm shrink-0">
+                AC
+              </div>
+              <div>
+                <div className="flex items-center gap-1 text-sm font-bold text-white">
+                  <span>Alan Couzens</span>
+                  <span className="text-amber-400 text-xs">@Alan_Couzens</span>
+                </div>
+                <div className="text-[11px] text-stone-400">Exercise Physiologist & Endurance Coach</div>
+              </div>
+            </div>
+            <p className="text-xs sm:text-sm text-stone-200 leading-relaxed italic border-l-2 border-amber-500 pl-3">
+              "Many people who haven’t exercised in decades <strong>cannot assimilate or sustain HIIT</strong>, as well as it can also be dangerous, increasing the risk of injury and even fractures. 👏 <strong>You earn the right to do sustained high-intensity training. How do you earn the right? By first building the aerobic engine.</strong>"
+            </p>
+          </div>
+
+        </div>
+
+        {/* Interactive Tabs: The 3 Scientific Pillars */}
+        <div className="space-y-4 pt-2">
+          <div className="flex flex-wrap items-center gap-2">
+            <button
+              onClick={() => setActiveConsensusTab('bioenergetics')}
+              className={`px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 border ${
+                activeConsensusTab === 'bioenergetics'
+                  ? 'bg-emerald-600 text-white border-emerald-500 shadow-md'
+                  : 'bg-stone-800 text-stone-300 border-stone-700 hover:bg-stone-700'
+              }`}
+            >
+              <Zap className="w-3.5 h-3.5" />
+              1. Cellular Assimilation (Lactate Clearance)
+            </button>
+
+            <button
+              onClick={() => setActiveConsensusTab('musculoskeletal')}
+              className={`px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 border ${
+                activeConsensusTab === 'musculoskeletal'
+                  ? 'bg-amber-600 text-white border-amber-500 shadow-md'
+                  : 'bg-stone-800 text-stone-300 border-stone-700 hover:bg-stone-700'
+              }`}
+            >
+              <ShieldAlert className="w-3.5 h-3.5" />
+              2. Musculoskeletal & Fracture Prevention (Masters 60+)
+            </button>
+
+            <button
+              onClick={() => setActiveConsensusTab('polarized')}
+              className={`px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 border ${
+                activeConsensusTab === 'polarized'
+                  ? 'bg-blue-600 text-white border-blue-500 shadow-md'
+                  : 'bg-stone-800 text-stone-300 border-stone-700 hover:bg-stone-700'
+              }`}
+            >
+              <Scale className="w-3.5 h-3.5" />
+              3. The 80/20 Polarized Consensus
+            </button>
+          </div>
+
+          {/* Active Tab Panel */}
+          <div className="p-5 rounded-2xl bg-stone-950 border border-stone-800 animate-fade-in">
+            {activeConsensusTab === 'bioenergetics' && (
+              <div className="space-y-3">
+                <div className="flex items-center gap-2 text-emerald-400 font-bold text-sm">
+                  <Flame className="w-4 h-4 text-emerald-400" />
+                  Why Your Body Cannot "Assimilate" HIIT Without Zone 2
+                </div>
+                <p className="text-xs sm:text-sm text-stone-300 leading-relaxed font-normal">
+                  During high-intensity intervals, glycolytic fast-twitch (Type II) fibers break down glycogen rapidly, flooding muscle tissue with lactate and hydrogen ions (H⁺). <strong>Lactate cannot clear itself.</strong> It must be transported across cell membranes via <strong>MCT-1 shuttles</strong> and oxidized inside the <strong>mitochondria of adjacent slow-twitch (Type I) fibers</strong>.
+                </p>
+                <div className="p-3.5 rounded-xl bg-emerald-950/50 border border-emerald-800/60 text-xs text-emerald-200">
+                  <strong className="text-emerald-300">The Cellular Takeaway:</strong> Without high Zone 2 mitochondrial density, HIIT simply induces severe unbuffered intracellular acidosis, autonomic exhaustion, and excessive reactive oxygen species (ROS) without generating clean mitochondrial adaptations.
+                </div>
+              </div>
+            )}
+
+            {activeConsensusTab === 'musculoskeletal' && (
+              <div className="space-y-3">
+                <div className="flex items-center gap-2 text-amber-400 font-bold text-sm">
+                  <ShieldAlert className="w-4 h-4 text-amber-400" />
+                  Why HIIT Increases Risk of Tendon Tears & Stress Fractures in Older Adults
+                </div>
+                <p className="text-xs sm:text-sm text-stone-300 leading-relaxed font-normal">
+                  Cardiovascular enzymes adapt in <strong>weeks</strong>, but tendons, joint cartilage, and bone trabeculae remodel <strong>3 to 5 times slower</strong> (often requiring 6 to 12 months of progressive stress). Sprinting and unconditioned HIIT generate peak ground reaction forces of <strong>3.5× to 4.5× body weight</strong> per foot strike.
+                </p>
+                <div className="p-3.5 rounded-xl bg-amber-950/50 border border-amber-800/60 text-xs text-amber-200">
+                  <strong className="text-amber-300">The Connective Tissue Rule:</strong> Zone 2 jogging applies rhythmic, submaximal mechanical loads that gradually stimulate osteoblast bone mineralization and collagen cross-linking—safely fortifying tendons before high impact is ever introduced.
+                </div>
+              </div>
+            )}
+
+            {activeConsensusTab === 'polarized' && (
+              <div className="space-y-3">
+                <div className="flex items-center gap-2 text-blue-400 font-bold text-sm">
+                  <Scale className="w-4 h-4 text-blue-400" />
+                  The Universal 80/20 Distribution: From Tour de France to Longevity
+                </div>
+                <p className="text-xs sm:text-sm text-stone-300 leading-relaxed font-normal">
+                  Dr. San Millán coaches Tour de France winners (including Tadej Pogačar), while Alan Couzens conditions world-class ironman champions. Neither relies on HIIT alone. Both prescribe <strong>~80% of total weekly training volume in Zone 2</strong> to build capillary networks and fat-burning enzymes, reserving <strong>15–20% for high-intensity threshold/VO₂max work</strong>.
+                </p>
+                <div className="p-3.5 rounded-xl bg-blue-950/50 border border-blue-800/60 text-xs text-blue-200">
+                  <strong className="text-blue-300">The Longevity Translation:</strong> For healthy lifespan past 65, base volume is the bedrock of cardiovascular resilience, insulin sensitivity, and mitochondrial biogenesis.
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Ishai's Practical Earn-The-Right Checklist */}
+        <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-emerald-950/90 via-stone-900 to-stone-950 border border-emerald-700/50">
+          <div className="flex items-center justify-between flex-wrap gap-2 mb-3">
+            <span className="text-xs font-bold uppercase tracking-wider text-emerald-300 flex items-center gap-1.5">
+              <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+              Ishai's "Earned The Right" Field Verification (Age 79.2)
+            </span>
+            <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[11px] font-mono font-bold border border-emerald-500/30">
+              Score: 4 / 4 Complete
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 text-xs">
+            <div className="p-3 rounded-xl bg-stone-900/90 border border-stone-800 flex items-start gap-2">
+              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+              <div>
+                <strong className="text-white block">Aerobic Duration</strong>
+                <span className="text-stone-400">88.2 continuous mins @ 7.59 km</span>
+              </div>
+            </div>
+
+            <div className="p-3 rounded-xl bg-stone-900/90 border border-stone-800 flex items-start gap-2">
+              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+              <div>
+                <strong className="text-white block">Heart Rate Ceiling</strong>
+                <span className="text-stone-400">114 BPM avg (Base: 105–121)</span>
+              </div>
+            </div>
+
+            <div className="p-3 rounded-xl bg-stone-900/90 border border-stone-800 flex items-start gap-2">
+              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+              <div>
+                <strong className="text-white block">Fat Oxidation Rate</strong>
+                <span className="text-stone-400">44.5g fat burned (88% fat mix)</span>
+              </div>
+            </div>
+
+            <div className="p-3 rounded-xl bg-stone-900/90 border border-stone-800 flex items-start gap-2">
+              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+              <div>
+                <strong className="text-white block">Structural Integrity</strong>
+                <span className="text-stone-400">Zero tendon flare-ups / solid bone density</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
 
       {/* Ishai's Context Banner */}
       <div className="p-5 rounded-2xl bg-gradient-to-r from-emerald-950 via-slate-900 to-slate-950 text-white shadow-md border border-slate-700 space-y-3">
