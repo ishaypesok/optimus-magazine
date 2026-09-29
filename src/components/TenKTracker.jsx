@@ -622,20 +622,20 @@ export default function TenKTracker() {
                   </div>
                   <ul className="space-y-1.5 text-xs text-stone-700 list-disc list-inside">
                     <li><strong>Hydration:</strong> Drink 400–500 ml of water with a pinch of electrolytes (sodium + potassium).</li>
-                    <li><strong>Fueling:</strong> Keep meals light and low-glycemic (e.g. sourdough slice with tahini or almond butter, or small oatmeal with berries).</li>
-                    <li><strong>Rule:</strong> Avoid heavy sugars. High insulin shuts down CPT-1 gates and stops fat oxidation!</li>
+                    <li><strong>The Medjool Date Hack:</strong> 1 or 2 Medjool dates (תמר מג'הול) stuffed with raw tahini or a walnut! The healthy fats blunt insulin so CPT-1 fat gates stay wide open while delivering steady natural energy.</li>
+                    <li><strong>Rule:</strong> Avoid processed sugars or high glycemic snacks that spike insulin. Insulin halts fatty acid beta-oxidation!</li>
                   </ul>
                 </div>
 
                 <div className="p-5 rounded-2xl bg-stone-50 border border-stone-200 space-y-2">
                   <div className="flex items-center gap-2 font-extrabold text-sm text-stone-900">
                     <Droplet className="w-4 h-4 text-blue-700" />
-                    2. Mid-Run Hydration (During 88–110 Minutes)
+                    2. Mid-Run Hydration & Fuel (During 88–110 Minutes)
                   </div>
                   <ul className="space-y-1.5 text-xs text-stone-700 list-disc list-inside">
-                    <li><strong>Fighting Cardiac Drift:</strong> Beyond 70 minutes, sweating causes blood plasma loss, which artificially pushes heart rate up 5–8 BPM.</li>
-                    <li><strong>Protocol:</strong> Carry a small handheld soft flask with light electrolyte water. Take <strong>2–3 small sips every 20 minutes</strong>.</li>
-                    <li><strong>Energy:</strong> You have tens of thousands of fat calories available—no heavy gels needed in Zone 2!</li>
+                    <li><strong>Fighting Cardiac Drift:</strong> Beyond 70 minutes, sweating causes blood plasma loss, pushing heart rate up 5–8 BPM even when you are not tired.</li>
+                    <li><strong>Hydration Protocol:</strong> Carry a handheld soft flask with light electrolyte water. Take <strong>2–3 small sips every 20 minutes</strong>.</li>
+                    <li><strong>Mid-Run Date Option:</strong> On runs exceeding 80–90 minutes, 1 pitted date chewed slowly at minute 50–60 provides natural potassium and glucose without stomach upset—far superior to chemical gels!</li>
                   </ul>
                 </div>
               </div>
@@ -648,9 +648,9 @@ export default function TenKTracker() {
                     3. Post-Run Reconstruction Window (Within 45–60 min)
                   </div>
                   <ul className="space-y-1.5 text-xs text-stone-800 list-disc list-inside">
-                    <li><strong>Protein Building Blocks:</strong> Consume <strong>25–30 grams of high-quality protein</strong> (eggs, tuna, whey, fish, or Greek yogurt).</li>
-                    <li><strong>Enzyme Translation:</strong> Supplies the amino acids needed by ribosomes to manufacture the new PGC-1α-ordered respiratory complexes.</li>
-                    <li><strong>Carbohydrates:</strong> Pair with clean complex carbohydrates (sweet potatoes, rice, fruit) to replenish liver glycogen without inflammation.</li>
+                    <li><strong>Protein Building Blocks:</strong> Consume <strong>25–30 grams of high-quality protein</strong> (eggs, tuna, Greek yogurt, or whey).</li>
+                    <li><strong>Dates for Glycogen Restoration:</strong> 2 Medjool dates paired with your protein creates the optimal gentle insulin signal to shuttle amino acids straight into recovering mitochondria.</li>
+                    <li><strong>Enzyme Translation:</strong> Supplies the building blocks needed by ribosomes to manufacture new respiratory complexes.</li>
                   </ul>
                 </div>
 
@@ -661,12 +661,39 @@ export default function TenKTracker() {
                   </div>
                   <ul className="space-y-1.5 text-xs text-stone-700 list-disc list-inside">
                     <li><strong>Daily Protein:</strong> Maintain <strong>1.2 to 1.5 grams of protein per kilogram</strong> of bodyweight across both rest days.</li>
-                    <li><strong>Anti-Inflammatory Fats:</strong> Extra virgin olive oil, walnuts, and omega-3 rich fish to support flexible mitochondrial double membranes.</li>
-                    <li><strong>Sleep:</strong> Aim for 7.5 to 8.5 hours. Growth hormone released during deep sleep finalizes cristae folding!</li>
+                    <li><strong>Anti-Inflammatory Fats:</strong> Extra virgin olive oil, raw tahini, walnuts, and omega-3 rich fish to support flexible mitochondrial double membranes.</li>
+                    <li><strong>Deep Sleep:</strong> Aim for 7.5 to 8.5 hours. Growth hormone released during deep sleep finalizes cristae folding!</li>
                   </ul>
                 </div>
               </div>
 
+            </div>
+
+            {/* Spotlight Banner: Medjool Dates - The Ultimate Natural Endurance Fuel */}
+            <div className="p-5 rounded-2xl bg-amber-50/80 border border-amber-300 text-stone-900 space-y-2.5">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2 text-amber-950 font-black text-sm">
+                  <span className="text-xl">🌴</span>
+                  <span>Spotlight: Why Medjool Dates (תמרים) Are The Ultimate 10K Superfood</span>
+                </div>
+                <span className="text-[10px] font-mono font-bold bg-amber-200 text-amber-950 px-2 py-0.5 rounded-full">
+                  167 mg Potassium / Date
+                </span>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs leading-relaxed">
+                <div className="p-3 bg-white rounded-xl border border-amber-200 space-y-1">
+                  <strong className="text-amber-950 block">1. Natural 1:1 Dual Sugars</strong>
+                  <p className="text-stone-700">Contains a balanced blend of natural glucose (fuels contracting muscles) and fructose (restores liver glycogen to feed your brain and heart).</p>
+                </div>
+                <div className="p-3 bg-white rounded-xl border border-amber-200 space-y-1">
+                  <strong className="text-amber-950 block">2. Potassium & Magnesium</strong>
+                  <p className="text-stone-700">Packed with natural potassium to power the sodium-potassium pump during 12,000+ footstrikes, preventing cramps and muscle twitches.</p>
+                </div>
+                <div className="p-3 bg-white rounded-xl border border-amber-200 space-y-1">
+                  <strong className="text-amber-950 block">3. The Tahini/Walnut Pairing</strong>
+                  <p className="text-stone-700">Pairing a date with raw tahini or walnuts slows absorption, preventing insulin spikes so CPT-1 fat-burning gates stay wide open in Zone 2!</p>
+                </div>
+              </div>
             </div>
           </div>
 
