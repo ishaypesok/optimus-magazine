@@ -218,7 +218,7 @@ export default function BioenergeticsCalculator() {
         <div className="flex flex-wrap items-center gap-2">
           <span className="px-3.5 py-1 rounded-full bg-emerald-100 text-emerald-900 font-bold text-xs uppercase tracking-wider border border-emerald-300 inline-flex items-center gap-1.5 shadow-2xs">
             <Calculator className="w-3.5 h-3.5 text-emerald-700" />
-            Page 24 • Real-Time Apple Watch Bioenergetics Engine
+            Page 7 • Real-Time Apple Watch Bioenergetics Engine
           </span>
           <span className="px-3 py-1 rounded-full bg-teal-50 text-teal-800 font-extrabold text-xs border border-teal-200">
             Frayn Stoichiometry + ATP Flux
@@ -417,7 +417,7 @@ export default function BioenergeticsCalculator() {
               <span>Apple Watch Telemetry Controls</span>
             </h3>
             <button 
-              onClick={() => applyPreset('aug24')}
+              onClick={() => applyPreset('ishai_sep28')}
               className="text-[11px] font-bold text-emerald-800 hover:text-emerald-950 flex items-center gap-1"
             >
               <RotateCcw className="w-3 h-3" />
@@ -486,7 +486,7 @@ export default function BioenergeticsCalculator() {
             />
             <div className="flex justify-between text-[10px] text-stone-600 font-mono">
               <span>18 mL/kg</span>
-              <span>Ishai: 25.4 mL/kg</span>
+              <span>Ishai: 34.1 mL/kg</span>
               <span>65 mL/kg</span>
             </div>
           </div>
@@ -530,7 +530,7 @@ export default function BioenergeticsCalculator() {
             />
             <div className="flex justify-between text-[10px] text-stone-600 font-mono">
               <span>10 mins</span>
-              <span>Aug 24: 72.3 mins</span>
+              <span>Sep 28: 88.2 mins</span>
               <span>180 mins</span>
             </div>
           </div>

@@ -18,11 +18,11 @@ const APPLE_WATCH_PACER_PROGRAM = [
   },
   { 
     week: 2, 
-    focus: "Week 2 — PGC-1α Surge & Landmark 7.59 km Run (11.0 min/km)", 
+    focus: "Week 2 — PGC-1α Surge & Landmark 7.59 km Run (11:37 min/km)", 
     workouts: [
       { id: "w2d1", day: "Run 1 (e.g. Tue)", title: "Zone 2 Base Pacer (5.0 km)", pacerPace: "11.3 min/km", desc: "Set Watch Pacer to 11.3 min/km. Soft stride under hips, peak fat oxidation." },
       { id: "w2d2", day: "Run 2 (e.g. Thu)", title: "Steady Z2 Pacer Cruise (5.5 km)", pacerPace: "11.3 min/km", desc: "Set Watch Pacer to 11.3 min/km. Feel how light conversational breathing stays." },
-      { id: "w2d3", day: "Run 3 (e.g. Sat)", title: "🏆 Landmark Run: 7.59 km Completed!", pacerPace: "11.0 min/km", desc: "7.59 km in 1:28:09 at 114 BPM average HR! 76% of full 10K goal accomplished." }
+      { id: "w2d3", day: "Run 3 (e.g. Sat)", title: "🏆 Landmark Run: 7.59 km Completed!", pacerPace: "11:37 min/km", desc: "7.59 km in 1:28:09 at 114 BPM average HR! 76% of full 10K goal accomplished." }
     ]
   },
   { 
@@ -87,9 +87,9 @@ export default function TenKTracker() {
   // LocalStorage State
   const [completedWorkouts, setCompletedWorkouts] = useState(() => {
     try {
-      return JSON.parse(localStorage.getItem('optimus_10k_completed')) || ['w1d1', 'w1d2', 'w1d3', 'w2d1', 'w2d2', 'w2d3', 'w3d1', 'w3d2', 'w3d3'];
+      return JSON.parse(localStorage.getItem('optimus_10k_completed')) || ['w1d1', 'w1d2', 'w1d3', 'w2d1', 'w2d2', 'w2d3'];
     } catch {
-      return ['w1d1', 'w1d2', 'w1d3', 'w2d1', 'w2d2', 'w2d3', 'w3d1', 'w3d2', 'w3d3'];
+      return ['w1d1', 'w1d2', 'w1d3', 'w2d1', 'w2d2', 'w2d3'];
     }
   });
 
@@ -129,7 +129,7 @@ export default function TenKTracker() {
     notes: ''
   });
 
-  const [expandedWeeks, setExpandedWeeks] = useState({ 3: true, 4: true });
+  const [expandedWeeks, setExpandedWeeks] = useState({ 2: true, 3: true });
 
   useEffect(() => {
     localStorage.setItem('optimus_10k_completed', JSON.stringify(completedWorkouts));
@@ -221,7 +221,7 @@ export default function TenKTracker() {
       badge: 'CURRENT STATUS • 76% ACCOMPLISHED',
       badgeColor: 'bg-emerald-100 text-emerald-950 border-emerald-300',
       dist: '7.59 km',
-      pace: '11.0 min/km',
+      pace: '11:37 min/km',
       duration: '1:28:09',
       hr: '114 BPM',
       focus: 'Aerobic Efficiency & Peak PGC-1α Surge',
@@ -881,7 +881,7 @@ export default function TenKTracker() {
                     isWeekFullyDone 
                       ? 'border-emerald-300 bg-emerald-50/30' 
                       : w.week === 3
-                      ? 'border-emerald-500 ring-2 ring-emerald-400/30 bg-white'
+                      ? 'border-amber-400 ring-2 ring-amber-400/30 bg-white'
                       : 'border-stone-200 bg-white'
                   }`}
                 >
@@ -891,16 +891,21 @@ export default function TenKTracker() {
                   >
                     <div className="flex items-center gap-3">
                       <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs ${
-                        isWeekFullyDone ? 'bg-emerald-700 text-white' : w.week === 3 ? 'bg-emerald-600 text-white' : 'bg-stone-100 text-stone-700'
+                        isWeekFullyDone ? 'bg-emerald-700 text-white' : w.week === 2 ? 'bg-emerald-600 text-white' : w.week === 3 ? 'bg-amber-600 text-white' : 'bg-stone-100 text-stone-700'
                       }`}>
                         {isWeekFullyDone ? '✓' : w.week}
                       </div>
                       <div>
                         <div className="flex items-center gap-2">
                           <h4 className="font-bold text-sm sm:text-base text-stone-900">{w.focus}</h4>
-                          {w.week === 3 && (
+                          {w.week === 2 && (
                             <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-900 border border-emerald-300">
                               🏆 7.59 km Landmark Done!
+                            </span>
+                          )}
+                          {w.week === 3 && (
+                            <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300">
+                              Next: Consolidation Deload
                             </span>
                           )}
                         </div>
