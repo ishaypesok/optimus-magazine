@@ -3,7 +3,7 @@ import {
   Trophy, Calendar, CheckCircle2, Circle, Activity, 
   Flame, Plus, Trash2, Heart, ShieldCheck, ChevronDown, ChevronUp, 
   Sparkles, TrendingUp, Smartphone, 
-  Award, Clock, Droplet, AlertTriangle
+  Award, Clock, Droplet, AlertTriangle, Fish
 } from 'lucide-react';
 
 const APPLE_WATCH_PACER_PROGRAM = [
@@ -692,6 +692,75 @@ export default function TenKTracker() {
                 <div className="p-3 bg-white rounded-xl border border-amber-200 space-y-1">
                   <strong className="text-amber-950 block">3. The Walnut / Tahini Pairing</strong>
                   <p className="text-stone-700">Pairing each date with <strong>1 walnut half</strong> (or 1 whole walnut for 2 dates) slows gastric absorption, preventing insulin spikes so CPT-1 fat-burning gates stay wide open in Zone 2!</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Spotlight Banner: Wild Sardines vs Tuna & The Buyer's Guide */}
+            <div className="p-5 sm:p-6 rounded-2xl bg-cyan-950 text-white border border-cyan-500/40 space-y-4 shadow-md">
+              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-cyan-800/60 pb-3">
+                <div className="flex items-center gap-2.5">
+                  <div className="p-2 rounded-xl bg-cyan-500/20 text-cyan-300">
+                    <Fish className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h4 className="font-black text-base sm:text-lg text-white">
+                      Spotlight: Why Wild Sardines (סרדינים) Crush Tuna for 65+ Longevity
+                    </h4>
+                    <p className="text-xs text-cyan-200">
+                      Trophic level bioenergetics: Zero mercury, 380mg bone calcium, and cardiolipin-repairing EPA/DHA.
+                    </p>
+                  </div>
+                </div>
+                <span className="text-[11px] font-mono font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-400/30 px-2.5 py-1 rounded-full">
+                  Premier "SMASH" Fish
+                </span>
+              </div>
+
+              {/* 3 Pillars */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs leading-relaxed">
+                <div className="p-3.5 bg-cyan-900/40 rounded-xl border border-cyan-700/50 space-y-1">
+                  <strong className="text-cyan-200 block text-sm">1. Zero Mercury vs Apex Predator</strong>
+                  <p className="text-cyan-100/90">
+                    Tuna is an apex predator (Trophic Level 4.5) accumulating neurotoxic methylmercury that poisons Mitochondrial Complex IV. Sardines feed at Trophic Level 2 on plankton—virtually zero mercury!
+                  </p>
+                </div>
+                <div className="p-3.5 bg-cyan-900/40 rounded-xl border border-cyan-700/50 space-y-1">
+                  <strong className="text-cyan-200 block text-sm">2. Edible Bones for 15,000 Strikes</strong>
+                  <p className="text-cyan-100/90">
+                    Whole canned sardines contain soft, pressure-cooked bones delivering <strong>~380 mg of bioavailable calcium (35% RDA)</strong>, phosphorus, and marine collagen. Canned tuna filet provides 0 mg calcium.
+                  </p>
+                </div>
+                <div className="p-3.5 bg-cyan-900/40 rounded-xl border border-cyan-700/50 space-y-1">
+                  <strong className="text-cyan-200 block text-sm">3. Cardiolipin & Cellular CoQ10</strong>
+                  <p className="text-cyan-100/90">
+                    Packed with 1,800 mg EPA/DHA Omega-3s that reinforce the inner mitochondrial membrane (cardiolipin), paired with high natural CoQ10 to shuttle electrons across your respiratory chain.
+                  </p>
+                </div>
+              </div>
+
+              {/* Supermarket Buyer's Rules */}
+              <div className="p-4 bg-slate-900/80 rounded-xl border border-cyan-500/30 space-y-2.5">
+                <div className="text-xs font-bold text-amber-300 uppercase tracking-wider font-mono flex items-center gap-1.5">
+                  <span>🛒 Supermarket Buyer's Checklist (מדריך קנייה)</span>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-slate-300">
+                  <div className="space-y-1">
+                    <span className="text-white font-semibold block">🫒 The Oil Rule (Most Critical):</span>
+                    <p>Buy ONLY packed in <strong>Extra Virgin Olive Oil (שמן זית כתית מעולה)</strong> or <strong>Spring Water (מים)</strong>. NEVER buy in cheap soybean, sunflower, or vegetable oil (שמן סויה / שמן צמחי)—their oxidized Omega-6 destroys the anti-inflammatory benefits!</p>
+                  </div>
+                  <div className="space-y-1">
+                    <span className="text-white font-semibold block">🐟 Whole Fish with Skin & Bones (שלמים):</span>
+                    <p>Always buy whole sardines with skin & bones (שלמים, לא מפולטים). Never buy skinless/boneless, which strips away 90% of the bone calcium and collagen.</p>
+                  </div>
+                  <div className="space-y-1">
+                    <span className="text-white font-semibold block">🥫 Top Supermarket Brands:</span>
+                    <p><strong>King Oscar</strong> (Norwegian tiny brisling sardines in EVOO), Portuguese/Spanish artisanal cans (<strong>Ortiz, Matiz, Bela</strong>), or quality supermarket brands (<strong>Starkist, Willi-Food</strong>—verify "in olive oil" on front label!).</p>
+                  </div>
+                  <div className="space-y-1">
+                    <span className="text-white font-semibold block">🍋 2-Minute Post-Run Recipe:</span>
+                    <p>Open can in EVOO, squeeze fresh lemon over the fish (Vitamin C boosts iron absorption), mash lightly with a fork, add parsley, and enjoy over sourdough or roasted sweet potato.</p>
+                  </div>
                 </div>
               </div>
             </div>
