@@ -2,16 +2,82 @@ import React, { useState } from 'react';
 import { 
   Dna, Zap, ShieldCheck, Activity, TrendingUp, Sliders, 
   CheckCircle2, AlertCircle, Sparkles, Scale, Heart, 
-  Cpu, RefreshCw, BarChart2, Layers, Award, Dumbbell
+  BarChart2, Layers, Award, Dumbbell,
+  ChevronRight, ChevronLeft, Maximize2, X, ZoomIn
 } from 'lucide-react';
 
+const BIOGENESIS_SLIDES = [
+  {
+    id: 1,
+    title: 'The Master Biogenesis Pathway',
+    subtitle: 'From muscle contraction to PGC-1α activation, nuclear transcription & TFAM organelle birth',
+    src: './mitochondrial_biogenesis_slide_1.jpg',
+    alt: 'Mitochondrial Biogenesis Molecular Pathway in Human Muscle Cells',
+    badge: '1. Molecular Regulation',
+    keyPoints: [
+      { label: 'Contraction & Calcium Influx', text: 'Rhythmic muscular contractions generate prolonged Ca²⁺ flux, activating CaMK (Calmodulin kinase).' },
+      { label: 'Energy Sensing Kinases (AMPK & SIRT1)', text: 'ATP turnover raises AMP/ATP and NAD⁺/NADH ratios, phosphorylating AMPK and activating SIRT1 deacetylase.' },
+      { label: 'PGC-1α Nuclear Translocation', text: 'Deacetylated PGC-1α enters the nucleus, co-activating NRF-1 and NRF-2 transcription factors.' },
+      { label: 'TFAM & DRP1 Fission', text: 'TFAM replicates mitochondrial DNA (mtDNA) while DRP1 rings orchestrate binary fission to create new daughter organelles.' }
+    ]
+  },
+  {
+    id: 2,
+    title: 'Comparative Adaptations: Zone 2 vs. HIIT',
+    subtitle: 'Chronic volumetric network expansion vs. peak enzymatic efficiency & acute mitophagy',
+    src: './mitochondrial_biogenesis_slide_2.jpg',
+    alt: 'Zone 2 vs. HIIT Mitochondrial Adaptations in Skeletal Muscle',
+    badge: '2. Comparative Remodeling',
+    keyPoints: [
+      { label: 'Zone 2: Volumetric Expansion', text: 'Builds total mitochondrial mass, expands cristae surface area, and triggers rich capillary growth for enhanced oxygen delivery.' },
+      { label: 'Zone 2: Pure Fat Oxidation', text: 'Sustained beta-oxidation via CPT-1 gates with stable, low lactate levels (<2.0 mmol/L) in cellular equilibrium.' },
+      { label: 'HIIT: Enzyme Efficiency Tuning', text: 'Spikes in AMP/ATP ratio upregulate key respiratory enzymes per unit of existing mitochondrion.' },
+      { label: 'HIIT: Rapid Mitophagy & Glycolysis', text: 'Triggers intense autophagic quality control alongside high lactate flux and fast-twitch fiber recruitment.' }
+    ]
+  },
+  {
+    id: 3,
+    title: 'Muscle Fiber Biopsy: Untrained vs. Zone 2',
+    subtitle: 'Direct microscopic evidence of mitochondrial density & capillary expansion in human muscle',
+    src: './zone2_mitochondria_comparison.jpg',
+    alt: 'Untrained vs Endurance Trained Zone 2 Muscle Fiber Biopsy',
+    badge: '3. Muscle Fiber Biopsy',
+    keyPoints: [
+      { label: 'Untrained Architecture', text: 'Sparse, fragmented mitochondria clustered near sarcolemma with minimal capillary contacts, limiting fat oxidation.' },
+      { label: 'Trained Zone 2 Architecture', text: 'Dense, interconnected mitochondrial reticulum weaving between every myofibril with expanded cristae volume.' },
+      { label: 'Capillary Network Expansion', text: 'Profound microvascular capillarization ensures rapid, effortless oxygen transfer from red blood cells to myoglobin.' },
+      { label: 'Age-Reversing Remodeling', text: 'Completely offsets the 8–10% per decade natural loss of oxidative capacity in master runners.' }
+    ]
+  },
+  {
+    id: 4,
+    title: 'Transmission Electron Micrograph (TEM at 15,000x)',
+    subtitle: 'Direct physical proof of inner cristae membranes, matrix density & capillary interface',
+    src: './mitochondria_tem_micrograph.jpg',
+    alt: 'Transmission Electron Micrograph 15,000x Magnification of Muscle Mitochondria',
+    badge: '4. Physical TEM Proof',
+    keyPoints: [
+      { label: '15,000x Ultrastructure', text: 'Direct microscopic cross-section revealing individual double membranes and packed protein matrices.' },
+      { label: 'Folded Cristae Architecture', text: 'The folded inner cristae house Complexes I–IV and ATP Synthase rotary turbines that generate cellular energy.' },
+      { label: 'Intracellular Proximity', text: 'Positioned in immediate contact with red blood capillaries, enabling zero-delay oxygen diffusion.' },
+      { label: 'Living Biological Evidence', text: 'Visual proof that consistent aerobic exercise literally restructures the physical cellular machinery of life.' }
+    ]
+  }
+];
+
 export default function MitochondrialBiogenesisMasterclass() {
-  const [activeTab, setActiveTab] = useState('zone2_vs_hiit'); // 'overview' | 'molecular_pathway' | 'zone2_vs_hiit' | 'simulator' | 'protocol'
+  const [activeTab, setActiveTab] = useState('slideshow'); // 'slideshow' | 'zone2_vs_hiit' | 'overview' | 'simulator' | 'protocol'
+  const [activeSlideIdx, setActiveSlideIdx] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedHiitMetric, setSelectedHiitMetric] = useState(0);
 
   // Simulator state for 65+ training mix
   const [zone2Hours, setZone2Hours] = useState(3.5); // hours/week
   const [hiitSessions, setHiitSessions] = useState(1); // sessions/week
+
+  const currentSlide = BIOGENESIS_SLIDES[activeSlideIdx];
+  const nextSlide = () => setActiveSlideIdx((prev) => (prev + 1) % BIOGENESIS_SLIDES.length);
+  const prevSlide = () => setActiveSlideIdx((prev) => (prev - 1 + BIOGENESIS_SLIDES.length) % BIOGENESIS_SLIDES.length);
 
   // Computed metrics for 65+ athlete
   const mitoDensityGain = Math.min(100, Math.round(zone2Hours * 16 + hiitSessions * 8));
@@ -24,9 +90,9 @@ export default function MitochondrialBiogenesisMasterclass() {
       title: 'Primary Organelle Adaptation',
       shortName: 'Adaptation Type',
       zone2: 'Mitochondrial Mass & Network Density ("Building the Factory")',
-      zone2Details: 'Expands the total surface area, volume density, cristae folds, and capillary bed per muscle fiber. Multiplies the total number of cellular powerhouses.',
+      zone2Details: 'Expands total organelle volume, cristae surface area, and capillary beds per muscle fiber. Multiplies the absolute count of cellular powerhouses.',
       hiit: 'Intrinsic Mitochondrial Respiration ("Supercharging Turbines")',
-      hiitDetails: 'Increases the enzymatic rate per unit of existing mitochondrion (State 3 respiration, Cytochrome c Oxidase activity). Maximizes peak aerobic output.',
+      hiitDetails: 'Increases the enzymatic rate per unit of existing mitochondrion (State 3 respiration, Cytochrome c Oxidase activity). Maximizes peak aerobic throughput.',
       badge: 'Architecture vs. Rate',
       tagColor: 'text-emerald-800 bg-emerald-100 border-emerald-300'
     },
@@ -90,28 +156,65 @@ export default function MitochondrialBiogenesisMasterclass() {
         <div className="flex flex-wrap items-center gap-2">
           <span className="px-3.5 py-1 rounded-full bg-emerald-100 text-emerald-950 font-bold text-xs uppercase tracking-wider border border-emerald-300 inline-flex items-center gap-1.5 shadow-2xs">
             <Sparkles className="w-3.5 h-3.5 text-emerald-700" />
-            Article 40 • Flagship Longevity Masterclass
+            Article 40 • Visual Scientific Masterclass
           </span>
           <span className="px-3.5 py-1 rounded-full bg-blue-100 text-blue-950 font-bold text-xs uppercase tracking-wider border border-blue-300 inline-flex items-center gap-1.5 shadow-2xs">
             <Dna className="w-3.5 h-3.5 text-blue-700" />
             Mitochondrial Biogenesis at 65+
           </span>
           <span className="px-3.5 py-1 rounded-full bg-amber-100 text-amber-950 font-bold text-xs uppercase tracking-wider border border-amber-300 inline-flex items-center gap-1.5 shadow-2xs">
-            <Scale className="w-3.5 h-3.5 text-amber-700" />
-            Zone 2 vs. HIIT Deep Comparison
+            <Layers className="w-3.5 h-3.5 text-amber-700" />
+            4 Visual Slides & Infographics
           </span>
         </div>
 
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-stone-900 leading-tight tracking-tight">
-          Mitochondrial Biogenesis Masterclass: Rebuilding Cellular Powerhouses at 65+
+          Mitochondrial Biogenesis Masterclass:{' '}
+          <span className="text-emerald-700">Rebuilding Cellular Powerhouses at 65+</span>
         </h1>
         <p className="text-stone-600 text-sm sm:text-base font-normal max-w-4xl leading-relaxed">
-          How aerobic exercise triggers new mitochondrial birth through the <strong>PGC-1α master switch</strong>, why mitochondrial decline is <em>reversible</em> rather than inevitable with aging, and the critical biological comparison: <strong>Zone 2 base vs. High-Intensity Interval Training (HIIT)</strong> for longevity runners.
+          Just like Dr. San Millán's Zone 2 visual manifesto on Page 39, this chapter provides a <strong>definitive visual and biological guide to Mitochondrial Biogenesis</strong>: high-resolution medical infographics, biopsy cross-sections, the PGC-1α molecular cascade, and the essential comparison with HIIT for master runners.
         </p>
+
+        {/* Bioenergetics Advisory Board Callout */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-2xl bg-stone-900 text-white border border-stone-800 shadow-md">
+          <div className="flex items-center gap-3.5">
+            <div className="w-12 h-12 rounded-full border-2 border-emerald-400 bg-emerald-950 flex items-center justify-center text-emerald-300 shrink-0 font-black text-lg">
+              🧬
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="font-extrabold text-white text-base">The Biology of Mitochondrial Multiplication</span>
+                <span className="text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-400/40 px-2 py-0.5 rounded-full font-mono font-bold">
+                  PGC-1α • TFAM • DRP1
+                </span>
+              </div>
+              <p className="text-stone-300 text-xs mt-0.5">
+                Synthesizing landmark research by David Hood, John Holloszy, David Bishop, and Iñigo San Millán on cellular organelle remodeling.
+              </p>
+            </div>
+          </div>
+          <div className="text-right text-[11px] font-mono text-stone-400 shrink-0">
+            <div>Topic: Mitochondrial Biogenesis</div>
+            <div className="text-emerald-400 font-semibold">#Biogenesis #PGC1alpha #Zone2vsHIIT</div>
+          </div>
+        </div>
       </div>
 
       {/* ================= TAB NAVIGATION ================= */}
       <div className="flex flex-wrap gap-2 border-b border-stone-200 pb-3 no-print">
+        <button
+          onClick={() => setActiveTab('slideshow')}
+          className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition shadow-2xs ${
+            activeTab === 'slideshow'
+              ? 'bg-emerald-800 text-white shadow-sm'
+              : 'bg-stone-100 hover:bg-stone-200 text-stone-700'
+          }`}
+        >
+          <Layers className="w-4 h-4 text-emerald-300" />
+          <span>🖼️ Visual Infographic Slides (4 Slides)</span>
+        </button>
+
         <button
           onClick={() => setActiveTab('zone2_vs_hiit')}
           className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition shadow-2xs ${
@@ -134,18 +237,6 @@ export default function MitochondrialBiogenesisMasterclass() {
         >
           <Activity className="w-4 h-4 text-emerald-300" />
           <span>The 65+ Mitochondrial Challenge</span>
-        </button>
-
-        <button
-          onClick={() => setActiveTab('molecular_pathway')}
-          className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition shadow-2xs ${
-            activeTab === 'molecular_pathway'
-              ? 'bg-emerald-800 text-white shadow-sm'
-              : 'bg-stone-100 hover:bg-stone-200 text-stone-700'
-          }`}
-        >
-          <Dna className="w-4 h-4 text-emerald-300" />
-          <span>The PGC-1α Molecular Cascade</span>
         </button>
 
         <button
@@ -173,7 +264,139 @@ export default function MitochondrialBiogenesisMasterclass() {
         </button>
       </div>
 
-      {/* ================= TAB 1: ZONE 2 VS. HIIT HEAD-TO-HEAD ================= */}
+      {/* ================= TAB 1: VISUAL SLIDESHOW (MODELED AFTER PAGE 39) ================= */}
+      {activeTab === 'slideshow' && (
+        <section className="space-y-6 animate-fade-in">
+          
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-stone-200 pb-3">
+            <div>
+              <h2 className="text-xl sm:text-2xl font-black text-stone-900 flex items-center gap-2">
+                <Layers className="w-5 h-5 text-emerald-700" />
+                The 4 Scientific Biogenesis Infographics & Slides
+              </h2>
+              <p className="text-xs sm:text-sm text-stone-600">
+                Click any slide tab or use navigation arrows. Tap the infographic to enlarge in high resolution.
+              </p>
+            </div>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={prevSlide}
+                className="p-2 rounded-xl bg-white border border-stone-300 hover:bg-stone-100 transition shadow-2xs text-stone-700"
+                title="Previous Slide"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <span className="font-mono text-xs font-bold px-3 py-1 bg-emerald-100 text-emerald-900 rounded-lg border border-emerald-200">
+                Slide {activeSlideIdx + 1} / {BIOGENESIS_SLIDES.length}
+              </span>
+              <button
+                onClick={nextSlide}
+                className="p-2 rounded-xl bg-white border border-stone-300 hover:bg-stone-100 transition shadow-2xs text-stone-700"
+                title="Next Slide"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+
+          {/* Slide Selection Buttons */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+            {BIOGENESIS_SLIDES.map((slide, idx) => (
+              <button
+                key={slide.id}
+                onClick={() => setActiveSlideIdx(idx)}
+                className={`p-3 rounded-2xl text-left border transition flex flex-col justify-between gap-1.5 ${
+                  activeSlideIdx === idx
+                    ? 'bg-emerald-800 text-white border-emerald-900 shadow-md ring-2 ring-emerald-500/30'
+                    : 'bg-white text-stone-800 border-stone-200 hover:bg-stone-50'
+                }`}
+              >
+                <span className={`text-[10px] font-mono font-bold uppercase tracking-wider ${activeSlideIdx === idx ? 'text-emerald-200' : 'text-stone-500'}`}>
+                  {slide.badge}
+                </span>
+                <span className="text-xs font-extrabold line-clamp-1">
+                  {slide.title}
+                </span>
+              </button>
+            ))}
+          </div>
+
+          {/* Active Slide Display & In-depth Breakdown */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            
+            {/* Slide Infographic Card */}
+            <div className="lg:col-span-7 bg-black rounded-3xl overflow-hidden border border-stone-300 shadow-xl relative group">
+              <div className="relative aspect-[16/9] sm:aspect-[16/10] w-full bg-stone-950 flex items-center justify-center p-1">
+                <img
+                  src={currentSlide.src}
+                  alt={currentSlide.alt}
+                  className="w-full h-full object-contain cursor-pointer transition-transform duration-300 group-hover:scale-[1.01]"
+                  onClick={() => setIsModalOpen(true)}
+                />
+                
+                {/* Fullscreen Overlay Button */}
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  className="absolute bottom-4 right-4 bg-black/80 hover:bg-black text-white px-3 py-1.5 rounded-xl border border-white/20 text-xs font-bold flex items-center gap-1.5 backdrop-blur-xs transition shadow-lg"
+                >
+                  <Maximize2 className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>Enlarge High-Res</span>
+                </button>
+              </div>
+              
+              <div className="p-4 bg-stone-900 text-white flex items-center justify-between text-xs border-t border-stone-800">
+                <span className="font-bold text-emerald-400">{currentSlide.title}</span>
+                <span className="text-stone-400 font-mono">Infographic {currentSlide.id} of {BIOGENESIS_SLIDES.length}</span>
+              </div>
+            </div>
+
+            {/* Accompanying Scientific Breakdown */}
+            <div className="lg:col-span-5 space-y-4">
+              <div className="p-6 rounded-3xl bg-white border border-stone-200 shadow-sm space-y-4">
+                <div className="space-y-1">
+                  <span className="text-[11px] font-mono font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200 uppercase">
+                    Scientific Breakdown • {currentSlide.badge}
+                  </span>
+                  <h3 className="text-xl font-black text-stone-900 leading-tight">
+                    {currentSlide.title}
+                  </h3>
+                  <p className="text-xs text-stone-600 font-medium">
+                    {currentSlide.subtitle}
+                  </p>
+                </div>
+
+                <div className="space-y-3 pt-2">
+                  {currentSlide.keyPoints.map((point, pIdx) => (
+                    <div key={pIdx} className="p-3.5 rounded-xl bg-stone-50 border border-stone-200 text-xs space-y-1">
+                      <div className="font-extrabold text-stone-900 flex items-center gap-1.5">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
+                        <span>{point.label}</span>
+                      </div>
+                      <p className="text-stone-600 leading-relaxed font-normal pl-5">
+                        {point.text}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="pt-2">
+                  <button
+                    onClick={() => setIsModalOpen(true)}
+                    className="w-full py-2.5 rounded-xl bg-stone-900 hover:bg-black text-white text-xs font-bold transition flex items-center justify-center gap-2 shadow-xs"
+                  >
+                    <ZoomIn className="w-4 h-4 text-emerald-400" />
+                    <span>Open High-Resolution Inspection Modal</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+      )}
+
+      {/* ================= TAB 2: ZONE 2 VS. HIIT HEAD-TO-HEAD ================= */}
       {activeTab === 'zone2_vs_hiit' && (
         <div className="space-y-8 animate-fade-in">
           
@@ -322,7 +545,7 @@ export default function MitochondrialBiogenesisMasterclass() {
                       <span className="text-emerald-800 font-bold">None</span>: Lactate stable at 1.2–1.8 mmol/L; full metabolic equilibrium.
                     </td>
                     <td className="p-4 text-stone-700 bg-rose-50/30">
-                      <span className="text-rose-800 font-bold">Severe</span>: Lactate &gt; 8–14 mmol/L; proton ($H^+$) accumulation inhibites fat burning.
+                      <span className="text-rose-800 font-bold">Severe</span>: Lactate &gt; 8–14 mmol/L; proton ($H^+$) accumulation inhibits fat burning.
                     </td>
                   </tr>
                   <tr className="hover:bg-stone-50 transition">
@@ -360,7 +583,7 @@ export default function MitochondrialBiogenesisMasterclass() {
         </div>
       )}
 
-      {/* ================= TAB 2: OVERVIEW & THE 65+ CHALLENGE ================= */}
+      {/* ================= TAB 3: OVERVIEW & THE 65+ CHALLENGE ================= */}
       {activeTab === 'overview' && (
         <div className="space-y-6 animate-fade-in">
           
@@ -412,96 +635,6 @@ export default function MitochondrialBiogenesisMasterclass() {
                 This process does not merely help you run faster—it upgrades whole-body glucose uptake, clears circulating triglycerides, maintains healthy blood pressure, and shields brain neurons from neurodegeneration.
               </p>
             </div>
-          </div>
-
-        </div>
-      )}
-
-      {/* ================= TAB 3: MOLECULAR CASCADE ================= */}
-      {activeTab === 'molecular_pathway' && (
-        <div className="space-y-6 animate-fade-in">
-          
-          <div className="p-6 rounded-2xl bg-stone-900 text-white space-y-2">
-            <div className="text-emerald-400 font-mono text-xs font-bold uppercase tracking-wider">
-              From Footstrike to Gene Expression
-            </div>
-            <h3 className="text-2xl font-black">
-              The 5-Step PGC-1α Signaling Cascade
-            </h3>
-            <p className="text-slate-300 text-xs sm:text-sm font-normal">
-              How a steady 105–117 BPM heartbeat translates into physical organelle multiplication inside your slow-twitch muscle fibers.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-            {[
-              {
-                step: '01',
-                title: 'Contraction & Calcium Flux',
-                icon: Activity,
-                desc: 'Repeated muscle contractions cause low-amplitude, prolonged intracellular Calcium (Ca²⁺) release, activating CaMK (Calmodulin kinase).',
-                tag: 'Muscle Trigger'
-              },
-              {
-                step: '02',
-                title: 'Kinase Activation',
-                icon: Cpu,
-                desc: 'Moderate ATP turnover raises the AMP:ATP and NAD⁺:NADH ratios, phosphorylating AMPK and activating the longevity deacetylase SIRT1.',
-                tag: 'Energy Sensing'
-              },
-              {
-                step: '03',
-                title: 'PGC-1α Master Switch',
-                icon: Zap,
-                desc: 'AMPK and SIRT1 activate PGC-1α (the master regulator of biogenesis), releasing it to translocate directly into the cell nucleus.',
-                tag: 'Master Conductor'
-              },
-              {
-                step: '04',
-                title: 'Nuclear Factor Binding',
-                icon: Dna,
-                desc: 'Inside the nucleus, PGC-1α binds to NRF-1 and NRF-2 (Nuclear Respiratory Factors), transcribing the nuclear-encoded mitochondrial genes.',
-                tag: 'Gene Transcription'
-              },
-              {
-                step: '05',
-                title: 'TFAM & mtDNA Replication',
-                icon: RefreshCw,
-                desc: 'TFAM crosses into the mitochondria, replicating mitochondrial DNA (mtDNA) and triggering binary fission to create new daughter organelles!',
-                tag: 'Organelle Birth'
-              }
-            ].map((st, i) => {
-              const Icon = st.icon;
-              return (
-                <div key={i} className="p-5 rounded-2xl bg-white border border-stone-200 shadow-2xs space-y-2 flex flex-col justify-between hover:border-emerald-400 transition">
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs font-mono font-black text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded">
-                        Step {st.step}
-                      </span>
-                      <Icon className="w-4 h-4 text-stone-600" />
-                    </div>
-                    <div className="text-sm font-black text-stone-900">{st.title}</div>
-                    <p className="text-xs text-stone-600 leading-relaxed font-normal">
-                      {st.desc}
-                    </p>
-                  </div>
-                  <div className="pt-2 border-t border-stone-100 text-[10px] font-mono text-emerald-700 font-bold uppercase">
-                    {st.tag}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          <div className="p-5 rounded-2xl bg-emerald-50 border border-emerald-200 text-stone-800 text-xs sm:text-sm leading-relaxed space-y-2">
-            <div className="font-extrabold text-emerald-950 flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4 text-emerald-700" />
-              The Biological Takeaway:
-            </div>
-            <p>
-              Unlike muscle hypertrophy (which requires high mechanical tension and mTORC1 activation), <strong>mitochondrial biogenesis requires continuous time-under-aerobic-tension</strong>. A 60–90 minute Zone 2 run provides an uninterrupted wave of PGC-1α activation that pulses for several hours post-exercise, driving massive new cristae and enzyme construction during sleep.
-            </p>
           </div>
 
         </div>
@@ -718,6 +851,67 @@ export default function MitochondrialBiogenesisMasterclass() {
             </div>
           </div>
 
+        </div>
+      )}
+
+      {/* ================= MODAL: HIGH-RESOLUTION SLIDE ZOOM ================= */}
+      {isModalOpen && (
+        <div 
+          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-2 sm:p-4 animate-fade-in"
+          onClick={() => setIsModalOpen(false)}
+        >
+          <div 
+            className="relative max-w-5xl w-full bg-stone-900 rounded-3xl overflow-hidden border border-stone-700 shadow-2xl flex flex-col max-h-[95vh]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="flex items-center justify-between p-4 bg-stone-950 border-b border-stone-800 text-white">
+              <div className="flex items-center gap-3">
+                <span className="font-mono text-xs font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40">
+                  Slide {activeSlideIdx + 1} / {BIOGENESIS_SLIDES.length}
+                </span>
+                <span className="font-bold text-sm sm:text-base text-stone-200">
+                  {currentSlide.title}
+                </span>
+              </div>
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="p-1.5 rounded-xl bg-stone-800 hover:bg-stone-700 text-stone-300 transition flex items-center gap-1 text-xs"
+                title="Close"
+              >
+                <span>Close</span>
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Modal Image Display */}
+            <div className="flex-1 flex items-center justify-center p-3 bg-black min-h-[300px] max-h-[65vh] overflow-hidden">
+              <img
+                src={currentSlide.src}
+                alt={currentSlide.alt}
+                className="max-h-full max-w-full object-contain rounded-xl"
+              />
+            </div>
+
+            {/* Modal Footer Controls */}
+            <div className="flex items-center justify-between p-4 bg-stone-950 border-t border-stone-800">
+              <button
+                onClick={prevSlide}
+                className="px-3.5 py-1.5 rounded-xl bg-stone-800 hover:bg-stone-700 text-stone-200 text-xs font-semibold flex items-center gap-1 transition"
+              >
+                <ChevronLeft className="w-4 h-4" /> Prev Slide
+              </button>
+              <span className="text-xs text-stone-400 font-mono hidden sm:inline">
+                Click outside or Close to exit
+              </span>
+              <button
+                onClick={nextSlide}
+                className="px-3.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold flex items-center gap-1 transition"
+              >
+                Next Slide <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
         </div>
       )}
 
