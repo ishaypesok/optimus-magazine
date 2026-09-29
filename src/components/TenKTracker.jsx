@@ -648,7 +648,7 @@ export default function TenKTracker() {
                     3. Post-Run Reconstruction Window (Within 45–60 min)
                   </div>
                   <ul className="space-y-1.5 text-xs text-stone-800 list-disc list-inside">
-                    <li><strong>Protein Building Blocks:</strong> Consume <strong>25–30 grams of high-quality protein</strong> (eggs, tuna, Greek yogurt, or whey).</li>
+                    <li><strong>Protein Building Blocks:</strong> Consume <strong>25–30 grams of high-quality protein</strong> (sardines, eggs, Greek yogurt, or wild salmon). <em>Pro-Tip: Sardines far surpass tuna for 65+ longevity due to near-zero mercury, CoQ10, and natural bone-strengthening calcium!</em></li>
                     <li><strong>Dates for Glycogen Restoration:</strong> 2 Medjool dates paired with your protein creates the optimal gentle insulin signal to shuttle amino acids straight into recovering mitochondria.</li>
                     <li><strong>Enzyme Translation:</strong> Supplies the building blocks needed by ribosomes to manufacture new respiratory complexes.</li>
                   </ul>
@@ -661,7 +661,7 @@ export default function TenKTracker() {
                   </div>
                   <ul className="space-y-1.5 text-xs text-stone-700 list-disc list-inside">
                     <li><strong>Daily Protein:</strong> Maintain <strong>1.2 to 1.5 grams of protein per kilogram</strong> of bodyweight across both rest days.</li>
-                    <li><strong>Anti-Inflammatory Fats:</strong> Extra virgin olive oil, raw tahini, walnuts, and omega-3 rich fish to support flexible mitochondrial double membranes.</li>
+                    <li><strong>Anti-Inflammatory Fats & SMASH Fish:</strong> Extra virgin olive oil, raw tahini, walnuts, and wild sardines/mackerel to supply EPA/DHA for flexible mitochondrial double membranes.</li>
                     <li><strong>Deep Sleep:</strong> Aim for 7.5 to 8.5 hours. Growth hormone released during deep sleep finalizes cristae folding!</li>
                   </ul>
                 </div>
