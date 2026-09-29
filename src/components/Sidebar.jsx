@@ -47,7 +47,7 @@ export const PAGES_LIST = [
   { id: 24, title: 'The Cellular Cosmos (3D Cell Model)', label: 'Article 24: The Cellular Cosmos', category: 'Cell Biology', icon: Sparkles, badge: '🌌 3D Model' },
   { id: 25, title: 'Bacterial & Mitochondrial Evolution', label: 'Article 25: Mito Fission & Dynamics', category: 'Deep Physiology', icon: Dna, badge: '🦠 Evolution' },
   { id: 26, title: 'Zone 2 vs. Other Sports', label: 'Article 26: vs. Other Sports', category: 'Cell Biology', icon: BarChart2, badge: 'Comparison' },
-  { id: 27, title: '1-Hour Field Experiment', label: 'Article 27: 1-Hr Field Study', category: 'Field Studies', icon: Clock, badge: 'Data' },
+  { id: 27, title: 'Outdoor Run Field Laboratory (7.59 km Real-Time Telemetry)', label: 'Article 27: 7.59km Field Lab', category: 'Field Studies', icon: Clock, badge: 'Record 🏆' },
   { id: 28, title: 'Run Progress & Adaptation Matrix', label: 'Article 28: Adaptation Matrix', category: 'Deep Physiology', icon: TrendingUp, badge: '⚡ Matrix' },
   { id: 29, title: 'Muscle Hypertrophy Bioenergetics Calculator', label: 'Article 29: Muscle Hypertrophy Calc', category: 'Calculators & Bioenergetics', icon: Calculator, badge: '💪 Muscle Bioenergetics' },
   { id: 30, title: '12-Week Practical Lean Gains & Recomposition Blueprint', label: 'Article 30: 12-Week Blueprint', category: 'Protocols', icon: Calendar, badge: '📋 12-Wk Blueprint' },

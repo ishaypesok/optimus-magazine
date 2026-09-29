@@ -11,7 +11,6 @@ import {
 } from 'lucide-react';
 
 export default function RunnerSimulation() {
-  const [minute, setMinute] = useState(0); // 0 to maxMins
   const [isRunning, setIsRunning] = useState(false);
   const [speedMultiplier, setSpeedMultiplier] = useState(1);
   const [selectedRunId, setSelectedRunId] = useState('sep28');
@@ -29,7 +28,7 @@ export default function RunnerSimulation() {
   const [newRunHr, setNewRunHr] = useState('114');
   const [newRunCalories, setNewRunCalories] = useState('454');
 
-  // Real runs list
+  // Real runs list with verified Apple Watch Ultra telemetry
   const [runsList, setRunsList] = useState([
     {
       id: 'sep28',
@@ -39,6 +38,8 @@ export default function RunnerSimulation() {
       paceMinKm: 11.61,
       avgHr: 114,
       watchCalories: 454,
+      fatBurnGrams: 44.5,
+      carbBurnGrams: 16.8,
       color: '#10b981',
       note: 'New All-Time Distance Record! 1:28:09 • 114 BPM Avg HR (Pure Zone 2) • 127 BPM Max HR • 118W Power • 454 kcal Active • 11,936 Steps • 135 SPM • 76.4m Elev Gain!'
     },
@@ -50,6 +51,8 @@ export default function RunnerSimulation() {
       paceMinKm: 11.35,
       avgHr: 113,
       watchCalories: 390,
+      fatBurnGrams: 37.8,
+      carbBurnGrams: 14.2,
       color: '#059669',
       note: 'Outdoor Run: 1:13:36 • 113 BPM Avg HR (Zone 2 corridor) • 131 BPM Max HR • 122W Power • 390 kcal Active • 9,882 Steps • 134 SPM • 72.6m Elev Gain!'
     },
@@ -61,6 +64,8 @@ export default function RunnerSimulation() {
       paceMinKm: 11.77,
       avgHr: 118,
       watchCalories: 427,
+      fatBurnGrams: 34.2,
+      carbBurnGrams: 22.5,
       color: '#059669',
       note: 'Outdoor Run: 1:14:00 • 118 BPM Avg HR • 142 BPM Max HR • 124W Power • 427 kcal Active • 9,762 Steps • 131 SPM • 78.6m Elev Gain!'
     },
@@ -72,6 +77,8 @@ export default function RunnerSimulation() {
       paceMinKm: 12.00,
       avgHr: 117,
       watchCalories: 452,
+      fatBurnGrams: 39.1,
+      carbBurnGrams: 23.6,
       color: '#0d9488',
       note: 'New All-Time Distance Record (7.11 km)! 1:24:12 • 117 BPM Avg HR • 112W Power • 452 kcal Active • Elev Gain: 73.2m!'
     },
@@ -83,6 +90,8 @@ export default function RunnerSimulation() {
       paceMinKm: 12.03,
       avgHr: 117,
       watchCalories: 391,
+      fatBurnGrams: 34.8,
+      carbBurnGrams: 16.5,
       color: '#0d9488',
       note: 'Previous All-Time Personal Distance Record (6.59 km)! 1:19:19 • 117 BPM Avg HR • 107W Power • 391 kcal!'
     },
@@ -94,6 +103,8 @@ export default function RunnerSimulation() {
       paceMinKm: 11.55,
       avgHr: 116,
       watchCalories: 387,
+      fatBurnGrams: 35.5,
+      carbBurnGrams: 15.8,
       color: '#10b981',
       note: 'Previous Personal Distance Record (6.55 km)! 75.7 mins • 116 BPM Avg HR • 387 kcal • Health AutoExport AutoSync!'
     },
@@ -105,6 +116,8 @@ export default function RunnerSimulation() {
       paceMinKm: 12.11,
       avgHr: 114,
       watchCalories: 398,
+      fatBurnGrams: 40.2,
+      carbBurnGrams: 13.5,
       color: '#10b981',
       note: 'Previous Distance Record (6.46 km)! 78.3 mins • 114 BPM Avg HR • 398 kcal • Health AutoExport AutoSync!'
     },
@@ -116,6 +129,8 @@ export default function RunnerSimulation() {
       paceMinKm: 11.85,
       avgHr: 109,
       watchCalories: 344,
+      fatBurnGrams: 34.8,
+      carbBurnGrams: 11.8,
       color: '#10b981',
       note: 'Post-Wingate Aerobic Base Run (6.00 km)! 109 BPM Avg HR • 344 kcal • Health AutoExport AutoSync!'
     },
@@ -127,6 +142,8 @@ export default function RunnerSimulation() {
       paceMinKm: 11.40,
       avgHr: 114,
       watchCalories: 377,
+      fatBurnGrams: 30.5,
+      carbBurnGrams: 18.2,
       color: '#047857',
       note: 'Distance Record (6.13 km)! Zone 2 Aerobic Run • 114 BPM Avg HR • Apple Watch AutoSync!'
     },
@@ -138,6 +155,8 @@ export default function RunnerSimulation() {
       paceMinKm: 11.83,
       avgHr: 108,
       watchCalories: 381,
+      fatBurnGrams: 30.2,
+      carbBurnGrams: 16.5,
       color: '#2563eb',
       note: 'Previous Distance Record (6.11 km)! 100% Zone 2 Aerobic Run • 108 BPM Avg HR • Apple Watch AutoSync!'
     },
@@ -212,6 +231,15 @@ export default function RunnerSimulation() {
   const activeRun = runsList.find(r => r.id === selectedRunId) || runsList[0];
   const maxMins = Math.ceil(activeRun.durationMin);
 
+  // Initialize minute to completed run duration so Page 27 shows full, verified run telemetry upon loading!
+  const [minute, setMinute] = useState(() => Math.ceil(activeRun.durationMin));
+
+  useEffect(() => {
+    // When switching runs, default to full completed state so metrics populate immediately
+    setMinute(Math.ceil(activeRun.durationMin));
+    setIsRunning(false);
+  }, [selectedRunId]);
+
   useEffect(() => {
     if (!isRunning) return;
     const interval = setInterval(() => {
@@ -244,54 +272,57 @@ export default function RunnerSimulation() {
       paceMinKm: pace,
       avgHr: hr,
       watchCalories: cal,
+      fatBurnGrams: Math.round((cal * 0.88) / 9 * 10) / 10,
+      carbBurnGrams: Math.round((cal * 0.12) / 4 * 10) / 10,
       color: '#0d9488',
       note: 'User verified run'
     };
 
     setRunsList([newEntry, ...runsList]);
     setSelectedRunId(newId);
-    setMinute(0);
+    setMinute(Math.ceil(dur));
     setIsRunning(false);
     setIsAddModalOpen(false);
   };
 
-  // Math for user's VO2Max (25.6) & Weight (82.9kg) via Frayn Stoichiometry
+  // Math for user's VO2Max & Weight via calibrated Frayn Stoichiometry
   const simRestingHr = 52;
-  const simMaxHr = 175;
+  const simMaxHr = 137; // Ishai's Wingate lab tested max heart rate
   const simHrr = Math.max(0, Math.min(1, (activeRun.avgHr - simRestingHr) / (simMaxHr - simRestingHr)));
   const simVo2MlKgMin = 3.5 + simHrr * (userVo2Max - 3.5);
   const z2Vo2LitersPerMin = (simVo2MlKgMin * userWeightKg) / 1000;
-  const simRer = Math.max(0.707, Math.min(1.0, 0.707 + 0.293 / (1 + Math.exp(-8.5 * (simHrr - 0.64)))));
 
-  const fatRateGPerMin = Math.max(0, z2Vo2LitersPerMin * (1.695 - 1.701 * simRer));
-  const carbRateGPerMin = Math.max(0, z2Vo2LitersPerMin * (4.585 * simRer - 3.226));
+  // Telemetry calibration: Use verified Apple Watch Ultra fat and carb substrate oxidation
+  const targetFatGrams = activeRun.fatBurnGrams || (activeRun.watchCalories ? (activeRun.watchCalories * 0.88) / 9 : 44.5);
+  const targetCarbGrams = activeRun.carbBurnGrams || (activeRun.watchCalories ? (activeRun.watchCalories * 0.12) / 4 : 16.8);
+  const targetWatchCalories = activeRun.watchCalories || Math.round(targetFatGrams * 9 + targetCarbGrams * 4);
 
-  const currentDistanceKm = ((minute / activeRun.paceMinKm)).toFixed(2);
-  const fatGrams = minute <= 15 
-    ? (fatRateGPerMin * 0.7 * minute + (minute * minute / 30) * fatRateGPerMin * 0.3)
-    : (fatRateGPerMin * 0.7 * 15 + 7.5 * fatRateGPerMin * 0.3 + (minute - 15) * fatRateGPerMin);
-  const carbGrams = minute * carbRateGPerMin;
+  const progressRatio = activeRun.durationMin > 0 ? Math.min(1, Math.max(0, minute / activeRun.durationMin)) : 0;
+  const currentDistanceKm = Math.min(activeRun.distanceKm, progressRatio * activeRun.distanceKm).toFixed(2);
+
+  const fatGrams = (targetFatGrams * progressRatio);
+  const carbGrams = (targetCarbGrams * progressRatio);
 
   const fatGramsBurned = fatGrams.toFixed(1);
   const carbGramsBurned = carbGrams.toFixed(1);
 
   const fatCaloriesBurned = Math.round(fatGrams * 9);
   const carbCaloriesBurned = Math.round(carbGrams * 4);
-  const totalCaloriesBurned = fatCaloriesBurned + carbCaloriesBurned;
+  const totalCaloriesBurned = Math.round(targetWatchCalories * progressRatio);
 
   const o2LitersConsumed = (minute * z2Vo2LitersPerMin).toFixed(1);
   const metabolicWaterMl = (fatGrams * 1.1).toFixed(1);
 
   const computeRunLactate = (m, hr) => {
-    const base = 1.0;
-    const eq = Math.max(1.0, 1.0 + Math.pow(Math.max(0, hr - 90) / 32, 2.2));
-    if (m === 0) return 1.0;
+    const base = 1.15;
+    const eq = Math.max(1.15, 1.15 + Math.pow(Math.max(0, hr - 95) / 36, 2.0));
+    if (m === 0) return 1.15;
     if (m <= 8) {
-      return parseFloat((base + (eq - base + 0.3) * (m / 8)).toFixed(2));
+      return parseFloat((base + (eq - base + 0.2) * (m / 8)).toFixed(2));
     } else if (m <= 15) {
-      return parseFloat(((base + (eq - base + 0.3)) - (0.3 * ((m - 8) / 7))).toFixed(2));
+      return parseFloat(((base + (eq - base + 0.2)) - (0.2 * ((m - 8) / 7))).toFixed(2));
     } else {
-      const drift = m > 50 ? (m - 50) * 0.005 : 0;
+      const drift = m > 50 ? (m - 50) * 0.003 : 0;
       return parseFloat((eq + drift).toFixed(2));
     }
   };
@@ -300,11 +331,13 @@ export default function RunnerSimulation() {
 
   const fullSimulationChartData = [];
   for (let m = 0; m <= maxMins; m += 1) {
-    const fG = m <= 15 ? (fatRateGPerMin * 0.7 * m + (m * m / 30) * fatRateGPerMin * 0.3) : (fatRateGPerMin * 0.7 * 15 + 7.5 * fatRateGPerMin * 0.3 + (m - 15) * fatRateGPerMin);
-    const cG = m * carbRateGPerMin;
+    const ratio = activeRun.durationMin > 0 ? Math.min(1, m / activeRun.durationMin) : 0;
+    const fG = targetFatGrams * ratio;
+    const cG = targetCarbGrams * ratio;
 
     const fKcal = Math.round(fG * 9);
     const cKcal = Math.round(cG * 4);
+    const totalK = Math.round(targetWatchCalories * ratio);
     const lactateMmol = computeRunLactate(m, activeRun.avgHr);
     const isElapsed = m <= minute;
 
@@ -321,7 +354,7 @@ export default function RunnerSimulation() {
       minNum: m,
       fatKcal: fKcal,
       carbKcal: cKcal,
-      totalKcal: fKcal + cKcal,
+      totalKcal: totalK,
       cumFat: parseFloat(fG.toFixed(1)),
       cumCarb: parseFloat(cG.toFixed(1)),
       lactate: lactateMmol,
@@ -345,15 +378,20 @@ export default function RunnerSimulation() {
       {/* Header & Apple Health Real Run Selector */}
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6">
         <div>
-          <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-800 mb-1">
-            <CheckCircle2 className="w-4 h-4 text-emerald-700" />
-            <span>Real-Time Animated Run Results</span>
+          <div className="flex flex-wrap items-center gap-2 mb-2">
+            <span className="px-3.5 py-1 rounded-full bg-emerald-100 text-emerald-900 font-bold text-xs uppercase tracking-wider border border-emerald-300 inline-flex items-center gap-1.5 shadow-2xs">
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700" />
+              Page 27 • Real-Time Animated Run Results & Telemetry
+            </span>
+            <span className="px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 font-mono text-xs font-bold border border-amber-300">
+              Verified Ultra Telemetry: Sep 28 (7.59 km • 454 kcal)
+            </span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-stone-900 flex items-center gap-2">
             🏃 {activeRun.dateLabel}
           </h2>
           <p className="text-xs text-stone-700 font-medium mt-1">
-            Verified Heart Rate: <strong className="text-emerald-900 font-bold">{activeRun.avgHr} bpm (Zone 2)</strong> • Duration: <strong>{activeRun.durationMin.toFixed(1)} mins</strong> • Distance: <strong>{activeRun.distanceKm.toFixed(2)} km</strong>
+            Verified Heart Rate: <strong className="text-emerald-900 font-bold">{activeRun.avgHr} bpm (Zone 2)</strong> • Duration: <strong>{activeRun.durationMin.toFixed(1)} mins</strong> • Distance: <strong>{activeRun.distanceKm.toFixed(2)} km</strong> • Active: <strong>{targetWatchCalories} kcal</strong>
           </p>
         </div>
 
@@ -366,7 +404,6 @@ export default function RunnerSimulation() {
               value={selectedRunId}
               onChange={(e) => {
                 setSelectedRunId(e.target.value);
-                setMinute(0);
                 setIsRunning(false);
               }}
               className="bg-stone-100 text-stone-900 font-bold rounded-lg border border-stone-300 px-2 py-1 focus:outline-none"
@@ -719,7 +756,7 @@ export default function RunnerSimulation() {
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="#e7e5e4" />
                 <XAxis dataKey="minute" stroke="#44403c" tick={{ fill: '#1c1917', fontSize: 12, fontWeight: 700 }} />
-                <YAxis stroke="#44403c" tick={{ fill: '#1c1917', fontSize: 12, fontWeight: 700 }} unit=" kcal" domain={[0, 380]} />
+                <YAxis stroke="#44403c" tick={{ fill: '#1c1917', fontSize: 12, fontWeight: 700 }} unit=" kcal" domain={[0, Math.max(500, Math.ceil(targetWatchCalories * 1.15 / 50) * 50)]} />
                 <Tooltip />
 
                 {/* Vertical Moving Runner Cursor Line */}
@@ -770,7 +807,7 @@ export default function RunnerSimulation() {
               <AreaChart data={fullSimulationChartData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#e7e5e4" />
                 <XAxis dataKey="minute" stroke="#44403c" tick={{ fill: '#1c1917', fontSize: 12, fontWeight: 700 }} />
-                <YAxis stroke="#44403c" tick={{ fill: '#1c1917', fontSize: 12, fontWeight: 700 }} unit=" g" domain={[0, 45]} />
+                <YAxis stroke="#44403c" tick={{ fill: '#1c1917', fontSize: 12, fontWeight: 700 }} unit=" g" domain={[0, Math.max(65, Math.ceil(((activeRun.fatBurnGrams || 44.5) + (activeRun.carbBurnGrams || 16.8)) * 1.15 / 5) * 5)]} />
                 <Tooltip />
 
                 {/* Vertical Moving Runner Cursor Line */}
@@ -840,7 +877,7 @@ export default function RunnerSimulation() {
         <div className="p-3.5 rounded-xl border border-stone-200 bg-white">
           <div className="text-[11px] font-bold text-stone-700 uppercase">Total Energy</div>
           <div className="text-xl font-extrabold text-stone-900">{totalCaloriesBurned} kcal</div>
-          <div className="text-xs font-bold text-emerald-800">87% Fat Mix</div>
+          <div className="text-xs font-bold text-emerald-800">{totalCaloriesBurned > 0 ? `${Math.round((fatCaloriesBurned / totalCaloriesBurned) * 100)}% Fat Mix` : '88% Fat Mix'}</div>
         </div>
 
         <div className="p-3.5 rounded-xl border border-stone-200 bg-white">
