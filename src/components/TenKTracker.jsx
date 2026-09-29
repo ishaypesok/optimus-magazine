@@ -3,7 +3,7 @@ import {
   Trophy, Calendar, CheckCircle2, Circle, Activity, 
   Flame, Plus, Trash2, Heart, ShieldCheck, ChevronDown, ChevronUp, 
   Sparkles, TrendingUp, Smartphone, 
-  Award, Clock, Droplet, AlertTriangle, Fish, Plane
+  Award, Clock, Droplet, AlertTriangle, Fish, Plane, Printer
 } from 'lucide-react';
 
 const APPLE_WATCH_PACER_PROGRAM = [
@@ -374,6 +374,14 @@ export default function TenKTracker() {
             <span className="text-[10px] text-emerald-600 block font-mono">FINISH TARGET</span>
             <span className="text-lg font-black text-emerald-700 font-mono">Oct 31</span>
           </div>
+          <button
+            onClick={() => window.print()}
+            className="flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-emerald-800 text-white font-bold text-xs shadow-sm hover:bg-emerald-900 transition-all cursor-pointer no-print"
+            title="Print 10K Schedule to paper or PDF"
+          >
+            <Printer className="w-4 h-4 text-emerald-300" />
+            <span>Print Schedule</span>
+          </button>
         </div>
       </div>
 
