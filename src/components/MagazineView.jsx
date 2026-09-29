@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { 
   BookOpen, Sparkles, Flame, Activity, Zap, Droplet, Clock, 
   ChevronRight, ChevronLeft, Bookmark, Share2, Award, ArrowUpRight, 
-  ShieldCheck, Heart, Layers, BarChart2, CheckCircle2, UserCheck, Printer, Smile, HelpCircle, Lightbulb, BatteryCharging, Cpu
+  ShieldCheck, Heart, Layers, BarChart2, CheckCircle2, UserCheck, Printer, Smile, HelpCircle, Lightbulb, BatteryCharging, Cpu,
+  Check, Link
 } from 'lucide-react';
 import { ZONES, CHARACTERS } from '../data/metabolismData';
 import FuelCharts from './FuelCharts';
@@ -49,6 +50,7 @@ import { PAGES_LIST } from './Sidebar';
 
 export default function MagazineView({ currentZoneId, setCurrentZoneId, activeArticle, setActiveArticle, isPrintAllMode }) {
   const [internalPage, setInternalPage] = useState(1);
+  const [copiedLink, setCopiedLink] = useState(false);
   const activePage = (activeArticle && typeof activeArticle === 'number') ? activeArticle : internalPage;
   const totalPages = PAGES_LIST.length;
 
@@ -59,6 +61,39 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
 
   const nextPage = () => setPage(Math.min(activePage + 1, totalPages));
   const prevPage = () => setPage(Math.max(activePage - 1, 1));
+
+  const copyCurrentPageUrl = async () => {
+    const url = `https://ishaypesok.github.io/optimus-magazine/#page=${activePage}`;
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(url);
+        setCopiedLink(true);
+        setTimeout(() => setCopiedLink(false), 2500);
+        return;
+      }
+    } catch {
+      // Fall through to fallback
+    }
+
+    try {
+      const textArea = document.createElement('textarea');
+      textArea.value = url;
+      textArea.style.position = 'fixed';
+      textArea.style.left = '-9999px';
+      textArea.style.top = '0';
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      const success = document.execCommand('copy');
+      document.body.removeChild(textArea);
+      if (success) {
+        setCopiedLink(true);
+        setTimeout(() => setCopiedLink(false), 2500);
+      }
+    } catch (e) {
+      console.error('Failed to copy link', e);
+    }
+  };
 
   const renderPageContent = (pageNum) => {
     switch (pageNum) {
@@ -385,6 +420,19 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
               </button>
             </div>
 
+            <button
+              onClick={copyCurrentPageUrl}
+              className={`flex items-center gap-1.5 px-3 py-2 rounded-xl font-bold transition text-xs border shadow-2xs ${
+                copiedLink
+                  ? 'bg-emerald-700 text-white border-emerald-600'
+                  : 'bg-white hover:bg-stone-100 text-stone-800 border-stone-300'
+              }`}
+              title="Copy Direct Link to this Page"
+            >
+              {copiedLink ? <Check className="w-4 h-4 text-emerald-200" /> : <Link className="w-4 h-4 text-emerald-700" />}
+              <span>{copiedLink ? 'Link Copied!' : 'Copy Link'}</span>
+            </button>
+
             <button 
               onClick={() => window.print()}
               className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-emerald-100 hover:bg-emerald-200 text-emerald-950 font-extrabold transition text-xs border border-emerald-300 shadow-xs"
@@ -410,8 +458,22 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
             <span>Previous Page</span>
           </button>
 
-          <div className="text-xs font-semibold text-stone-600">
-            Page <strong className="text-emerald-800 text-sm">{activePage}</strong> of <strong>{totalPages}</strong>
+          <div className="flex items-center gap-3">
+            <div className="text-xs font-semibold text-stone-600">
+              Page <strong className="text-emerald-800 text-sm">{activePage}</strong> of <strong>{totalPages}</strong>
+            </div>
+            <button
+              onClick={copyCurrentPageUrl}
+              className={`flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-bold border transition ${
+                copiedLink
+                  ? 'bg-emerald-100 text-emerald-900 border-emerald-300'
+                  : 'bg-white hover:bg-stone-100 text-stone-700 border-stone-300'
+              }`}
+              title="Copy Direct Link to this Page"
+            >
+              {copiedLink ? <Check className="w-3.5 h-3.5 text-emerald-700" /> : <Link className="w-3.5 h-3.5 text-stone-500" />}
+              <span>{copiedLink ? 'Copied!' : 'Copy Link'}</span>
+            </button>
           </div>
 
           <button

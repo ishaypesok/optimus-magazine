@@ -86,13 +86,37 @@ export default function Sidebar({
     }
   }, [activeArticle]);
 
-  const copyChapterUrl = (e, pageId) => {
+  const copyChapterUrl = async (e, pageId) => {
     e.stopPropagation();
     const url = `https://ishaypesok.github.io/optimus-magazine/#page=${pageId}`;
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(url);
-      setCopiedId(pageId);
-      setTimeout(() => setCopiedId(null), 2000);
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(url);
+        setCopiedId(pageId);
+        setTimeout(() => setCopiedId(null), 2000);
+        return;
+      }
+    } catch {
+      // Fall through to fallback
+    }
+
+    try {
+      const textArea = document.createElement('textarea');
+      textArea.value = url;
+      textArea.style.position = 'fixed';
+      textArea.style.left = '-9999px';
+      textArea.style.top = '0';
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      const success = document.execCommand('copy');
+      document.body.removeChild(textArea);
+      if (success) {
+        setCopiedId(pageId);
+        setTimeout(() => setCopiedId(null), 2000);
+      }
+    } catch (err) {
+      console.error('Failed to copy', err);
     }
   };
 
