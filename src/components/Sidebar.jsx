@@ -31,7 +31,7 @@ export const PAGES_LIST = [
   { id: 12, title: 'Live Cell Visualizer', label: 'Article 12: Live Cell Visualizer', category: 'Cell Biology', icon: Zap, badge: '⭐ Featured' },
 
   // TIER 3: KEY PROTOCOLS & PHYSIOLOGY
-  { id: 13, title: 'Cell Engine & PGC-1α Biogenesis', label: 'Article 13: Cell Engine', category: 'Cell Biology', icon: Cpu, badge: 'Science' },
+  { id: 13, title: 'Cell Engine & PGC-1α Biogenesis', label: 'Article 13: PGC-1α Biogenesis', category: 'Cell Biology', icon: Cpu, badge: 'Science' },
   { id: 14, title: 'Lactate Paradox & Shuttle', label: 'Article 14: Lactate Paradox', category: 'Cell Biology', icon: Activity, badge: 'Mythbusting' },
   { id: 15, title: 'Zone 2 & Recovery Mastery', label: 'Article 15: Zone 2 & Recovery', category: 'Protocols', icon: BatteryCharging, badge: '🔋 Fuel' },
   { id: 16, title: 'Aerobic Expectations & HR Drift', label: 'Article 16: Aerobic Expectations', category: 'Protocols', icon: TrendingUp, badge: 'HR Drift' },
@@ -45,7 +45,7 @@ export const PAGES_LIST = [
   { id: 22, title: 'How the Human Body Creates Fat', label: 'Article 22: How Body Creates Fat', category: 'Deep Physiology', icon: Layers, badge: '🧪 Lipogenesis' },
   { id: 23, title: 'Molecular Assembly Line (Citrate)', label: 'Article 23: Molecular Assembly Line', category: 'Cell Biology', icon: Cpu, badge: '⚡ Interactive' },
   { id: 24, title: 'The Cellular Cosmos (3D Cell Model)', label: 'Article 24: The Cellular Cosmos', category: 'Cell Biology', icon: Sparkles, badge: '🌌 3D Model' },
-  { id: 25, title: 'Bacterial & Mitochondrial Evolution', label: 'Article 25: Bacterial Reproduction', category: 'Deep Physiology', icon: Dna, badge: '🦠 Evolution' },
+  { id: 25, title: 'Bacterial & Mitochondrial Evolution', label: 'Article 25: Mito Fission & Dynamics', category: 'Deep Physiology', icon: Dna, badge: '🦠 Evolution' },
   { id: 26, title: 'Zone 2 vs. Other Sports', label: 'Article 26: vs. Other Sports', category: 'Cell Biology', icon: BarChart2, badge: 'Comparison' },
   { id: 27, title: '1-Hour Field Experiment', label: 'Article 27: 1-Hr Field Study', category: 'Field Studies', icon: Clock, badge: 'Data' },
   { id: 28, title: 'Run Progress & Adaptation Matrix', label: 'Article 28: Adaptation Matrix', category: 'Deep Physiology', icon: TrendingUp, badge: '⚡ Matrix' },
@@ -57,11 +57,12 @@ export const PAGES_LIST = [
 
   // TIER 5: EXPERT SPOTLIGHTS & LIVE RESEARCH
   { id: 34, title: 'Dr. San Millán: VO₂max vs. Lactate (Expert Spotlight)', label: 'Article 34: VO₂max vs. Lactate', category: 'Expert Spotlights', icon: MessageSquare, badge: '🔬 San Millán' },
-  { id: 35, title: 'Muscle Growth vs. Mitochondrial Biogenesis & Oxygen Journey', label: 'Article 35: Muscle vs. Mitochondria', category: 'Deep Physiology', icon: Dumbbell, badge: '💪 Muscle vs. Mito' },
+  { id: 35, title: 'Muscle Growth vs. Mitochondrial Biogenesis & Oxygen Journey', label: 'Article 35: Hypertrophy vs Mito', category: 'Deep Physiology', icon: Dumbbell, badge: '💪 Muscle vs. Mito' },
   { id: 36, title: 'Prof. Asker Jeukendrup: Marathon Fueling Masterclass', label: 'Article 36: Marathon Fueling Guide', category: 'Expert Spotlights', icon: Flame, badge: '🏃 Marathon Fueling' },
   { id: 37, title: 'Alan Couzens: Aerobic Base vs. Threshold (The Endurance Code)', label: 'Article 37: The Endurance Code', category: 'Expert Spotlights', icon: TrendingUp, badge: '📈 Endurance Code' },
   { id: 38, title: 'Zone 2 & Working Memory: How Aerobic Exercise Rewires the Brain', label: 'Article 38: Zone 2 & Memory', category: 'Neuroscience & Cognition', icon: Brain, badge: '🧠 Brain & Memory' },
   { id: 39, title: 'Dr. San Millán: What is Zone 2? Metabolic Equilibrium vs. Drift', label: 'Article 39: Zone 2 Metabolic State', category: 'Expert Spotlights', icon: Zap, badge: '🔬 Metabolic State' },
+  { id: 40, title: 'Mitochondrial Biogenesis Masterclass: Rebuilding Cellular Powerhouses at 65+ (Zone 2 vs. HIIT)', label: 'Article 40: Mito Biogenesis & HIIT', category: 'Deep Physiology', icon: Dna, badge: '⚡ Flagship 65+' },
 ];
 
 export default function Sidebar({
