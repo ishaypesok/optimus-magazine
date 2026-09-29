@@ -3,7 +3,7 @@ import {
   Trophy, Calendar, CheckCircle2, Circle, Activity, 
   Flame, Plus, Trash2, Heart, ShieldCheck, ChevronDown, ChevronUp, 
   Sparkles, TrendingUp, Smartphone, 
-  Award, Clock, Droplet, AlertTriangle, Fish
+  Award, Clock, Droplet, AlertTriangle, Fish, Plane
 } from 'lucide-react';
 
 const APPLE_WATCH_PACER_PROGRAM = [
@@ -27,56 +27,56 @@ const APPLE_WATCH_PACER_PROGRAM = [
   },
   { 
     week: 3, 
-    focus: "Week 3 — Recovery & Cellular Consolidation Deload (11.5–11.8 min/km)", 
+    focus: "Week 3 (Sep 29 – Oct 5) — Recovery & Cellular Consolidation Deload (11.5–11.8 min/km)", 
     workouts: [
-      { id: "w3d1", day: "Run 1 (e.g. Tue)", title: "Active Recovery Pacer (4.5 km)", pacerPace: "11.8 min/km", desc: "Deload run! Allows cells to consolidate daughter mitochondria and VEGF capillaries." },
-      { id: "w3d2", day: "Run 2 (e.g. Thu)", title: "Light Form Pacer Run (5.0 km)", pacerPace: "11.8 min/km", desc: "Keep it light, bouncy, and effortless. Zero joint pounding." },
-      { id: "w3d3", day: "Run 3 (e.g. Sat)", title: "Consolidation Checkpoint (5.5–6.0 km)", pacerPace: "11.5 min/km", desc: "Consolidate your base before stepping to next progression." }
+      { id: "w3d1", day: "Run 1 (Tue, Sep 29 / Wed, Sep 30)", title: "Active Recovery Pacer (4.5 km)", pacerPace: "11.8 min/km", desc: "Deload run! Allows cells to consolidate daughter mitochondria and VEGF capillaries after the 7.59km peak." },
+      { id: "w3d2", day: "Run 2 (Thu, Oct 1 / Fri, Oct 2)", title: "Light Form Pacer Run (5.0 km)", pacerPace: "11.8 min/km", desc: "Keep it light, bouncy, and effortless. Zero joint pounding." },
+      { id: "w3d3", day: "Run 3 (Sat, Oct 3 / Sun, Oct 4)", title: "Consolidation Checkpoint (5.5–6.0 km)", pacerPace: "11.5 min/km", desc: "Consolidate your base before stepping to next progression." }
     ]
   },
   { 
     week: 4, 
-    focus: "Week 4 — Base Re-Expansion (6.5–7.5 km • 11.2 min/km)", 
+    focus: "Week 4 (Oct 6 – Oct 12) — Base Re-Expansion (6.5–7.5 km • 11.2 min/km)", 
     workouts: [
-      { id: "w4d1", day: "Run 1 (e.g. Tue)", title: "Rhythmic Base Flow (5.5 km)", pacerPace: "11.2 min/km", desc: "Fresh mitochondria fully operational; smooth and effortless glide." },
-      { id: "w4d2", day: "Run 2 (e.g. Thu)", title: "Aerobic Cruise Run (6.0 km)", pacerPace: "11.2 min/km", desc: "Building consistent time-on-feet without fatigue." },
-      { id: "w4d3", day: "Run 3 (e.g. Sat)", title: "Base Endurance Run (7.0–7.5 km)", pacerPace: "11.0 min/km", desc: "Re-confirming 7+ km with lower heart rate and zero strain." }
+      { id: "w4d1", day: "Run 1 (Tue, Oct 6)", title: "Rhythmic Base Flow (5.5 km)", pacerPace: "11.2 min/km", desc: "Fresh mitochondria fully operational; smooth and effortless glide." },
+      { id: "w4d2", day: "Run 2 (Thu, Oct 8)", title: "Aerobic Cruise Run (6.0 km)", pacerPace: "11.2 min/km", desc: "Building consistent time-on-feet without fatigue." },
+      { id: "w4d3", day: "Run 3 (Sat, Oct 10)", title: "Base Endurance Run (7.0–7.5 km)", pacerPace: "11.0 min/km", desc: "Re-confirming 7+ km with lower heart rate and zero strain." }
     ]
   },
   { 
     week: 5, 
-    focus: "Week 5 — Reticular Expansion & Pace Shift (8.2–8.5 km • 10.8 min/km)", 
+    focus: "Week 5 (Oct 13 – Oct 19) — Reticular Expansion & Pace Shift (8.2–8.5 km • 10.8 min/km)", 
     workouts: [
-      { id: "w5d1", day: "Run 1 (e.g. Tue)", title: "Zone 2 Base Pacer (5.5 km)", pacerPace: "10.8 min/km", desc: "Oxygen delivery noticeably more efficient after Week 4 consolidation." },
-      { id: "w5d2", day: "Run 2 (e.g. Thu)", title: "Steady Cruise Pacer (6.0 km)", pacerPace: "10.8 min/km", desc: "Watch wrist cues keep you strictly between 101–120 BPM." },
-      { id: "w5d3", day: "Run 3 (e.g. Sat)", title: "Milestone Pacer Run (8.2–8.5 km)", pacerPace: "10.8 min/km", desc: "Continuous Z2 movement with zero stress; stepping stone to 9 km!" }
+      { id: "w5d1", day: "Run 1 (Tue, Oct 13)", title: "Zone 2 Base Pacer (5.5 km)", pacerPace: "10.8 min/km", desc: "Oxygen delivery noticeably more efficient after Week 4 consolidation." },
+      { id: "w5d2", day: "Run 2 (Thu, Oct 15)", title: "Steady Cruise Pacer (6.0 km)", pacerPace: "10.8 min/km", desc: "Watch wrist cues keep you strictly between 101–120 BPM." },
+      { id: "w5d3", day: "Run 3 (Sat, Oct 17)", title: "Milestone Pacer Run (8.2–8.5 km)", pacerPace: "10.8 min/km", desc: "Continuous Z2 movement with zero stress; stepping stone to 9 km!" }
     ]
   },
   { 
     week: 6, 
-    focus: "Week 6 — Peak Duration & Low Cardiac Drift (9.0–9.5 km • 10.5 min/km)", 
+    focus: "Week 6 (Oct 20 – Oct 26) — Peak Duration & Low Cardiac Drift (9.0–9.5 km • 10.5 min/km)", 
     workouts: [
-      { id: "w6d1", day: "Run 1 (e.g. Tue)", title: "Recovery Base Pacer (5.5 km)", pacerPace: "11.0 min/km", desc: "Easy mid-week base run. Rest two days after for muscle repair." },
-      { id: "w6d2", day: "Run 2 (e.g. Thu)", title: "Rhythmic Flow Pacer (6.5 km)", pacerPace: "10.5 min/km", desc: "Practicing mid-run electrolyte sipping every 20 minutes." },
-      { id: "w6d3", day: "Run 3 (e.g. Sat)", title: "Peak Long Run (9.0–9.5 km)", pacerPace: "10.5 min/km", desc: "The longest test run before the taper. Within touching distance of 10K!" }
+      { id: "w6d1", day: "Run 1 (Tue, Oct 20)", title: "Recovery Base Pacer (5.5 km)", pacerPace: "11.0 min/km", desc: "Easy mid-week base run. Rest two days after for muscle repair." },
+      { id: "w6d2", day: "Run 2 (Thu, Oct 22)", title: "Rhythmic Flow Pacer (6.5 km)", pacerPace: "10.5 min/km", desc: "Practicing mid-run electrolyte sipping every 20 minutes." },
+      { id: "w6d3", day: "Run 3 (Sat, Oct 24)", title: "Peak Long Run (9.0–9.5 km)", pacerPace: "10.5 min/km", desc: "The longest test run before the taper. Within touching distance of 10K!" }
     ]
   },
   { 
     week: 7, 
-    focus: "Week 7 — Taper & Glycogen Supercompensation (5.0 km • 10.8 min/km)", 
+    focus: "Week 7 (Oct 27 – Nov 1) — Taper & 🏆 The 10.0 km Champion Run! (10.5 min/km)", 
     workouts: [
-      { id: "w7d1", day: "Run 1 (e.g. Tue)", title: "Taper Easy Pacer (4.0 km)", pacerPace: "11.0 min/km", desc: "Short, relaxed stride. Glycogen stores topping off in liver and muscle." },
-      { id: "w7d2", day: "Run 2 (e.g. Thu)", title: "Tune-Up Pacer Run (5.0 km)", pacerPace: "10.5 min/km", desc: "Light, bouncy, and effortless stride. Saving peak energy for next week." },
-      { id: "w7d3", day: "Run 3 (e.g. Sat)", title: "Easy Shakeout Pacer (4.5 km)", pacerPace: "10.8 min/km", desc: "Relaxed confidence. Full hydration and deep recovery." }
+      { id: "w7d1", day: "Run 1 (Tue, Oct 27)", title: "Taper Easy Pacer (4.0 km)", pacerPace: "11.0 min/km", desc: "Short, relaxed stride. Glycogen stores topping off in liver and muscle." },
+      { id: "w7d2", day: "Run 2 (Thu, Oct 29)", title: "Pre-Milestone Activation (4.0 km)", pacerPace: "10.5 min/km", desc: "Light, bouncy, and effortless stride. Saving peak energy for the weekend champion run." },
+      { id: "w7d3", day: "Run 3 (Sat, Oct 31 / Sun, Nov 1)", title: "🏆 OFFICIAL 10.0 KM CHAMPION FINISH!", pacerPace: "10.5 min/km", desc: "CONGRATULATIONS! 10.0 km completed in pure Zone 2 before your Nov 5 vacation flight!" }
     ]
   },
   { 
     week: 8, 
-    focus: "Week 8 — 🏆 The Official 10.0 km Zone 2 Champion Finish! (10.5 min/km)", 
+    focus: "Pre-Flight Recovery & LAX Departure (Nov 2 – Nov 5, 2026)", 
     workouts: [
-      { id: "w8d1", day: "Run 1 (e.g. Tue)", title: "Easy Shakeout Pacer (3.5 km)", pacerPace: "11.5 min/km", desc: "Gentle shakeout jog. Legs feel fresh and full of bounce." },
-      { id: "w8d2", day: "Run 2 (e.g. Thu)", title: "Pre-Milestone Activation (4.0 km)", pacerPace: "11.0 min/km", desc: "Hydrate, eat clean, and rest two full days before the champion run." },
-      { id: "w8d3", day: "Run 3 (e.g. Sat)", title: "🏆 OFFICIAL 10.0 KM CHAMPION FINISH!", pacerPace: "10.5 min/km", desc: "CONGRATULATIONS! 10.0 km completed in pure Zone 2 metabolic equilibrium!" }
+      { id: "w8d1", day: "Mon, Nov 2", title: "Active Walking & Celebration", pacerPace: "Gentle Walk", desc: "Light walk, zero running. Celebrate your 10K milestone and let muscle cristae fully remodel." },
+      { id: "w8d2", day: "Tue, Nov 3 / Wed, Nov 4", title: "Hydration & Flight Prep", pacerPace: "Rest", desc: "Rest, hydrate, pack, and prepare for flight to Los Angeles with 10K accomplished!" },
+      { id: "w8d3", day: "Thu, Nov 5", title: "✈️ Departure: TLV → LHR → LAX (06:20 AM)", pacerPace: "Travel Day", desc: "Flight AA 7233 / AA 137 to Los Angeles. Arriving at LAX with peak metabolic health!" }
     ]
   }
 ];
@@ -355,6 +355,34 @@ export default function TenKTracker() {
               <span className="text-xs text-stone-300 block">Total Distance</span>
               <strong className="text-xl sm:text-2xl font-black text-emerald-400">{totalKm.toFixed(1)} km</strong>
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Target Vacation Countdown Banner */}
+      <div className="bg-gradient-to-r from-amber-500/10 via-rose-500/10 to-emerald-500/10 border-2 border-amber-400/50 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="flex items-center gap-3">
+          <div className="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-600 flex items-center justify-center shrink-0">
+            <Plane className="w-6 h-6" />
+          </div>
+          <div>
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="font-bold text-stone-900 text-sm sm:text-base">✈️ Target Milestone: Complete 10K Before Vacation</span>
+              <span className="px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-amber-200 text-amber-900">Nov 5, 2026 Flight</span>
+            </div>
+            <p className="text-xs text-stone-600 mt-1 leading-relaxed">
+              <strong>36 Days Runway:</strong> Target 10K Champion Finish on <strong>Saturday, October 31 or Sunday, November 1</strong> — leaving 4 full days of joint recovery before departure!
+            </p>
+          </div>
+        </div>
+        <div className="flex items-center gap-3 shrink-0">
+          <div className="text-center px-3 py-1.5 rounded-xl bg-white border border-stone-200 shadow-xs">
+            <span className="text-[10px] text-stone-400 block font-mono">DAYS LEFT</span>
+            <span className="text-lg font-black text-amber-600 font-mono">36 Days</span>
+          </div>
+          <div className="text-center px-3 py-1.5 rounded-xl bg-emerald-50 border border-emerald-200 shadow-xs">
+            <span className="text-[10px] text-emerald-600 block font-mono">FINISH TARGET</span>
+            <span className="text-lg font-black text-emerald-700 font-mono">Oct 31</span>
           </div>
         </div>
       </div>
