@@ -24,7 +24,7 @@ export const PAGES_LIST = [
 
   // TIER 2: INTERACTIVE CALCULATORS & ACCREDITATION
   { id: 7, title: 'Apple Watch Bioenergetics Calculator', label: 'Article 7: Substrate & ATP Calc', category: 'Personal Data', icon: Calculator, badge: '🧮 Calculator' },
-  { id: 8, title: 'Wise 10K Training & Run Tracker', label: 'Article 8: 10K Training Tracker', category: 'Protocols', icon: Trophy, badge: '🏃 10K Tracker' },
+  { id: 8, title: '8-Week Zone 2 10K Training & Nutrition Plan (From 7.59 km to 10K)', label: 'Article 8: 10K Plan & Nutrition', category: 'Protocols', icon: Trophy, badge: '🏆 10K Blueprint' },
   { id: 9, title: 'Optimus Bioenergetic & Longevity Index (OBLI)', label: 'Article 9: Longevity Index', category: 'Personal Data', icon: ShieldCheck, badge: '🏆 Longevity Index' },
   { id: 10, title: "Runner's License & Certification", label: "Article 10: Runner's License", category: 'Fundamentals', icon: Award, badge: '📜 License' },
   { id: 11, title: 'Scientific Advisory & Accreditation', label: 'Article 11: Scientific Accreditation', category: 'Fundamentals', icon: ShieldCheck, badge: '🛡️ Scientific Seal' },
