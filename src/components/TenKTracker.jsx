@@ -27,56 +27,46 @@ const APPLE_WATCH_PACER_PROGRAM = [
   },
   { 
     week: 3, 
-    focus: "Week 3 (Sep 29 – Oct 5) — Recovery & Cellular Consolidation Deload (11.5–11.8 min/km)", 
+    focus: "Week 3 (Oct 1 – Oct 7) — Recovery & Cellular Consolidation Deload (2 Full Rest Days Between Runs)", 
     workouts: [
-      { id: "w3d1", day: "Run 1", fullDate: "Wednesday, September 30, 2026", title: "Active Recovery Pacer (4.5 km)", pacerPace: "11.8 min/km", desc: "Deload run! Allows cells to consolidate daughter mitochondria and VEGF capillaries after the 7.59km peak." },
-      { id: "w3d2", day: "Run 2", fullDate: "Friday, October 2, 2026", title: "Light Form Pacer Run (5.0 km)", pacerPace: "11.8 min/km", desc: "Keep it light, bouncy, and effortless. Zero joint pounding." },
-      { id: "w3d3", day: "Run 3", fullDate: "Sunday, October 4, 2026", title: "Consolidation Checkpoint (5.5–6.0 km)", pacerPace: "11.5 min/km", desc: "Consolidate your base before stepping to next progression." }
+      { id: "w3d1", day: "Run 1", fullDate: "Thursday, October 1, 2026", title: "Active Recovery Pacer (4.5 km)", pacerPace: "11.8 min/km", desc: "Deload run after 2 full rest days (Sep 29 & 30)! Next run in 2 full rest days." },
+      { id: "w3d2", day: "Run 2", fullDate: "Sunday, October 4, 2026", title: "Light Form Pacer Run (5.0 km)", pacerPace: "11.8 min/km", desc: "After 2 full rest days (Oct 2 & 3). Keep it light, bouncy, and effortless." },
+      { id: "w3d3", day: "Run 3", fullDate: "Wednesday, October 7, 2026", title: "Consolidation Checkpoint (5.5 km)", pacerPace: "11.5 min/km", desc: "After 2 full rest days (Oct 5 & 6). Consolidates base before stepping up." }
     ]
   },
   { 
     week: 4, 
-    focus: "Week 4 (Oct 6 – Oct 12) — Base Re-Expansion (6.5–7.5 km • 11.2 min/km)", 
+    focus: "Week 4 (Oct 10 – Oct 16) — Base Re-Expansion (2 Full Rest Days Between Runs)", 
     workouts: [
-      { id: "w4d1", day: "Run 1", fullDate: "Tuesday, October 6, 2026", title: "Rhythmic Base Flow (5.5 km)", pacerPace: "11.2 min/km", desc: "Fresh mitochondria fully operational; smooth and effortless glide." },
-      { id: "w4d2", day: "Run 2", fullDate: "Thursday, October 8, 2026", title: "Aerobic Cruise Run (6.0 km)", pacerPace: "11.2 min/km", desc: "Building consistent time-on-feet without fatigue." },
-      { id: "w4d3", day: "Run 3", fullDate: "Saturday, October 10, 2026", title: "Base Endurance Run (7.0–7.5 km)", pacerPace: "11.0 min/km", desc: "Re-confirming 7+ km with lower heart rate and zero strain." }
+      { id: "w4d1", day: "Run 1", fullDate: "Saturday, October 10, 2026", title: "Rhythmic Base Flow (6.0 km)", pacerPace: "11.2 min/km", desc: "After 2 full rest days (Oct 8 & 9). Fresh mitochondria fully operational." },
+      { id: "w4d2", day: "Run 2", fullDate: "Tuesday, October 13, 2026", title: "Aerobic Cruise Run (6.5 km)", pacerPace: "11.2 min/km", desc: "After 2 full rest days (Oct 11 & 12). Building consistent time-on-feet." },
+      { id: "w4d3", day: "Run 3", fullDate: "Friday, October 16, 2026", title: "Base Endurance Run (7.5 km)", pacerPace: "11.0 min/km", desc: "After 2 full rest days (Oct 14 & 15). Re-confirming 7.5 km with low heart rate." }
     ]
   },
   { 
     week: 5, 
-    focus: "Week 5 (Oct 13 – Oct 19) — Reticular Expansion & Pace Shift (8.2–8.5 km • 10.8 min/km)", 
+    focus: "Week 5 (Oct 19 – Oct 25) — Reticular Expansion & Step-Up (2 Full Rest Days Between Runs)", 
     workouts: [
-      { id: "w5d1", day: "Run 1", fullDate: "Tuesday, October 13, 2026", title: "Zone 2 Base Pacer (5.5 km)", pacerPace: "10.8 min/km", desc: "Oxygen delivery noticeably more efficient after Week 4 consolidation." },
-      { id: "w5d2", day: "Run 2", fullDate: "Thursday, October 15, 2026", title: "Steady Cruise Pacer (6.0 km)", pacerPace: "10.8 min/km", desc: "Watch wrist cues keep you strictly between 101–120 BPM." },
-      { id: "w5d3", day: "Run 3", fullDate: "Saturday, October 17, 2026", title: "Milestone Pacer Run (8.2–8.5 km)", pacerPace: "10.8 min/km", desc: "Continuous Z2 movement with zero stress; stepping stone to 9 km!" }
+      { id: "w5d1", day: "Run 1", fullDate: "Monday, October 19, 2026", title: "Zone 2 Base Pacer (6.0 km)", pacerPace: "10.8 min/km", desc: "After 2 full rest days (Oct 17 & 18). Fluid rhythm, strictly 101–120 BPM." },
+      { id: "w5d2", day: "Run 2", fullDate: "Thursday, October 22, 2026", title: "Steady Cruise Pacer (7.0 km)", pacerPace: "10.8 min/km", desc: "After 2 full rest days (Oct 20 & 21). Practicing electrolyte sipping." },
+      { id: "w5d3", day: "Run 3", fullDate: "Sunday, October 25, 2026", title: "Milestone Pacer Run (8.5 km)", pacerPace: "10.8 min/km", desc: "After 2 full rest days (Oct 23 & 24). Stepping stone to the 10K goal!" }
     ]
   },
   { 
     week: 6, 
-    focus: "Week 6 (Oct 20 – Oct 26) — Peak Duration & Low Cardiac Drift (9.0–9.5 km • 10.5 min/km)", 
+    focus: "Week 6 (Oct 28 – Oct 31) — Taper & 🏆 The 10.0 km Champion Run!", 
     workouts: [
-      { id: "w6d1", day: "Run 1", fullDate: "Tuesday, October 20, 2026", title: "Recovery Base Pacer (5.5 km)", pacerPace: "11.0 min/km", desc: "Easy mid-week base run. Rest two days after for muscle repair." },
-      { id: "w6d2", day: "Run 2", fullDate: "Thursday, October 22, 2026", title: "Rhythmic Flow Pacer (6.5 km)", pacerPace: "10.5 min/km", desc: "Practicing mid-run electrolyte sipping every 20 minutes." },
-      { id: "w6d3", day: "Run 3", fullDate: "Saturday, October 24, 2026", title: "Peak Long Run (9.0–9.5 km)", pacerPace: "10.5 min/km", desc: "The longest test run before the taper. Within touching distance of 10K!" }
+      { id: "w6d1", day: "Run 1", fullDate: "Wednesday, October 28, 2026", title: "Pre-Milestone Taper Activation (4.0 km)", pacerPace: "11.0 min/km", desc: "After 2 full rest days (Oct 26 & 27). Short, bouncy stride to keep legs fresh." },
+      { id: "w6d2", day: "Run 2", fullDate: "Saturday, October 31, 2026", title: "🏆 OFFICIAL 10.0 KM CHAMPION FINISH!", pacerPace: "10.5 min/km", desc: "After 2 full rest days (Oct 29 & 30). CONGRATULATIONS! 10.0 km completed in pure Zone 2!" }
     ]
   },
   { 
     week: 7, 
-    focus: "Week 7 (Oct 27 – Nov 1) — Taper & 🏆 The 10.0 km Champion Run! (10.5 min/km)", 
+    focus: "Pre-Flight Recovery & LAX Departure (Nov 1 – Nov 5, 2026)", 
     workouts: [
-      { id: "w7d1", day: "Run 1", fullDate: "Tuesday, October 27, 2026", title: "Taper Easy Pacer (4.0 km)", pacerPace: "11.0 min/km", desc: "Short, relaxed stride. Glycogen stores topping off in liver and muscle." },
-      { id: "w7d2", day: "Run 2", fullDate: "Thursday, October 29, 2026", title: "Pre-Milestone Activation (4.0 km)", pacerPace: "10.5 min/km", desc: "Light, bouncy, and effortless stride. Saving peak energy for the weekend champion run." },
-      { id: "w7d3", day: "Run 3", fullDate: "Saturday, October 31, 2026", title: "🏆 OFFICIAL 10.0 KM CHAMPION FINISH!", pacerPace: "10.5 min/km", desc: "CONGRATULATIONS! 10.0 km completed in pure Zone 2 before your Nov 5 vacation flight!" }
-    ]
-  },
-  { 
-    week: 8, 
-    focus: "Pre-Flight Recovery & LAX Departure (Nov 2 – Nov 5, 2026)", 
-    workouts: [
-      { id: "w8d1", day: "Recovery Day 1", fullDate: "Monday, November 2, 2026", title: "Active Walking & Celebration", pacerPace: "Gentle Walk", desc: "Light walk, zero running. Celebrate your 10K milestone and let muscle cristae fully remodel." },
-      { id: "w8d2", day: "Recovery Day 2", fullDate: "Tuesday, Nov 3 – Wednesday, Nov 4, 2026", title: "Hydration & Flight Prep", pacerPace: "Rest", desc: "Rest, hydrate, pack, and prepare for flight to Los Angeles with 10K accomplished!" },
-      { id: "w8d3", day: "Travel Day", fullDate: "Thursday, November 5, 2026", title: "✈️ Departure: TLV → LHR → LAX (06:20 AM)", pacerPace: "Travel Day", desc: "Flight AA 7233 / AA 137 to Los Angeles. Arriving at LAX with peak metabolic health!" }
+      { id: "w7d1", day: "Recovery Day 1", fullDate: "Sunday, Nov 1 – Monday, Nov 2, 2026", title: "Active Walking & Celebration", pacerPace: "Gentle Walk", desc: "Celebrate your 10K milestone and let muscle cristae fully remodel." },
+      { id: "w7d2", day: "Recovery Day 2", fullDate: "Tuesday, Nov 3 – Wednesday, Nov 4, 2026", title: "Hydration & Flight Prep", pacerPace: "Rest", desc: "Rest, hydrate, pack, and prepare for flight to Los Angeles with 10K accomplished!" },
+      { id: "w7d3", day: "Travel Day", fullDate: "Thursday, November 5, 2026", title: "✈️ Departure: TLV → LHR → LAX (06:20 AM)", pacerPace: "Travel Day", desc: "Flight AA 7233 / AA 137 to Los Angeles. Arriving at LAX with peak metabolic health!" }
     ]
   }
 ];
@@ -371,7 +361,7 @@ export default function TenKTracker() {
               <span className="px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-amber-200 text-amber-900">Nov 5, 2026 Flight</span>
             </div>
             <p className="text-xs text-stone-600 mt-1 leading-relaxed">
-              <strong>36 Days Runway:</strong> Target 10K Champion Finish on <strong>Saturday, October 31 or Sunday, November 1</strong> — leaving 4 full days of joint recovery before departure!
+              <strong>Guaranteed 2 Full Rest Days Between Every Run:</strong> 48–72h for cellular remodeling & joint protection. Target 10K Champion Finish on <strong>Saturday, October 31</strong> — followed by 4 full days of pre-flight rest!
             </p>
           </div>
         </div>
