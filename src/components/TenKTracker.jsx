@@ -863,6 +863,47 @@ export default function TenKTracker() {
               </span>
             </div>
 
+            {/* Embedded 3D Biomechanics Animation Player */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center bg-slate-950/70 p-5 sm:p-6 rounded-2xl border border-slate-800">
+              <div className="lg:col-span-5 flex justify-center">
+                <div className="relative rounded-2xl overflow-hidden border border-slate-700 shadow-2xl bg-black max-w-[260px] w-full aspect-[9/16]">
+                  <video 
+                    src="./knee-biomechanics-3d.mp4" 
+                    controls 
+                    autoPlay 
+                    loop 
+                    muted 
+                    playsInline 
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute top-2 left-2 bg-black/70 backdrop-blur-md px-2 py-0.5 rounded text-[10px] font-mono text-emerald-400 font-bold border border-emerald-500/30">
+                    3D KINEMATICS
+                  </div>
+                </div>
+              </div>
+              <div className="lg:col-span-7 space-y-3">
+                <div className="inline-flex items-center gap-2 text-xs font-mono text-cyan-400 font-bold">
+                  🎥 Live 3D Anatomical Motion (SciePro / Wonder of Science)
+                </div>
+                <h4 className="text-xl sm:text-2xl font-black text-white">
+                  Watch the Muscles, Ligaments & Bones Synchronize
+                </h4>
+                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
+                  As you observe this 3D model bending, notice how the patella glides vertically while the femur condyles smoothly roll and glide backwards over the meniscus cushions.
+                </p>
+                <div className="p-3.5 bg-slate-900 rounded-xl border border-slate-700/80 text-xs text-slate-300 space-y-1.5">
+                  <div className="text-emerald-400 font-bold flex items-center gap-1.5">
+                    <span>💡 What to look for while watching:</span>
+                  </div>
+                  <ul className="list-disc list-inside space-y-1 text-slate-300 text-[11px] leading-relaxed">
+                    <li><strong>Patellar Pulley:</strong> Slides smoothly in its groove without pinching when you land with a soft knee.</li>
+                    <li><strong>Menisci Pads:</strong> Deform naturally under axial load, fully protected by your Brooks Ghost cushioning.</li>
+                    <li><strong>Cruciate "X" (ACL/PCL):</strong> Remains tension-free when landing directly beneath your hips (~140 SPM).</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
             {/* 3D Kinematics Anatomy Breakdown */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {/* Pillar 1: Patella Pulley */}
