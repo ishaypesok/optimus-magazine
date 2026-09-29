@@ -843,6 +843,108 @@ export default function TenKTracker() {
             </div>
           </div>
 
+          {/* Section 5: Knee Care & Joint Biomechanics Protocol */}
+          <div className="p-6 sm:p-8 rounded-3xl bg-slate-900 text-white border border-slate-800 shadow-xl space-y-6">
+            <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-4">
+              <div>
+                <div className="inline-flex items-center gap-2 text-xs font-mono font-bold text-emerald-400 bg-emerald-950/80 px-2.5 py-1 rounded-full uppercase border border-emerald-500/30">
+                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+                  Biomechanical Joint Shield
+                </div>
+                <h3 className="text-2xl sm:text-3xl font-black text-white mt-2">
+                  Knee Care & 3D Joint Biomechanics Protocol
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-300 font-normal">
+                  Understanding the internal kinematics of the knee joint during 10K running: muscles, ligaments, and cartilage in motion.
+                </p>
+              </div>
+              <span className="text-xs font-mono font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-400/30 px-3 py-1.5 rounded-full">
+                🔬 Kinematics & Longevity
+              </span>
+            </div>
+
+            {/* 3D Kinematics Anatomy Breakdown */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {/* Pillar 1: Patella Pulley */}
+              <div className="p-5 rounded-2xl bg-slate-800/80 border border-slate-700/80 space-y-2.5">
+                <div className="flex items-center gap-2 text-amber-300 font-bold text-sm">
+                  <span className="w-7 h-7 rounded-lg bg-amber-400/20 flex items-center justify-center text-base">🦴</span>
+                  <span>1. Patellar Pulley Tracking</span>
+                </div>
+                <p className="text-xs text-slate-300 leading-relaxed font-normal">
+                  The patella (kneecap) acts as a mechanical lever, sliding up and down through the femoral trochlear groove. When you land with a <strong className="text-white">soft, slightly bent knee</strong>, the patella glides smoothly without excessive compressive grinding against the femur cartilage.
+                </p>
+                <div className="text-[11px] text-amber-200/90 font-mono bg-amber-950/40 p-2 rounded-lg border border-amber-500/20">
+                  ⚡ Overstriding straight leg = 3–4x bodyweight braking compression.
+                </div>
+              </div>
+
+              {/* Pillar 2: Menisci Cushions */}
+              <div className="p-5 rounded-2xl bg-slate-800/80 border border-slate-700/80 space-y-2.5">
+                <div className="flex items-center gap-2 text-cyan-300 font-bold text-sm">
+                  <span className="w-7 h-7 rounded-lg bg-cyan-400/20 flex items-center justify-center text-base">🛡️</span>
+                  <span>2. Menisci Roll & Glide</span>
+                </div>
+                <p className="text-xs text-slate-300 leading-relaxed font-normal">
+                  The knee is not a simple hinge: the femoral condyles <strong className="text-white">roll and slide backwards</strong> on the tibial meniscus pads. High-cushion footwear like your <strong className="text-cyan-300">Brooks Ghost (DNA LOFT foam)</strong> absorbs the initial ground shockwave, preserving natural cartilage thickness.
+                </p>
+                <div className="text-[11px] text-cyan-200/90 font-mono bg-cyan-950/40 p-2 rounded-lg border border-cyan-500/20">
+                  👟 Segmented Crash Pad guides smooth heel-to-toe transition.
+                </div>
+              </div>
+
+              {/* Pillar 3: Cruciate Ligaments */}
+              <div className="p-5 rounded-2xl bg-slate-800/80 border border-slate-700/80 space-y-2.5">
+                <div className="flex items-center gap-2 text-emerald-300 font-bold text-sm">
+                  <span className="w-7 h-7 rounded-lg bg-emerald-400/20 flex items-center justify-center text-base">🧬</span>
+                  <span>3. Cruciate Alignment (ACL/PCL)</span>
+                </div>
+                <p className="text-xs text-slate-300 leading-relaxed font-normal">
+                  Deep within the capsule, the ACL and PCL cross like an "X" to stabilize anterior-posterior displacement. By <strong className="text-white">landing your feet directly underneath your hips</strong> (cadence ~140 SPM), ground forces remain purely vertical, eliminating damaging rotational twisting.
+                </p>
+                <div className="text-[11px] text-emerald-200/90 font-mono bg-emerald-950/40 p-2 rounded-lg border border-emerald-500/20">
+                  🎯 Zero shear stress when center of mass stays balanced.
+                </div>
+              </div>
+            </div>
+
+            {/* The 3 Golden Joint-Care Rules for 65+ Runners */}
+            <div className="p-5 rounded-2xl bg-gradient-to-r from-emerald-950/70 via-slate-800 to-indigo-950/70 border border-emerald-500/30 space-y-3">
+              <h4 className="text-sm font-black text-white uppercase tracking-wider flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-emerald-400" />
+                The 3 Golden Knee-Protection Habits for Every Run
+              </h4>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                <div className="p-3 bg-slate-900/80 rounded-xl border border-slate-700/60 space-y-1">
+                  <span className="font-bold text-emerald-300 block">1. The Cadence Rule (~140 SPM)</span>
+                  <p className="text-slate-300">Take shorter, lighter "whisper" steps. Elevating cadence by 5–7 steps cuts peak impact forces on the knee joint by approximately 20%.</p>
+                </div>
+                <div className="p-3 bg-slate-900/80 rounded-xl border border-slate-700/60 space-y-1">
+                  <span className="font-bold text-cyan-300 block">2. Post-Run Magnesium Glycinate</span>
+                  <p className="text-slate-300">Taking 200 mg Magnesium Glycinate post-run flushes out cellular calcium, fully releasing quadriceps and hamstring tension on the patellar tendon.</p>
+                </div>
+                <div className="p-3 bg-slate-900/80 rounded-xl border border-slate-700/60 space-y-1">
+                  <span className="font-bold text-amber-300 block">3. Synovial Fluid Hydration</span>
+                  <p className="text-slate-300">Nuun electrolyte hydration maintains blood plasma and joint synovial fluid volume, keeping cartilage lubricated and friction-free across 10 kilometers.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Mental Cue Banner */}
+            <div className="p-4 rounded-xl bg-slate-950/80 border border-slate-800 flex items-center justify-between gap-3">
+              <div className="flex items-center gap-3">
+                <span className="text-2xl">🏃‍♂️</span>
+                <div>
+                  <div className="text-xs font-bold text-white">Mental Cue for Your Next Run:</div>
+                  <div className="text-xs text-slate-300 italic">"Whisper steps under the hips • Soft knee flexion • Let the patella glide freely"</div>
+                </div>
+              </div>
+              <span className="hidden sm:inline-block text-[10px] font-mono bg-emerald-900/50 text-emerald-300 border border-emerald-500/30 px-2.5 py-1 rounded-full shrink-0">
+                100% Pain-Free Longevity
+              </span>
+            </div>
+          </div>
+
         </div>
       )}
 
