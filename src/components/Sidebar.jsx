@@ -157,12 +157,12 @@ export default function Sidebar({
               <h1 className="text-base sm:text-lg font-black text-stone-900 tracking-tight leading-tight">
                 OPTIMUS <span className="text-emerald-700 block">Longevity 65+</span>
               </h1>
+              <span className="inline-block mt-1 px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-950 text-[10px] font-black border border-emerald-300 uppercase tracking-wide">
+                The Practical Handbook
+              </span>
               <p className="text-[10px] sm:text-[11px] font-semibold text-stone-600 tracking-tight mt-1 leading-snug">
                 Science, fitness & bioenergetics for healthy aging
               </p>
-              <span className="inline-block mt-1.5 px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-950 text-[10px] font-extrabold border border-emerald-300">
-                Official Issue Cover
-              </span>
             </div>
           </div>
 

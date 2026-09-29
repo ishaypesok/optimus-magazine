@@ -32,10 +32,13 @@ export default function MagazineFrontCover() {
           <div className="space-y-3">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500 text-stone-950 font-black text-xs uppercase tracking-widest">
               <Zap className="w-4 h-4" />
-              The Bioenergetics & Longevity Journal
+              The Practical Handbook • Bioenergetics & Healthy Aging
             </div>
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-none font-masthead">
               OPTIMUS <span className="text-emerald-400 block sm:inline">— Longevity 65+</span>
+              <span className="block text-2xl sm:text-4xl lg:text-5xl text-stone-200 font-serif font-medium italic tracking-normal mt-2 sm:mt-3">
+                The Practical Handbook
+              </span>
             </h1>
             <p className="text-lg sm:text-2xl text-emerald-300 font-semibold max-w-2xl leading-relaxed">
               Science, fitness & bioenergetics for healthy aging

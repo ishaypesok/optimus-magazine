@@ -65,7 +65,7 @@ export default function MagazineHeader({
             </div>
             <div className="hidden sm:flex flex-col text-left leading-tight">
               <span className="font-black text-stone-900 dark:text-stone-100 text-xs tracking-tight">OPTIMUS</span>
-              <span className="text-[10px] text-emerald-700 dark:text-emerald-400 font-bold">Longevity 65+</span>
+              <span className="text-[9px] text-emerald-700 dark:text-emerald-400 font-bold truncate">Longevity 65+ • Handbook</span>
             </div>
           </button>
 

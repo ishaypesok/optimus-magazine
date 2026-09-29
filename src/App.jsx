@@ -132,7 +132,7 @@ export default function App() {
                   <img src="./optimus-logo.jpg" alt="OPTIMUS Logo" className="w-full h-full object-cover" />
                 </div>
                 <div className="text-left">
-                  <h3 className="text-lg sm:text-xl font-black text-stone-900 leading-tight">OPTIMUS — Longevity 65+</h3>
+                  <h3 className="text-lg sm:text-xl font-black text-stone-900 leading-tight">OPTIMUS — Longevity 65+: The Practical Handbook</h3>
                   <p className="text-xs text-stone-500 font-medium">Science, fitness & bioenergetics for healthy aging</p>
                 </div>
               </div>

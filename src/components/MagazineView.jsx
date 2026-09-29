@@ -291,7 +291,7 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
           <div key={pageNum} className="print-page-break space-y-6 pt-6">
             <div className="flex items-center justify-between border-b border-stone-300 pb-2 text-xs font-sans text-stone-500">
               <div className="flex items-center gap-2">
-                <span className="font-black text-stone-900">OPTIMUS <span className="text-emerald-700">— Longevity 65+</span></span>
+                <span className="font-black text-stone-900">OPTIMUS <span className="text-emerald-700">— Longevity 65+: The Practical Handbook</span></span>
                 <span>•</span>
                 <span className="text-stone-500 font-medium">Issue 01</span>
               </div>
@@ -349,6 +349,9 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
               </div>
               <h1 className="text-xl sm:text-2xl font-black text-stone-900 leading-tight">
                 OPTIMUS <span className="text-emerald-700">— Longevity 65+</span>
+                <span className="block text-xs sm:text-sm font-bold text-emerald-800 font-serif italic mt-0.5">
+                  The Practical Handbook
+                </span>
               </h1>
               <p className="text-xs sm:text-sm text-stone-600 font-medium">Science, fitness & bioenergetics for healthy aging</p>
             </div>
