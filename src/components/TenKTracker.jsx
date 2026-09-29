@@ -648,7 +648,7 @@ export default function TenKTracker() {
                     3. Post-Run Reconstruction Window (Within 45–60 min)
                   </div>
                   <ul className="space-y-1.5 text-xs text-stone-800 list-disc list-inside">
-                    <li><strong>Protein Building Blocks:</strong> Consume <strong>25–30 grams of high-quality protein</strong> (sardines, eggs, Greek yogurt, or wild salmon). <em>Pro-Tip: Sardines far surpass tuna for 65+ longevity due to near-zero mercury, CoQ10, and natural bone-strengthening calcium!</em></li>
+                    <li><strong>Protein Building Blocks:</strong> Consume <strong>25–30 grams of high-quality protein</strong> (wild sardines, eggs, Greek yogurt, or wild salmon). <em>Sardine Buyer Rule: Choose whole sardines with skin & bones (for 380mg bioavailable bone calcium) packed in Extra Virgin Olive Oil or spring water—never cheap soybean or vegetable oil!</em></li>
                     <li><strong>Dates for Glycogen Restoration:</strong> 2 Medjool dates paired with your protein creates the optimal gentle insulin signal to shuttle amino acids straight into recovering mitochondria.</li>
                     <li><strong>Enzyme Translation:</strong> Supplies the building blocks needed by ribosomes to manufacture new respiratory complexes.</li>
                   </ul>
