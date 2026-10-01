@@ -77,15 +77,26 @@ export default function TenKTracker() {
   // LocalStorage State
   const [completedWorkouts, setCompletedWorkouts] = useState(() => {
     try {
-      return JSON.parse(localStorage.getItem('optimus_10k_completed')) || ['w1d1', 'w1d2', 'w1d3', 'w2d1', 'w2d2', 'w2d3'];
+      return JSON.parse(localStorage.getItem('optimus_10k_completed')) || ['w1d1', 'w1d2', 'w1d3', 'w2d1', 'w2d2', 'w2d3', 'w3d1'];
     } catch {
-      return ['w1d1', 'w1d2', 'w1d3', 'w2d1', 'w2d2', 'w2d3'];
+      return ['w1d1', 'w1d2', 'w1d3', 'w2d1', 'w2d2', 'w2d3', 'w3d1'];
     }
   });
 
   const [runLogs, setRunLogs] = useState(() => {
     try {
       return JSON.parse(localStorage.getItem('optimus_10k_logs')) || [
+        {
+          id: 'log_oct_01_2026',
+          date: '2026-10-01',
+          type: 'Week 3 Deload & Consolidation',
+          dist: 4.77,
+          duration: '53:56',
+          pace: '11:18',
+          rpe: 3,
+          feeling: 'Perfect Zone 2 Aerobic Consolidation',
+          notes: 'Week 3 Deload Run: 4.77 km in 53:56 • 114 BPM Avg HR (Exact FATmax) • 118W • Smooth cadence & low cardiac strain!'
+        },
         {
           id: 'log_record',
           date: '2026-09-28',

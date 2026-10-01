@@ -31,8 +31,21 @@ export default function RunnerSimulation() {
   // Real runs list with verified Apple Watch Ultra telemetry
   const [runsList, setRunsList] = useState([
     {
+      id: 'oct01',
+      dateLabel: 'Oct 01, 2026 (Deload • 4.77 km)',
+      durationMin: 53.9,
+      distanceKm: 4.77,
+      paceMinKm: 11.31,
+      avgHr: 114,
+      watchCalories: 281,
+      fatBurnGrams: 28.5,
+      carbBurnGrams: 10.2,
+      color: '#3b82f6',
+      note: 'Week 3 Deload & Consolidation Run: 53:56 • 114 BPM Avg HR (Pure Zone 2) • 131 BPM Max HR • 118W Power • 281 kcal Active • 55.8m Elev Gain!'
+    },
+    {
       id: 'sep28',
-      dateLabel: 'Sep 28, 2026 (New Record 🏆 • 7.59 km)',
+      dateLabel: 'Sep 28, 2026 (Distance Record 🏆 • 7.59 km)',
       durationMin: 88.2,
       distanceKm: 7.59,
       paceMinKm: 11.61,
