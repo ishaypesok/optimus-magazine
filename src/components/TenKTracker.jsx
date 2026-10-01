@@ -29,7 +29,7 @@ const APPLE_WATCH_PACER_PROGRAM = [
     week: 3, 
     focus: "Week 3 (Oct 1 – Oct 7) — Recovery & Cellular Consolidation Deload (2 Full Rest Days Between Runs)", 
     workouts: [
-      { id: "w3d1", day: "Run 1", fullDate: "Thursday, October 1, 2026", title: "Active Recovery Pacer (4.5 km)", pacerPace: "11.8 min/km", desc: "Deload run after 2 full rest days (Sep 29 & 30)! Next run in 2 full rest days." },
+      { id: "w3d1", day: "Run 1", fullDate: "Thursday, October 1, 2026", title: "Active Recovery Pacer (4.77 km Done ✓)", pacerPace: "11:18 min/km", desc: "Completed 4.77 km in 53:56 at 114 BPM! 2 full rest days (Fri Oct 2 & Sat Oct 3). Next run Sunday, Oct 4." },
       { id: "w3d2", day: "Run 2", fullDate: "Sunday, October 4, 2026", title: "Light Form Pacer Run (5.0 km)", pacerPace: "11.8 min/km", desc: "After 2 full rest days (Oct 2 & 3). Keep it light, bouncy, and effortless." },
       { id: "w3d3", day: "Run 3", fullDate: "Wednesday, October 7, 2026", title: "Consolidation Checkpoint (5.5 km)", pacerPace: "11.5 min/km", desc: "After 2 full rest days (Oct 5 & 6). Consolidates base before stepping up." }
     ]
@@ -116,7 +116,7 @@ export default function TenKTracker() {
 
   // Finish Calculator State
   const [calcPace, setCalcPace] = useState(11.0); // min/km
-  const [selectedPathwayWeek, setSelectedPathwayWeek] = useState(2);
+  const [selectedPathwayWeek, setSelectedPathwayWeek] = useState(3);
 
   // Modal State
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -130,7 +130,7 @@ export default function TenKTracker() {
     notes: ''
   });
 
-  const [expandedWeeks, setExpandedWeeks] = useState({ 2: true, 3: true });
+  const [expandedWeeks, setExpandedWeeks] = useState({ 2: false, 3: true, 4: false });
 
   useEffect(() => {
     localStorage.setItem('optimus_10k_completed', JSON.stringify(completedWorkouts));
@@ -219,8 +219,8 @@ export default function TenKTracker() {
     {
       week: 2,
       title: 'Week 2: The 7.59 km Landmark Run',
-      badge: 'CURRENT STATUS • 76% ACCOMPLISHED',
-      badgeColor: 'bg-emerald-100 text-emerald-950 border-emerald-300',
+      badge: 'COMPLETED • 7.59 KM LANDMARK (76%)',
+      badgeColor: 'bg-stone-100 text-stone-700 border-stone-300',
       dist: '7.59 km',
       pace: '11:37 min/km',
       duration: '1:28:09',
@@ -231,16 +231,16 @@ export default function TenKTracker() {
     },
     {
       week: 3,
-      title: 'Week 3: The Consolidation Trap & Deload',
-      badge: 'CRITICAL CONSOLIDATION DELOAD',
-      badgeColor: 'bg-amber-100 text-amber-950 border-amber-300',
-      dist: '5.0 – 6.0 km',
-      pace: '11.5 – 11.8 min/km',
-      duration: '~55 – 65 min',
-      hr: '105 – 112 BPM',
+      title: 'Week 3: Recovery & Cellular Consolidation Deload',
+      badge: 'CURRENT ACTIVE WEEK • RUN 1 DONE (4.77 KM)',
+      badgeColor: 'bg-emerald-600 text-white border-emerald-700',
+      dist: '4.5 – 5.5 km',
+      pace: '11:18 – 11.8 min/km',
+      duration: '~54 – 65 min',
+      hr: '105 – 114 BPM',
       focus: 'Cellular Consolidation & Capillary Solidification',
-      details: 'Resist the urge to push for 8.5 km immediately! Week 3 allows your muscles to synthesize cristae folding proteins, mature micro-capillaries (VEGF), and protect tendons from micro-tears.',
-      rules: 'Dial distance back by ~25%. Keep pace relaxed and bouncy. Two rest days between runs.'
+      details: 'Active deload in progress! Session 1 completed cleanly on Thursday, Oct 1 (4.77 km in 53:56 at 114 BPM). Week 3 allows your muscles to synthesize cristae folding proteins, mature micro-capillaries (VEGF), and protect tendons from micro-tears.',
+      rules: 'Two full rest days between every run (48–72h). Next run: Sunday, Oct 4.'
     },
     {
       week: 4,
@@ -324,9 +324,9 @@ export default function TenKTracker() {
               <Trophy className="w-3.5 h-3.5 text-emerald-400" />
               Article 8 • Official 10K Blueprint & Protocol
             </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/20 border border-amber-400/40 text-amber-300 text-xs font-bold uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-              Week 2 Landmark: 7.59 km Completed (76%)
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-xs font-bold uppercase tracking-wider">
+              <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
+              Week 3 Active: Consolidation Deload (Run 1 Done • 4.77 km)
             </span>
           </div>
           
@@ -341,20 +341,20 @@ export default function TenKTracker() {
           {/* Quick Metrics Bar */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
             <div className="bg-white/10 backdrop-blur-md rounded-2xl p-3 border border-white/10">
-              <span className="text-xs text-stone-300 block">Current Milestone</span>
-              <strong className="text-xl sm:text-2xl font-black text-amber-300">7.59 km (76%)</strong>
+              <span className="text-xs text-stone-300 block">Current Status</span>
+              <strong className="text-xl sm:text-2xl font-black text-amber-300">Week 3 (Active)</strong>
             </div>
             <div className="bg-white/10 backdrop-blur-md rounded-2xl p-3 border border-white/10">
-              <span className="text-xs text-stone-300 block">Current Z2 Pace</span>
-              <strong className="text-xl sm:text-2xl font-black text-emerald-300">{currentZ2Pace.toFixed(1)} min/km</strong>
+              <span className="text-xs text-stone-300 block">Latest Session</span>
+              <strong className="text-xl sm:text-2xl font-black text-emerald-300">4.77 km (11:18)</strong>
             </div>
             <div className="bg-white/10 backdrop-blur-md rounded-2xl p-3 border border-white/10">
-              <span className="text-xs text-stone-300 block">Target Finish HR</span>
+              <span className="text-xs text-stone-300 block">Avg Heart Rate</span>
               <strong className="text-xl sm:text-2xl font-black text-white">114 BPM</strong>
             </div>
             <div className="bg-white/10 backdrop-blur-md rounded-2xl p-3 border border-white/10">
-              <span className="text-xs text-stone-300 block">Total Distance</span>
-              <strong className="text-xl sm:text-2xl font-black text-emerald-400">{totalKm.toFixed(1)} km</strong>
+              <span className="text-xs text-stone-300 block">Next Scheduled Run</span>
+              <strong className="text-xl sm:text-2xl font-black text-emerald-400">Sun, Oct 4</strong>
             </div>
           </div>
         </div>
@@ -530,7 +530,7 @@ export default function TenKTracker() {
                 >
                   <div className="flex items-center justify-between">
                     <span className="font-mono text-[10px] font-black opacity-80">Week {step.week}</span>
-                    {step.week === 2 && (
+                    {step.week === 3 && (
                       <span className="text-[9px] bg-amber-400 text-amber-950 font-black px-1.5 py-0.2 rounded-full">
                         CURRENT
                       </span>
