@@ -824,7 +824,7 @@ export default function RunImprovementsTable({ prevPage, nextPage, setPage } = {
                 Acute Comparison ({getShortDate(latestRun.date)} vs. {getShortDate(previousRun.date)})
               </h3>
               <p className="text-xs text-emerald-800">
-                * Note: A 3-day window demonstrates acute performance differences; evidence of chronic adaptation requires a substantially longer longitudinal dataset.
+                * Note: This card specifically compares a 3-day acute window (Oct 04 vs. Oct 01). Your true chronic adaptation is demonstrated across the full July–October longitudinal dataset in the master table below.
               </p>
             </div>
           </div>
@@ -1328,8 +1328,8 @@ export default function RunImprovementsTable({ prevPage, nextPage, setPage } = {
               Grade changes alter metabolic cost. Route elevation and grade changes are treated as potential confounders across training courses.
             </div>
             <div>
-              <strong className="text-white inline font-bold mr-1">3. Longitudinal Dataset Requirements:</strong>{' '}
-              A 3-day window demonstrates acute performance differences; evidence of chronic adaptation requires a substantially longer longitudinal dataset.
+              <strong className="text-white inline font-bold mr-1">3. Acute vs. Longitudinal Adaptations:</strong>{' '}
+              A 3-day window demonstrates acute day-to-day performance differences; true chronic cellular adaptation is evaluated across your complete July–October longitudinal dataset (13+ outdoor runs + Wingate clinical baseline).
             </div>
           </div>
         </div>
