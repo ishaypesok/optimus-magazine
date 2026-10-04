@@ -19,9 +19,28 @@ export const calcMitoAdaptationProxy = (paceVal, avgHr, hrDriftPercent, zone2Per
 
 const INITIAL_RUNS_DATA = [
   {
+    id: 'run-oct-04-2026',
+    date: 'Oct 04, 2026',
+    title: "🔥 Latest Outdoor Run (5.16 km • Apple Watch AutoSync • Week 3 Consolidation)",
+    distanceKm: 5.16,
+    durationMin: 58.4,
+    paceStr: '11:18 min/km',
+    paceVal: 11.31,
+    avgHr: 116,
+    maxHr: 141,
+    powerWatts: 121,
+    zone2Percent: 88,
+    fatBurnGrams: 27.1,
+    carbBurnGrams: 15.2,
+    mitoScore: 98,
+    hrDriftPercent: 3.5,
+    lthrMargin: '-19 BPM',
+    note: 'Week 3 Consolidation Run 2: 5.16 km in 58:23 • 116 BPM Avg HR (Zone 2 FATmax) • 141 BPM Max • 121W • 7,945 steps (136 SPM) • 305 kcal • 56.7m Elev Gain • AutoSync'
+  },
+  {
     id: 'run-oct-01-2026',
     date: 'Oct 01, 2026',
-    title: "🔥 Latest Outdoor Run (4.77 km • Apple Watch AutoSync • Deload & Consolidation)",
+    title: "Outdoor Run (4.77 km • Apple Watch AutoSync • Deload Run 1)",
     distanceKm: 4.77,
     durationMin: 53.9,
     paceStr: '11:18 min/km',

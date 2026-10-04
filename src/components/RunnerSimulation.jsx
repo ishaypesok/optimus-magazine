@@ -13,7 +13,7 @@ import {
 export default function RunnerSimulation() {
   const [isRunning, setIsRunning] = useState(false);
   const [speedMultiplier, setSpeedMultiplier] = useState(1);
-  const [selectedRunId, setSelectedRunId] = useState('sep28');
+  const [selectedRunId, setSelectedRunId] = useState('oct04');
   const [userVo2Max, setUserVo2Max] = useState(34.1);
   const [userWeightKg, setUserWeightKg] = useState(82.9);
   const [chartMode, setChartMode] = useState('calories'); // 'calories' | 'cumulative' | 'lactate'
@@ -21,15 +21,28 @@ export default function RunnerSimulation() {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   // New run input form state
-  const [newRunDate, setNewRunDate] = useState('09/28/2026');
-  const [newRunDuration, setNewRunDuration] = useState('88.2');
-  const [newRunDistance, setNewRunDistance] = useState('7.59');
-  const [newRunPace, setNewRunPace] = useState('11.61');
-  const [newRunHr, setNewRunHr] = useState('114');
-  const [newRunCalories, setNewRunCalories] = useState('454');
+  const [newRunDate, setNewRunDate] = useState('10/04/2026');
+  const [newRunDuration, setNewRunDuration] = useState('58.4');
+  const [newRunDistance, setNewRunDistance] = useState('5.16');
+  const [newRunPace, setNewRunPace] = useState('11.31');
+  const [newRunHr, setNewRunHr] = useState('116');
+  const [newRunCalories, setNewRunCalories] = useState('305');
 
   // Real runs list with verified Apple Watch Ultra telemetry
   const [runsList, setRunsList] = useState([
+    {
+      id: 'oct04',
+      dateLabel: 'Oct 04, 2026 (Consolidation • 5.16 km)',
+      durationMin: 58.4,
+      distanceKm: 5.16,
+      paceMinKm: 11.31,
+      avgHr: 116,
+      watchCalories: 305,
+      fatBurnGrams: 27.1,
+      carbBurnGrams: 15.2,
+      color: '#3b82f6',
+      note: 'Week 3 Consolidation Run 2: 58:23 • 116 BPM Avg HR (Zone 2 FATmax) • 141 BPM Max HR • 121W Power • 305 kcal Active • 56.7m Elev Gain • 7,945 steps!'
+    },
     {
       id: 'oct01',
       dateLabel: 'Oct 01, 2026 (Deload • 4.77 km)',
@@ -40,7 +53,7 @@ export default function RunnerSimulation() {
       watchCalories: 281,
       fatBurnGrams: 28.5,
       carbBurnGrams: 10.2,
-      color: '#3b82f6',
+      color: '#0ea5e9',
       note: 'Week 3 Deload & Consolidation Run: 53:56 • 114 BPM Avg HR (Pure Zone 2) • 131 BPM Max HR • 118W Power • 281 kcal Active • 55.8m Elev Gain!'
     },
     {

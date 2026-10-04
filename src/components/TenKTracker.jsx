@@ -30,7 +30,7 @@ const APPLE_WATCH_PACER_PROGRAM = [
     focus: "Week 3 (Oct 1 – Oct 7) — Recovery & Cellular Consolidation Deload (2 Full Rest Days Between Runs)", 
     workouts: [
       { id: "w3d1", day: "Run 1", fullDate: "Thursday, October 1, 2026", title: "Active Recovery Pacer (4.77 km Done ✓)", pacerPace: "11:18 min/km", desc: "Completed 4.77 km in 53:56 at 114 BPM! 2 full rest days (Fri Oct 2 & Sat Oct 3). Next run Sunday, Oct 4." },
-      { id: "w3d2", day: "Run 2", fullDate: "Sunday, October 4, 2026", title: "Light Form Pacer Run (5.0 km)", pacerPace: "11.8 min/km", desc: "After 2 full rest days (Oct 2 & 3). Keep it light, bouncy, and effortless." },
+      { id: "w3d2", day: "Run 2", fullDate: "Sunday, October 4, 2026", title: "Light Form Pacer Run (5.16 km Done ✓)", pacerPace: "11:18 min/km", desc: "Completed 5.16 km in 58:23 at 116 BPM! 7,945 steps (136 SPM), 121W. 2 full rest days (Mon Oct 5 & Tue Oct 6). Next run Wednesday, Oct 7." },
       { id: "w3d3", day: "Run 3", fullDate: "Wednesday, October 7, 2026", title: "Consolidation Checkpoint (5.5 km)", pacerPace: "11.5 min/km", desc: "After 2 full rest days (Oct 5 & 6). Consolidates base before stepping up." }
     ]
   },
@@ -77,15 +77,26 @@ export default function TenKTracker() {
   // LocalStorage State
   const [completedWorkouts, setCompletedWorkouts] = useState(() => {
     try {
-      return JSON.parse(localStorage.getItem('optimus_10k_completed')) || ['w1d1', 'w1d2', 'w1d3', 'w2d1', 'w2d2', 'w2d3', 'w3d1'];
+      return JSON.parse(localStorage.getItem('optimus_10k_completed')) || ['w1d1', 'w1d2', 'w1d3', 'w2d1', 'w2d2', 'w2d3', 'w3d1', 'w3d2'];
     } catch {
-      return ['w1d1', 'w1d2', 'w1d3', 'w2d1', 'w2d2', 'w2d3', 'w3d1'];
+      return ['w1d1', 'w1d2', 'w1d3', 'w2d1', 'w2d2', 'w2d3', 'w3d1', 'w3d2'];
     }
   });
 
   const [runLogs, setRunLogs] = useState(() => {
     try {
       return JSON.parse(localStorage.getItem('optimus_10k_logs')) || [
+        {
+          id: 'log_oct_04_2026',
+          date: '2026-10-04',
+          type: 'Week 3 Consolidation (Run 2)',
+          dist: 5.16,
+          duration: '58:23',
+          pace: '11:18',
+          rpe: 3,
+          feeling: 'Excellent Zone 2 Aerobic Form',
+          notes: 'Week 3 Run 2: 5.16 km in 58:23 • 116 BPM Avg HR (FATmax) • 121W • 7,945 steps (136 spm) • 305 kcal • Smooth cardiac output!'
+        },
         {
           id: 'log_oct_01_2026',
           date: '2026-10-01',
@@ -232,15 +243,15 @@ export default function TenKTracker() {
     {
       week: 3,
       title: 'Week 3: Recovery & Cellular Consolidation Deload',
-      badge: 'CURRENT ACTIVE WEEK • RUN 1 DONE (4.77 KM)',
+      badge: 'CURRENT ACTIVE WEEK • RUN 2 DONE (5.16 KM)',
       badgeColor: 'bg-emerald-600 text-white border-emerald-700',
       dist: '4.5 – 5.5 km',
       pace: '11:18 – 11.8 min/km',
       duration: '~54 – 65 min',
-      hr: '105 – 114 BPM',
+      hr: '105 – 116 BPM',
       focus: 'Cellular Consolidation & Capillary Solidification',
-      details: 'Active deload in progress! Session 1 completed cleanly on Thursday, Oct 1 (4.77 km in 53:56 at 114 BPM). Week 3 allows your muscles to synthesize cristae folding proteins, mature micro-capillaries (VEGF), and protect tendons from micro-tears.',
-      rules: 'Two full rest days between every run (48–72h). Next run: Sunday, Oct 4.'
+      details: 'Active deload & consolidation in progress! Session 2 completed cleanly on Sunday, Oct 4 (5.16 km in 58:23 at 116 BPM). Week 3 allows your muscles to synthesize cristae folding proteins, mature micro-capillaries (VEGF), and protect tendons from micro-tears.',
+      rules: 'Two full rest days between every run (48–72h: Mon Oct 5 & Tue Oct 6). Next run: Wednesday, Oct 7 (5.5 km).'
     },
     {
       week: 4,
@@ -326,7 +337,7 @@ export default function TenKTracker() {
             </span>
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-xs font-bold uppercase tracking-wider">
               <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
-              Week 3 Active: Consolidation Deload (Run 1 Done • 4.77 km)
+              Week 3 Active: Consolidation Deload (Run 2 Done • 5.16 km)
             </span>
           </div>
           
@@ -346,15 +357,15 @@ export default function TenKTracker() {
             </div>
             <div className="bg-white/10 backdrop-blur-md rounded-2xl p-3 border border-white/10">
               <span className="text-xs text-stone-300 block">Latest Session</span>
-              <strong className="text-xl sm:text-2xl font-black text-emerald-300">4.77 km (11:18)</strong>
+              <strong className="text-xl sm:text-2xl font-black text-emerald-300">5.16 km (11:18)</strong>
             </div>
             <div className="bg-white/10 backdrop-blur-md rounded-2xl p-3 border border-white/10">
               <span className="text-xs text-stone-300 block">Avg Heart Rate</span>
-              <strong className="text-xl sm:text-2xl font-black text-white">114 BPM</strong>
+              <strong className="text-xl sm:text-2xl font-black text-white">116 BPM</strong>
             </div>
             <div className="bg-white/10 backdrop-blur-md rounded-2xl p-3 border border-white/10">
               <span className="text-xs text-stone-300 block">Next Scheduled Run</span>
-              <strong className="text-xl sm:text-2xl font-black text-emerald-400">Sun, Oct 4</strong>
+              <strong className="text-xl sm:text-2xl font-black text-emerald-400">Wed, Oct 7</strong>
             </div>
           </div>
         </div>
