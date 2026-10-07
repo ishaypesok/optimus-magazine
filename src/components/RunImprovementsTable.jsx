@@ -19,9 +19,28 @@ export const calcMitoAdaptationProxy = (paceVal, avgHr, hrDriftPercent, zone2Per
 
 const INITIAL_RUNS_DATA = [
   {
+    id: 'run-oct-07-2026',
+    date: 'Oct 07, 2026',
+    title: "🔥 Latest Outdoor Run (5.66 km • Apple Watch AutoSync • Week 3 Consolidation Complete)",
+    distanceKm: 5.66,
+    durationMin: 62.5,
+    paceStr: '11:02 min/km',
+    paceVal: 11.04,
+    avgHr: 113,
+    maxHr: 127,
+    powerWatts: 123,
+    zone2Percent: 91,
+    fatBurnGrams: 29.5,
+    carbBurnGrams: 16.5,
+    mitoScore: 99,
+    hrDriftPercent: 3.3,
+    lthrMargin: '-22 BPM',
+    note: 'Week 3 Consolidation Run 3: 5.66 km in 1:02:30 • 113 BPM Avg HR (Pure Zone 2) • 127 BPM Max • 123W • 0.804 m/beat • 7,492 steps • 334 kcal • 63.7m Elev Gain • AutoSync'
+  },
+  {
     id: 'run-oct-04-2026',
     date: 'Oct 04, 2026',
-    title: "🔥 Latest Outdoor Run (5.16 km • Apple Watch AutoSync • Week 3 Consolidation)",
+    title: "Outdoor Run (5.16 km • Apple Watch AutoSync • Week 3 Consolidation)",
     distanceKm: 5.16,
     durationMin: 58.4,
     paceStr: '11:18 min/km',
@@ -354,7 +373,7 @@ export default function RunImprovementsTable({ prevPage, nextPage, setPage } = {
             lthrMargin: r.lthrMargin || '-20 BPM',
             note: r.note || 'Synced Workout'
           }));
-          if (!mapped.some(r => r.id === 'run-sep-28-2026')) {
+          if (!mapped.some(r => r.id === 'run-oct-07-2026')) {
             mapped.unshift(INITIAL_RUNS_DATA[0]);
           }
           return mapped;
@@ -824,7 +843,7 @@ export default function RunImprovementsTable({ prevPage, nextPage, setPage } = {
                 Acute Comparison ({getShortDate(latestRun.date)} vs. {getShortDate(previousRun.date)})
               </h3>
               <p className="text-xs text-emerald-800">
-                * Note: This card specifically compares a 3-day acute window (Oct 04 vs. Oct 01). Your true chronic adaptation is demonstrated across the full July–October longitudinal dataset in the master table below.
+                * Note: This card specifically compares a 3-day acute window (Oct 07 vs. Oct 04). Your true chronic adaptation is demonstrated across the full July–October longitudinal dataset in the master table below.
               </p>
             </div>
           </div>

@@ -13,7 +13,7 @@ import {
 export default function RunnerSimulation() {
   const [isRunning, setIsRunning] = useState(false);
   const [speedMultiplier, setSpeedMultiplier] = useState(1);
-  const [selectedRunId, setSelectedRunId] = useState('oct04');
+  const [selectedRunId, setSelectedRunId] = useState('oct07');
   const [userVo2Max, setUserVo2Max] = useState(34.1);
   const [userWeightKg, setUserWeightKg] = useState(82.9);
   const [chartMode, setChartMode] = useState('calories'); // 'calories' | 'cumulative' | 'lactate'
@@ -21,15 +21,28 @@ export default function RunnerSimulation() {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   // New run input form state
-  const [newRunDate, setNewRunDate] = useState('10/04/2026');
-  const [newRunDuration, setNewRunDuration] = useState('58.4');
-  const [newRunDistance, setNewRunDistance] = useState('5.16');
-  const [newRunPace, setNewRunPace] = useState('11.31');
-  const [newRunHr, setNewRunHr] = useState('116');
-  const [newRunCalories, setNewRunCalories] = useState('305');
+  const [newRunDate, setNewRunDate] = useState('10/07/2026');
+  const [newRunDuration, setNewRunDuration] = useState('62.5');
+  const [newRunDistance, setNewRunDistance] = useState('5.66');
+  const [newRunPace, setNewRunPace] = useState('11.04');
+  const [newRunHr, setNewRunHr] = useState('113');
+  const [newRunCalories, setNewRunCalories] = useState('334');
 
   // Real runs list with verified Apple Watch Ultra telemetry
   const [runsList, setRunsList] = useState([
+    {
+      id: 'oct07',
+      dateLabel: 'Oct 07, 2026 (Consolidation Complete • 5.66 km)',
+      durationMin: 62.5,
+      distanceKm: 5.66,
+      paceMinKm: 11.04,
+      avgHr: 113,
+      watchCalories: 334,
+      fatBurnGrams: 29.5,
+      carbBurnGrams: 16.5,
+      color: '#10b981',
+      note: 'Week 3 Consolidation Run 3: 1:02:30 • 113 BPM Avg HR (Pure Zone 2) • 127 BPM Max HR • 123W Power • 334 kcal Active • 63.7m Elev Gain • 7,492 steps!'
+    },
     {
       id: 'oct04',
       dateLabel: 'Oct 04, 2026 (Consolidation • 5.16 km)',
