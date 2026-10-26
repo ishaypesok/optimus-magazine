@@ -38,7 +38,7 @@ const APPLE_WATCH_PACER_PROGRAM = [
     week: 4, 
     focus: "Week 4 (Oct 10 – Oct 16) — Base Re-Expansion (2 Full Rest Days Between Runs)", 
     workouts: [
-      { id: "w4d1", day: "Run 1", fullDate: "Saturday, October 10, 2026", title: "Rhythmic Base Flow (6.0 km)", pacerPace: "11.2 min/km", desc: "After 2 full rest days (Oct 8 & 9). Fresh mitochondria fully operational." },
+      { id: "w4d1", day: "Run 1", fullDate: "Saturday, October 10, 2026", title: "Rhythmic Base Flow (6.51 km Done ✓)", pacerPace: "11:45 min/km", desc: "Completed 6.51 km in 1:16:31 at 118 BPM! Exceeded 6.0 km target. 383 kcal, 72.4m elev gain. 2 full rest days (Sun Oct 11 & Mon Oct 12). Next run Tuesday, Oct 13 (Week 4 Run 2 • 6.5 km)." },
       { id: "w4d2", day: "Run 2", fullDate: "Tuesday, October 13, 2026", title: "Aerobic Cruise Run (6.5 km)", pacerPace: "11.2 min/km", desc: "After 2 full rest days (Oct 11 & 12). Building consistent time-on-feet." },
       { id: "w4d3", day: "Run 3", fullDate: "Friday, October 16, 2026", title: "Base Endurance Run (7.5 km)", pacerPace: "11.0 min/km", desc: "After 2 full rest days (Oct 14 & 15). Re-confirming 7.5 km with low heart rate." }
     ]
@@ -48,15 +48,15 @@ const APPLE_WATCH_PACER_PROGRAM = [
     focus: "Week 5 (Oct 19 – Oct 25) — Reticular Expansion & Step-Up (2 Full Rest Days Between Runs)", 
     workouts: [
       { id: "w5d1", day: "Run 1", fullDate: "Monday, October 19, 2026", title: "Zone 2 Base Pacer (6.0 km)", pacerPace: "10.8 min/km", desc: "After 2 full rest days (Oct 17 & 18). Fluid rhythm, strictly 101–120 BPM." },
-      { id: "w5d2", day: "Run 2", fullDate: "Thursday, October 22, 2026", title: "Steady Cruise Pacer (7.0 km)", pacerPace: "10.8 min/km", desc: "After 2 full rest days (Oct 20 & 21). Practicing electrolyte sipping." },
-      { id: "w5d3", day: "Run 3", fullDate: "Sunday, October 25, 2026", title: "Milestone Pacer Run (8.5 km)", pacerPace: "10.8 min/km", desc: "After 2 full rest days (Oct 23 & 24). Stepping stone to the 10K goal!" }
+      { id: "w5d2", day: "Run 2", fullDate: "Thursday, October 22, 2026", title: "Steady Cruise Pacer (5.46 km Done ✓)", pacerPace: "12:26 min/km", desc: "Completed 5.46 km in 1:07:54 at 106 BPM! 314.4 kcal, 60.1m elev gain. Pure Zone 2 / FATmax aerobic cruise following cardiologist clearance." },
+      { id: "w5d3", day: "Run 3", fullDate: "Monday, October 26, 2026", title: "Aerobic Cruise Run (5.98 km Done ✓)", pacerPace: "11:28 min/km", desc: "Completed 5.98 km in 1:08:34 at 114 BPM! 355.1 kcal, 60.7m elev gain. Pure Zone 2 / FATmax base cruise with zero cardiac drift. Next run Thursday, Oct 29 (Week 6)." }
     ]
   },
   { 
     week: 6, 
-    focus: "Week 6 (Oct 28 – Oct 31) — Taper & 🏆 The 10.0 km Champion Run!", 
+    focus: "Week 6 (Oct 29 – Oct 31) — Taper & 🏆 The 10.0 km Champion Run!", 
     workouts: [
-      { id: "w6d1", day: "Run 1", fullDate: "Wednesday, October 28, 2026", title: "Pre-Milestone Taper Activation (4.0 km)", pacerPace: "11.0 min/km", desc: "After 2 full rest days (Oct 26 & 27). Short, bouncy stride to keep legs fresh." },
+      { id: "w6d1", day: "Run 1", fullDate: "Thursday, October 29, 2026", title: "Pre-Milestone Taper Activation (4.0–5.0 km)", pacerPace: "11.0 min/km", desc: "After 2 full rest days (Oct 27 & 28). Short, bouncy stride to keep legs fresh." },
       { id: "w6d2", day: "Run 2", fullDate: "Saturday, October 31, 2026", title: "🏆 OFFICIAL 10.0 KM CHAMPION FINISH!", pacerPace: "10.5 min/km", desc: "After 2 full rest days (Oct 29 & 30). CONGRATULATIONS! 10.0 km completed in pure Zone 2!" }
     ]
   },
@@ -80,17 +80,53 @@ export default function TenKTracker() {
       const saved = JSON.parse(localStorage.getItem('optimus_10k_completed'));
       if (Array.isArray(saved) && saved.length > 0) {
         if (!saved.includes('w3d3')) saved.push('w3d3');
+        if (!saved.includes('w4d1')) saved.push('w4d1');
+        if (!saved.includes('w5d2')) saved.push('w5d2');
+        if (!saved.includes('w5d3')) saved.push('w5d3');
         return saved;
       }
-      return ['w1d1', 'w1d2', 'w1d3', 'w2d1', 'w2d2', 'w2d3', 'w3d1', 'w3d2', 'w3d3'];
+      return ['w1d1', 'w1d2', 'w1d3', 'w2d1', 'w2d2', 'w2d3', 'w3d1', 'w3d2', 'w3d3', 'w4d1', 'w5d2', 'w5d3'];
     } catch {
-      return ['w1d1', 'w1d2', 'w1d3', 'w2d1', 'w2d2', 'w2d3', 'w3d1', 'w3d2', 'w3d3'];
+      return ['w1d1', 'w1d2', 'w1d3', 'w2d1', 'w2d2', 'w2d3', 'w3d1', 'w3d2', 'w3d3', 'w4d1', 'w5d2', 'w5d3'];
     }
   });
 
   const [runLogs, setRunLogs] = useState(() => {
     try {
       const defaultLogs = [
+        {
+          id: 'log_oct_26_2026',
+          date: '2026-10-26',
+          type: 'Week 5 Aerobic Cruise (Run 3)',
+          dist: 5.98,
+          duration: '1:08:34',
+          pace: '11:28',
+          rpe: 3,
+          feeling: 'Effortless Zone 2 Rhythm • Zero Cardiac Drift • Pure Aerobic Cruise',
+          notes: 'Week 5 Run 3: 5.98 km in 1:08:34 • 113.6 BPM Avg HR (Exact FATmax Corridor) • 131 BPM Max • 355.1 kcal • 60.7m Elev Gain • Flawless aerobic cruise with rock-solid cardiac stability across all 6 km!'
+        },
+        {
+          id: 'log_oct_22_2026',
+          date: '2026-10-22',
+          type: 'Week 5 Steady Cruise (Run 2)',
+          dist: 5.46,
+          duration: '1:07:54',
+          pace: '12:26',
+          rpe: 3,
+          feeling: 'Flawless Zone 2 Aerobic Mastery • Low Cardiac Strain',
+          notes: 'Week 5 Run 2: 5.46 km in 1:07:54 • 105.9 BPM Avg HR (Pure FATmax) • 131 BPM Max • 314.4 kcal • 60.1m Elev Gain • Flawless aerobic cruise following cardiologist clearance & stress echo!'
+        },
+        {
+          id: 'log_oct_10_2026',
+          date: '2026-10-10',
+          type: 'Week 4 Base Re-Expansion (Run 1)',
+          dist: 6.51,
+          duration: '1:16:31',
+          pace: '11:45',
+          rpe: 3,
+          feeling: 'Exceeded Volume Target • Solid Zone 2 Flow',
+          notes: 'Week 4 Run 1: 6.51 km in 1:16:31 • 118 BPM Avg HR (FATmax) • 132 BPM Max • 383.4 kcal • 72.4m Elev Gain • Exceeded 6.0 km target! Next: 2 full rest days (Sun Oct 11 & Mon Oct 12).'
+        },
         {
           id: 'log_oct_07_2026',
           date: '2026-10-07',
@@ -280,28 +316,28 @@ export default function TenKTracker() {
     {
       week: 4,
       title: 'Week 4: Base Re-Expansion (6.0–7.5 km)',
-      badge: 'NEXT ACTIVE WEEK • STARTS SAT OCT 10 (6.0 KM)',
-      badgeColor: 'bg-emerald-700 text-white border-emerald-800',
+      badge: 'RUN 1 DONE (6.51 KM) • ACTIVE WEEK',
+      badgeColor: 'bg-emerald-600 text-white border-emerald-700',
       dist: '6.0 – 7.5 km',
-      pace: '11.0 – 11.2 min/km',
+      pace: '11:00 – 11:45 min/km',
       duration: '~72 – 82 min',
-      hr: '108 – 114 BPM',
+      hr: '108 – 118 BPM',
       focus: 'Testing Newly Minted Mitochondria',
-      details: 'Following the Week 3 deload, your newly mature daughter mitochondria are online! Re-running the 7+ km range feels noticeably easier on your legs and breathing.',
-      rules: 'Maintain smooth heel-to-toe stride cadence. Take 2 rest days between sessions.'
+      details: 'Week 4 kicked off with a brilliant 6.51 km run at 118 BPM average HR, exceeding the 6.0 km target with ease. Mitochondria adapted smoothly with strong cardiac stability.',
+      rules: 'Maintain smooth heel-to-toe stride cadence. Take 2 full rest days between sessions (Sun Oct 11 & Mon Oct 12). Next: Tue Oct 13 (6.5 km).'
     },
     {
       week: 5,
-      title: 'Week 5: Reticular Expansion to 8.5 km',
-      badge: 'STEPPING STONE',
-      badgeColor: 'bg-blue-100 text-blue-950 border-blue-300',
-      dist: '8.2 – 8.5 km',
-      pace: '10.8 – 11.0 min/km',
-      duration: '~90 – 95 min',
-      hr: '108 – 115 BPM',
-      focus: 'Expanding the Mitochondrial Grid',
-      details: 'Following the solid foundation of Weeks 2–4, your muscle fibers feel refreshed with expanded capillary density. Stepping to 8.5 km feels noticeably easier on your lungs and legs.',
-      rules: 'Carry a handheld water bottle with electrolytes. Sip lightly every 20 minutes.'
+      title: 'Week 5: Reticular Expansion & Step-Up (5.46–5.98 km)',
+      badge: 'RUN 3 DONE (5.98 KM) • WEEK 5 COMPLETE ✓',
+      badgeColor: 'bg-emerald-600 text-white border-emerald-700 font-bold',
+      dist: '5.46 – 5.98 km',
+      pace: '11:00 – 11:28 min/km',
+      duration: '~68 min',
+      hr: '105 – 115 BPM',
+      focus: 'Expanding the Mitochondrial Grid & Steady Cruise',
+      details: 'Oct 26 Run 3 completed flawlessly: 5.98 km in 1:08:34 at an average of 114 BPM (pure Zone 2 / FATmax corridor) with only 60.7m elevation gain and zero cardiac drift! Week 5 completed 3/3 sessions.',
+      rules: 'Take 2 full rest days (Tue Oct 27 & Wed Oct 28). Hydrate well with electrolytes. Next: Thu Oct 29 (Week 6).'
     },
     {
       week: 6,
@@ -361,7 +397,7 @@ export default function TenKTracker() {
             </span>
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-xs font-bold uppercase tracking-wider">
               <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
-              Week 3 Complete: Consolidation Deload (Run 3 Done • 5.66 km)
+              Week 5 Complete: Aerobic Cruise (Run 3 Done • 5.98 km @ 114 BPM)
             </span>
           </div>
           
@@ -377,19 +413,19 @@ export default function TenKTracker() {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
             <div className="bg-white/10 backdrop-blur-md rounded-2xl p-3 border border-white/10">
               <span className="text-xs text-stone-300 block">Current Status</span>
-              <strong className="text-xl sm:text-2xl font-black text-emerald-300">Week 3 Complete (3/3)</strong>
+              <strong className="text-xl sm:text-2xl font-black text-emerald-300">Week 5 Complete (3/3) ✓</strong>
             </div>
             <div className="bg-white/10 backdrop-blur-md rounded-2xl p-3 border border-white/10">
               <span className="text-xs text-stone-300 block">Latest Session</span>
-              <strong className="text-xl sm:text-2xl font-black text-emerald-300">5.66 km (11:02)</strong>
+              <strong className="text-xl sm:text-2xl font-black text-emerald-300">5.98 km (11:28)</strong>
             </div>
             <div className="bg-white/10 backdrop-blur-md rounded-2xl p-3 border border-white/10">
               <span className="text-xs text-stone-300 block">Avg Heart Rate</span>
-              <strong className="text-xl sm:text-2xl font-black text-white">113 BPM</strong>
+              <strong className="text-xl sm:text-2xl font-black text-white">114 BPM</strong>
             </div>
             <div className="bg-white/10 backdrop-blur-md rounded-2xl p-3 border border-white/10">
               <span className="text-xs text-stone-300 block">Next Scheduled Run</span>
-              <strong className="text-xl sm:text-2xl font-black text-emerald-400">Sat, Oct 10</strong>
+              <strong className="text-xl sm:text-2xl font-black text-emerald-400">Thu, Oct 29</strong>
             </div>
           </div>
         </div>

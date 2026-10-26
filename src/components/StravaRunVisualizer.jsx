@@ -6,8 +6,104 @@ import {
 } from 'lucide-react';
 
 const SYNCED_TODAY_RUN = {
+  id: 'run-oct-26-2026-synced',
+  title: "Latest Outdoor Run (5.98 km • Auto Export AutoSync • Week 6 Aerobic Base Cruise)",
+  date: 'Oct 26, 2026 • 18:26',
+  device: 'Apple Watch Ultra',
+  sourceApp: 'Health Auto Export AutoSync',
+  durationMinutes: 68.6,
+  distanceKm: 5.98,
+  avgPace: '11:28 min/km',
+  avgHeartRate: 114,
+  maxHeartRate: 131,
+  calories: 355,
+  vo2max: 34.1,
+  powerWatts: 118,
+  elevationGain: 60.7,
+  weatherTemp: '23.7°C',
+  weatherHumidity: '77%',
+  wingateZone2Target: '105 - 121 BPM',
+  zone2TimePercent: 90,
+  fatBurnGrams: 31.5,
+  carbBurnGrams: 16.2,
+  mitochondrialEfficiencyScore: 99,
+  lthrMargin: '-22 BPM below LTHR (136 BPM)',
+  coordinates: [
+    { x: 40, y: 185, hr: 82, zone: 'Zone 1' },
+    { x: 150, y: 130, hr: 112, zone: 'Zone 2' },
+    { x: 300, y: 110, hr: 114, zone: 'Zone 2' },
+    { x: 420, y: 100, hr: 116, zone: 'Zone 2' },
+    { x: 570, y: 165, hr: 111, zone: 'Zone 2' }
+  ]
+};
+
+const RUN_OCT_22_2026 = {
+  id: 'run-oct-22-2026-synced',
+  title: "Previous Outdoor Run (5.46 km • Auto Export AutoSync • Week 5 Steady Cruise)",
+  date: 'Oct 22, 2026 • 19:04',
+  device: 'Apple Watch Ultra',
+  sourceApp: 'Health Auto Export AutoSync',
+  durationMinutes: 67.9,
+  distanceKm: 5.46,
+  avgPace: '12:26 min/km',
+  avgHeartRate: 106,
+  maxHeartRate: 131,
+  calories: 314,
+  vo2max: 34.1,
+  powerWatts: 115,
+  elevationGain: 60.1,
+  weatherTemp: '25.5°C',
+  weatherHumidity: '67%',
+  wingateZone2Target: '105 - 121 BPM',
+  zone2TimePercent: 92,
+  fatBurnGrams: 32.4,
+  carbBurnGrams: 16.8,
+  mitochondrialEfficiencyScore: 99,
+  lthrMargin: '-29 BPM below LTHR (135 BPM)',
+  coordinates: [
+    { x: 40, y: 185, hr: 80, zone: 'Zone 1' },
+    { x: 150, y: 130, hr: 104, zone: 'Zone 2' },
+    { x: 300, y: 110, hr: 107, zone: 'Zone 2' },
+    { x: 420, y: 100, hr: 110, zone: 'Zone 2' },
+    { x: 570, y: 165, hr: 105, zone: 'Zone 2' }
+  ]
+};
+
+const RUN_OCT_10_2026 = {
+  id: 'run-oct-10-2026-synced',
+  title: "Previous Outdoor Run (6.51 km • Auto Export AutoSync • Week 4 Base Re-Expansion)",
+  date: 'Oct 10, 2026 • 19:29',
+  device: 'Apple Watch Ultra',
+  sourceApp: 'Health Auto Export AutoSync',
+  durationMinutes: 76.5,
+  distanceKm: 6.51,
+  avgPace: '11:45 min/km',
+  avgHeartRate: 118,
+  maxHeartRate: 132,
+  calories: 383,
+  vo2max: 34.1,
+  powerWatts: 120,
+  elevationGain: 72.4,
+  weatherTemp: '25.7°C',
+  weatherHumidity: '75%',
+  wingateZone2Target: '101 - 120 BPM',
+  zone2TimePercent: 88,
+  fatBurnGrams: 35.8,
+  carbBurnGrams: 21.2,
+  mitochondrialEfficiencyScore: 98,
+  lthrMargin: '-17 BPM below LTHR (135 BPM)',
+  coordinates: [
+    { x: 40, y: 185, hr: 85, zone: 'Zone 1' },
+    { x: 150, y: 130, hr: 114, zone: 'Zone 2' },
+    { x: 300, y: 110, hr: 118, zone: 'Zone 2' },
+    { x: 420, y: 100, hr: 121, zone: 'Zone 2' },
+    { x: 570, y: 165, hr: 116, zone: 'Zone 2' }
+  ]
+};
+
+const RUN_OCT_07_2026 = {
   id: 'run-oct-07-2026-synced',
-  title: "Latest Outdoor Run (5.66 km • Auto Export AutoSync • Week 3 Consolidation Complete)",
+  title: "Previous Outdoor Run (5.66 km • Auto Export AutoSync • Week 3 Consolidation Complete)",
   date: 'Oct 07, 2026 • 19:56',
   device: 'Apple Watch Ultra',
   sourceApp: 'Health Auto Export AutoSync',
@@ -679,6 +775,9 @@ const RUN_JUL_25_2026 = {
 
 const INITIAL_RUNS = [
   SYNCED_TODAY_RUN,
+  RUN_OCT_22_2026,
+  RUN_OCT_10_2026,
+  RUN_OCT_07_2026,
   RUN_OCT_04_2026,
   RUN_OCT_01_2026,
   RUN_SEP_28_2026,
@@ -701,22 +800,29 @@ const INITIAL_RUNS = [
   RUN_JUL_25_2026
 ];
 
+const STRAVA_STORAGE_KEY = 'optimus_ishai_strava_runs_v6';
+
 export default function StravaRunVisualizer() {
   const [runsList, setRunsList] = useState(() => {
-    const saved = localStorage.getItem('optimus_ishai_runs_v3');
+    try {
+      localStorage.removeItem('optimus_ishai_strava_runs_v5');
+      localStorage.removeItem('optimus_ishai_runs_v3');
+    } catch (e) {}
+
+    const saved = localStorage.getItem(STRAVA_STORAGE_KEY);
     if (saved) {
       try { 
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          if (!parsed.some(r => r.id === 'run-oct-07-2026-synced')) {
-            if (!parsed.some(r => r.id === 'run-oct-04-2026-synced')) { parsed.unshift(RUN_OCT_04_2026); }
-            if (!parsed.some(r => r.id === 'run-oct-01-2026-synced')) { parsed.unshift(RUN_OCT_01_2026); }
-            parsed.unshift(SYNCED_TODAY_RUN);
-          }
-          return parsed;
+          const canonicalIds = new Set(INITIAL_RUNS.map(r => r.id));
+          const customRuns = parsed.filter(r => !canonicalIds.has(r.id));
+          return [...INITIAL_RUNS, ...customRuns];
         }
       } catch (e) {}
     }
+    try {
+      localStorage.setItem(STRAVA_STORAGE_KEY, JSON.stringify(INITIAL_RUNS));
+    } catch (e) {}
     return INITIAL_RUNS;
   });
 
@@ -781,7 +887,9 @@ export default function StravaRunVisualizer() {
   // Save runs to localStorage
   const saveRuns = (newRuns) => {
     setRunsList(newRuns);
-    localStorage.setItem('optimus_ishai_runs_v3', JSON.stringify(newRuns));
+    try {
+      localStorage.setItem(STRAVA_STORAGE_KEY, JSON.stringify(newRuns));
+    } catch (e) {}
   };
 
   const currentRun = runsList.find(r => r.id === selectedRunId) || runsList[0];
@@ -794,7 +902,7 @@ export default function StravaRunVisualizer() {
       // Make sure today run is loaded at top
       setRunsList(INITIAL_RUNS);
       setSelectedRunId(SYNCED_TODAY_RUN.id);
-      alert(`🎉 Today's ${SYNCED_TODAY_RUN.distanceKm} km Apple Watch Ultra run (Oct 07) successfully synced! (Avg HR ${SYNCED_TODAY_RUN.avgHeartRate} BPM loaded)`);
+      alert(`🎉 Today's ${SYNCED_TODAY_RUN.distanceKm} km Apple Watch run (Oct 26) successfully synced! (Avg HR ${SYNCED_TODAY_RUN.avgHeartRate} BPM loaded)`);
     }, 800);
   };
 

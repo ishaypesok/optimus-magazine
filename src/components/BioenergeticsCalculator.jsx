@@ -7,7 +7,46 @@ import {
 import MetabolicTierBadge from './MetabolicTierBadge';
 
 export default function BioenergeticsCalculator() {
-  // Preset 0: Ishai's Actual Oct 07, 2026 Run (Consolidation Complete)
+  // Preset 00: Ishai's Actual Oct 26, 2026 Run (Week 5 Aerobic Base Cruise)
+  const ishaiOct26Preset = {
+    name: "Ishai's Oct 26 Real Run (Aerobic Cruise)",
+    description: "Actual Apple Watch recorded run from October 26, 2026",
+    weight: 82.9,
+    restingHr: 52,
+    vo2max: 34.1,
+    maxHr: 175,
+    workoutHr: 114,
+    duration: 68.6,
+    distance: 5.98
+  };
+
+  // Preset 0a: Ishai's Actual Oct 22, 2026 Run (Week 5 Steady Cruise)
+  const ishaiOct22Preset = {
+    name: "Ishai's Oct 22 Real Run (Steady Cruise)",
+    description: "Actual Apple Watch recorded run from October 22, 2026",
+    weight: 82.9,
+    restingHr: 52,
+    vo2max: 34.1,
+    maxHr: 175,
+    workoutHr: 106,
+    duration: 67.9,
+    distance: 5.46
+  };
+
+  // Preset 0: Ishai's Actual Oct 10, 2026 Run (Base Re-Expansion)
+  const ishaiOct10Preset = {
+    name: "Ishai's Oct 10 Real Run (Base Re-Expansion)",
+    description: "Actual Apple Watch recorded run from October 10, 2026",
+    weight: 82.9,
+    restingHr: 52,
+    vo2max: 34.1,
+    maxHr: 175,
+    workoutHr: 118,
+    duration: 76.5,
+    distance: 6.51
+  };
+
+  // Preset 0b: Ishai's Actual Oct 07, 2026 Run (Consolidation Complete)
   const ishaiOct07Preset = {
     name: "Ishai's Oct 7 Real Run (Consolidation Complete)",
     description: "Actual Apple Watch recorded run from October 7, 2026",
@@ -167,7 +206,10 @@ export default function BioenergeticsCalculator() {
 
   const applyPreset = (presetKey) => {
     setActivePreset(presetKey);
-    let p = ishaiOct07Preset;
+    let p = ishaiOct26Preset;
+    if (presetKey === 'ishai_oct26') p = ishaiOct26Preset;
+    if (presetKey === 'ishai_oct22') p = ishaiOct22Preset;
+    if (presetKey === 'ishai_oct10') p = ishaiOct10Preset;
     if (presetKey === 'ishai_oct07') p = ishaiOct07Preset;
     if (presetKey === 'ishai_oct04') p = ishaiOct04Preset;
     if (presetKey === 'ishai_sep28') p = ishaiSep28Preset;
@@ -275,6 +317,66 @@ export default function BioenergeticsCalculator() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pt-1">
           
+          <button
+            onClick={() => applyPreset('ishai_oct26')}
+            className={`p-3.5 rounded-xl text-left border transition flex flex-col justify-between ${
+              activePreset === 'ishai_oct26'
+                ? 'bg-emerald-700/80 border-emerald-400 text-white shadow-sm ring-2 ring-emerald-400/40'
+                : 'bg-white/10 border-white/15 text-stone-200 hover:bg-white/15'
+            }`}
+          >
+            <div>
+              <div className="font-extrabold text-xs flex items-center gap-1.5">
+                <span>🔥 Oct 26 Run (5.98 km)</span>
+                <span className="px-1.5 py-0.5 rounded bg-emerald-900/90 text-[10px] text-emerald-200 font-mono">Week 5 Complete ✓</span>
+              </div>
+              <p className="text-[11px] text-stone-300 mt-1">1:08:34 • 114 BPM avg • 355 kcal</p>
+            </div>
+            <div className="text-[10px] font-mono text-emerald-300 pt-2 border-t border-white/10 mt-2">
+              82.9 kg • 52 RHR • 34.1 VO₂max
+            </div>
+          </button>
+
+          <button
+            onClick={() => applyPreset('ishai_oct22')}
+            className={`p-3.5 rounded-xl text-left border transition flex flex-col justify-between ${
+              activePreset === 'ishai_oct22'
+                ? 'bg-emerald-700/80 border-emerald-400 text-white shadow-sm ring-2 ring-emerald-400/40'
+                : 'bg-white/10 border-white/15 text-stone-200 hover:bg-white/15'
+            }`}
+          >
+            <div>
+              <div className="font-extrabold text-xs flex items-center gap-1.5">
+                <span>🔥 Oct 22 Run (5.46 km)</span>
+                <span className="px-1.5 py-0.5 rounded bg-emerald-900/90 text-[10px] text-emerald-200 font-mono">Week 5 Run 2 ✓</span>
+              </div>
+              <p className="text-[11px] text-stone-300 mt-1">1:07:54 • 106 BPM avg • 314 kcal</p>
+            </div>
+            <div className="text-[10px] font-mono text-emerald-300 pt-2 border-t border-white/10 mt-2">
+              82.9 kg • 52 RHR • 34.1 VO₂max
+            </div>
+          </button>
+
+          <button
+            onClick={() => applyPreset('ishai_oct10')}
+            className={`p-3.5 rounded-xl text-left border transition flex flex-col justify-between ${
+              activePreset === 'ishai_oct10'
+                ? 'bg-emerald-700/80 border-emerald-400 text-white shadow-sm ring-2 ring-emerald-400/40'
+                : 'bg-white/10 border-white/15 text-stone-200 hover:bg-white/15'
+            }`}
+          >
+            <div>
+              <div className="font-extrabold text-xs flex items-center gap-1.5">
+                <span>🔥 Oct 10 Run (6.51 km)</span>
+                <span className="px-1.5 py-0.5 rounded bg-emerald-900/90 text-[10px] text-emerald-200 font-mono">Week 4 Active ✓</span>
+              </div>
+              <p className="text-[11px] text-stone-300 mt-1">1:16:31 • 118 BPM avg • 383 kcal</p>
+            </div>
+            <div className="text-[10px] font-mono text-emerald-300 pt-2 border-t border-white/10 mt-2">
+              82.9 kg • 52 RHR • 34.1 VO₂max
+            </div>
+          </button>
+
           <button
             onClick={() => applyPreset('ishai_oct07')}
             className={`p-3.5 rounded-xl text-left border transition flex flex-col justify-between ${

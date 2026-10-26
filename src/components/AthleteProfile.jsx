@@ -28,7 +28,17 @@ const DEFAULT_PROFILE = {
   wingateSkinfoldBodyFatPercent: 32.34,
   wingateLeanBodyMassKg: 56.6,
   testedLactateAtZone2: '1.29 – 2.06 mmol/L (105-121 BPM Base Range)',
-  bio: "Ishai is a dedicated runner and health longevity practitioner. Clinical blood lactate threshold and ergometry testing performed at the Wingate Institute Sports Medicine Center (by Ezekiel Frankel, Sc.M & Dr. Shira Ginzburg) established Ishai's Lactate Threshold Heart Rate (LTHR) at 136 BPM (7.2 km/h) with a peak test HR of 137 BPM and an exceptional VO₂ Peak of 34.1 ml/kg/min. Official Wingate report (Sep 1, 2026 • Corrected Sep 2, 2026) prescribes Ishai's Zone 2 aerobic base range at 105–121 BPM for outdoor running biomechanics.",
+  stressEchoDate: 'Oct 21, 2026',
+  stressEchoFacility: 'Maccabi Healthcare Services (Kfar Saba)',
+  stressEchoDoctor: 'Dr. Peri Yogev',
+  stressEchoMets: 12,
+  stressEchoPeakHR: 126,
+  stressEchoProtocol: 'Bruce Protocol (7:10 min)',
+  stressEchoIschemia: 'Negative for Ischemia (Clinical, ECG & Echo)',
+  stressEchoLVEF: '55% (Hyperdynamic contraction under stress, no wall motion defect)',
+  stressEchoValve: 'Moderate Aortic Insufficiency (Moderate AI), thickened tricuspid valve',
+  cardiologistClearance: "Prof. Yigal Abramovich (Oct 20, 2026): Cleared for flight/travel abroad",
+  bio: "Ishai is a dedicated runner and health longevity practitioner. Clinical blood lactate threshold and ergometry testing performed at the Wingate Institute Sports Medicine Center (by Ezekiel Frankel, Sc.M & Dr. Shira Ginzburg) established Ishai's Lactate Threshold Heart Rate (LTHR) at 136 BPM (7.2 km/h) with a peak test HR of 137 BPM and an exceptional VO₂ Peak of 34.1 ml/kg/min. Official Wingate report (Sep 1, 2026 • Corrected Sep 2, 2026) prescribes Ishai's Zone 2 aerobic base range at 105–121 BPM for outdoor running biomechanics. On Oct 21, 2026, Ishai completed a clinical Stress Echocardiogram at Maccabi (Bruce Protocol, 12 METS, 126 BPM) confirming zero ischemia, excellent LV contractility (EF 55%), and full functional clearance.",
 };
 
 export default function AthleteProfile() {
@@ -335,6 +345,153 @@ export default function AthleteProfile() {
             <span>
               The clinical lactate ergometry assessment at the Wingate Institute (tested by physiologist Ezekiel Frankel, Sc.M) establishes your Lactate Threshold Heart Rate (LTHR) at <strong>136 BPM (7.2 km/h)</strong>. To maximize mitochondrial biogenesis, fat oxidation, and fluid outdoor running biomechanics, Wingate prescribes your Zone 2 aerobic volume training between <strong>105 and 121 BPM</strong>.
             </span>
+          </div>
+        </div>
+      </div>
+
+      {/* Clinical Cardiovascular & Stress Echocardiogram Card (Oct 21, 2026) */}
+      <div className="bg-gradient-to-br from-slate-950 via-teal-950 to-stone-900 text-white rounded-3xl p-6 sm:p-8 shadow-md border border-teal-500/30 space-y-6 relative overflow-hidden">
+        <div className="absolute right-0 top-0 w-80 h-80 bg-teal-400/5 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-teal-800/80 pb-4 relative">
+          <div className="flex items-center gap-3">
+            <div className="p-3 rounded-2xl bg-gradient-to-tr from-teal-400 to-emerald-400 text-teal-950 shadow-md">
+              <Heart className="w-6 h-6 fill-teal-950/30" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="px-2.5 py-0.5 rounded-full bg-teal-400/20 text-teal-300 text-[10px] font-black uppercase tracking-widest border border-teal-400/40 flex items-center gap-1">
+                  <ShieldCheck className="w-3 h-3 text-teal-400" /> Clinical Stress Echocardiogram
+                </span>
+                <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px] font-bold border border-emerald-400/30 font-mono">
+                  Negative for Ischemia (12 METS)
+                </span>
+                <span className="text-xs text-amber-300 font-bold font-mono">
+                  Test Date: Oct 21, 2026 • Physician: Dr. Peri Yogev
+                </span>
+              </div>
+              <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight mt-0.5">
+                Cardiovascular Health & Stress Ergometry Assessment
+              </h3>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <span className="px-3 py-1 rounded-xl bg-teal-500/20 text-teal-200 border border-teal-400/30 text-xs font-bold font-mono">
+              Cleared for Flight & Athletic Base
+            </span>
+          </div>
+        </div>
+
+        {/* 4 Core Clinical Stress Highlights */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          
+          <div className="p-4 rounded-2xl bg-teal-900/30 border border-teal-500/20 space-y-1">
+            <div className="text-[10px] font-black uppercase tracking-wider text-teal-400">Functional Capacity</div>
+            <div className="text-xl font-black text-white font-mono">12 <span className="text-xs font-semibold text-teal-300">METS</span></div>
+            <p className="text-[11px] text-teal-200/90 font-medium">Bruce Protocol • 7:10 min</p>
+            <p className="text-[10px] text-stone-400 italic">Top tier aerobic capacity for age 79.3</p>
+          </div>
+
+          <div className="p-4 rounded-2xl bg-emerald-900/40 border border-emerald-400/30 space-y-1">
+            <div className="text-[10px] font-black uppercase tracking-wider text-emerald-300">Ischemic Evaluation</div>
+            <div className="text-xl font-black text-emerald-200 font-mono">NEGATIVE</div>
+            <p className="text-[11px] text-emerald-100 font-medium">Clinical, ECG & Echo Confirmed</p>
+            <p className="text-[10px] text-emerald-300/80 italic">Zero chest pain, 0 wall motion defects</p>
+          </div>
+
+          <div className="p-4 rounded-2xl bg-stone-900/50 border border-stone-700/60 space-y-1">
+            <div className="text-[10px] font-black uppercase tracking-wider text-stone-300">Hemodynamic Stress Peak</div>
+            <div className="text-xl font-black text-white font-mono">126 <span className="text-xs font-semibold text-stone-400">BPM</span></div>
+            <p className="text-[11px] text-stone-200 font-medium">90% Target HR • BP 150/80 mmHg</p>
+            <p className="text-[10px] text-stone-400 italic">Normal physiological rise from 120/80</p>
+          </div>
+
+          <div className="p-4 rounded-2xl bg-amber-900/30 border border-amber-500/30 space-y-1">
+            <div className="text-[10px] font-black uppercase tracking-wider text-amber-300">LV Systolic & Valves</div>
+            <div className="text-xl font-black text-amber-200 font-mono">EF 55%</div>
+            <p className="text-[11px] text-amber-100 font-medium">Moderate AI • IVS 13 mm • SPAP 21</p>
+            <p className="text-[10px] text-amber-300/80 italic">Contraction improves under exertion</p>
+          </div>
+
+        </div>
+
+        {/* Multi-Year Longitudinal Echo Tracking Table */}
+        <div className="space-y-2 pt-1">
+          <div className="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-teal-300">
+            <span>Longitudinal Echocardiogram Parameter Comparison (2025 – 2026)</span>
+            <span className="text-[10px] text-stone-400 font-mono font-normal">Maccabi • Sheba • Marom</span>
+          </div>
+
+          <div className="overflow-x-auto rounded-2xl border border-teal-900/80 bg-teal-950/40">
+            <table className="w-full text-left text-xs font-mono">
+              <thead className="bg-teal-900/60 text-stone-300 text-[10px] uppercase tracking-wider border-b border-teal-800/60">
+                <tr>
+                  <th className="py-2.5 px-3">Parameter</th>
+                  <th className="py-2.5 px-3">Marom (Oct 2025)</th>
+                  <th className="py-2.5 px-3">Sheba (Feb 2026)</th>
+                  <th className="py-2.5 px-3 text-teal-200 font-bold">Maccabi Stress (Oct 2026)</th>
+                  <th className="py-2.5 px-3">Clinical Interpretation</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-teal-900/40 text-stone-200">
+                <tr>
+                  <td className="py-2 px-3 font-sans font-bold text-white">Left Ventricular EF</td>
+                  <td className="py-2 px-3">55% – 70%</td>
+                  <td className="py-2 px-3">Normal</td>
+                  <td className="py-2 px-3 text-emerald-300 font-bold">55% (Hyperdynamic in Stress)</td>
+                  <td className="py-2 px-3 text-[11px] font-sans text-stone-300">Excellent systolic pumping function</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-3 font-sans font-bold text-white">Septum (IVS) Thickness</td>
+                  <td className="py-2 px-3">13 mm</td>
+                  <td className="py-2 px-3">13 mm</td>
+                  <td className="py-2 px-3 text-teal-200 font-bold">13 mm</td>
+                  <td className="py-2 px-3 text-[11px] font-sans text-stone-300">Completely stable athletic remodeling</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-3 font-sans font-bold text-white">Posterior Wall (PW)</td>
+                  <td className="py-2 px-3">10 mm</td>
+                  <td className="py-2 px-3">—</td>
+                  <td className="py-2 px-3 text-teal-200 font-bold">9 mm</td>
+                  <td className="py-2 px-3 text-[11px] font-sans text-stone-300">Normal wall thickness</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-3 font-sans font-bold text-white">Left Atrium Dimension</td>
+                  <td className="py-2 px-3">41 mm (23 cm²)</td>
+                  <td className="py-2 px-3">—</td>
+                  <td className="py-2 px-3 text-emerald-300 font-bold">39 mm (19 cm²)</td>
+                  <td className="py-2 px-3 text-[11px] font-sans text-stone-300">Normalized cavity size</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-3 font-sans font-bold text-white">Aortic Valve</td>
+                  <td className="py-2 px-3">Mild-to-Mod AR</td>
+                  <td className="py-2 px-3">Mild-to-Mod AR</td>
+                  <td className="py-2 px-3 text-amber-300 font-bold">Moderate AI (22/11 mmHg)</td>
+                  <td className="py-2 px-3 text-[11px] font-sans text-stone-300">Stable moderate regurgitation, mild stenosis</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-3 font-sans font-bold text-white">Pulmonary Pressure (SPAP)</td>
+                  <td className="py-2 px-3">25.7 mmHg</td>
+                  <td className="py-2 px-3">—</td>
+                  <td className="py-2 px-3 text-emerald-300 font-bold">21.0 mmHg</td>
+                  <td className="py-2 px-3 text-[11px] font-sans text-stone-300">Optimal, no pulmonary hypertension</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* Official Cardiology Clearance Note */}
+        <div className="p-4 rounded-2xl bg-teal-950/90 border border-teal-400/40 text-teal-100 text-xs leading-relaxed flex items-start gap-3">
+          <ShieldCheck className="w-5 h-5 text-teal-400 shrink-0 mt-0.5" />
+          <div className="space-y-1">
+            <strong className="text-white font-bold block">
+              Cardiology Consultation & Flight Clearance Integration (Prof. Yigal Abramovich • Oct 20, 2026):
+            </strong>
+            <p className="text-stone-300">
+              Prof. Abramovich confirmed blood pressure is well-managed (<span className="text-teal-300 italic">"HTN התאזן ככל הנראה"</span>) and formally certified: <strong className="text-white">"אין מניעה קרדיאלית מטיסה לחו"ל"</strong> (No cardiac contraindication to international travel). The subsequent Maccabi stress echo on Oct 21 confirmed that functional exercise up to 12 METS is 100% negative for ischemia with enhanced myocardial contraction.
+            </p>
           </div>
         </div>
       </div>

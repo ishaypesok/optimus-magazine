@@ -21,15 +21,54 @@ export default function RunnerSimulation() {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   // New run input form state
-  const [newRunDate, setNewRunDate] = useState('10/07/2026');
-  const [newRunDuration, setNewRunDuration] = useState('62.5');
-  const [newRunDistance, setNewRunDistance] = useState('5.66');
-  const [newRunPace, setNewRunPace] = useState('11.04');
-  const [newRunHr, setNewRunHr] = useState('113');
-  const [newRunCalories, setNewRunCalories] = useState('334');
+  const [newRunDate, setNewRunDate] = useState('26/10/2026');
+  const [newRunDuration, setNewRunDuration] = useState('68.6');
+  const [newRunDistance, setNewRunDistance] = useState('5.98');
+  const [newRunPace, setNewRunPace] = useState('11.46');
+  const [newRunHr, setNewRunHr] = useState('114');
+  const [newRunCalories, setNewRunCalories] = useState('355');
 
   // Real runs list with verified Apple Watch Ultra telemetry
   const [runsList, setRunsList] = useState([
+    {
+      id: 'oct26',
+      dateLabel: 'Oct 26, 2026 (Aerobic Cruise • 5.98 km)',
+      durationMin: 68.6,
+      distanceKm: 5.98,
+      paceMinKm: 11.46,
+      avgHr: 114,
+      watchCalories: 355,
+      fatBurnGrams: 31.5,
+      carbBurnGrams: 16.2,
+      color: '#10b981',
+      note: 'Week 5 Aerobic Cruise Run 3: 1:08:34 • 113.6 BPM Avg HR (FATmax corridor) • 131 BPM Max HR • 355.1 kcal Active • 60.7m Elev Gain'
+    },
+    {
+      id: 'oct22',
+      dateLabel: 'Oct 22, 2026 (Steady Cruise • 5.46 km)',
+      durationMin: 67.9,
+      distanceKm: 5.46,
+      paceMinKm: 12.43,
+      avgHr: 106,
+      watchCalories: 314,
+      fatBurnGrams: 32.4,
+      carbBurnGrams: 16.8,
+      color: '#10b981',
+      note: 'Week 5 Steady Cruise Run 2: 1:07:54 • 105.9 BPM Avg HR (FATmax corridor) • 131 BPM Max HR • 314.4 kcal Active • 60.1m Elev Gain'
+    },
+    {
+      id: 'oct10',
+      dateLabel: 'Oct 10, 2026 (Base Re-Expansion • 6.51 km)',
+      durationMin: 76.5,
+      distanceKm: 6.51,
+      paceMinKm: 11.75,
+      avgHr: 118,
+      watchCalories: 383,
+      fatBurnGrams: 35.8,
+      carbBurnGrams: 21.2,
+      color: '#10b981',
+      note: 'Week 4 Base Re-Expansion Run 1: 1:16:31 • 118 BPM Avg HR (FATmax corridor) • 132 BPM Max HR • 383.4 kcal Active • 72.4m Elev Gain • Exceeded 6.0k target!'
+    },
     {
       id: 'oct07',
       dateLabel: 'Oct 07, 2026 (Consolidation Complete • 5.66 km)',

@@ -19,9 +19,66 @@ export const calcMitoAdaptationProxy = (paceVal, avgHr, hrDriftPercent, zone2Per
 
 const INITIAL_RUNS_DATA = [
   {
+    id: 'run-oct-26-2026',
+    date: 'Oct 26, 2026',
+    title: "🔥 Latest Outdoor Run (5.98 km • Apple Watch AutoSync • Week 6 Aerobic Base Cruise)",
+    distanceKm: 5.98,
+    durationMin: 68.6,
+    paceStr: '11:28 min/km',
+    paceVal: 11.46,
+    avgHr: 114,
+    maxHr: 131,
+    powerWatts: 118,
+    zone2Percent: 90,
+    fatBurnGrams: 31.5,
+    carbBurnGrams: 16.2,
+    mitoScore: 99,
+    hrDriftPercent: 3.1,
+    lthrMargin: '-22 BPM',
+    note: 'Week 6 Aerobic Base Cruise: 5.98 km in 1:08:34 • 113.6 BPM Avg HR (Exact FATmax Corridor) • 131 BPM Max • 355.1 kcal • 60.7m Elev Gain • AutoSync'
+  },
+  {
+    id: 'run-oct-22-2026',
+    date: 'Oct 22, 2026',
+    title: "Outdoor Run (5.46 km • Apple Watch AutoSync • Week 5 Steady Cruise)",
+    distanceKm: 5.46,
+    durationMin: 67.9,
+    paceStr: '12:26 min/km',
+    paceVal: 12.43,
+    avgHr: 106,
+    maxHr: 131,
+    powerWatts: 115,
+    zone2Percent: 92,
+    fatBurnGrams: 32.4,
+    carbBurnGrams: 16.8,
+    mitoScore: 99,
+    hrDriftPercent: 2.9,
+    lthrMargin: '-29 BPM',
+    note: 'Week 5 Steady Cruise Run 2: 5.46 km in 1:07:54 • 105.9 BPM Avg HR (Pure FATmax) • 131 BPM Max • 314.4 kcal • 60.1m Elev Gain • AutoSync'
+  },
+  {
+    id: 'run-oct-10-2026',
+    date: 'Oct 10, 2026',
+    title: "Outdoor Run (6.51 km • Apple Watch AutoSync • Week 4 Base Re-Expansion)",
+    distanceKm: 6.51,
+    durationMin: 76.5,
+    paceStr: '11:45 min/km',
+    paceVal: 11.75,
+    avgHr: 118,
+    maxHr: 132,
+    powerWatts: 120,
+    zone2Percent: 88,
+    fatBurnGrams: 35.8,
+    carbBurnGrams: 21.2,
+    mitoScore: 98,
+    hrDriftPercent: 3.4,
+    lthrMargin: '-17 BPM',
+    note: 'Week 4 Base Re-Expansion Run 1: 6.51 km in 1:16:31 • 118 BPM Avg HR (FATmax corridor) • 132 BPM Max • 383.4 kcal • 72.4m Elev Gain • Exceeded 6.0 km target! Next: Rest Oct 11 & 12'
+  },
+  {
     id: 'run-oct-07-2026',
     date: 'Oct 07, 2026',
-    title: "🔥 Latest Outdoor Run (5.66 km • Apple Watch AutoSync • Week 3 Consolidation Complete)",
+    title: "Outdoor Run (5.66 km • Apple Watch AutoSync • Week 3 Consolidation Complete)",
     distanceKm: 5.66,
     durationMin: 62.5,
     paceStr: '11:02 min/km',
@@ -348,70 +405,47 @@ export default function RunImprovementsTable({ prevPage, nextPage, setPage } = {
   const topScrollContainerRef = useRef(null);
   const [tableScrollWidth, setTableScrollWidth] = useState(1400);
 
+  const STORAGE_KEY = 'optimus_ishai_runs_v6';
+
   const [runs, setRuns] = useState(() => {
-    const saved = localStorage.getItem('optimus_ishai_runs_v4');
+    // Purge outdated caches from earlier versions
+    try {
+      localStorage.removeItem('optimus_ishai_runs_v5');
+      localStorage.removeItem('optimus_ishai_runs_v4');
+      localStorage.removeItem('optimus_ishai_runs_v3');
+    } catch (e) {}
+
+    const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          const mapped = parsed.map(r => ({
-            id: r.id || `run-${Math.random()}`,
-            date: r.date || 'Recent Run',
-            title: r.title || 'Outdoor Run',
-            distanceKm: r.distanceKm || 5.5,
-            durationMin: r.durationMinutes || r.durationMin || 60,
-            paceStr: r.avgPace || r.paceStr || '11:30 min/km',
-            paceVal: r.paceVal || (r.distanceKm ? (r.durationMinutes || r.durationMin) / r.distanceKm : 11.5),
-            avgHr: r.avgHeartRate || r.avgHr || 110,
-            maxHr: r.maxHeartRate || r.maxHr || 125,
-            powerWatts: r.powerWatts || (r.paceVal ? Math.round(82.9 * (1000 / (r.paceVal * 60)) * (1 + (60 / ((r.distanceKm || 5) * 1000)))) : 115),
-            zone2Percent: r.zone2TimePercent || r.zone2Percent || 95,
-            fatBurnGrams: r.fatBurnGrams || 25,
-            carbBurnGrams: r.carbBurnGrams || 8,
-            mitoScore: r.mitochondrialEfficiencyScore || r.mitoScore || 95,
-            hrDriftPercent: r.hrDriftPercent || 3.8,
-            lthrMargin: r.lthrMargin || '-20 BPM',
-            note: r.note || 'Synced Workout'
-          }));
-          if (!mapped.some(r => r.id === 'run-oct-07-2026')) {
-            mapped.unshift(INITIAL_RUNS_DATA[0]);
-          }
-          return mapped;
+          const canonicalIds = new Set(INITIAL_RUNS_DATA.map(r => r.id));
+          const customRuns = parsed.filter(r => !canonicalIds.has(r.id));
+          return [...INITIAL_RUNS_DATA, ...customRuns];
         }
       } catch (e) {
         console.error('Failed to parse runs from localStorage', e);
       }
     }
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(INITIAL_RUNS_DATA));
+    } catch (e) {}
     return INITIAL_RUNS_DATA;
   });
 
   // Listen for changes in localStorage
   useEffect(() => {
-    const handleStorage = () => {
-      const saved = localStorage.getItem('optimus_ishai_runs_v3');
+    const handleStorage = (e) => {
+      if (e.key && e.key !== STORAGE_KEY) return;
+      const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
         try {
           const parsed = JSON.parse(saved);
           if (Array.isArray(parsed) && parsed.length > 0) {
-            setRuns(parsed.map(r => ({
-              id: r.id || `run-${Math.random()}`,
-              date: r.date || 'Recent Run',
-              title: r.title || 'Outdoor Run',
-              distanceKm: r.distanceKm || 5.5,
-              durationMin: r.durationMinutes || r.durationMin || 60,
-              paceStr: r.avgPace || r.paceStr || '11:30 min/km',
-              paceVal: r.paceVal || (r.distanceKm ? (r.durationMinutes || r.durationMin) / r.distanceKm : 11.5),
-              avgHr: r.avgHeartRate || r.avgHr || 110,
-              maxHr: r.maxHeartRate || r.maxHr || 125,
-              powerWatts: r.powerWatts || (r.paceVal ? Math.round(82.9 * (1000 / (r.paceVal * 60)) * (1 + (60 / ((r.distanceKm || 5) * 1000)))) : 115),
-              zone2Percent: r.zone2TimePercent || r.zone2Percent || 95,
-              fatBurnGrams: r.fatBurnGrams || 25,
-              carbBurnGrams: r.carbBurnGrams || 8,
-              mitoScore: r.mitochondrialEfficiencyScore || r.mitoScore || 95,
-              hrDriftPercent: r.hrDriftPercent || 3.8,
-              lthrMargin: r.lthrMargin || '-20 BPM',
-              note: r.note || 'Synced Workout'
-            })));
+            const canonicalIds = new Set(INITIAL_RUNS_DATA.map(r => r.id));
+            const customRuns = parsed.filter(r => !canonicalIds.has(r.id));
+            setRuns([...INITIAL_RUNS_DATA, ...customRuns]);
           }
         } catch (e) {}
       }
@@ -602,7 +636,7 @@ export default function RunImprovementsTable({ prevPage, nextPage, setPage } = {
             </h2>
             <p className="text-stone-300 text-xs sm:text-sm leading-relaxed font-normal">
               Rather than assuming raw heart rate indicates fitness, this calculated metric normalizes running speed by recorded heart rate:
-              <strong className="text-white"> 6.49 km at 113 BPM vs. 6.29 km at 118 BPM</strong> (a faster pace was achieved with a lower average heart rate, resulting in more distance covered per recorded heartbeat).
+              <strong className="text-white"> {latestRun.distanceKm} km at {latestRun.avgHr} BPM vs. {previousRun.distanceKm} km at {previousRun.avgHr} BPM</strong> (a faster pace was achieved with a lower average heart rate, resulting in more distance covered per recorded heartbeat).
             </p>
           </div>
 
@@ -631,7 +665,7 @@ export default function RunImprovementsTable({ prevPage, nextPage, setPage } = {
                 +{metersPerBeatBaselineDeltaPercent}%
               </div>
               <div className="text-[10px] text-stone-300">
-                Distance-per-Heartbeat (0.729 → 0.780 m/beat)
+                Distance-per-Heartbeat ({baselineMetersPerBeat.toFixed(3)} → {latestMetersPerBeat.toFixed(3)} m/beat)
               </div>
             </div>
           </div>
@@ -760,10 +794,10 @@ export default function RunImprovementsTable({ prevPage, nextPage, setPage } = {
               <TrendingUp className="w-4 h-4 text-sky-600" />
             </div>
             <div className="text-2xl sm:text-3xl font-black text-stone-900 font-mono">
-              11:21 <span className="text-xs font-sans font-bold text-stone-500">min/km @ 113 BPM</span>
+              {latestRun.paceStr.split(' ')[0]} <span className="text-xs font-sans font-bold text-stone-500">min/km @ {latestRun.avgHr} BPM</span>
             </div>
             <p className="text-[11px] text-emerald-700 font-semibold flex items-center gap-1">
-              <CheckCircle2 className="w-3.5 h-3.5" /> 22 BPM below laboratory-measured LTHR (135 BPM)
+              <CheckCircle2 className="w-3.5 h-3.5" /> {Math.max(0, 135 - latestRun.avgHr)} BPM below laboratory-measured LTHR (135 BPM)
             </p>
             <div className="text-[10px] text-stone-500 leading-tight pt-1 border-t border-stone-100">
               Measured pace achieved within the Optimus training corridor of 105–117 BPM, selected within the laboratory-derived aerobic range (limit ≤120 BPM).
@@ -843,7 +877,7 @@ export default function RunImprovementsTable({ prevPage, nextPage, setPage } = {
                 Acute Comparison ({getShortDate(latestRun.date)} vs. {getShortDate(previousRun.date)})
               </h3>
               <p className="text-xs text-emerald-800">
-                * Note: This card specifically compares a 3-day acute window (Oct 07 vs. Oct 04). Your true chronic adaptation is demonstrated across the full July–October longitudinal dataset in the master table below.
+                * Note: This card specifically compares the latest acute training window ({getShortDate(latestRun.date)} vs. {getShortDate(previousRun.date)}). Your true chronic adaptation is demonstrated across the full July–October longitudinal dataset in the master table below.
               </p>
             </div>
           </div>
@@ -902,7 +936,7 @@ export default function RunImprovementsTable({ prevPage, nextPage, setPage } = {
               </div>
               <div className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-800 bg-emerald-100/90 px-1.5 py-0.5 rounded">
                 <ArrowUpRight className="w-3 h-3 text-emerald-700" />
-                <span>+{metersPerBeatDelta.toFixed(3)} m/beat</span>
+                <span>{metersPerBeatDelta >= 0 ? `+${metersPerBeatDelta.toFixed(3)}` : metersPerBeatDelta.toFixed(3)} m/beat</span>
               </div>
             </div>
             <div className="text-[10px] text-stone-500 pt-0.5">Meters per heartbeat</div>
@@ -938,7 +972,7 @@ export default function RunImprovementsTable({ prevPage, nextPage, setPage } = {
               </div>
               <div className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-800 bg-emerald-100/90 px-1.5 py-0.5 rounded">
                 <ArrowUpRight className="w-3 h-3 text-emerald-700" />
-                <span>+{zone2Delta}% pts</span>
+                <span>{zone2Delta >= 0 ? `+${zone2Delta}` : zone2Delta}% pts</span>
               </div>
             </div>
             <div className="text-[10px] text-stone-500 pt-0.5">In 105–117 corridor</div>
@@ -956,7 +990,7 @@ export default function RunImprovementsTable({ prevPage, nextPage, setPage } = {
               </div>
               <div className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-800 bg-emerald-100/90 px-1.5 py-0.5 rounded">
                 <ArrowUpRight className="w-3 h-3 text-emerald-700" />
-                <span>+{mitoDelta} pts vs Sep 22</span>
+                <span>{mitoDelta >= 0 ? `+${mitoDelta}` : mitoDelta} pts vs {getShortDate(previousRun.date)}</span>
               </div>
             </div>
             <div className="text-[10px] text-stone-500 pt-0.5">Model-derived proxy</div>
@@ -972,7 +1006,7 @@ export default function RunImprovementsTable({ prevPage, nextPage, setPage } = {
           <div>
             <h3 className="text-xl font-black text-stone-900 flex items-center gap-2">
               <Calendar className="w-5 h-5 text-emerald-700" />
-              <span>Longitudinal Exercise Dataset (12 Runs + 1 Clinical Test)</span>
+              <span>Longitudinal Exercise Dataset ({runs.filter(r => !r.id.includes('wingate')).length} Outdoor Runs + 1 Clinical Test)</span>
             </h3>
             <p className="text-xs text-stone-500 font-medium">
               Every run is evaluated chronologically; the Sep 1 clinical test is retained as a laboratory reference point and is not directly comparable to outdoor training sessions.
@@ -981,12 +1015,13 @@ export default function RunImprovementsTable({ prevPage, nextPage, setPage } = {
           
           <button
             onClick={() => {
-              const saved = localStorage.getItem('optimus_ishai_runs_v4') || localStorage.getItem('optimus_ishai_runs_v3');
-              if (saved) {
-                try { setRuns(JSON.parse(saved)); } catch (e) {}
-              }
+              try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(INITIAL_RUNS_DATA));
+              } catch (e) {}
+              setRuns([...INITIAL_RUNS_DATA]);
             }}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-700 text-xs font-bold transition cursor-pointer"
+            title="Reload latest verified runs from master dataset"
           >
             <RefreshCw className="w-3.5 h-3.5" />
             <span>Refresh Data</span>
@@ -1237,7 +1272,7 @@ export default function RunImprovementsTable({ prevPage, nextPage, setPage } = {
           <div className="flex items-center gap-2">
             <Sparkles className="w-4 h-4 text-purple-400 shrink-0" />
             <h4 className="text-xs sm:text-sm font-bold tracking-wide text-purple-200 font-mono">
-              Mitochondrial Adaptation Proxy (Modelled): 98
+              Mitochondrial Adaptation Proxy (Modelled): {latestRun.mitoScore}
             </h4>
             <span className="px-2 py-0.5 rounded text-[9px] font-extrabold uppercase bg-purple-500/20 text-purple-300 border border-purple-400/30">
               Non-Invasive Physiological Modeling
