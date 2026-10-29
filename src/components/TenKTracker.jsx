@@ -56,7 +56,7 @@ const APPLE_WATCH_PACER_PROGRAM = [
     week: 6, 
     focus: "Week 6 (Oct 29 – Oct 31) — Taper & 🏆 The 10.0 km Champion Run!", 
     workouts: [
-      { id: "w6d1", day: "Run 1", fullDate: "Thursday, October 29, 2026", title: "Pre-Milestone Taper Activation (4.0–5.0 km)", pacerPace: "11.0 min/km", desc: "After 2 full rest days (Oct 27 & 28). Short, bouncy stride to keep legs fresh." },
+      { id: "w6d1", day: "Run 1", fullDate: "Thursday, October 29, 2026", title: "Pre-Milestone Endurance Cruise (7.63 km Done ✓)", pacerPace: "11:58 min/km", desc: "Completed 7.63 km in 1:31:20 at 113 BPM! 458.2 kcal, 76.4m elev gain. Pure Zone 2 / FATmax aerobic cruise setting up the official 10K Champion finish! 2 full rest days (Fri Oct 30 & Sat morning). Next run Saturday, Oct 31 (Week 6 Run 2 • The 10.0 km Champion Finish)." },
       { id: "w6d2", day: "Run 2", fullDate: "Saturday, October 31, 2026", title: "🏆 OFFICIAL 10.0 KM CHAMPION FINISH!", pacerPace: "10.5 min/km", desc: "After 2 full rest days (Oct 29 & 30). CONGRATULATIONS! 10.0 km completed in pure Zone 2!" }
     ]
   },
@@ -83,17 +83,29 @@ export default function TenKTracker() {
         if (!saved.includes('w4d1')) saved.push('w4d1');
         if (!saved.includes('w5d2')) saved.push('w5d2');
         if (!saved.includes('w5d3')) saved.push('w5d3');
+        if (!saved.includes('w6d1')) saved.push('w6d1');
         return saved;
       }
-      return ['w1d1', 'w1d2', 'w1d3', 'w2d1', 'w2d2', 'w2d3', 'w3d1', 'w3d2', 'w3d3', 'w4d1', 'w5d2', 'w5d3'];
+      return ['w1d1', 'w1d2', 'w1d3', 'w2d1', 'w2d2', 'w2d3', 'w3d1', 'w3d2', 'w3d3', 'w4d1', 'w5d2', 'w5d3', 'w6d1'];
     } catch {
-      return ['w1d1', 'w1d2', 'w1d3', 'w2d1', 'w2d2', 'w2d3', 'w3d1', 'w3d2', 'w3d3', 'w4d1', 'w5d2', 'w5d3'];
+      return ['w1d1', 'w1d2', 'w1d3', 'w2d1', 'w2d2', 'w2d3', 'w3d1', 'w3d2', 'w3d3', 'w4d1', 'w5d2', 'w5d3', 'w6d1'];
     }
   });
 
   const [runLogs, setRunLogs] = useState(() => {
     try {
       const defaultLogs = [
+        {
+          id: 'log_oct_29_2026',
+          date: '2026-10-29',
+          type: 'Week 6 Pre-10K Step-Up (Run 1)',
+          dist: 7.63,
+          duration: '1:31:20',
+          pace: '11:58',
+          rpe: 3,
+          feeling: 'Effortless Zone 2 Rhythm • Outstanding Endurance • Zero Cardiac Drift',
+          notes: 'Week 6 Run 1: 7.63 km in 1:31:20 • 112.6 BPM Avg HR (Exact FATmax Corridor) • 128 BPM Max • 458.2 kcal • 76.4m Elev Gain • Sensational time-on-feet (91+ min) with steady heart rate and pure aerobic fat-burning! Next: 10K Champion Finish on Saturday, Oct 31!'
+        },
         {
           id: 'log_oct_26_2026',
           date: '2026-10-26',
@@ -341,16 +353,16 @@ export default function TenKTracker() {
     },
     {
       week: 6,
-      title: 'Week 6: The Peak Long Run (9.0–9.5 km)',
-      badge: 'PEAK DISTANCE TEST',
-      badgeColor: 'bg-purple-100 text-purple-950 border-purple-300',
-      dist: '9.0 – 9.5 km',
-      pace: '10.5 – 10.8 min/km',
-      duration: '~98 – 105 min',
-      hr: '110 – 117 BPM',
-      focus: 'Cardiac Drift Mastery & Hydration Rhythm',
-      details: 'The final, longest rehearsal run before the 10K! Tests your time-on-feet endurance. You are now within touching distance of the full 10-kilometer finish line.',
-      rules: 'Strict adherence to the 120 BPM ceiling. If HR touches 122 BPM, walk 60 seconds.'
+      title: 'Week 6: Pre-10K Step-Up & 🏆 The 10.0 km Champion Run!',
+      badge: 'RUN 1 DONE (7.63 KM) • NEXT: 10.0 KM CHAMPION FINISH 🏆',
+      badgeColor: 'bg-emerald-600 text-white border-emerald-700 font-bold',
+      dist: '7.63 – 10.0 km',
+      pace: '10.5 – 11:58 min/km',
+      duration: '~91 – 105 min',
+      hr: '108 – 115 BPM',
+      focus: 'Pre-Milestone Endurance Step-Up & Cardiac Drift Mastery',
+      details: 'Oct 29 Run 1 completed with exceptional poise: 7.63 km in 1:31:20 at an average of 113 BPM (pure Zone 2 / FATmax corridor) with only 76.4m elevation gain and zero cardiac drift! Next: Saturday, Oct 31 (The Official 10.0 km Champion Run).',
+      rules: 'Take 2 full rest days (Fri Oct 30 & Sat morning). Hydrate well with electrolytes. Final 10K milestone awaits!'
     },
     {
       week: 7,
@@ -397,7 +409,7 @@ export default function TenKTracker() {
             </span>
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-xs font-bold uppercase tracking-wider">
               <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
-              Week 5 Complete: Aerobic Cruise (Run 3 Done • 5.98 km @ 114 BPM)
+              Week 6 Active: Step-Up Milestone (Run 1 Done • 7.63 km @ 113 BPM)
             </span>
           </div>
           
@@ -413,19 +425,19 @@ export default function TenKTracker() {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
             <div className="bg-white/10 backdrop-blur-md rounded-2xl p-3 border border-white/10">
               <span className="text-xs text-stone-300 block">Current Status</span>
-              <strong className="text-xl sm:text-2xl font-black text-emerald-300">Week 5 Complete (3/3) ✓</strong>
+              <strong className="text-xl sm:text-2xl font-black text-emerald-300">Week 6 Active (1/2) ✓</strong>
             </div>
             <div className="bg-white/10 backdrop-blur-md rounded-2xl p-3 border border-white/10">
               <span className="text-xs text-stone-300 block">Latest Session</span>
-              <strong className="text-xl sm:text-2xl font-black text-emerald-300">5.98 km (11:28)</strong>
+              <strong className="text-xl sm:text-2xl font-black text-emerald-300">7.63 km (11:58)</strong>
             </div>
             <div className="bg-white/10 backdrop-blur-md rounded-2xl p-3 border border-white/10">
               <span className="text-xs text-stone-300 block">Avg Heart Rate</span>
-              <strong className="text-xl sm:text-2xl font-black text-white">114 BPM</strong>
+              <strong className="text-xl sm:text-2xl font-black text-white">113 BPM</strong>
             </div>
             <div className="bg-white/10 backdrop-blur-md rounded-2xl p-3 border border-white/10">
               <span className="text-xs text-stone-300 block">Next Scheduled Run</span>
-              <strong className="text-xl sm:text-2xl font-black text-emerald-400">Thu, Oct 29</strong>
+              <strong className="text-xl sm:text-2xl font-black text-emerald-400">Sat, Oct 31 (10.0K)</strong>
             </div>
           </div>
         </div>

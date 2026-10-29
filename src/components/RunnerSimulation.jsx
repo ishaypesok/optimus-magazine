@@ -13,7 +13,7 @@ import {
 export default function RunnerSimulation() {
   const [isRunning, setIsRunning] = useState(false);
   const [speedMultiplier, setSpeedMultiplier] = useState(1);
-  const [selectedRunId, setSelectedRunId] = useState('oct07');
+  const [selectedRunId, setSelectedRunId] = useState('oct29');
   const [userVo2Max, setUserVo2Max] = useState(34.1);
   const [userWeightKg, setUserWeightKg] = useState(82.9);
   const [chartMode, setChartMode] = useState('calories'); // 'calories' | 'cumulative' | 'lactate'
@@ -21,15 +21,28 @@ export default function RunnerSimulation() {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   // New run input form state
-  const [newRunDate, setNewRunDate] = useState('26/10/2026');
-  const [newRunDuration, setNewRunDuration] = useState('68.6');
-  const [newRunDistance, setNewRunDistance] = useState('5.98');
-  const [newRunPace, setNewRunPace] = useState('11.46');
-  const [newRunHr, setNewRunHr] = useState('114');
-  const [newRunCalories, setNewRunCalories] = useState('355');
+  const [newRunDate, setNewRunDate] = useState('29/10/2026');
+  const [newRunDuration, setNewRunDuration] = useState('91.3');
+  const [newRunDistance, setNewRunDistance] = useState('7.63');
+  const [newRunPace, setNewRunPace] = useState('11.97');
+  const [newRunHr, setNewRunHr] = useState('113');
+  const [newRunCalories, setNewRunCalories] = useState('458');
 
   // Real runs list with verified Apple Watch Ultra telemetry
   const [runsList, setRunsList] = useState([
+    {
+      id: 'oct29',
+      dateLabel: 'Oct 29, 2026 (Pre-10K Step-Up • 7.63 km)',
+      durationMin: 91.3,
+      distanceKm: 7.63,
+      paceMinKm: 11.97,
+      avgHr: 113,
+      watchCalories: 458,
+      fatBurnGrams: 34.5,
+      carbBurnGrams: 22.1,
+      color: '#10b981',
+      note: 'Week 6 Pre-10K Step-Up: 1:31:20 • 112.6 BPM Avg HR (FATmax corridor) • 128 BPM Max HR • 458.2 kcal Active • 76.4m Elev Gain • Flawless 91+ min aerobic cruise!'
+    },
     {
       id: 'oct26',
       dateLabel: 'Oct 26, 2026 (Aerobic Cruise • 5.98 km)',

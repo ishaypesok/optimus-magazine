@@ -19,9 +19,28 @@ export const calcMitoAdaptationProxy = (paceVal, avgHr, hrDriftPercent, zone2Per
 
 const INITIAL_RUNS_DATA = [
   {
+    id: 'run-oct-29-2026',
+    date: 'Oct 29, 2026',
+    title: "🔥 Latest Outdoor Run (7.63 km • Apple Watch AutoSync • Week 6 Step-Up & Pre-10K Endurance)",
+    distanceKm: 7.63,
+    durationMin: 91.3,
+    paceStr: '11:58 min/km',
+    paceVal: 11.97,
+    avgHr: 113,
+    maxHr: 128,
+    powerWatts: 118,
+    zone2Percent: 91,
+    fatBurnGrams: 34.5,
+    carbBurnGrams: 22.1,
+    mitoScore: 99,
+    hrDriftPercent: 3.2,
+    lthrMargin: '-22 BPM',
+    note: 'Week 6 Step-Up: 7.63 km in 1:31:20 • 112.6 BPM Avg HR (Exact FATmax Corridor) • 128 BPM Max • 458.2 kcal • 76.4m Elev Gain • Flawless 91+ min aerobic cruise with zero cardiac drift setting up the 10K Champion finish!'
+  },
+  {
     id: 'run-oct-26-2026',
     date: 'Oct 26, 2026',
-    title: "🔥 Latest Outdoor Run (5.98 km • Apple Watch AutoSync • Week 6 Aerobic Base Cruise)",
+    title: "Outdoor Run (5.98 km • Apple Watch AutoSync • Week 5 Aerobic Base Cruise)",
     distanceKm: 5.98,
     durationMin: 68.6,
     paceStr: '11:28 min/km',
@@ -35,7 +54,7 @@ const INITIAL_RUNS_DATA = [
     mitoScore: 99,
     hrDriftPercent: 3.1,
     lthrMargin: '-22 BPM',
-    note: 'Week 6 Aerobic Base Cruise: 5.98 km in 1:08:34 • 113.6 BPM Avg HR (Exact FATmax Corridor) • 131 BPM Max • 355.1 kcal • 60.7m Elev Gain • AutoSync'
+    note: 'Week 5 Aerobic Base Cruise: 5.98 km in 1:08:34 • 113.6 BPM Avg HR (Exact FATmax Corridor) • 131 BPM Max • 355.1 kcal • 60.7m Elev Gain • AutoSync'
   },
   {
     id: 'run-oct-22-2026',
@@ -405,11 +424,12 @@ export default function RunImprovementsTable({ prevPage, nextPage, setPage } = {
   const topScrollContainerRef = useRef(null);
   const [tableScrollWidth, setTableScrollWidth] = useState(1400);
 
-  const STORAGE_KEY = 'optimus_ishai_runs_v6';
+  const STORAGE_KEY = 'optimus_ishai_runs_v7';
 
   const [runs, setRuns] = useState(() => {
     // Purge outdated caches from earlier versions
     try {
+      localStorage.removeItem('optimus_ishai_runs_v6');
       localStorage.removeItem('optimus_ishai_runs_v5');
       localStorage.removeItem('optimus_ishai_runs_v4');
       localStorage.removeItem('optimus_ishai_runs_v3');

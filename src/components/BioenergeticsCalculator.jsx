@@ -7,6 +7,19 @@ import {
 import MetabolicTierBadge from './MetabolicTierBadge';
 
 export default function BioenergeticsCalculator() {
+  // Preset 000: Ishai's Actual Oct 29, 2026 Run (Week 6 Pre-10K Step-Up)
+  const ishaiOct29Preset = {
+    name: "Ishai's Oct 29 Real Run (Pre-10K Step-Up)",
+    description: "Actual Apple Watch recorded run from October 29, 2026",
+    weight: 82.9,
+    restingHr: 52,
+    vo2max: 34.1,
+    maxHr: 175,
+    workoutHr: 113,
+    duration: 91.3,
+    distance: 7.63
+  };
+
   // Preset 00: Ishai's Actual Oct 26, 2026 Run (Week 5 Aerobic Base Cruise)
   const ishaiOct26Preset = {
     name: "Ishai's Oct 26 Real Run (Aerobic Cruise)",
@@ -206,7 +219,8 @@ export default function BioenergeticsCalculator() {
 
   const applyPreset = (presetKey) => {
     setActivePreset(presetKey);
-    let p = ishaiOct26Preset;
+    let p = ishaiOct29Preset;
+    if (presetKey === 'ishai_oct29') p = ishaiOct29Preset;
     if (presetKey === 'ishai_oct26') p = ishaiOct26Preset;
     if (presetKey === 'ishai_oct22') p = ishaiOct22Preset;
     if (presetKey === 'ishai_oct10') p = ishaiOct10Preset;
@@ -317,6 +331,26 @@ export default function BioenergeticsCalculator() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pt-1">
           
+          <button
+            onClick={() => applyPreset('ishai_oct29')}
+            className={`p-3.5 rounded-xl text-left border transition flex flex-col justify-between ${
+              activePreset === 'ishai_oct29'
+                ? 'bg-emerald-700/80 border-emerald-400 text-white shadow-sm ring-2 ring-emerald-400/40'
+                : 'bg-white/10 border-white/15 text-stone-200 hover:bg-white/15'
+            }`}
+          >
+            <div>
+              <div className="font-extrabold text-xs flex items-center gap-1.5">
+                <span>🔥 Oct 29 Run (7.63 km)</span>
+                <span className="px-1.5 py-0.5 rounded bg-emerald-900/90 text-[10px] text-emerald-200 font-mono">Week 6 Active ✓</span>
+              </div>
+              <p className="text-[11px] text-stone-300 mt-1">1:31:20 • 113 BPM avg • 458 kcal</p>
+            </div>
+            <div className="text-[10px] font-mono text-emerald-300 pt-2 border-t border-white/10 mt-2">
+              82.9 kg • 52 RHR • 34.1 VO₂max
+            </div>
+          </button>
+
           <button
             onClick={() => applyPreset('ishai_oct26')}
             className={`p-3.5 rounded-xl text-left border transition flex flex-col justify-between ${
