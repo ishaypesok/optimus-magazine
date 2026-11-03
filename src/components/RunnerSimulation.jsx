@@ -13,7 +13,7 @@ import {
 export default function RunnerSimulation() {
   const [isRunning, setIsRunning] = useState(false);
   const [speedMultiplier, setSpeedMultiplier] = useState(1);
-  const [selectedRunId, setSelectedRunId] = useState('oct29');
+  const [selectedRunId, setSelectedRunId] = useState('nov01');
   const [userVo2Max, setUserVo2Max] = useState(34.1);
   const [userWeightKg, setUserWeightKg] = useState(82.9);
   const [chartMode, setChartMode] = useState('calories'); // 'calories' | 'cumulative' | 'lactate'
@@ -21,15 +21,28 @@ export default function RunnerSimulation() {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   // New run input form state
-  const [newRunDate, setNewRunDate] = useState('29/10/2026');
-  const [newRunDuration, setNewRunDuration] = useState('91.3');
-  const [newRunDistance, setNewRunDistance] = useState('7.63');
-  const [newRunPace, setNewRunPace] = useState('11.97');
+  const [newRunDate, setNewRunDate] = useState('01/11/2026');
+  const [newRunDuration, setNewRunDuration] = useState('126.5');
+  const [newRunDistance, setNewRunDistance] = useState('10.20');
+  const [newRunPace, setNewRunPace] = useState('12.40');
   const [newRunHr, setNewRunHr] = useState('113');
-  const [newRunCalories, setNewRunCalories] = useState('458');
+  const [newRunCalories, setNewRunCalories] = useState('601');
 
   // Real runs list with verified Apple Watch Ultra telemetry
   const [runsList, setRunsList] = useState([
+    {
+      id: 'nov01',
+      dateLabel: 'Nov 01, 2026 (🏆 10K Champion Run • 10.20 km)',
+      durationMin: 126.5,
+      distanceKm: 10.20,
+      paceMinKm: 12.40,
+      avgHr: 113,
+      watchCalories: 601,
+      fatBurnGrams: 47.8,
+      carbBurnGrams: 29.0,
+      color: '#10b981',
+      note: '🏆 10K CHAMPION MILESTONE: 10.20 km in 2:06:29 • 113.0 BPM Avg HR (Pure Zone 2 / FATmax corridor) • 128 BPM Max HR • 601.1 kcal Active • 169.9m Elev Gain • Every single km split averaged ≤118.8 BPM!'
+    },
     {
       id: 'oct29',
       dateLabel: 'Oct 29, 2026 (Pre-10K Step-Up • 7.63 km)',

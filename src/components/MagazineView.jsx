@@ -45,6 +45,7 @@ import Zone2BrainMemoryMasterclass from './Zone2BrainMemoryMasterclass';
 import SanMillanZone2MetabolicState from './SanMillanZone2MetabolicState';
 import MitochondrialBiogenesisMasterclass from './MitochondrialBiogenesisMasterclass';
 import VisceralFatMasterclass from './VisceralFatMasterclass';
+import MultiSportLongevityMasterclass from './MultiSportLongevityMasterclass';
 import MagazineFrontCover from './MagazineFrontCover';
 import MagazineTableOfContents from './MagazineTableOfContents';
 import { PAGES_LIST } from './Sidebar';
@@ -313,6 +314,7 @@ export default function MagazineView({ currentZoneId, setCurrentZoneId, activeAr
       case 39: return <SanMillanZone2MetabolicState />;
       case 40: return <MitochondrialBiogenesisMasterclass />;
       case 41: return <VisceralFatMasterclass />;
+      case 42: return <MultiSportLongevityMasterclass />;
       default: return <ForewordMission setPage={setPage} />;
     }
   };

@@ -64,6 +64,7 @@ export const PAGES_LIST = [
   { id: 39, title: 'Dr. San Millán: What is Zone 2? Metabolic Equilibrium vs. Drift', label: 'Article 39: Zone 2 Metabolic State', category: 'Expert Spotlights', icon: Zap, badge: '🔬 Metabolic State' },
   { id: 40, title: 'Mitochondrial Biogenesis Masterclass: Rebuilding Cellular Powerhouses at 65+ (Zone 2 vs. HIIT)', label: 'Article 40: Mito Biogenesis & HIIT', category: 'Deep Physiology', icon: Dna, badge: '⚡ Flagship 65+' },
   { id: 41, title: 'Targeting Visceral & Abdominal Fat: Bioenergetics of Running, Receptor Densities & Lipolysis', label: 'Article 41: Visceral & Belly Fat Science', category: 'Deep Physiology', icon: Flame, badge: '🔥 Visceral Fat' },
+  { id: 42, title: 'Alan Couzens & BMJ Medicine: Multi-Sport Longevity (-19% Mortality) & Walking Base', label: 'Article 42: Multi-Sport & Walking Longevity', category: 'Expert Spotlights', icon: Trophy, badge: '🚶 -19% Mortality' },
 ];
 
 export default function Sidebar({

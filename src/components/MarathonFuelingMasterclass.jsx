@@ -12,6 +12,7 @@ const TABS = [
   { id: 'inrace', label: '4. During Race', badge: 'Every 60 Mins' },
   { id: 'hydration', label: '5. Hydration & Salt', badge: 'No Overdrinking' },
   { id: 'caffeine', label: '6. Caffeine Protocol', badge: 'Ergogenic' },
+  { id: 'postrun', label: '7. Post-Run & KM 4 Date', badge: 'GLUT4 Window' },
 ];
 
 export default function MarathonFuelingMasterclass() {
@@ -124,7 +125,7 @@ export default function MarathonFuelingMasterclass() {
         </div>
 
         {/* Tab Buttons */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2">
           {TABS.map((t) => (
             <button
               key={t.id}
@@ -348,6 +349,135 @@ export default function MarathonFuelingMasterclass() {
               </div>
             </div>
           )}
+
+          {activeTab === 'postrun' && (
+            <div className="space-y-5 animate-fade-in">
+              <div className="flex items-center gap-2.5 text-emerald-800 font-extrabold text-lg">
+                <Activity className="w-6 h-6 text-emerald-700" />
+                Post-Exercise Glycogen Resynthesis & Intra-Run KM 4 Medjool Date Kinetics
+              </div>
+              <p className="text-stone-700 text-sm leading-relaxed">
+                As demonstrated by <strong>Prof. Asker Jeukendrup (MySportScience / Ivy et al., 1988)</strong>, muscle glycogen resynthesis operates in two distinct physiological phases: an <strong>insulin-independent rapid phase (0–2h)</strong> driven by contraction-translocated <strong>GLUT4 transporters</strong>, and a slower <strong>insulin-dependent phase (2h+)</strong> once GLUT4 internalizes. However, the rapid 0–2h window is only unlocked if carbohydrate is bioavailable!
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+                <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 space-y-2">
+                  <div className="font-bold text-emerald-950 text-sm flex items-center gap-1.5">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                    1. The 0–2h GLUT4 Window
+                  </div>
+                  <p className="text-xs text-stone-700 leading-relaxed">
+                    Muscle contractions (AMPK + Ca²⁺) bring <strong>GLUT4 doors</strong> to the cell surface. Ingesting carbs immediately post-exercise yields a <strong>~45–50% higher peak synthesis rate</strong> without requiring a heavy insulin spike.
+                  </p>
+                </div>
+
+                <div className="p-4 rounded-2xl bg-amber-50 border border-amber-200 space-y-2">
+                  <div className="font-bold text-amber-950 text-sm flex items-center gap-1.5">
+                    <Flame className="w-4 h-4 text-amber-600" />
+                    2. KM 4 Medjool Date (18g CHO)
+                  </div>
+                  <p className="text-xs text-stone-700 leading-relaxed">
+                    Taking <strong>1 Medjool date (~24g, 66 kcal, 18g CHO: ~8g glucose + ~8g fructose) in KM 4</strong> uses dual <strong>SGLT1 + GLUT5</strong> gut transporters. It spared <strong>~15.5g (53%)</strong> of your endogenous glycogen during the 10.20 km run!
+                  </p>
+                </div>
+
+                <div className="p-4 rounded-2xl bg-blue-50 border border-blue-200 space-y-2">
+                  <div className="font-bold text-blue-950 text-sm flex items-center gap-1.5">
+                    <Heart className="w-4 h-4 text-blue-600" />
+                    3. Zero Fat-Burn Suppression
+                  </div>
+                  <p className="text-xs text-stone-700 leading-relaxed">
+                    During running at 113 BPM, sympathetic catecholamines suppress pancreatic insulin release. Your KM 4 date fueled the Krebs cycle (oxaloacetate) while <strong>47.8g of fat oxidation continued 100% uninterrupted</strong>!
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Post-Exercise Glycogen Synthesis & Ishai's KM 4 Medjool Date Case Study */}
+      <div className="p-6 sm:p-8 rounded-3xl bg-white border-2 border-emerald-300 shadow-md space-y-6">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-stone-200 pb-4">
+          <div>
+            <div className="flex items-center gap-2 text-emerald-700 font-extrabold text-xs uppercase tracking-wider">
+              <Award className="w-4 h-4 text-emerald-600" />
+              MySportScience Clinical Evidence + Personal 10.20 km Bioenergetic Case Study
+            </div>
+            <h3 className="text-2xl font-black text-stone-900 mt-1">
+              Glycogen Resynthesis Kinetics & Your KM 4 Medjool Date Protocol
+            </h3>
+          </div>
+          <span className="px-3 py-1 rounded-full bg-emerald-100 text-emerald-900 text-xs font-mono font-bold border border-emerald-300">
+            Nov 1, 2026 • 10.20 km @ 113 BPM
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          {/* Left: MySportScience Infographic */}
+          <div className="lg:col-span-6 space-y-3">
+            <div className="overflow-hidden rounded-2xl border-2 border-stone-200 shadow-xs bg-white">
+              <img
+                src="./glycogen-synthesis-after-exercise.jpg"
+                alt="MySportScience - Glycogen synthesis after exercise (Immediate vs 2h Delayed CHO feeding)"
+                className="w-full h-auto object-contain"
+              />
+            </div>
+            <div className="p-3.5 rounded-xl bg-stone-100 border border-stone-200 text-xs text-stone-700 leading-relaxed">
+              <strong>Key Study Finding (Ivy et al., 1988 / Prof. Jeukendrup):</strong> Glycogen synthesis remains near zero after exercise until carbohydrate feeding is initiated. Feeding immediately (`0h`, green curve) captures the exercise-induced <strong>GLUT4 sarcolemmal window</strong>, achieving nearly double the initial synthesis rate compared to waiting 2 hours (`2h`, yellow curve).
+            </div>
+          </div>
+
+          {/* Right: Ishai's KM 4 Medjool Date Bioenergetic Breakdown */}
+          <div className="lg:col-span-6 space-y-4">
+            <div className="p-4 rounded-2xl bg-gradient-to-br from-emerald-950 via-stone-900 to-slate-900 text-white space-y-3 border border-emerald-500/30">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono uppercase tracking-wider text-emerald-300 font-bold">
+                  🌴 Intra-Run Fueling Telemetry • KM 4 (~40–48 min)
+                </span>
+                <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-200 text-[11px] font-mono font-bold">
+                  1 Medjool Date (~24g)
+                </span>
+              </div>
+              <h4 className="text-lg font-black text-white">
+                What Happened When You Ate 1 Date in KM 4 of Your 10.20 km Run
+              </h4>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-1">
+                <div className="p-2.5 rounded-xl bg-white/10 border border-white/10">
+                  <div className="text-[10px] text-stone-300 font-mono">DATE CARBS</div>
+                  <div className="text-base font-black text-amber-300 font-mono">18.0 g</div>
+                  <div className="text-[10px] text-stone-300">9g Glu + 9g Fru</div>
+                </div>
+                <div className="p-2.5 rounded-xl bg-white/10 border border-white/10">
+                  <div className="text-[10px] text-stone-300 font-mono">TOTAL RUN CHO</div>
+                  <div className="text-base font-black text-white font-mono">29.0 g</div>
+                  <div className="text-[10px] text-stone-300">116 kcal (21%)</div>
+                </div>
+                <div className="p-2.5 rounded-xl bg-white/10 border border-white/10">
+                  <div className="text-[10px] text-stone-300 font-mono">GLYCOGEN SPARED</div>
+                  <div className="text-base font-black text-emerald-300 font-mono">~15.5 g (53%)</div>
+                  <div className="text-[10px] text-stone-300">Only ~13.5g net loss</div>
+                </div>
+                <div className="p-2.5 rounded-xl bg-white/10 border border-white/10">
+                  <div className="text-[10px] text-stone-300 font-mono">FAT OXIDATION</div>
+                  <div className="text-base font-black text-sky-300 font-mono">47.8 g (79%)</div>
+                  <div className="text-[10px] text-stone-300">Zero suppression</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-2.5 text-xs text-stone-700 leading-relaxed">
+              <div className="p-3 rounded-xl bg-emerald-50 border border-emerald-200">
+                <strong className="text-emerald-950">1. Dual-Transporter Absorption (SGLT1 + GLUT5):</strong> A Medjool date is nature’s 1:1 glucose-fructose gel (~9g glucose + ~9g fructose + 167mg K⁺). Eaten in <strong>KM 4 (`12:19/km @ 110.2 BPM`)</strong>, glucose entered your blood by <strong>KM 5 (`12:16/km @ 113.6 BPM`)</strong> via SGLT1, while hepatic fructose conversion sustained blood glucose through <strong>KM 7 (`12:02/km` — your fastest 2nd-half split!)</strong> and <strong>KM 10</strong>.
+              </div>
+              <div className="p-3 rounded-xl bg-amber-50 border border-amber-200">
+                <strong className="text-amber-950">2. Why Your 47.8g Fat Oxidation Was Not Blocked:</strong> During exercise at `113 BPM`, sympathetic catecholamines inhibit pancreatic insulin release ($\alpha_2$-adrenergic blockade). Muscle cells absorb the date’s glucose via <strong>contraction-activated GLUT4</strong> (no insulin required), so <strong>CPT-1 and Hormone-Sensitive Lipase stayed 100% active</strong>.
+              </div>
+              <div className="p-3 rounded-xl bg-blue-50 border border-blue-200">
+                <strong className="text-blue-950">3. How It Connects to the Post-Run Graph:</strong> Because the KM 4 date covered <strong>~53% (`~15.5g`)</strong> of your run’s entire `29.0g` carbohydrate burn, you crossed the `10.20 km` finish line with only a tiny <strong>`~13.5g` net endogenous glycogen deficit</strong>, intact liver glycogen, and residual gut carbohydrate already feeding the <strong>0–2h green curve</strong>!
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 

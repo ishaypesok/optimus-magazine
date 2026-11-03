@@ -334,6 +334,172 @@ export default function AlanCouzensEnduranceCode() {
         </div>
       </div>
 
+      {/* Nov 3, 2026 Deep-Dive: "Is Zone 2 Superior? A Coach's Stance" (<1.5 mmol/L A.I.S. Rule) */}
+      <div className="p-6 sm:p-8 rounded-3xl bg-white border-2 border-blue-200 space-y-6 shadow-md">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-stone-200 pb-4">
+          <div className="space-y-1">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="px-3 py-0.5 rounded-full bg-blue-100 text-blue-900 font-extrabold text-[11px] uppercase tracking-wider border border-blue-300">
+                Nov 3, 2026 Substack &amp; 𝕏 Dispatch
+              </span>
+              <span className="px-3 py-0.5 rounded-full bg-emerald-100 text-emerald-900 font-extrabold text-[11px] uppercase tracking-wider border border-emerald-300">
+                A.I.S. &lt; 1.5 mmol/L Rule
+              </span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-black text-stone-900 tracking-tight">
+              Is &ldquo;Zone 2&rdquo; Superior? A Coach&rsquo;s Stance
+            </h2>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2">
+            <a
+              href="https://x.com/Alan_Couzens/status/2117636286727258621"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl bg-stone-900 hover:bg-black text-white text-xs font-bold transition shadow-xs"
+            >
+              <span className="font-mono">𝕏</span>
+              <span>View Post</span>
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+            <a
+              href="https://alancouzens.substack.com/p/is-zone-2-superior-a-coachs-stance"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl bg-blue-700 hover:bg-blue-800 text-white text-xs font-bold transition shadow-xs"
+            >
+              <span>Substack Essay</span>
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          </div>
+        </div>
+
+        {/* Verbatim Tweet + Cover Illustration Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <div className="lg:col-span-7 space-y-4">
+            <blockquote className="p-5 rounded-2xl bg-stone-50 border-l-4 border-blue-600 text-stone-800 space-y-2.5 text-sm sm:text-base leading-relaxed shadow-2xs">
+              <p className="font-bold text-stone-900">
+                &ldquo;Inspired by recent events... 😊&rdquo;
+              </p>
+              <p>
+                &ldquo;I spent years doing threshold work as a swimmer. I got good. Then I stayed good.&rdquo;
+              </p>
+              <p className="font-semibold text-emerald-900 bg-emerald-50 p-2.5 rounded-xl border border-emerald-200">
+                &ldquo;At the A.I.S., I finally saw what was missing - how the best were doing it - with huge amounts of volume <strong>below 1.5 mmol/L</strong>.&rdquo;
+              </p>
+              <p className="font-bold text-stone-900">
+                &ldquo;That changed how I trained - and how I coach. Is &lsquo;Zone 2&rsquo; superior? A coach&rsquo;s stance 👇&rdquo;
+              </p>
+            </blockquote>
+
+            <div className="p-4 rounded-2xl bg-stone-100 border border-stone-200 space-y-2 text-xs sm:text-sm text-stone-700 leading-relaxed">
+              <div className="font-extrabold text-stone-900 uppercase text-xs tracking-wider flex items-center gap-1.5">
+                <Info className="w-4 h-4 text-blue-700" />
+                Why Definition &amp; Internal Load Matter
+              </div>
+              <p>
+                Responding to social media claims that &ldquo;Zone 2 is overrated,&rdquo; Alan Couzens points out that most debates confuse three completely different definitions of &ldquo;Zone 2&rdquo;:
+              </p>
+              <ul className="list-disc pl-5 space-y-1 text-xs text-stone-700">
+                <li>
+                  <strong>Sally Edwards / 5-Zone HR Model (60–70% HRmax):</strong> True easy sub-LT1 base work (what Couzens &amp; the Australian Institute of Sport call <strong>Zone 1, &lt; 1.5 mmol/L</strong>).
+                </li>
+                <li>
+                  <strong>Peter Attia / Popular 2.0 mmol/L Cap (&lt; 2.0 mmol/L):</strong> In an athlete whose baseline lactate is &lt; 1.0 mmol/L, pushing up to 2.0 mmol/L can sit at <strong>80%+ HRmax</strong>—well above the first lactate rise (LT1) and too fatiguing for high-volume base accumulation!
+                </li>
+                <li>
+                  <strong>The A.I.S. Rule (&ldquo;Define the Work by What&rsquo;s Happening Inside the Athlete&rdquo;):</strong> World-class endurance engines are built by accumulating massive, repeatable volume <strong>below the first rise in blood lactate (&le; 1.5 mmol/L)</strong>.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="lg:col-span-5 space-y-3">
+            <div className="overflow-hidden rounded-2xl border-2 border-stone-300 shadow-sm bg-white">
+              <img
+                src="./couzens-zone2-definitions.png"
+                alt="Alan Couzens - 60-70% HRmax vs <2 mmol/L Zone 2 Definitions"
+                className="w-full h-auto object-contain"
+              />
+            </div>
+            <p className="text-[11px] text-stone-500 italic text-center">
+              Illustration from Alan Couzens&rsquo; Substack: &ldquo;60–70% HRmax&rdquo; vs. &ldquo;&lt; 2 mmol/L&rdquo; can represent vastly different internal metabolic loads depending on the athlete&rsquo;s baseline lactate curve.
+            </p>
+          </div>
+        </div>
+
+        {/* Proof from Ishai's Wingate Biosen C-Line Lactate Curve */}
+        <div className="p-5 rounded-2xl bg-gradient-to-r from-emerald-950 via-slate-900 to-indigo-950 text-white space-y-4 border border-emerald-800/50">
+          <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
+            <div className="flex items-center gap-2 text-emerald-400 font-extrabold text-sm sm:text-base">
+              <Zap className="w-5 h-5 text-emerald-400" />
+              Direct Proof in Your Wingate Biosen C-Line Blood Lactate Curve (Sep 1, 2026)
+            </div>
+            <span className="px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 font-mono text-xs font-bold">
+              10.20 km Champion Run = 1.29 – 1.52 mmol/L!
+            </span>
+          </div>
+
+          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            Look at how Alan Couzens&rsquo; exact <strong>&le; 1.5 mmol/L A.I.S. rule</strong> maps to your laboratory blood lactate curve measured at the Wingate Institute and your <strong>November 1, 2026 10.20 km Champion Run</strong>:
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 text-xs">
+            <div className="p-3.5 rounded-xl bg-emerald-900/50 border border-emerald-500/50 space-y-1">
+              <div className="text-emerald-300 font-mono font-bold text-[11px]">STAGE 2 • 4.8 km/h (12:30/km)</div>
+              <div className="text-xl font-black text-white font-mono">1.29 mmol/L</div>
+              <div className="text-slate-300 text-[11px]">
+                <strong>Lactate Nadir (92 BPM):</strong> Purest FATmax oxidation—your exact 10.20 km average pace (<strong>12:24/km • 4.81 km/h</strong>)!
+              </div>
+            </div>
+
+            <div className="p-3.5 rounded-xl bg-emerald-900/50 border border-emerald-400 space-y-1 ring-2 ring-emerald-400/40">
+              <div className="text-emerald-300 font-mono font-bold text-[11px]">STAGE 3 • 113 BPM</div>
+              <div className="text-xl font-black text-emerald-300 font-mono">1.52 mmol/L ⭐</div>
+              <div className="text-slate-200 text-[11px]">
+                <strong>Exact A.I.S. 1.5 mmol/L Boundary:</strong> Your 10.20 km Champion Run averaged <strong>113.0 BPM</strong> for 2h 06m!
+              </div>
+            </div>
+
+            <div className="p-3.5 rounded-xl bg-amber-950/50 border border-amber-700/50 space-y-1">
+              <div className="text-amber-300 font-mono font-bold text-[11px]">STAGE 4 • 123 BPM</div>
+              <div className="text-xl font-black text-amber-300 font-mono">2.06 mmol/L</div>
+              <div className="text-slate-300 text-[11px]">
+                <strong>2.0 mmol/L Ceiling (90% HRmax):</strong> Why running at 123 BPM is too high for 2-hour recovery-friendly base runs.
+              </div>
+            </div>
+
+            <div className="p-3.5 rounded-xl bg-rose-950/50 border border-rose-800/50 space-y-1">
+              <div className="text-rose-300 font-mono font-bold text-[11px]">STAGE 5 • 135 BPM</div>
+              <div className="text-xl font-black text-rose-300 font-mono">3.05 mmol/L</div>
+              <div className="text-slate-300 text-[11px]">
+                <strong>LT2 / Anaerobic Threshold:</strong> Rapid glycolytic surge &amp; autonomic strain.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Companion Update: Nov 3, 2026 Alan Couzens x BMJ Medicine Multi-Sport & Walking Study */}
+      <div className="p-6 rounded-3xl bg-blue-50 border border-blue-200 space-y-3 shadow-2xs">
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <div className="flex items-center gap-2 text-blue-950 font-extrabold text-base">
+            <Award className="w-5 h-5 text-blue-700" />
+            Nov 3, 2026 Update: Alan Couzens on Multi-Sport Variety (-19% Mortality) &amp; Walking Base
+          </div>
+          <a
+            href="#page=42"
+            className="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl bg-blue-700 hover:bg-blue-800 text-white text-xs font-bold transition shadow-xs"
+          >
+            <span>Open Full Masterclass (Article 42)</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
+          </a>
+        </div>
+        <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
+          Citing the 30-year Harvard cohort study in <em>BMJ Medicine</em> (2026;5:e001513, <strong>111,467 adults</strong>), Alan Couzens notes that athletes in the highest quintile of <strong>exercise variety</strong> enjoy a <strong>19% lower risk of all-cause mortality</strong> independent of total volume—with <strong>plain walking (HR = 0.83, -17% mortality)</strong> serving as the safest, flattest high-volume base on the dose-response curve.
+        </p>
+      </div>
+
       {/* Lightbox Zoom Modal for the Original Book Graphic */}
       {isZoomOpen && (
         <div 

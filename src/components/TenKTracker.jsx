@@ -54,10 +54,10 @@ const APPLE_WATCH_PACER_PROGRAM = [
   },
   { 
     week: 6, 
-    focus: "Week 6 (Oct 29 – Oct 31) — Taper & 🏆 The 10.0 km Champion Run!", 
+    focus: "Week 6 (Oct 29 – Nov 1) — 🏆 THE 10.20 KM CHAMPION MILESTONE ACHIEVED!", 
     workouts: [
-      { id: "w6d1", day: "Run 1", fullDate: "Thursday, October 29, 2026", title: "Pre-Milestone Endurance Cruise (7.63 km Done ✓)", pacerPace: "11:58 min/km", desc: "Completed 7.63 km in 1:31:20 at 113 BPM! 458.2 kcal, 76.4m elev gain. Pure Zone 2 / FATmax aerobic cruise setting up the official 10K Champion finish! 2 full rest days (Fri Oct 30 & Sat morning). Next run Saturday, Oct 31 (Week 6 Run 2 • The 10.0 km Champion Finish)." },
-      { id: "w6d2", day: "Run 2", fullDate: "Saturday, October 31, 2026", title: "🏆 OFFICIAL 10.0 KM CHAMPION FINISH!", pacerPace: "10.5 min/km", desc: "After 2 full rest days (Oct 29 & 30). CONGRATULATIONS! 10.0 km completed in pure Zone 2!" }
+      { id: "w6d1", day: "Run 1", fullDate: "Thursday, October 29, 2026", title: "Pre-Milestone Endurance Cruise (7.63 km Done ✓)", pacerPace: "11:58 min/km", desc: "Completed 7.63 km in 1:31:20 at 113 BPM! 458.2 kcal, 76.4m elev gain. Pure Zone 2 / FATmax aerobic cruise setting up the official 10K Champion finish!" },
+      { id: "w6d2", day: "Run 2", fullDate: "Sunday, November 1, 2026", title: "🏆 OFFICIAL 10K CHAMPION FINISH! (10.20 km Done ✓)", pacerPace: "12:24 min/km", desc: "🏆 CONGRATULATIONS! Completed 10.20 km in 2:06:29 at 113.0 BPM average HR (128 BPM max)! 601.1 kcal active energy, 169.9m elevation gain, and 100% of all 10 km splits averaged ≤118.8 BPM in pure Zone 2 / FATmax equilibrium!" }
     ]
   },
   { 
@@ -84,17 +84,29 @@ export default function TenKTracker() {
         if (!saved.includes('w5d2')) saved.push('w5d2');
         if (!saved.includes('w5d3')) saved.push('w5d3');
         if (!saved.includes('w6d1')) saved.push('w6d1');
+        if (!saved.includes('w6d2')) saved.push('w6d2');
         return saved;
       }
-      return ['w1d1', 'w1d2', 'w1d3', 'w2d1', 'w2d2', 'w2d3', 'w3d1', 'w3d2', 'w3d3', 'w4d1', 'w5d2', 'w5d3', 'w6d1'];
+      return ['w1d1', 'w1d2', 'w1d3', 'w2d1', 'w2d2', 'w2d3', 'w3d1', 'w3d2', 'w3d3', 'w4d1', 'w5d2', 'w5d3', 'w6d1', 'w6d2'];
     } catch {
-      return ['w1d1', 'w1d2', 'w1d3', 'w2d1', 'w2d2', 'w2d3', 'w3d1', 'w3d2', 'w3d3', 'w4d1', 'w5d2', 'w5d3', 'w6d1'];
+      return ['w1d1', 'w1d2', 'w1d3', 'w2d1', 'w2d2', 'w2d3', 'w3d1', 'w3d2', 'w3d3', 'w4d1', 'w5d2', 'w5d3', 'w6d1', 'w6d2'];
     }
   });
 
   const [runLogs, setRunLogs] = useState(() => {
     try {
       const defaultLogs = [
+        {
+          id: 'log_nov_01_2026',
+          date: '2026-11-01',
+          type: '🏆 OFFICIAL 10K CHAMPION FINISH! (10.20 km)',
+          dist: 10.20,
+          duration: '2:06:29',
+          pace: '12:24',
+          rpe: 3,
+          feeling: '🏆 10K GOAL ACCOMPLISHED! • Pure Zone 2 Mastery • Zero Cardiac Drift Across 2h 06m',
+          notes: '🏆 HISTORIC 10K CHAMPION RUN: 10.20 km in 2:06:29 • 113.0 BPM Avg HR (Exact FATmax Corridor) • 128 BPM Max • 601.1 kcal Active Energy • 169.9m Elevation Gain • Every single kilometer split averaged ≤118.8 BPM! Goal achieved at age 79 before flying to Los Angeles!'
+        },
         {
           id: 'log_oct_29_2026',
           date: '2026-10-29',
@@ -186,10 +198,9 @@ export default function TenKTracker() {
       ];
       const saved = JSON.parse(localStorage.getItem('optimus_10k_logs'));
       if (Array.isArray(saved) && saved.length > 0) {
-        if (!saved.some(l => l.id === 'log_oct_07_2026')) {
-          saved.unshift(defaultLogs[0]);
-        }
-        return saved;
+        const savedIds = new Set(saved.map(l => l.id));
+        const missingDefaults = defaultLogs.filter(d => !savedIds.has(d.id));
+        return [...missingDefaults, ...saved];
       }
       return defaultLogs;
     } catch {
@@ -198,8 +209,8 @@ export default function TenKTracker() {
   });
 
   // Finish Calculator State
-  const [calcPace, setCalcPace] = useState(11.0); // min/km
-  const [selectedPathwayWeek, setSelectedPathwayWeek] = useState(3);
+  const [calcPace, setCalcPace] = useState(12.4); // min/km
+  const [selectedPathwayWeek, setSelectedPathwayWeek] = useState(6);
 
   // Modal State
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -213,7 +224,7 @@ export default function TenKTracker() {
     notes: ''
   });
 
-  const [expandedWeeks, setExpandedWeeks] = useState({ 2: false, 3: true, 4: false });
+  const [expandedWeeks, setExpandedWeeks] = useState({ 5: false, 6: true, 7: true });
 
   useEffect(() => {
     localStorage.setItem('optimus_10k_completed', JSON.stringify(completedWorkouts));
@@ -353,16 +364,16 @@ export default function TenKTracker() {
     },
     {
       week: 6,
-      title: 'Week 6: Pre-10K Step-Up & 🏆 The 10.0 km Champion Run!',
-      badge: 'RUN 1 DONE (7.63 KM) • NEXT: 10.0 KM CHAMPION FINISH 🏆',
-      badgeColor: 'bg-emerald-600 text-white border-emerald-700 font-bold',
-      dist: '7.63 – 10.0 km',
-      pace: '10.5 – 11:58 min/km',
-      duration: '~91 – 105 min',
-      hr: '108 – 115 BPM',
-      focus: 'Pre-Milestone Endurance Step-Up & Cardiac Drift Mastery',
-      details: 'Oct 29 Run 1 completed with exceptional poise: 7.63 km in 1:31:20 at an average of 113 BPM (pure Zone 2 / FATmax corridor) with only 76.4m elevation gain and zero cardiac drift! Next: Saturday, Oct 31 (The Official 10.0 km Champion Run).',
-      rules: 'Take 2 full rest days (Fri Oct 30 & Sat morning). Hydrate well with electrolytes. Final 10K milestone awaits!'
+      title: 'Week 6: 🏆 THE 10.20 KM CHAMPION MILESTONE ACHIEVED!',
+      badge: '🏆 10.20 KM COMPLETED @ 113 BPM • 10K CHAMPION! ✓',
+      badgeColor: 'bg-emerald-600 text-white border-emerald-700 font-black',
+      dist: '7.63 – 10.20 km',
+      pace: '11:58 – 12:24 min/km',
+      duration: '1:31:20 – 2:06:29',
+      hr: '113 BPM Avg (Max 128)',
+      focus: 'The 10K Longevity Champion Finish & Zero-Drift Mastery',
+      details: 'Nov 1 Champion Run completed with extraordinary bioenergetic mastery: 10.20 km in 2:06:29 at an average of 113.0 BPM (pure Zone 2 / FATmax corridor), 601.1 kcal active energy, and 169.9m elevation gain! Every single kilometer split averaged ≤118.8 BPM.',
+      rules: 'Celebrate your 10.20 km triumph! Enjoy 3 full days of pre-flight recovery, hydration, and deep sleep before your Thursday, Nov 5 flight to Los Angeles!'
     },
     {
       week: 7,
@@ -409,13 +420,13 @@ export default function TenKTracker() {
             </span>
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-xs font-bold uppercase tracking-wider">
               <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
-              Week 6 Active: Step-Up Milestone (Run 1 Done • 7.63 km @ 113 BPM)
+              🏆 10K GOAL ACHIEVED: 10.20 km Completed @ 113 BPM!
             </span>
           </div>
           
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight">
             8-Week Zone 2 10K Training & Nutrition Plan:{' '}
-            <span className="text-emerald-400">From 7.59 km to the 10K Goal</span>
+            <span className="text-emerald-400">10.20 km Goal Accomplished! 🏆</span>
           </h1>
           <p className="text-stone-300 text-sm sm:text-base max-w-3xl leading-relaxed">
             Proof that steady-state aerobic running in the <strong>101–120 BPM FATmax corridor</strong> rebuilds cellular powerhouses and enables master runners to complete a 10K safely, cleanly, and without joint injury.
@@ -425,19 +436,19 @@ export default function TenKTracker() {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
             <div className="bg-white/10 backdrop-blur-md rounded-2xl p-3 border border-white/10">
               <span className="text-xs text-stone-300 block">Current Status</span>
-              <strong className="text-xl sm:text-2xl font-black text-emerald-300">Week 6 Active (1/2) ✓</strong>
+              <strong className="text-xl sm:text-2xl font-black text-emerald-300">🏆 10K Champion ✓</strong>
             </div>
             <div className="bg-white/10 backdrop-blur-md rounded-2xl p-3 border border-white/10">
-              <span className="text-xs text-stone-300 block">Latest Session</span>
-              <strong className="text-xl sm:text-2xl font-black text-emerald-300">7.63 km (11:58)</strong>
+              <span className="text-xs text-stone-300 block">Champion Session</span>
+              <strong className="text-xl sm:text-2xl font-black text-emerald-300">10.20 km (2:06:29)</strong>
             </div>
             <div className="bg-white/10 backdrop-blur-md rounded-2xl p-3 border border-white/10">
               <span className="text-xs text-stone-300 block">Avg Heart Rate</span>
-              <strong className="text-xl sm:text-2xl font-black text-white">113 BPM</strong>
+              <strong className="text-xl sm:text-2xl font-black text-white">113.0 BPM (Z2)</strong>
             </div>
             <div className="bg-white/10 backdrop-blur-md rounded-2xl p-3 border border-white/10">
-              <span className="text-xs text-stone-300 block">Next Scheduled Run</span>
-              <strong className="text-xl sm:text-2xl font-black text-emerald-400">Sat, Oct 31 (10.0K)</strong>
+              <span className="text-xs text-stone-300 block">Next Milestone</span>
+              <strong className="text-xl sm:text-2xl font-black text-emerald-400">✈️ LAX Flight (Nov 5)</strong>
             </div>
           </div>
         </div>

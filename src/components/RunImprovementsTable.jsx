@@ -19,9 +19,28 @@ export const calcMitoAdaptationProxy = (paceVal, avgHr, hrDriftPercent, zone2Per
 
 const INITIAL_RUNS_DATA = [
   {
+    id: 'run-nov-01-2026',
+    date: 'Nov 01, 2026',
+    title: "🏆 10K CHAMPION RUN! (10.20 km • Apple Watch AutoSync • Official 10K Milestone Achieved)",
+    distanceKm: 10.20,
+    durationMin: 126.5,
+    paceStr: '12:24 min/km',
+    paceVal: 12.40,
+    avgHr: 113,
+    maxHr: 128,
+    powerWatts: 118,
+    zone2Percent: 92,
+    fatBurnGrams: 47.8,
+    carbBurnGrams: 29.0,
+    mitoScore: 99,
+    hrDriftPercent: 2.8,
+    lthrMargin: '-23 BPM',
+    note: '🏆 10K CHAMPION MILESTONE: 10.20 km in 2:06:29 • 113.0 BPM Avg HR (Pure Zone 2 / FATmax Corridor) • 128 BPM Max • 601.1 kcal • 169.9m Elev Gain • Every single km split averaged ≤118.8 BPM with near-zero cardiac drift across 2h 06m!'
+  },
+  {
     id: 'run-oct-29-2026',
     date: 'Oct 29, 2026',
-    title: "🔥 Latest Outdoor Run (7.63 km • Apple Watch AutoSync • Week 6 Step-Up & Pre-10K Endurance)",
+    title: "Outdoor Run (7.63 km • Apple Watch AutoSync • Week 6 Step-Up & Pre-10K Endurance)",
     distanceKm: 7.63,
     durationMin: 91.3,
     paceStr: '11:58 min/km',
@@ -424,11 +443,12 @@ export default function RunImprovementsTable({ prevPage, nextPage, setPage } = {
   const topScrollContainerRef = useRef(null);
   const [tableScrollWidth, setTableScrollWidth] = useState(1400);
 
-  const STORAGE_KEY = 'optimus_ishai_runs_v7';
+  const STORAGE_KEY = 'optimus_ishai_runs_v8';
 
   const [runs, setRuns] = useState(() => {
     // Purge outdated caches from earlier versions
     try {
+      localStorage.removeItem('optimus_ishai_runs_v7');
       localStorage.removeItem('optimus_ishai_runs_v6');
       localStorage.removeItem('optimus_ishai_runs_v5');
       localStorage.removeItem('optimus_ishai_runs_v4');

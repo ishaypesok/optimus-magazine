@@ -6,8 +6,40 @@ import {
 } from 'lucide-react';
 
 const SYNCED_TODAY_RUN = {
+  id: 'run-nov-01-2026-synced',
+  title: "🏆 10K CHAMPION RUN! (10.20 km • Auto Export AutoSync • Official 10K Milestone Achieved)",
+  date: 'Nov 01, 2026 • 18:39',
+  device: 'Apple Watch Ultra',
+  sourceApp: 'Health Auto Export AutoSync',
+  durationMinutes: 126.5,
+  distanceKm: 10.20,
+  avgPace: '12:24 min/km',
+  avgHeartRate: 113,
+  maxHeartRate: 128,
+  calories: 601,
+  vo2max: 34.1,
+  powerWatts: 118,
+  elevationGain: 169.9,
+  weatherTemp: '22.6°C',
+  weatherHumidity: '74%',
+  wingateZone2Target: '105 - 121 BPM',
+  zone2TimePercent: 92,
+  fatBurnGrams: 47.8,
+  carbBurnGrams: 29.0,
+  mitochondrialEfficiencyScore: 99,
+  lthrMargin: '-23 BPM below LTHR (136 BPM)',
+  coordinates: [
+    { x: 40, y: 185, hr: 97, zone: 'Zone 1' },
+    { x: 140, y: 125, hr: 110, zone: 'Zone 2' },
+    { x: 280, y: 105, hr: 114, zone: 'Zone 2' },
+    { x: 420, y: 95, hr: 117, zone: 'Zone 2' },
+    { x: 570, y: 165, hr: 118, zone: 'Zone 2' }
+  ]
+};
+
+const RUN_OCT_29_2026 = {
   id: 'run-oct-29-2026-synced',
-  title: "Latest Outdoor Run (7.63 km • Auto Export AutoSync • Week 6 Pre-10K Step-Up)",
+  title: "Previous Outdoor Run (7.63 km • Auto Export AutoSync • Week 6 Pre-10K Step-Up)",
   date: 'Oct 29, 2026 • 18:57',
   device: 'Apple Watch Ultra',
   sourceApp: 'Health Auto Export AutoSync',
@@ -807,6 +839,7 @@ const RUN_JUL_25_2026 = {
 
 const INITIAL_RUNS = [
   SYNCED_TODAY_RUN,
+  RUN_OCT_29_2026,
   RUN_OCT_26_2026,
   RUN_OCT_22_2026,
   RUN_OCT_10_2026,
@@ -833,11 +866,12 @@ const INITIAL_RUNS = [
   RUN_JUL_25_2026
 ];
 
-const STRAVA_STORAGE_KEY = 'optimus_ishai_strava_runs_v7';
+const STRAVA_STORAGE_KEY = 'optimus_ishai_strava_runs_v8';
 
 export default function StravaRunVisualizer() {
   const [runsList, setRunsList] = useState(() => {
     try {
+      localStorage.removeItem('optimus_ishai_strava_runs_v7');
       localStorage.removeItem('optimus_ishai_strava_runs_v6');
       localStorage.removeItem('optimus_ishai_strava_runs_v5');
       localStorage.removeItem('optimus_ishai_runs_v3');
@@ -936,7 +970,7 @@ export default function StravaRunVisualizer() {
       // Make sure today run is loaded at top
       setRunsList(INITIAL_RUNS);
       setSelectedRunId(SYNCED_TODAY_RUN.id);
-      alert(`🎉 Today's ${SYNCED_TODAY_RUN.distanceKm} km Apple Watch run (Oct 29) successfully synced! (Avg HR ${SYNCED_TODAY_RUN.avgHeartRate} BPM loaded)`);
+      alert(`🏆 Today's ${SYNCED_TODAY_RUN.distanceKm} km 10K Champion Run (Nov 1) successfully synced! (Avg HR ${SYNCED_TODAY_RUN.avgHeartRate} BPM loaded)`);
     }, 800);
   };
 

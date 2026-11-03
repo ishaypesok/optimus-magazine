@@ -7,6 +7,19 @@ import {
 import MetabolicTierBadge from './MetabolicTierBadge';
 
 export default function BioenergeticsCalculator() {
+  // Preset 0000: Ishai's Actual Nov 01, 2026 Run (🏆 Official 10K Champion Run — 10.20 km!)
+  const ishaiNov01Preset = {
+    name: "Ishai's Nov 1 10K Champion Run 🏆 (10.20 km)",
+    description: "Actual Apple Watch recorded 10.20 km Champion Run from November 1, 2026",
+    weight: 82.9,
+    restingHr: 52,
+    vo2max: 34.1,
+    maxHr: 175,
+    workoutHr: 113,
+    duration: 126.5,
+    distance: 10.20
+  };
+
   // Preset 000: Ishai's Actual Oct 29, 2026 Run (Week 6 Pre-10K Step-Up)
   const ishaiOct29Preset = {
     name: "Ishai's Oct 29 Real Run (Pre-10K Step-Up)",
@@ -209,17 +222,18 @@ export default function BioenergeticsCalculator() {
   };
 
   // Input states
-  const [weight, setWeight] = useState(ishaiSep28Preset.weight);
-  const [restingHr, setRestingHr] = useState(ishaiSep28Preset.restingHr);
-  const [vo2max, setVo2max] = useState(ishaiSep28Preset.vo2max);
-  const [maxHr, setMaxHr] = useState(ishaiSep28Preset.maxHr);
-  const [workoutHr, setWorkoutHr] = useState(ishaiSep28Preset.workoutHr);
-  const [duration, setDuration] = useState(ishaiSep28Preset.duration);
-  const [activePreset, setActivePreset] = useState('ishai_sep28');
+  const [weight, setWeight] = useState(ishaiNov01Preset.weight);
+  const [restingHr, setRestingHr] = useState(ishaiNov01Preset.restingHr);
+  const [vo2max, setVo2max] = useState(ishaiNov01Preset.vo2max);
+  const [maxHr, setMaxHr] = useState(ishaiNov01Preset.maxHr);
+  const [workoutHr, setWorkoutHr] = useState(ishaiNov01Preset.workoutHr);
+  const [duration, setDuration] = useState(ishaiNov01Preset.duration);
+  const [activePreset, setActivePreset] = useState('ishai_nov01');
 
   const applyPreset = (presetKey) => {
     setActivePreset(presetKey);
-    let p = ishaiOct29Preset;
+    let p = ishaiNov01Preset;
+    if (presetKey === 'ishai_nov01') p = ishaiNov01Preset;
     if (presetKey === 'ishai_oct29') p = ishaiOct29Preset;
     if (presetKey === 'ishai_oct26') p = ishaiOct26Preset;
     if (presetKey === 'ishai_oct22') p = ishaiOct22Preset;
@@ -332,6 +346,26 @@ export default function BioenergeticsCalculator() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pt-1">
           
           <button
+            onClick={() => applyPreset('ishai_nov01')}
+            className={`p-3.5 rounded-xl text-left border transition flex flex-col justify-between ${
+              activePreset === 'ishai_nov01'
+                ? 'bg-emerald-700/80 border-emerald-400 text-white shadow-sm ring-2 ring-emerald-400/40'
+                : 'bg-white/10 border-white/15 text-stone-200 hover:bg-white/15'
+            }`}
+          >
+            <div>
+              <div className="font-extrabold text-xs flex items-center gap-1.5">
+                <span>🏆 Nov 1 Run (10.20 km)</span>
+                <span className="px-1.5 py-0.5 rounded bg-emerald-900/90 text-[10px] text-emerald-200 font-mono">10K Champion ✓</span>
+              </div>
+              <p className="text-[11px] text-stone-300 mt-1">2:06:29 • 113 BPM avg • 601 kcal</p>
+            </div>
+            <div className="text-[10px] font-mono text-emerald-300 pt-2 border-t border-white/10 mt-2">
+              82.9 kg • 52 RHR • 34.1 VO₂max
+            </div>
+          </button>
+
+          <button
             onClick={() => applyPreset('ishai_oct29')}
             className={`p-3.5 rounded-xl text-left border transition flex flex-col justify-between ${
               activePreset === 'ishai_oct29'
@@ -342,7 +376,7 @@ export default function BioenergeticsCalculator() {
             <div>
               <div className="font-extrabold text-xs flex items-center gap-1.5">
                 <span>🔥 Oct 29 Run (7.63 km)</span>
-                <span className="px-1.5 py-0.5 rounded bg-emerald-900/90 text-[10px] text-emerald-200 font-mono">Week 6 Active ✓</span>
+                <span className="px-1.5 py-0.5 rounded bg-emerald-900/90 text-[10px] text-emerald-200 font-mono">Week 6 Run 1 ✓</span>
               </div>
               <p className="text-[11px] text-stone-300 mt-1">1:31:20 • 113 BPM avg • 458 kcal</p>
             </div>
